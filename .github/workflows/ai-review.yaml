@@ -1,0 +1,47 @@
+name: Gemini PR Reviewer
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    if: (github.event_name == 'pull_request' && !contains(github.event.pull_request.title, 'release') && !contains(github.event.pull_request.title, 'Release'))
+    timeout-minutes: 15
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # 差分計算のためにフル履歴を取得
+
+      - name: Get PR diff
+        id: get_diff
+        run: |
+          DIFF=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github.v3.diff" "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}")
+          echo "diff<<EOF" >> $GITHUB_OUTPUT
+          echo "$DIFF" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Review with Gemini API
+        id: gemini_review
+        uses: google-github-actions/generate-content@v3 # Gemini API を呼び出すアクション
+        with:
+          api_key: ${{ secrets.GOOGLE_API_KEY }}
+          model_name: gemini-pro
+          prompt: |
+            以下のコードの差分をレビューしてください。
+            改善点、セキュリティ上の問題点、パフォーマンスの問題点などを指摘してください。
+            ```diff
+            ${{ steps.get_diff.outputs.diff }}
+            ```
+          task_type: generate_content
+
+      - name: Post review comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-id: ${{ github.event.pull_request.number }}
+          body: |
+            ## Gemini API によるコードレビュー結果
+
+            ${{ steps.gemini_review.outputs.content }}
