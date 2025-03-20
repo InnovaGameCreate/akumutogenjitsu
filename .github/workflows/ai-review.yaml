@@ -1,61 +1,47 @@
-name: ai-reviewer
-
-permissions:
-  contents: read
-  pull-requests: write
+name: Gemini PR Reviewer
 
 on:
   pull_request:
     types: [opened]
 
-concurrency:
-  group: ${{ github.repository }}-${{ github.event.number || github.head_ref || github.sha }}-${{ github.workflow }}-${{ github.event_name == 'pull_request_review_comment' && 'pr_comment' || 'pr' }}
-  cancel-in-progress: ${{ github.event_name != 'pull_request_review_comment' }}
-
 jobs:
   review:
     runs-on: ubuntu-latest
-    if:  (github.event_name == 'pull_request' && !contains(github.event.pull_request.title, 'release') && !contains(github.event.pull_request.title, 'Release'))
+    if: (github.event_name == 'pull_request' && !contains(github.event.pull_request.title, 'release') && !contains(github.event.pull_request.title, 'Release'))
     timeout-minutes: 15
     steps:
-      - uses: coderabbitai/openai-pr-reviewer@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
-          debug: false
-          review_simple_changes: false
-          review_comment_lgtm: false
-          openai_light_model: gpt-4
-          openai_heavy_model: gpt-4
-          openai_timeout_ms: 900000 # 15分.
-          language: ja-JP
-          path_filters: |
-            !db/**
-            !**/*.lock
-          system_message: |
-            あなたは @coderabbitai（別名 github-actions[bot]）で、OpenAIによって訓練された言語モデルです。
-            あなたの目的は、非常に経験豊富なソフトウェアエンジニアとして機能し、コードの一部を徹底的にレビューし、
-            以下のようなキーエリアを改善するためのコードスニペットを提案することです：
-              - ロジック
-              - セキュリティ
-              - パフォーマンス
-              - データ競合
-              - 一貫性
-              - エラー処理
-              - 保守性
-              - モジュール性
-              - 複雑性
-              - 最適化
-              - ベストプラクティス: DRY, SOLID, KISS
+          fetch-depth: 0 # 差分計算のためにフル履歴を取得
 
-            些細なコードスタイルの問題や、コメント・ドキュメントの欠落についてはコメントしないでください。
-            重要な問題を特定し、解決して全体的なコード品質を向上させることを目指してくださいが、細かい問題は意図的に無視してください。
-            若い生意気な可愛いメイドさんの口調で説明してください!
-          summarize: |
-            次の内容でmarkdownフォーマットを使用して、最終的な回答を提供してください。
+      - name: Get PR diff
+        id: get_diff
+        run: |
+          DIFF=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github.v3.diff" "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}")
+          echo "diff<<EOF" >> $GITHUB_OUTPUT
+          echo "$DIFF" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
-              - *ウォークスルー*: 特定のファイルではなく、全体の変更に関する高レベルの要約を80語以内で。
-              - *変更点*: ファイルとその要約のテーブル。スペースを節約するために、同様の変更を持つファイルを1行にまとめることができます。
+      - name: Review with Gemini API
+        id: gemini_review
+        uses: google-github-actions/generate-content@v3 # Gemini API を呼び出すアクション
+        with:
+          api_key: ${{ secrets.GOOGLE_API_KEY }}
+          model_name: gemini-pro
+          prompt: |
+            以下のコードの差分をレビューしてください。
+            改善点、セキュリティ上の問題点、パフォーマンスの問題点などを指摘してください。
+            ```diff
+            ${{ steps.get_diff.outputs.diff }}
+            ```
+          task_type: generate_content
 
-            GitHubのプルリクエストにコメントとして追加されるこの要約には、追加のコメントを避けてください。
+      - name: Post review comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-id: ${{ github.event.pull_request.number }}
+          body: |
+            ## Gemini API によるコードレビュー結果
+
+            ${{ steps.gemini_review.outputs.content }}
