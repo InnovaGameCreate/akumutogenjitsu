@@ -8,10 +8,7 @@ public abstract class AbstractEvent : MonoBehaviour
     // i回だけトリガーするか
     [SerializeField] private bool _isTriggeredOnce;
 
-    // トリガーされたか
-    private bool _hasTriggeredOnce;
-
-    // イベントが実行中か
+    // イベントの状態
     private eEventStatus _eventStatus = eEventStatus.NotTriggered;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
