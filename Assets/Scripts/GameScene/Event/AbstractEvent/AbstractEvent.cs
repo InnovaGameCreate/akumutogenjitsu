@@ -12,7 +12,7 @@ public abstract class AbstractEvent : MonoBehaviour
     private bool _hasTriggeredOnce;
 
     // イベントが実行中か
-    private bool _isEventRunning = false;
+    private eEventStatus _eventStatus = eEventStatus.NotTriggered;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,20 +22,28 @@ public abstract class AbstractEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_isTriggeredOnce && _hasTriggeredOnce)
+        if (_isTriggeredOnce && _eventStatus == eEventStatus.Triggered)
         {
             return;
         }
 
         // イベントが実行中はトリガーしない
-        if (!_isEventRunning)
+        if (_eventStatus != eEventStatus.Running)
         {
             if (IsTriggerEvent())
             {
                 TriggerEvent();
-                _hasTriggeredOnce = true;
-                _isEventRunning = true;
+                _eventStatus = eEventStatus.Running;
             }
+        }
+
+        if (IsFinishEvent())
+        {
+            _eventStatus = eEventStatus.Triggered;
+
+#if DEBUG_MODE
+            Debug.Log($"イベント: {_event} が終了しました");
+#endif
         }
     }
 
@@ -51,6 +59,12 @@ public abstract class AbstractEvent : MonoBehaviour
     public abstract void TriggerEvent();
 
     /// <summary>
+    /// イベントが終了したか
+    /// </summary>
+    /// <returns> 終了したか </returns>
+    public abstract bool IsFinishEvent();
+
+    /// <summary>
     /// イベントの種類(ReadOnly)
     /// </summary>
     protected eEvent Event
@@ -59,18 +73,10 @@ public abstract class AbstractEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// イベントが1回トリガーされたか(ReadOnly)
+    /// イベントの状態(ReadOnly)
     /// </summary>
-    protected bool HasTriggeredOnce
+    protected eEventStatus EventStatus
     {
-        get { return _hasTriggeredOnce; }
-    }
-
-    /// <summary>
-    /// イベントが実行中か(ReadOnly)
-    /// </summary>
-    protected bool IsRunningEvent
-    {
-        get { return _isEventRunning; }
+        get { return _eventStatus; }
     }
 }

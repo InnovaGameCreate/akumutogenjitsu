@@ -4,7 +4,5 @@
 public enum eEvent
 {
     None,
-    MoveMap,
-    GetItem,
-    UseItem,
+    TestEvent,
 }
