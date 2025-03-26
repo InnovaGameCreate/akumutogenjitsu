@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MapMoveEvent : AbstractEvent
 {
@@ -18,6 +19,7 @@ public class MapMoveEvent : AbstractEvent
 
     public override bool IsTriggerEvent()
     {
+        // ブロックの中にPlayerが入っているとき
         if (_isInEventBlock)
         {
             return Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return);
@@ -28,19 +30,24 @@ public class MapMoveEvent : AbstractEvent
 
     public override bool IsFinishEvent()
     {
+        // Eventが実行中でかつブロックの中にPlayerが入っていないとき
         return EventStatus == eEventStatus.Running && !_isInEventBlock;
     }
 
     public override void TriggerEvent()
     {
-        Debug.Log("Move Map");
+        if (IsSceneExist())
+        {
+            MoveMap();
+        }
+        else
+        {
+            Debug.LogError($"シーンが存在しません: {_sceneName}");
+        }
     }
 
     public override void OnUpdateEvent()
     {
-#if DEBUG_MODE
-        Debug.Log($"_isInEventBlock: {_isInEventBlock}, EventStatus: {EventStatus}");
-#endif
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -58,5 +65,34 @@ public class MapMoveEvent : AbstractEvent
             _isInEventBlock = false;
         }
     }
-}
 
+    /// <summary>
+    /// マップを移動する
+    /// </summary>
+    private void MoveMap()
+    {
+        // シーンを移動して座標も移動
+        PlayerMapMove player = GameObject.FindWithTag("Player").GetComponent<PlayerMapMove>();
+        player.MapMove(_sceneName, _position);
+    }
+
+    /// <summary>
+    /// シーンが存在するか
+    /// </summary>
+    /// <returns> 存在するか </returns>
+    private bool IsSceneExist()
+    {
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string scenePath = SceneUtility.GetScenePathByBuildIndex(i); // シーンのパスを取得
+            string sceneFileName = System.IO.Path.GetFileNameWithoutExtension(scenePath); // ファイル名のみ取得
+
+            if (sceneFileName == _sceneName) // 完全一致で比較
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
