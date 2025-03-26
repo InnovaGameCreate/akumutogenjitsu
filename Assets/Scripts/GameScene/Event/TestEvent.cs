@@ -20,4 +20,8 @@ public class TestEvent : AbstractEvent
     {
         return Input.GetKeyDown(KeyCode.A);
     }
+
+    public override void OnUpdateEvent()
+    {
+    }
 }

@@ -42,6 +42,8 @@ public abstract class AbstractEvent : MonoBehaviour
             Debug.Log($"イベント: {_event} が終了しました");
 #endif
         }
+
+        OnUpdateEvent();
     }
 
     /// <summary>
