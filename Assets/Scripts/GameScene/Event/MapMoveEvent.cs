@@ -12,6 +12,9 @@ public class MapMoveEvent : AbstractEvent
     [Header("移動するマップの座標")]
     [SerializeField] private Vector2 _position;
 
+    [Header("自動でマップを移動するか")]
+    [SerializeField] private bool _isAutoMove;
+
     private void Start()
     {
         _isInEventBlock = false;
@@ -22,7 +25,7 @@ public class MapMoveEvent : AbstractEvent
         // ブロックの中にPlayerが入っているとき
         if (_isInEventBlock)
         {
-            return Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return);
+            return Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return) || _isAutoMove;
         }
 
         return false;
