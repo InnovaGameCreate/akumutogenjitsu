@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,10 +18,21 @@ public class MapMoveEvent : AbstractEvent
 
     private PlayerMapMove _playerMapMove;
 
+    private Dictionary<string, bool> _isScenesExist;
+
     private void Start()
     {
         _isInEventBlock = false;
         _playerMapMove = GameObject.FindWithTag("Player").GetComponent<PlayerMapMove>();
+
+        _isScenesExist = new Dictionary<string, bool>();
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string scenePath = SceneUtility.GetScenePathByBuildIndex(i); // シーンのパスを取得
+            string sceneFileName = System.IO.Path.GetFileNameWithoutExtension(scenePath); // ファイル名のみ取得
+
+            _isScenesExist[sceneFileName] = true;
+        }
     }
 
     public override bool IsTriggerEvent()
@@ -87,17 +99,6 @@ public class MapMoveEvent : AbstractEvent
     /// <returns> 存在するか </returns>
     private bool IsSceneExist()
     {
-        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
-        {
-            string scenePath = SceneUtility.GetScenePathByBuildIndex(i); // シーンのパスを取得
-            string sceneFileName = System.IO.Path.GetFileNameWithoutExtension(scenePath); // ファイル名のみ取得
-
-            if (sceneFileName == _sceneName) // 完全一致で比較
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return _isScenesExist.ContainsKey(_sceneName);
     }
 }
