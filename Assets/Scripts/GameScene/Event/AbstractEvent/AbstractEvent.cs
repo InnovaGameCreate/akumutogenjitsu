@@ -2,9 +2,11 @@ using UnityEngine;
 
 public abstract class AbstractEvent : MonoBehaviour
 {
+    [Header("イベントの設定")]
     // イベントの種類
     [SerializeField] private eEvent _event;
 
+    [Header("1回だけ実行する")]
     // i回だけトリガーするか
     [SerializeField] private bool _isTriggeredOnce;
 
