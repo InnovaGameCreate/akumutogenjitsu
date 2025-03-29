@@ -15,9 +15,12 @@ public class MapMoveEvent : AbstractEvent
     [Header("自動でマップを移動するか")]
     [SerializeField] private bool _isAutoMove;
 
+    private PlayerMapMove _playerMapMove;
+
     private void Start()
     {
         _isInEventBlock = false;
+        _playerMapMove = GameObject.FindWithTag("Player").GetComponent<PlayerMapMove>();
     }
 
     public override bool IsTriggerEvent()
@@ -75,8 +78,7 @@ public class MapMoveEvent : AbstractEvent
     private void MoveMap()
     {
         // シーンを移動して座標も移動
-        PlayerMapMove player = GameObject.FindWithTag("Player").GetComponent<PlayerMapMove>();
-        player.MapMove(_sceneName, _position);
+        _playerMapMove.MapMove(_sceneName, _position);
     }
 
     /// <summary>
