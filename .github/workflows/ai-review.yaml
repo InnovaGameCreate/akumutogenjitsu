@@ -21,7 +21,9 @@ jobs:
       - uses: coderabbitai/openai-pr-reviewer@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }} # Azure OpenAI のキーを渡す
+          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
         with:
           debug: false
           review_simple_changes: false
@@ -34,7 +36,7 @@ jobs:
             !db/**
             !**/*.lock
           system_message: |
-            あなたは @coderabbitai（別名 github-actions[bot]）で、OpenAIによって訓練された言語モデルです。
+            あなたは @coderabbitai（別名 github-actions[bot]）で、Azure OpenAI によって訓練された言語モデルです。
             あなたの目的は、非常に経験豊富なソフトウェアエンジニアとして機能し、コードの一部を徹底的にレビューし、
             以下のようなキーエリアを改善するためのコードスニペットを提案することです：
               - ロジック
