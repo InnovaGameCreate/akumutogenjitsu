@@ -12,11 +12,30 @@ public abstract class AbstractUnitController : MonoBehaviour
         {
             Debug.LogError("UnitMoveがアタッチされていません");
         }
+
+        OnStartUnitController();
     }
 
-    private void Update()
+    void Update()
     {
+        OnUpdateUnitController();
         Move();
+    }
+
+    /// <summary>
+    /// UnitControllerの初期化処理(Start()の代わり)
+    /// </summary>
+    protected virtual void OnStartUnitController()
+    {
+        return;
+    }
+
+    /// <summary>
+    /// UnitControllerの更新処理(Update()の代わり)
+    /// </summary>
+    protected virtual void OnUpdateUnitController()
+    {
+        return;
     }
 
     /// <summary>
