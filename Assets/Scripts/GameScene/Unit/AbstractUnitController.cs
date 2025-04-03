@@ -12,10 +12,13 @@ public abstract class AbstractUnitController : MonoBehaviour
         {
             Debug.LogError("UnitMoveがアタッチされていません");
         }
+
+        OnStartUnitController();
     }
 
-    private void Update()
+    void Update()
     {
+        OnUpdateUnitController();
         Move();
     }
 
