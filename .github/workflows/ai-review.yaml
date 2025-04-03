@@ -1,4 +1,4 @@
-name: ai-reviewer
+name: maidai-reviewer
 
 permissions:
   contents: read
