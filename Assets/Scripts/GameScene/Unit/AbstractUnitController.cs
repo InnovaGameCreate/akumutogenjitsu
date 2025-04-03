@@ -20,6 +20,22 @@ public abstract class AbstractUnitController : MonoBehaviour
     }
 
     /// <summary>
+    /// UnitController‚Ì‰Šú‰»ˆ—(Start()‚Ì‘ã‚í‚è)
+    /// </summary>
+    protected virtual void OnStartUnitController()
+    {
+        return;
+    }
+
+    /// <summary>
+    /// UnitController‚ÌXVˆ—(Update()‚Ì‘ã‚í‚è)
+    /// </summary>
+    protected virtual void OnUpdateUnitController()
+    {
+        return;
+    }
+
+    /// <summary>
     /// Unit‚ÌˆÚ“®ó‘Ô‚ğæ“¾‚·‚é
     /// </summary>
     /// <returns> ˆÚ“®ó‘Ô </returns>
