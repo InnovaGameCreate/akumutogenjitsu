@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 public abstract class AbstractEvent : MonoBehaviour
@@ -31,6 +33,8 @@ public abstract class AbstractEvent : MonoBehaviour
         {
             if (IsTriggerEvent())
             {
+                SetIsUnitMove(false); // Unitの移動を無効にする
+
                 TriggerEvent();
                 _eventStatus = eEventStatus.Running;
             }
@@ -38,6 +42,8 @@ public abstract class AbstractEvent : MonoBehaviour
 
         if (IsFinishEvent())
         {
+            SetIsUnitMove(true); // Unitの移動を有効にする
+
             _eventStatus = eEventStatus.Triggered;
 
 #if DEBUG_MODE
@@ -46,6 +52,21 @@ public abstract class AbstractEvent : MonoBehaviour
         }
 
         OnUpdateEvent();
+    }
+
+    /// <summary>
+    /// Unitの移動を有効/無効にする
+    /// </summary>
+    /// <param name="isUnitMove"> 有効/無効 </param>
+    private void SetIsUnitMove(bool isUnitMove)
+    {
+        // 全てのUnitのUnitMoveを取得
+        List<UnitMove> units = new List<UnitMove>(FindObjectsByType<UnitMove>(FindObjectsSortMode.None));
+
+        foreach (UnitMove unit in units)
+        {
+            unit.IsEnabled = isUnitMove;
+        }
     }
 
     /// <summary>
