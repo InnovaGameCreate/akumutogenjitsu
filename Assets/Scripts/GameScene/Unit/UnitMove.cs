@@ -8,6 +8,9 @@ public class UnitMove : MonoBehaviour
 
     // •ûŒü
     private UnitMoveStatus _unitMoveStatus;
+    
+    // Unit‚ªˆÚ“®‚·‚é‚©
+    private bool _isEnabled;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +20,7 @@ public class UnitMove : MonoBehaviour
             Debug.LogError("DefaultSpeed‚ª0‚Éİ’è‚³‚ê‚Ä‚¢‚Ü‚·");
         }
         _speed = _defaultSpeed;
+        _isEnabled = true;
     }
 
     // Update is called once per frame
@@ -30,6 +34,11 @@ public class UnitMove : MonoBehaviour
     /// <param name="direction"> “®‚©‚·•ûŒü </param>
     public void Move(UnitMoveStatus unitmovestatus)
     {
+        if (!_isEnabled)
+        {
+            return;
+        }
+
         Vector2 move = Vector2.zero;
 
         if (unitmovestatus.Left)
@@ -81,6 +90,22 @@ public class UnitMove : MonoBehaviour
             #if DEBUG_MODE
                 Debug.Log("Speed‚ğ" + _speed + "‚Éİ’è‚µ‚Ü‚µ‚½");
             #endif
+        }
+    }
+
+    /// <summary>
+    /// Unit‚ªˆÚ“®‚·‚é‚©
+    /// </summary>
+    public bool IsEnabled
+    {
+        get
+        {
+            return _isEnabled;
+        }
+        set
+        {
+            _isEnabled = value;
+            enabled = _isEnabled;
         }
     }
 }
