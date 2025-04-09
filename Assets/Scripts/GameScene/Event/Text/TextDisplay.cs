@@ -7,29 +7,18 @@ public class TextDisplay : AbstractEvent, IPointerClickHandler
 {
     [SerializeField] private Text textComponent; // Legacy Text に変更
     [SerializeField] private int linesPerPage = 2;
-    [SerializeField] private string messageText; // 外部から設定可能なメッセージ
+    [SerializeField, TextArea(3, 10)] private string message; // 外部で設定可能に
 
     private List<string> textLines = new List<string>();
     private int currentPage = 0;
-    private bool isTriggered = false;
     private bool playerInRange = false;
+    private bool isDisplaying = false;
 
     private void Awake()
     {
         if (textComponent == null)
         {
             textComponent = GetComponent<Text>();
-        }
-    }
-
-    private void Update()
-    {
-        if (playerInRange && Input.GetKeyDown(KeyCode.Z))
-        {
-            if (!isTriggered)
-            {
-                TriggerEvent();
-            }
         }
     }
 
@@ -53,13 +42,13 @@ public class TextDisplay : AbstractEvent, IPointerClickHandler
     {
         textLines = new List<string>(message.Split('\n'));
         currentPage = 0;
-        isTriggered = true;
+        isDisplaying = true;
         DisplayPage();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (isTriggered)
+        if (EventStatus == eEventStatus.Running && isDisplaying)
         {
             NextPage();
         }
@@ -74,6 +63,7 @@ public class TextDisplay : AbstractEvent, IPointerClickHandler
         }
         else
         {
+            isDisplaying = false;
             ClearText();
         }
     }
@@ -94,29 +84,23 @@ public class TextDisplay : AbstractEvent, IPointerClickHandler
 
     public override bool IsTriggerEvent()
     {
-        return false; // TriggerEventで直接管理する
+        return playerInRange && Input.GetKeyDown(KeyCode.Z);
     }
 
     public override void TriggerEvent()
     {
-        if (isTriggered) return;
-
-        // 外部から設定されるのを待つだけにする
-        isTriggered = true;
-        DisplayPage();
+        SetText(message);
     }
 
     public override bool IsFinishEvent()
     {
-        return !isTriggered;
+        return !isDisplaying;
     }
 
     public void ClearText()
     {
         textLines.Clear();
-        if (textComponent != null)
-            textComponent.text = "";
+        textComponent.text = "";
         currentPage = 0;
-        isTriggered = false;
     }
 }
