@@ -4,6 +4,9 @@ public abstract class AbstractUnitController : MonoBehaviour
 {
     private UnitMove _unitMove;
 
+    // Unit‚Ì“®‚«‚Ìó‘Ô
+    private UnitMoveStatus _unitMoveStatus;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +23,7 @@ public abstract class AbstractUnitController : MonoBehaviour
     {
         OnUpdateUnitController();
         Move();
+        _unitMoveStatus = GetMoveStatus(); 
     }
 
     /// <summary>
@@ -50,5 +54,13 @@ public abstract class AbstractUnitController : MonoBehaviour
     protected void Move()
     {
         _unitMove.Move(GetMoveStatus());
+    }
+
+    /// <summary>
+    /// Unit‚ÌˆÚ“®ó‘Ô‚ğæ“¾‚·‚é
+    /// </summary>
+    public UnitMoveStatus unitMoveStatus
+    {
+        get { return _unitMoveStatus; }
     }
 }
