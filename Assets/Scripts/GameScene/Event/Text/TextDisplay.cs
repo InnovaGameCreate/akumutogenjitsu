@@ -3,69 +3,70 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
-public class TextDisplay : AbstractEvent, IPointerClickHandler
+public class TextDisplay : AbstractEvent
 {
-    [SerializeField] private Text textComponent; // Legacy Text に変更
+    [SerializeField] private GameObject textPanelPrefab;
     [SerializeField] private int linesPerPage = 2;
-    [SerializeField, TextArea(3, 10)] private string message; // 外部で設定可能に
+    [SerializeField, TextArea(3, 10)] private string message;
+
+    private GameObject panelInstance;
+    private Text textComponent;
+    private Button panelButton;
 
     private List<string> textLines = new List<string>();
     private int currentPage = 0;
     private bool playerInRange = false;
     private bool isDisplaying = false;
 
-    private void Awake()
-    {
-        if (textComponent == null)
-        {
-            textComponent = GetComponent<Text>();
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
+        if (other.CompareTag("Player")) playerInRange = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-        }
+        if (other.CompareTag("Player")) playerInRange = false;
     }
 
-    public void SetText(string message)
+    public override bool IsTriggerEvent()
     {
+        return playerInRange && Input.GetKeyDown(KeyCode.Z);
+    }
+
+    public override void TriggerEvent()
+    {
+        if (panelInstance == null)
+        {
+            panelInstance = Instantiate(textPanelPrefab);
+            Canvas canvas = FindObjectOfType<Canvas>();
+            if (canvas != null)
+            {
+                panelInstance.transform.SetParent(canvas.transform, false);
+            }
+
+            textComponent = panelInstance.GetComponentInChildren<Text>();
+            panelButton = panelInstance.GetComponent<Button>();
+            if (panelButton != null)
+            {
+                panelButton.onClick.AddListener(NextPage);
+            }
+        }
+
         textLines = new List<string>(message.Split('\n'));
         currentPage = 0;
         isDisplaying = true;
+
         DisplayPage();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public override bool IsFinishEvent()
     {
-        if (EventStatus == eEventStatus.Running && isDisplaying)
-        {
-            NextPage();
-        }
+        return !isDisplaying;
     }
 
-    private void NextPage()
+    public override void OnUpdateEvent()
     {
-        if ((currentPage + 1) * linesPerPage < textLines.Count)
-        {
-            currentPage++;
-            DisplayPage();
-        }
-        else
-        {
-            isDisplaying = false;
-            ClearText();
-        }
+        // なし
     }
 
     private void DisplayPage()
@@ -77,30 +78,33 @@ public class TextDisplay : AbstractEvent, IPointerClickHandler
         textComponent.text = string.Join("\n", textLines.GetRange(startLine, endLine - startLine));
     }
 
-    public override void OnUpdateEvent()
+    private void NextPage()
     {
-        // 特に更新処理なし
+        int nextStartLine = (currentPage + 1) * linesPerPage;
+        if (nextStartLine < textLines.Count)
+        {
+            currentPage++;
+            DisplayPage();
+        }
+        else
+        {
+            isDisplaying = false;
+            ClearText();
+        }
     }
 
-    public override bool IsTriggerEvent()
+    private void ClearText()
     {
-        return playerInRange && Input.GetKeyDown(KeyCode.Z);
-    }
+        if (textComponent != null)
+            textComponent.text = "";
 
-    public override void TriggerEvent()
-    {
-        SetText(message);
-    }
-
-    public override bool IsFinishEvent()
-    {
-        return !isDisplaying;
-    }
-
-    public void ClearText()
-    {
         textLines.Clear();
-        textComponent.text = "";
         currentPage = 0;
+
+        if (panelInstance != null)
+        {
+            Destroy(panelInstance);
+            panelInstance = null;
+        }
     }
 }
