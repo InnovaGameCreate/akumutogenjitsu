@@ -3,49 +3,70 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
-public class TextDisplay : AbstractEvent, IPointerClickHandler
+public class TextDisplay : AbstractEvent
 {
-    [SerializeField] private Text textComponent; 
+    [SerializeField] private GameObject textPanelPrefab;
     [SerializeField] private int linesPerPage = 2;
+    [SerializeField, TextArea(3, 10)] private string message;
+
+    private GameObject panelInstance;
+    private Text textComponent;
+    private Button panelButton;
+
     private List<string> textLines = new List<string>();
     private int currentPage = 0;
-    private bool isTriggered = false;
+    private bool playerInRange = false;
+    private bool isDisplaying = false;
 
-    private void Awake()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (textComponent == null)
-        {
-            textComponent = GetComponent<Text>();
-        }
+        if (other.CompareTag("Player")) playerInRange = true;
     }
 
-    public void SetText(string message)
+    private void OnTriggerExit2D(Collider2D other)
     {
+        if (other.CompareTag("Player")) playerInRange = false;
+    }
+
+    public override bool IsTriggerEvent()
+    {
+        return playerInRange && Input.GetKeyDown(KeyCode.Z);
+    }
+
+    public override void TriggerEvent()
+    {
+        if (panelInstance == null)
+        {
+            panelInstance = Instantiate(textPanelPrefab);
+            Canvas canvas = FindObjectOfType<Canvas>();
+            if (canvas != null)
+            {
+                panelInstance.transform.SetParent(canvas.transform, false);
+            }
+
+            textComponent = panelInstance.GetComponentInChildren<Text>();
+            panelButton = panelInstance.GetComponent<Button>();
+            if (panelButton != null)
+            {
+                panelButton.onClick.AddListener(NextPage);
+            }
+        }
+
         textLines = new List<string>(message.Split('\n'));
         currentPage = 0;
-        isTriggered = true;
+        isDisplaying = true;
+
         DisplayPage();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public override bool IsFinishEvent()
     {
-        if (isTriggered)
-        {
-            NextPage();
-        }
+        return !isDisplaying;
     }
 
-    private void NextPage()
+    public override void OnUpdateEvent()
     {
-        if ((currentPage + 1) * linesPerPage < textLines.Count)
-        {
-            currentPage++;
-            DisplayPage();
-        }
-        else
-        {
-            isTriggered = false;
-        }
+        // ‚È‚µ
     }
 
     private void DisplayPage()
@@ -57,33 +78,33 @@ public class TextDisplay : AbstractEvent, IPointerClickHandler
         textComponent.text = string.Join("\n", textLines.GetRange(startLine, endLine - startLine));
     }
 
-    public override void OnUpdateEvent()
+    private void NextPage()
     {
-        
+        int nextStartLine = (currentPage + 1) * linesPerPage;
+        if (nextStartLine < textLines.Count)
+        {
+            currentPage++;
+            DisplayPage();
+        }
+        else
+        {
+            isDisplaying = false;
+            ClearText();
+        }
     }
 
-    public override bool IsTriggerEvent()
+    private void ClearText()
     {
-        return isTriggered;
-    }
+        if (textComponent != null)
+            textComponent.text = "";
 
-    public override void TriggerEvent()
-    {
-        // Šù‚ÉƒgƒŠƒK[‚³‚ê‚Ä‚¢‚é‚È‚ç‰½‚à‚µ‚È‚¢
-        if (isTriggered) return;
-        isTriggered = true;
-    }
-
-    public override bool IsFinishEvent()
-    {
-        return !isTriggered;
-    }
-
-    public void ClearText()
-    {
         textLines.Clear();
-        textComponent.text = "";
         currentPage = 0;
-        isTriggered = false;
+
+        if (panelInstance != null)
+        {
+            Destroy(panelInstance);
+            panelInstance = null;
+        }
     }
 }
