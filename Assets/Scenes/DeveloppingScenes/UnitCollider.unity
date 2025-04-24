@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 62558485}
   - component: {fileID: 62558484}
   - component: {fileID: 62558487}
+  - component: {fileID: 62558488}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -206,11 +207,11 @@ Transform:
   m_GameObject: {fileID: 62558483}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -17.857143}
-  m_LocalScale: {x: 1.7857144, y: 1.7857144, z: 1.7857144}
+  m_LocalPosition: {x: -3.59, y: 1.6456671, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1993321917}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &62558487
 MonoBehaviour:
@@ -256,6 +257,19 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &62558488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62558483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6d247528bdc9640a14c7828cc227eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveWithObj: {fileID: 1993321908}
 --- !u!1 &242844328
 GameObject:
   m_ObjectHideFlags: 0
@@ -4510,9 +4524,9 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!4 &1993321917 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4829411122311754825, guid: 7c82e04b7e693f3449e67247d4c7c0a9, type: 3}
+--- !u!1 &1993321908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3808477812684150828, guid: 7c82e04b7e693f3449e67247d4c7c0a9, type: 3}
   m_PrefabInstance: {fileID: 7257853081355521409}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2013713790
@@ -4673,10 +4687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4829411122311754825, guid: 7c82e04b7e693f3449e67247d4c7c0a9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 62558486}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c82e04b7e693f3449e67247d4c7c0a9, type: 3}
 --- !u!1660057539 &9223372036854775807
@@ -4685,4 +4696,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 2013713792}
   - {fileID: 6128799669187599729}
+  - {fileID: 62558486}
   - {fileID: 7257853081355521409}
