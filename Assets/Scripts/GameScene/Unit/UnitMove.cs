@@ -12,6 +12,8 @@ public class UnitMove : MonoBehaviour
     // Unitが移動するか
     private bool _isEnabled;
 
+    private Rigidbody2D _rigidbody;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +21,13 @@ public class UnitMove : MonoBehaviour
         {
             Debug.LogError("DefaultSpeedが0に設定されています");
         }
+
+        _rigidbody = GetComponent<Rigidbody2D>();
+        if (_rigidbody == null)
+        {
+            Debug.LogError("Rigidbody2Dがアタッチされていません");
+        }
+
         _speed = _defaultSpeed;
         _isEnabled = true;
     }
@@ -57,10 +66,10 @@ public class UnitMove : MonoBehaviour
         {
             move.y = -1;
         }
-        move = move.normalized * _speed * Time.deltaTime;
+        move = move.normalized * _speed * Time.fixedDeltaTime;
 
         // 移動
-        transform.position += (Vector3)move;
+        _rigidbody.MovePosition(_rigidbody.position + move);
 
         // 方向を取得
         _unitMoveStatus = unitmovestatus;
