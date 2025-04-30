@@ -6,4 +6,5 @@ public enum eEvent
     None,
     TestEvent,
     MapMoveEvent,   // マップ移動イベント
+    ItemEvent,      // アイテムイベント
 }
