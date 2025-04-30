@@ -40,7 +40,7 @@ public abstract class AbstractEvent : MonoBehaviour
             }
         }
 
-        if (IsFinishEvent())
+        if (IsFinishEvent() && _eventStatus != eEventStatus.Triggered)
         {
             SetIsUnitMove(true); // Unit‚ÌˆÚ“®‚ð—LŒø‚É‚·‚é
 
