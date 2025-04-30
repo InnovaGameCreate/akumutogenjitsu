@@ -72,7 +72,9 @@ public abstract class AbstractEvent : MonoBehaviour
     /// <summary>
     /// イベントの更新処理(Update()の代わり)
     /// </summary>
-    public abstract void OnUpdateEvent();
+    public virtual void OnUpdateEvent()
+    {
+    }
 
     /// <summary>
     /// イベントのトリガーの条件
