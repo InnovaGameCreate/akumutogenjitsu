@@ -1,4 +1,4 @@
-enum eItem
+public enum eItem
 {
     MedicineRed,
     MedicineBlue,

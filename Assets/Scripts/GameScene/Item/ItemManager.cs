@@ -22,7 +22,7 @@ public class ItemManager : MonoBehaviour
     /// </summary>
     /// <param name="item"> ƒAƒCƒeƒ€‚Ìí—Ş </param>
     /// <returns> Š‚µ‚Ä‚¢‚é‚© </returns>
-    bool GetIsItemOwned(eItem item)
+    public bool GetIsItemOwned(eItem item)
     {
         if (_ownedItems.TryGetValue(item , out bool isOwned))
         {
