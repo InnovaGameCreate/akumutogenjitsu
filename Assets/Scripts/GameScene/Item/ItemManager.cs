@@ -34,4 +34,21 @@ public class ItemManager : MonoBehaviour
             return false;
         }
     }
+
+    /// <summary>
+    /// アイテムを所持しているかの状態を設定する
+    /// </summary>
+    /// <param name="item"> アイテムの種類 </param>
+    /// <param name="isOwned"> 保持するか </param>
+    public void SetIsItemOwned(eItem item, bool isOwned)
+    {
+        if (_ownedItems.ContainsKey(item))
+        {
+            _ownedItems[item] = isOwned;
+        }
+        else
+        {
+            Debug.LogError($"アイテム: {item} は存在しません。");
+        }
+    }
 }
