@@ -4,19 +4,17 @@ using UnityEngine;
 public class EnemySpawnManager : MonoBehaviour
 {
     // “G‚ÌPrefab
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private EnemyTypeManager _enemyTypeMgr;
     private List<GameObject> _spawnedEnemies = new List<GameObject>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (_enemyPrefab == null)
+        if (_enemyTypeMgr == null)
         {
             Debug.LogError($"{gameObject.name} ‚Ì EnemySpawner ‚É EnemyPrefab ‚ªŠ„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚Ü‚¹‚ñB");
             return;
         }
-
-        SpawnEnemy(new Vector2(0, 0)); // ‰ŠúˆÊ’u‚É“G‚ğ¶¬
     }
 
     /// <summary>
@@ -25,7 +23,7 @@ public class EnemySpawnManager : MonoBehaviour
     /// <param name="position"> À•W </param>
     public void SpawnEnemy(Vector2 position)
     {
-        GameObject enemy = Instantiate(_enemyPrefab, position, Quaternion.identity);
+        GameObject enemy = Instantiate(_enemyTypeMgr.gameObject, position, Quaternion.identity);
         _spawnedEnemies.Add(enemy);
     }
 

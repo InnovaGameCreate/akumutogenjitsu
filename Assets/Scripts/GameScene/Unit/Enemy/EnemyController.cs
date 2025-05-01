@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class EnemyNormalController : AbstractUnitController
+public class EnemyController : AbstractUnitController
 {
     // PlayerObject
     private GameObject _playerObj;
