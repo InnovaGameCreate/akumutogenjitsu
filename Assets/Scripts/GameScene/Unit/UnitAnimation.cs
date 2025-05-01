@@ -15,7 +15,6 @@ public class UnitAnimation : MonoBehaviour
     // Unit‚ÌˆÚ“®ó‘Ô
     [SerializeField] private AbstractUnitController _unitController;
 
-
     [Header("ˆÚ“®‚·‚éUnitMove")]
     [SerializeField] private UnitMove _unitMove;
 
@@ -209,10 +208,7 @@ public class UnitAnimation : MonoBehaviour
     /// </summary>
     private void UpdateSpriteChangeTime()
     {
-        if (_unitMove.Speed != _previousSpeed)
-        {
-            _spriteChangeTime = _unitMove.Speed * 0.05f;
-            _previousSpeed = _unitMove.Speed;
-        }
+        _spriteChangeTime = _unitMove.Speed * 0.05f;
+        _previousSpeed = _unitMove.Speed;
     }
 }
