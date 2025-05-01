@@ -7,7 +7,7 @@ public class EnemyTypeManager : MonoBehaviour
     /// <summary>
     /// “G‚Ìí—Ş
     /// </summary>
-    eEnemy Enemy
+    public eEnemy Enemy
     {
         get { return _enemy; }
     }
