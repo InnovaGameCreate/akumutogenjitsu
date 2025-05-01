@@ -20,6 +20,11 @@ public class SpawnEnemyEvent : AbstractEvent
 
     public override bool IsTriggerEvent()
     {
+        if (EventStatus == eEventStatus.Triggered)
+        {
+            _hasFinished = false;
+        }
+
         return _isInEnter && (Input.GetKeyDown(KeyCode.Z) || Input.GetKey(KeyCode.Return));
     }
 
