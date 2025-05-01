@@ -83,10 +83,17 @@ public class ItemEvent : AbstractEvent
     /// <param name="collision">衝突したコライダー。</param>
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        _isInEvent = false;
         if (collision.CompareTag("Player"))
         {
             _isInEvent = true;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            _isInEvent = false;
         }
     }
 }

@@ -48,11 +48,17 @@ public class SpawnEnemyEvent : AbstractEvent
     /// <param name="collision">トリガーに入ったオブジェクトのコライダー。</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _isInEnter = false;
-
         if (collision.CompareTag("Player"))
         {
             _isInEnter = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            _isInEnter = false;
         }
     }
 }
