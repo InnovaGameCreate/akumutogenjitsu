@@ -7,4 +7,5 @@ public enum eEvent
     TestEvent,
     MapMoveEvent,   // マップ移動イベント
     ItemEvent,      // アイテムイベント
+    SpawnEnemyEvent, // 敵生成イベント
 }
