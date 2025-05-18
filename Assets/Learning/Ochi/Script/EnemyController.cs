@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class EnemyController
+namespace Ochi
 {
-    
+    public class EnemyController
+    {
+
+    }
 }

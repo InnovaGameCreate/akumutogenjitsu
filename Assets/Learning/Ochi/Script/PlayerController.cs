@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class PlayerController
+namespace Ochi
 {
-    
+    public class PlayerController
+    {
+        
+    }
 }
