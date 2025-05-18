@@ -39,9 +39,6 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
             Debug.Log("‚·‚Å‚ÉŒºŠÖ‚ÌŒ®‚ğ‚Á‚Ä‚¢‚éB");
         }
 
-        _itemMgr.SetIsItemOwned(eItem.MedicineBlue, true);
-        _itemMgr.SetIsItemOwned(eItem.MedicineRed, true);
-
         if (_itemMgr.GetIsItemOwned(eItem.MedicineBlue) && _itemMgr.GetIsItemOwned(eItem.MedicineRed))
         {
             _itemMgr.SetIsItemOwned(eItem.EntranceKey, true);
@@ -57,7 +54,6 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
         }
         _hasFinished = true;
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
