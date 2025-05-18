@@ -8,4 +8,7 @@ public enum eEvent
     MapMoveEvent,   // マップ移動イベント
     ItemEvent,      // アイテムイベント
     SpawnEnemyEvent, // 敵生成イベント
+    
+    // 1日目 Dream
+    CreateEntranceKeyWithMedicine,  // 薬品で玄関の鍵を作成する
 }
