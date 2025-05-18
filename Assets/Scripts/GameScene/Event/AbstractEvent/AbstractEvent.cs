@@ -25,6 +25,12 @@ public abstract class AbstractEvent : MonoBehaviour
     {
         if (_isTriggeredOnce && _eventStatus == eEventStatus.Triggered)
         {
+            BasicAnimation _basicAnimation = GetComponent<BasicAnimation>();
+            if (_basicAnimation == null)
+            {
+                Debug.LogError("BasicAnimationがアタッチされていません");
+            }
+            _basicAnimation.Enabled = false; // 1回だけ実行する場合はアニメーションを無効にする
             return;
         }
 
