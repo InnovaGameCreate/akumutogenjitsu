@@ -17,6 +17,21 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+#if DEBUG_MODE
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            string ans = "アイテム: ";
+            foreach (var item in _ownedItems)
+            {
+                ans += (item.Value) ? item.Key.ToString() + "\t" : "";
+            }
+            Debug.Log(ans);
+        }
+#endif
+    }
+
     /// <summary>
     /// アイテムを所持しているかの状態を取得する
     /// </summary>
