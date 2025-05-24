@@ -5,6 +5,8 @@ public class CameraWork : MonoBehaviour
     [Header("カメラが追従するオブジェクト")]
     [SerializeField] private GameObject _moveWithObj;
 
+    private Camera _camera;
+
     private Vector3 _previousPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -12,13 +14,23 @@ public class CameraWork : MonoBehaviour
     {
         if (_moveWithObj == null)
         {
-            Debug.LogError("Cameraが追従するオブジェクトを設定されていません。");
+            Debug.Log("Cameraが追従するオブジェクトを設定されていないので、Playerタグのオブジェクトを取得します。");
+            _moveWithObj = GameObject.FindWithTag("Player");
+
+            if (_moveWithObj == null)
+            {
+                Debug.LogError("Playerタグのオブジェクトが見つかりません。");
+            }
         }
 
-        if (GetComponent<Camera>() == null)
+        _camera = GetComponent<Camera>();
+        if (_camera == null)
         {
             Debug.LogError("Cameraにアタッチされていません。");
         }
+
+        _camera.clearFlags = CameraClearFlags.SolidColor;
+        _camera.backgroundColor = new Color(0.1f, 0.1f, 0.1f, 1); // 背景色を黒に設定
     }
 
     // Update is called once per frame
