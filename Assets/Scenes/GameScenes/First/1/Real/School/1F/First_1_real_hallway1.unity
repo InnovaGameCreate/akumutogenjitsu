@@ -8202,6 +8202,75 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+--- !u!1001 &677565777
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: _sceneName
+      value: First_1_real_street
+      objectReference: {fileID: 0}
+    - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: _position.x
+      value: 42.42
+      objectReference: {fileID: 0}
+    - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: _position.y
+      value: 1.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 2350548624015867999, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: m_Name
+      value: MapMoveEventScienceRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475258425735908495, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 47.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475258425735908495, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475258425735908495, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475258425735908495, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475258425735908495, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475258425735908495, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475258425735908495, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475258425735908495, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475258425735908495, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475258425735908495, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
 --- !u!1001 &881438002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13481,3 +13550,4 @@ SceneRoots:
   - {fileID: 1674761027}
   - {fileID: 221356977}
   - {fileID: 142000666}
+  - {fileID: 677565777}
