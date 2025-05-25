@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
-public class TextDisplay : AbstractEvent
+public class TextEvent : AbstractEvent
 {
     [SerializeField] private GameObject textPanelPrefab;
     [SerializeField] private int linesPerPage = 2;
@@ -17,6 +17,8 @@ public class TextDisplay : AbstractEvent
     private int currentPage = 0;
     private bool playerInRange = false;
     private bool isDisplaying = false;
+
+    private bool _hasFinished = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -55,18 +57,27 @@ public class TextDisplay : AbstractEvent
         textLines = new List<string>(message.Split('\n'));
         currentPage = 0;
         isDisplaying = true;
-
         DisplayPage();
     }
 
     public override bool IsFinishEvent()
     {
-        return !isDisplaying;
+        if (EventStatus == eEventStatus.Triggered)
+        {
+            _hasFinished = false;
+        }
+        return _hasFinished;
     }
 
     public override void OnUpdateEvent()
     {
-        // ‚È‚µ
+        if (EventStatus == eEventStatus.Running)
+        {
+            if (isDisplaying && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)))
+            {
+                NextPage();
+            }
+        }
     }
 
     private void DisplayPage()
@@ -106,5 +117,7 @@ public class TextDisplay : AbstractEvent
             Destroy(panelInstance);
             panelInstance = null;
         }
+
+        _hasFinished = true;
     }
 }
