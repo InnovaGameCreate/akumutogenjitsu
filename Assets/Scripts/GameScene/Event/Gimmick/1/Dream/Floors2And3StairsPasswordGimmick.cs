@@ -30,7 +30,7 @@ public class Floors2And3StairsPasswordGimmick : AbstractEvent
     public override void TriggerEvent()
     {
         // TODO: UIからパスワード入力を受け取る処理に置き換える
-        _userInput = "password";
+        _userInput = "1625";
 
         if (_userInput == _password)
         {
