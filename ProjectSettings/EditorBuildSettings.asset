@@ -15,38 +15,47 @@ EditorBuildSettings:
     path: Assets/Scenes/DeveloppingScenes/MapMove/testmap2.unity
     guid: 41186dd123f1ac841a7fb874d7703e4f
   - enabled: 1
-    path: Assets/Scenes/GameScenes/First/1/Real/School/First_1_real_class101.unity
+    path: Assets/Scenes/GameScenes/First/1/Real/School/1F/First_1_real_class101.unity
     guid: 33a9eabc9e66ab04087600bc72e62199
   - enabled: 1
-    path: Assets/Scenes/GameScenes/First/1/Real/School/First_1_real_class102.unity
+    path: Assets/Scenes/GameScenes/First/1/Real/School/1F/First_1_real_class102.unity
     guid: c83a9ec5140738d4aab015540fb8d103
   - enabled: 1
-    path: Assets/Scenes/GameScenes/First/1/Real/School/First_1_real_class103.unity
+    path: Assets/Scenes/GameScenes/First/1/Real/School/1F/First_1_real_class103.unity
     guid: 4c5ba7236f38fb94db783c8c848cb0eb
   - enabled: 1
-    path: Assets/Scenes/GameScenes/First/1/Real/School/First_1_real_class104.unity
+    path: Assets/Scenes/GameScenes/First/1/Real/School/1F/First_1_real_class104.unity
     guid: 399b1e7539448bf488b0e7a2c7975299
   - enabled: 1
-    path: Assets/Scenes/GameScenes/First/1/Real/School/First_1_real_hallway1.unity
+    path: Assets/Scenes/GameScenes/First/1/Real/School/1F/First_1_real_hallway1.unity
     guid: a7a2fa2b204a46b4fb7f1d3ee31021ac
   - enabled: 1
-    path: Assets/Scenes/GameScenes/First/1/Real/School/First_1_real_hallway2.unity
+    path: Assets/Scenes/GameScenes/First/1/Real/School/2F/First_1_real_hallway2.unity
     guid: 3ae87ca17ee18864bac8719311e45ae3
   - enabled: 1
-    path: Assets/Scenes/GameScenes/First/1/Real/School/First_1_real_teacherRoom.unity
+    path: Assets/Scenes/GameScenes/First/1/Real/School/1F/First_1_real_teacherRoom.unity
     guid: bb207596c19f95f4095c23e12da83c27
   - enabled: 1
-    path: Assets/Scenes/GameScenes/First/1/Real/School/First_1_real_class201.unity
+    path: Assets/Scenes/GameScenes/First/1/Real/School/2F/First_1_real_class201.unity
     guid: a9eed75b3eafd2345a33e5b6d7d7e6ba
   - enabled: 1
-    path: Assets/Scenes/GameScenes/First/1/Real/School/First_1_real_class202.unity
+    path: Assets/Scenes/GameScenes/First/1/Real/School/2F/First_1_real_class202.unity
     guid: e2e7cb8245eaebe46b6d2febbbdcda44
   - enabled: 1
-    path: Assets/Scenes/GameScenes/First/1/Real/School/First_1_real_class203.unity
+    path: Assets/Scenes/GameScenes/First/1/Real/School/2F/First_1_real_class203.unity
     guid: c2df9f88f111a384bb8b80f35572a567
   - enabled: 1
-    path: Assets/Scenes/GameScenes/First/1/Real/School/First_1_real_class204.unity
+    path: Assets/Scenes/GameScenes/First/1/Real/School/2F/First_1_real_class204.unity
     guid: d6fb85b7a285e3d4c9aeec6a18274975
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Real/First_1_real_house.unity
+    guid: 180d386e74de8cd4b855343601ebf07a
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Real/First_1_real_street.unity
+    guid: d5df52d2cc9f01847af6c1c534c1fcdd
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Real/School/1F/First_1_real_scienceroom.unity
+    guid: 3145a4871a1ce3c4bb4d30162208832b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
