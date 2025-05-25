@@ -8212,15 +8212,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_1_real_street
+      value: First_1_real_scienceroom
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _position.x
-      value: 42.42
+      value: -8.4
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _position.y
-      value: 1.56
+      value: -3.08
       objectReference: {fileID: 0}
     - target: {fileID: 2350548624015867999, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: m_Name
