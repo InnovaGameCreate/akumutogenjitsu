@@ -834,11 +834,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7262873857064080201, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -31.1
+      value: -29.21
       objectReference: {fileID: 0}
     - target: {fileID: 7262873857064080201, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.2
+      value: 8.68
       objectReference: {fileID: 0}
     - target: {fileID: 7262873857064080201, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6303,6 +6303,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+--- !u!1001 &882554871
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3411829015957353754, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
+      propertyPath: m_Name
+      value: Floors2And3StairsPasswordGimmick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6299168203589220619, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
+      propertyPath: _event
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6299168203589220619, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
+      propertyPath: _password
+      value: 1625
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702304504394751530, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702304504394751530, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702304504394751530, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702304504394751530, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702304504394751530, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702304504394751530, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702304504394751530, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702304504394751530, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702304504394751530, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702304504394751530, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2ee2232ceb05a1f4fb919d2902e645c3, type: 3}
 --- !u!1001 &1020996386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11635,3 +11700,4 @@ SceneRoots:
   - {fileID: 1742490933}
   - {fileID: 640700381}
   - {fileID: 230009306}
+  - {fileID: 882554871}
