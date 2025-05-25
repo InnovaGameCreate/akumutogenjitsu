@@ -20,6 +20,8 @@ public class MapMoveEvent : AbstractEvent
 
     private Dictionary<string, bool> _isScenesExist;
 
+    private bool _hasFinished = false;
+
     private void Start()
     {
         _isInEventBlock = false;
@@ -48,8 +50,8 @@ public class MapMoveEvent : AbstractEvent
 
     public override bool IsFinishEvent()
     {
-        // Eventが実行中でかつブロックの中にPlayerが入っていないとき
-        return EventStatus == eEventStatus.Running && !_isInEventBlock;
+        _hasFinished = (EventStatus == eEventStatus.Triggered && _hasFinished == true) ? false : _hasFinished;
+        return _hasFinished;
     }
 
     public override void TriggerEvent()
@@ -62,6 +64,7 @@ public class MapMoveEvent : AbstractEvent
         {
             Debug.LogError($"シーンが存在しません: {_sceneName}");
         }
+        _hasFinished = true;
     }
 
     public override void OnUpdateEvent()

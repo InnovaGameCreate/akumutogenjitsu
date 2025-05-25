@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public class ItemEvent : AbstractEvent
 {
-    [Header("コンポーネントしていなくてもよい")]
+    [Header("コンポーネントしていなくてもよい(Playerタグのついたオブジェクトが選択される)")]
     [SerializeField] private ItemManager _itemMgr;
 
     [Header("アイテムの種類")]
@@ -25,7 +25,7 @@ public class ItemEvent : AbstractEvent
     {
         if (_itemMgr == null)
         {
-            _itemMgr = GameObject.FindWithTag("ItemMgr").GetComponent<ItemManager>();
+            _itemMgr = GameObject.FindWithTag("Player").GetComponent<ItemManager>();
             if (_itemMgr == null)
             {
                 Debug.LogError("ItemManagerが見つかりません。");

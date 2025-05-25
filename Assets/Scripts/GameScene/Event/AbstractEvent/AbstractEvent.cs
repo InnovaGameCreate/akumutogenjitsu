@@ -23,8 +23,16 @@ public abstract class AbstractEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        OnUpdateEvent();
+
         if (_isTriggeredOnce && _eventStatus == eEventStatus.Triggered)
         {
+            BasicAnimation _basicAnimation = GetComponent<BasicAnimation>();
+            if (_basicAnimation == null)
+            {
+                Debug.LogError("BasicAnimationがアタッチされていません");
+            }
+            _basicAnimation.Enabled = false; // 1回だけ実行する場合はアニメーションを無効にする
             return;
         }
 
@@ -50,8 +58,6 @@ public abstract class AbstractEvent : MonoBehaviour
             Debug.Log($"イベント: {_event} が終了しました");
 #endif
         }
-
-        OnUpdateEvent();
     }
 
     /// <summary>

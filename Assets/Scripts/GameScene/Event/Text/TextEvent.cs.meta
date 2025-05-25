@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: ce43c1a2ec3eff945bd8ddddedc529a8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - textPanelPrefab: {fileID: 4585839125276835249, guid: c7f7e8f41c8c20345bffdf6e0d18d432, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
