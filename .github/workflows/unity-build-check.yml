@@ -1,10 +1,10 @@
-# Unity Build Check (No Artifact Upload)
-
+# Unity Build Check
 name: Unity Build Check
 
 on:
-  push:
-    branches: [main]
+  pull_request:
+    branches: [ main ]
+  
   workflow_dispatch:
 
 jobs:
