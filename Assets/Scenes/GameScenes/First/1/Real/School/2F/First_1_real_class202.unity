@@ -2131,6 +2131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: _eventId
+      value: e41e03e5-5eb6-4f86-8aec-29838404bb19
+      objectReference: {fileID: 0}
+    - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
       value: First_1_real_hallway2
       objectReference: {fileID: 0}
@@ -2199,6 +2203,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: _eventId
+      value: 592f5069-4b7d-401f-80d4-4bf35072f112
+      objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
       value: First_1_real_hallway2
@@ -2604,6 +2612,10 @@ PrefabInstance:
     - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: message
       value: "\u9ED2\u677F\u306B\u65E5\u76F4\u3068\u65E5\u4ED8\u304C\u66F8\u3044\u3066\u3044\u308B\u3002\n5/5\u3000\u5317\u304F\u3093\u306E\u3088\u3046\u3060\u3002"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
+      propertyPath: _eventId
+      value: 4bffdd60-877f-4162-a5b2-7bd3401c09ed
       objectReference: {fileID: 0}
     - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: linesPerPage

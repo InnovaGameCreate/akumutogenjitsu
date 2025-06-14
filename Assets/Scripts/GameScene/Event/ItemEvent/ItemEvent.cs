@@ -21,11 +21,11 @@ public class ItemEvent : AbstractEvent
     /// <summary>
     /// ‰Šú‰»ˆ—‚ğs‚¢‚Ü‚·B
     /// </summary>
-    void Start()
+    public override void OnStartEvent()
     {
         if (_itemMgr == null)
         {
-            _itemMgr = GameObject.FindWithTag("Player").GetComponent<ItemManager>();
+            _itemMgr = GameObject.FindWithTag("Player").GetComponentInChildren<ItemManager>();
             if (_itemMgr == null)
             {
                 Debug.LogError("ItemManager‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB");

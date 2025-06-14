@@ -2245,6 +2245,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: _eventId
+      value: 4777e9f7-093f-4975-a26f-068d7cd2e13d
+      objectReference: {fileID: 0}
+    - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
       value: First_1_real_hallway2
       objectReference: {fileID: 0}
@@ -2317,6 +2321,10 @@ PrefabInstance:
       propertyPath: message
       value: "\u5730\u7403\u5100\u306E\u897F\u30A2\u30B8\u30A2\u306E\u6240\u306B5\u3068\u3044\u3046\u6570\u5B57\u304C\u4ED8\u7B8B\u3067\u8CBC\u3089\u308C\u3066\u3044\u308B"
       objectReference: {fileID: 0}
+    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
+      propertyPath: _eventId
+      value: a87477f6-353a-46da-9fc9-af9b8cf367da
+      objectReference: {fileID: 0}
     - target: {fileID: 3718633801902478523, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: m_Name
       value: TextEvent_HintEast
@@ -2374,6 +2382,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: _eventId
+      value: 45c3967c-0785-4ea1-a3fb-139831eb66e1
+      objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
       value: First_1_real_hallway2
@@ -2730,6 +2742,10 @@ PrefabInstance:
     - target: {fileID: 2350548624015867999, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
       propertyPath: m_Name
       value: ItemEvent_RedMedicine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698544504587086564, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
+      propertyPath: _eventId
+      value: a8f12ca5-94d0-4c1a-a7e5-934259aae94a
       objectReference: {fileID: 0}
     - target: {fileID: 2698544504587086564, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
       propertyPath: _isTriggeredOnce

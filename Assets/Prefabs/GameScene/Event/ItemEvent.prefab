@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2698544504587086564}
   m_Layer: 0
   m_Name: ItemEvent
-  m_TagString: Untagged
+  m_TagString: Event
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _event: 3
   _isTriggeredOnce: 0
+  _eventId: 
   _itemMgr: {fileID: 0}
   _item: 0
   _isGetItem: 1

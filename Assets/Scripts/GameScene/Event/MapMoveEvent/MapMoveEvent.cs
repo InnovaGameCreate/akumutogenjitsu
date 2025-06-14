@@ -22,7 +22,7 @@ public class MapMoveEvent : AbstractEvent
 
     private bool _hasFinished = false;
 
-    private void Start()
+    public override void OnStartEvent()
     {
         _isInEventBlock = false;
         _playerMapMove = GameObject.FindWithTag("Player").GetComponent<PlayerMapMove>();
@@ -65,10 +65,6 @@ public class MapMoveEvent : AbstractEvent
             Debug.LogError($"ÉVÅ[ÉìÇ™ë∂ç›ÇµÇ‹ÇπÇÒ: {_sceneName}");
         }
         _hasFinished = true;
-    }
-
-    public override void OnUpdateEvent()
-    {
     }
 
     private void OnTriggerEnter2D(Collider2D other)

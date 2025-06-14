@@ -15,9 +15,27 @@ public abstract class AbstractEvent : MonoBehaviour
     // イベントの状態
     private eEventStatus _eventStatus = eEventStatus.NotTriggered;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("イベントID（自動生成・変更しないでください）")]
+    [SerializeField] private string _eventId;
+
+    /// <summary>
+    /// イベントID
+    /// </summary>
+    public string EventId
+    {
+        get
+        {
+            return _eventId;
+        }
+        set
+        {
+            _eventId = value;
+        }
+    }
+
     void Start()
     {
+        OnStartEvent();
     }
 
     // Update is called once per frame
@@ -25,7 +43,7 @@ public abstract class AbstractEvent : MonoBehaviour
     {
         OnUpdateEvent();
 
-        if (_isTriggeredOnce && _eventStatus == eEventStatus.Triggered)
+        if (_eventStatus == eEventStatus.Triggered)
         {
             BasicAnimation _basicAnimation = GetComponent<BasicAnimation>();
             if (_basicAnimation == null)
@@ -48,14 +66,21 @@ public abstract class AbstractEvent : MonoBehaviour
             }
         }
 
-        if (IsFinishEvent() && _eventStatus != eEventStatus.Triggered)
+        if (IsFinishEvent() && _eventStatus == eEventStatus.Running)
         {
             SetIsUnitMove(true); // Unitの移動を有効にする
 
-            _eventStatus = eEventStatus.Triggered;
+            if (_isTriggeredOnce)
+            {
+                _eventStatus = eEventStatus.Triggered;
+            }
+            else
+            {
+                _eventStatus = eEventStatus.NotTriggered;
+            }
 
 #if DEBUG_MODE
-            Debug.Log($"イベント: {_event} が終了しました");
+                Debug.Log($"イベント: {_event} が終了しました");
 #endif
         }
     }
@@ -73,6 +98,13 @@ public abstract class AbstractEvent : MonoBehaviour
         {
             unit.IsEnabled = isUnitMove;
         }
+    }
+
+    /// <summary>
+    /// イベントの初期化処理(Start()の代わり)
+    /// </summary>
+    public virtual void OnStartEvent()
+    {
     }
 
     /// <summary>
@@ -110,8 +142,15 @@ public abstract class AbstractEvent : MonoBehaviour
     /// <summary>
     /// イベントの状態(ReadOnly)
     /// </summary>
-    protected eEventStatus EventStatus
+    public eEventStatus EventStatus
     {
-        get { return _eventStatus; }
+        get
+        {
+            return _eventStatus;
+        }
+        set
+        {
+            _eventStatus = value;
+        }
     }
 }

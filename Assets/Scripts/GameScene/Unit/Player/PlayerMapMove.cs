@@ -5,34 +5,40 @@ public class PlayerMapMove : MonoBehaviour
 {
     private Vector2 _newPosition;
 
+    private EventManager _eventMgr;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // マップ移動したときに破壊されないようにする
         DontDestroyOnLoad(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        _eventMgr = GameObject.FindGameObjectWithTag("EventMgr").GetComponent<EventManager>();
+        if (_eventMgr == null)
+        {
+            Debug.LogError("EventManagerが見つかりませんでした。");
+        }
+        _eventMgr.SaveAllEventInScene();
     }
 
     /// <summary>
-    /// マップの移動
+    //  マップを移動する
     /// </summary>
     /// <param name="sceneName"> シーン名 </param>
-    /// <param name="position"> 座標 </param>
+    /// <param name="position"> 移動先の座標 </param>
     public void MapMove(string sceneName, Vector2 position)
     {
+        _eventMgr.SaveAllEventInScene();
         _newPosition = position;
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(sceneName);
     }
 
+    /// <summary>
+    /// シーンをロードした直後
+    /// </summary>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // プレイヤーの座標を移動する
         transform.position = _newPosition;
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        _eventMgr.LoadAllEventInScene();
     }
 }
