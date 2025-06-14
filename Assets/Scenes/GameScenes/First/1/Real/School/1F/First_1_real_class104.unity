@@ -2131,6 +2131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: _eventId
+      value: 3524c7a0-2b0e-453e-8334-45d97b27ebd7
+      objectReference: {fileID: 0}
+    - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
       value: First_1_real_hallway1
       objectReference: {fileID: 0}
@@ -2199,6 +2203,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: _eventId
+      value: 515a7ac6-8c6e-41ce-b450-63242cc62523
+      objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
       value: First_1_real_hallway1

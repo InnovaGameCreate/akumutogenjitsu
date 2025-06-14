@@ -14,7 +14,7 @@ public class Floors2And3StairsPasswordGimmick : AbstractEvent
     private bool _isPlayerIn = false;
     private bool _hasFinished = false;
 
-    void Start()
+    public override void OnStartEvent()
     {
         if (_wall == null)
         {

@@ -9,9 +9,9 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
     private bool _hasFinished = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void OnStartEvent()
     {
-        _itemMgr = GameObject.FindWithTag("Player").GetComponent<ItemManager>();
+        _itemMgr = GameObject.FindWithTag("ItemMgr").GetComponent<ItemManager>();
         if (_itemMgr == null)
         {
             Debug.LogError("ItemManager‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB");
