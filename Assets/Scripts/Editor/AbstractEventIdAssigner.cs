@@ -1,3 +1,5 @@
+#if DEBUG_MODE
+
 using UnityEditor;
 using UnityEngine;
 
@@ -53,3 +55,5 @@ public class AbstractEventIdAssigner : Editor
         Debug.Log($"新しいIDが {targetObject.name} に割り当てられました: {idProp.stringValue}");
     }
 }
+
+#endif
