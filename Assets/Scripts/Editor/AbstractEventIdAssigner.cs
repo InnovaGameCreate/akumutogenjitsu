@@ -1,4 +1,4 @@
-#if DEBUG_MODE
+#if UNITY_EDITOR
 
 using UnityEditor;
 using UnityEngine;
