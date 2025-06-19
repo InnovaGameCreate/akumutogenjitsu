@@ -25,6 +25,7 @@ public class PlayerMapMove : MonoBehaviour
     /// <param name="position"> ˆÚ“®æ‚ÌÀ•W </param>
     public void MapMove(string sceneName, Vector2 position)
     {
+        _eventMgr.SaveAllEventInScene();
         _newPosition = position;
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(sceneName);
