@@ -49,11 +49,13 @@ public abstract class AbstractEvent : MonoBehaviour
         if (_storyManager == null)
         {
             Debug.LogError("StoryManager‚ª‘¶İ‚µ‚Ü‚¹‚ñB");
+            return;
         }
         _eventManager = GameObject.FindGameObjectWithTag("EventMgr").GetComponent<EventManager>();
         if (_eventManager == null)
         {
             Debug.LogError("EventManager‚ª‘¶İ‚µ‚Ü‚¹‚ñB");
+            return;
         }
 
         if (_eventManager.HasLoadedEvent(_eventId))
