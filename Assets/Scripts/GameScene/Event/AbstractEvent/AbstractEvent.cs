@@ -12,11 +12,20 @@ public abstract class AbstractEvent : MonoBehaviour
     // i回だけトリガーするか
     [SerializeField] private bool _isTriggeredOnce;
 
-    // イベントの状態
-    private eEventStatus _eventStatus = eEventStatus.NotTriggered;
-
     [Header("イベントID（自動生成・変更しないでください）")]
     [SerializeField] private string _eventId;
+
+    [Header("StoryLayer(0のときは常に有効で、指定するときは1以上に設定する。)")]
+    [SerializeField] private int _storyLayer = 0;
+
+    [Header("このイベントが終了したらStoryLayerを上げるか")]
+    [SerializeField] private bool _isUpStoryLayer = false;
+
+    private StoryManager _storyManager;
+    private EventManager _eventManager;
+
+    // 保存するデータ
+    private EventData _eventData = new EventData();
 
     /// <summary>
     /// イベントID
@@ -30,53 +39,94 @@ public abstract class AbstractEvent : MonoBehaviour
         set
         {
             _eventId = value;
+            _eventData.EventId = value;
         }
     }
 
     void Start()
     {
+        _storyManager = GameObject.FindGameObjectWithTag("StoryMgr").GetComponent<StoryManager>();
+        if (_storyManager == null)
+        {
+            Debug.LogError("StoryManagerが存在しません。");
+            return;
+        }
+        _eventManager = GameObject.FindGameObjectWithTag("EventMgr").GetComponent<EventManager>();
+        if (_eventManager == null)
+        {
+            Debug.LogError("EventManagerが存在しません。");
+            return;
+        }
+
+        if (_eventManager.HasLoadedEvent(_eventId))
+        {
+            _eventData = _eventManager.LoadEventData(_eventId);
+        }
+        else
+        {
+            // EventDataの初期化
+            _eventData.EventType = _event;
+            _eventData.EventId = _eventId;
+            _eventData.EventStatus = eEventStatus.NotTriggered;
+            _eventData.StoryLayer = _storyLayer;
+            _eventData.Enabled = true;
+            _eventManager.SaveEventData(_eventId, _eventData);
+        }
+
         OnStartEvent();
     }
 
     // Update is called once per frame
     void Update()
     {
-        OnUpdateEvent();
-
-        if (_eventStatus == eEventStatus.Triggered)
+        // EventStoryとEventStatusで有効/無効を決める
+        if (_storyManager.CurrentStoryLayer == _eventData.StoryLayer || _eventData.StoryLayer == 0)
         {
-            BasicAnimation _basicAnimation = GetComponent<BasicAnimation>();
-            if (_basicAnimation == null)
-            {
-                Debug.LogError("BasicAnimationがアタッチされていません");
-            }
-            _basicAnimation.Enabled = false; // 1回だけ実行する場合はアニメーションを無効にする
+            _eventData.Enabled = _eventData.EventStatus != eEventStatus.Triggered;
+        }
+        else
+        {
+            _eventData.Enabled = false;
+        }
+
+        // 無効の場合表示を消して処理を止める
+        if (_eventData.Enabled == false)
+        {
+            BasicAnimation animation = gameObject.GetComponent<BasicAnimation>();
+            animation.Enabled = false;
+            _eventManager.SaveEventData(_eventId, _eventData);
             return;
         }
 
+        OnUpdateEvent();
+
         // イベントが実行中はトリガーしない
-        if (_eventStatus != eEventStatus.Running)
+        if (_eventData.EventStatus != eEventStatus.Running)
         {
             if (IsTriggerEvent())
             {
                 SetIsUnitMove(false); // Unitの移動を無効にする
 
                 TriggerEvent();
-                _eventStatus = eEventStatus.Running;
+                _eventData.EventStatus = eEventStatus.Running;
             }
         }
 
-        if (IsFinishEvent() && _eventStatus == eEventStatus.Running)
+        if (IsFinishEvent() && _eventData.EventStatus == eEventStatus.Running)
         {
             SetIsUnitMove(true); // Unitの移動を有効にする
 
             if (_isTriggeredOnce)
             {
-                _eventStatus = eEventStatus.Triggered;
+                _eventData.EventStatus = eEventStatus.Triggered;
             }
             else
             {
-                _eventStatus = eEventStatus.NotTriggered;
+                _eventData.EventStatus = eEventStatus.NotTriggered;
+            }
+            if (_isUpStoryLayer)
+            {
+                _storyManager.CurrentStoryLayer++;
             }
 
 #if DEBUG_MODE
@@ -98,6 +148,16 @@ public abstract class AbstractEvent : MonoBehaviour
         {
             unit.IsEnabled = isUnitMove;
         }
+    }
+
+    /// <summary>
+    /// EventDataを適応する
+    /// </summary>
+    /// <param name="eventData"> EventManagerにあるEventData </param>
+    public void InitWithEventData(EventData eventData)
+    {
+        _eventData = eventData;
+        Debug.Log($"type: {_eventData.EventType}, enabled: {_eventData.Enabled}");
     }
 
     /// <summary>
@@ -146,11 +206,26 @@ public abstract class AbstractEvent : MonoBehaviour
     {
         get
         {
-            return _eventStatus;
+            return _eventData.EventStatus;
         }
         set
         {
-            _eventStatus = value;
+            _eventData.EventStatus = value;
+        }
+    }
+
+    /// <summary>
+    /// 保存するイベントのデータ
+    /// </summary>
+    public EventData EventData
+    {
+        get
+        {
+            return _eventData;
+        }
+        set
+        {
+            _eventData = value;
         }
     }
 }

@@ -16,7 +16,6 @@ public class PlayerMapMove : MonoBehaviour
         {
             Debug.LogError("EventManagerÇ™å©Ç¬Ç©ÇËÇ‹ÇπÇÒÇ≈ÇµÇΩÅB");
         }
-        _eventMgr.SaveAllEventInScene();
     }
 
     /// <summary>
@@ -39,6 +38,5 @@ public class PlayerMapMove : MonoBehaviour
     {
         transform.position = _newPosition;
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        _eventMgr.LoadAllEventInScene();
     }
 }
