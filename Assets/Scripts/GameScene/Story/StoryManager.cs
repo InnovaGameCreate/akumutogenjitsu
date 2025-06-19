@@ -15,7 +15,7 @@ public class StoryManager : MonoBehaviour
         }
         set
         {
-            if (_storyLayer < 1)
+            if (value < 1)
             {
                 Debug.Log($"StoryLayerは1以上です。({value})");
                 return;
