@@ -409,7 +409,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pagebreak_celanim_0: 3625408837607683721
+      pagebreak_celanim_1: 5747266323086109368
+      pagebreak_celanim_10: 1434378679147162421
+      pagebreak_celanim_11: 3676009614122171677
+      pagebreak_celanim_2: -586815276758052141
+      pagebreak_celanim_3: 8243069765085244624
+      pagebreak_celanim_4: 6169048508888957910
+      pagebreak_celanim_5: 7783639449477042543
+      pagebreak_celanim_6: -7342476901863698055
+      pagebreak_celanim_7: 5114319875168638829
+      pagebreak_celanim_8: 9119532240366480186
+      pagebreak_celanim_9: 757812391978963552
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

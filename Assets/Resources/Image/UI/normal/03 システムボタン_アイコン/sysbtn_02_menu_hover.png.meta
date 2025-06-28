@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sysbtn_02_menu_hover_0: 6906920252105804007
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

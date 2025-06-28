@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sysbtn_01_screen_hover_0: -9132400491914457348
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

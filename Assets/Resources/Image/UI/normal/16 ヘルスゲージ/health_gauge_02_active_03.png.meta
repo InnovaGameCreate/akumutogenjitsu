@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      health_gauge_02_active_03_0: -2939675051907913972
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sysbtn_02_qload_hover_0: 2098577944129149688
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

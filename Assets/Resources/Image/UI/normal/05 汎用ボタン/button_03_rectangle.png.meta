@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      button_03_rectangle_0: -7186224909604881492
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

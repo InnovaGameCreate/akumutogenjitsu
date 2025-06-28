@@ -33,7 +33,10 @@ public struct EventData
         {
             if (_eventId != value)
             {
-                Debug.Log($"EventIDが変更されました。([{_eventId}] -> [{value}])");
+                if (_eventId != null)
+                {
+                    Debug.Log($"EventIDが変更されました。([{_eventId}] -> [{value}])");
+                }
                 _eventId = value;
             }
         }

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      menu_button_skip_hover_0: 182239617026732639
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
