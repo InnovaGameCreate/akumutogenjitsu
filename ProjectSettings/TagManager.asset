@@ -10,6 +10,7 @@ TagManager:
   - EventMgr
   - StoryMgr
   - EssentialObject
+  - UICanvas
   layers:
   - Default
   - TransparentFX
