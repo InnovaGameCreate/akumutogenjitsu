@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sysbtn_01_close_hover_0: -2887338026802611796
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

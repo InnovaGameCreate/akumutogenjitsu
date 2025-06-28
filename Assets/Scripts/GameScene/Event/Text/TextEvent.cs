@@ -1,17 +1,16 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 public class TextEvent : AbstractEvent
 {
-    [SerializeField] private GameObject textPanelPrefab;
+    [SerializeField] private GameObject textBoxPrefab; // TextBoxUIコンポーネントを持つPrefab
+    private Canvas targetCanvas; // 配置先のCanvas
     [SerializeField] private int linesPerPage = 2;
     [SerializeField, TextArea(3, 10)] private string message;
+    [SerializeField] private string speakerName = ""; // 話者名
 
     private GameObject panelInstance;
-    private Text textComponent;
-    private Button panelButton;
+    private TextBoxUI textBoxUI;
 
     private List<string> textLines = new List<string>();
     private int currentPage = 0;
@@ -19,6 +18,16 @@ public class TextEvent : AbstractEvent
     private bool isDisplaying = false;
 
     private bool _hasFinished = false;
+
+    public override void OnStartEvent()
+    {
+        targetCanvas = GameObject.FindGameObjectWithTag("UICanvas").GetComponent<Canvas>();
+        if (targetCanvas == null)
+        {
+            Debug.LogError("Canvasがアサインされていません。");
+            return;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -37,20 +46,27 @@ public class TextEvent : AbstractEvent
 
     public override void TriggerEvent()
     {
+        // イベント開始時に必ず初期化
+        _hasFinished = false;
+        
         if (panelInstance == null)
         {
-            panelInstance = Instantiate(textPanelPrefab);
-            Canvas canvas = FindObjectOfType<Canvas>();
+            // TextBoxUIを持つPrefabをインスタンス化
+            panelInstance = Instantiate(textBoxPrefab);
+            
+            // 指定されたCanvasに配置、なければ自動検索
+            Canvas canvas = targetCanvas != null ? targetCanvas : FindFirstObjectByType<Canvas>();
             if (canvas != null)
             {
                 panelInstance.transform.SetParent(canvas.transform, false);
             }
 
-            textComponent = panelInstance.GetComponentInChildren<Text>();
-            panelButton = panelInstance.GetComponent<Button>();
-            if (panelButton != null)
+            // TextBoxUIコンポーネントを取得
+            textBoxUI = panelInstance.GetComponent<TextBoxUI>();
+            if (textBoxUI == null)
             {
-                panelButton.onClick.AddListener(NextPage);
+                Debug.LogError("TextBoxUIコンポーネントがPrefabに見つかりません。");
+                return;
             }
         }
 
@@ -82,11 +98,14 @@ public class TextEvent : AbstractEvent
 
     private void DisplayPage()
     {
-        if (textComponent == null) return;
+        if (textBoxUI == null) return;
 
         int startLine = currentPage * linesPerPage;
         int endLine = Mathf.Min(startLine + linesPerPage, textLines.Count);
-        textComponent.text = string.Join("\n", textLines.GetRange(startLine, endLine - startLine));
+        
+        // TextBoxUIのプロパティを使用してテキストを更新
+        textBoxUI.Message = string.Join("\n", textLines.GetRange(startLine, endLine - startLine));
+        textBoxUI.Name = speakerName;
     }
 
     private void NextPage()
@@ -106,8 +125,11 @@ public class TextEvent : AbstractEvent
 
     private void ClearText()
     {
-        if (textComponent != null)
-            textComponent.text = "";
+        if (textBoxUI != null)
+        {
+            textBoxUI.Message = "";
+            textBoxUI.Name = "";
+        }
 
         textLines.Clear();
         currentPage = 0;
@@ -116,6 +138,7 @@ public class TextEvent : AbstractEvent
         {
             Destroy(panelInstance);
             panelInstance = null;
+            textBoxUI = null;
         }
 
         _hasFinished = true;

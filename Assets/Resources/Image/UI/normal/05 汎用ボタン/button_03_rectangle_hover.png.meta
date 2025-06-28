@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      button_03_rectangle_hover_0: -3819476838861105758
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

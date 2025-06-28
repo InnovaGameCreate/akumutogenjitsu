@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      button_03_sqaure_click_0: -4757414588793870181
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

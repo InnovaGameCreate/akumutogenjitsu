@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 4096583562077758389}
   m_Layer: 0
   m_Name: UI
-  m_TagString: Untagged
+  m_TagString: UICanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -52,7 +52,6 @@ public class AbstractEventIdAssigner : Editor
         idProp.stringValue = System.Guid.NewGuid().ToString();
         so.ApplyModifiedProperties();
         EditorUtility.SetDirty(targetObject);
-        Debug.Log($"新しいIDが {targetObject.name} に割り当てられました: {idProp.stringValue}");
     }
 }
 

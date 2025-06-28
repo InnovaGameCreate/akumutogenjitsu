@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      title_musicbox_hover_0: 6143330575285584719
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
