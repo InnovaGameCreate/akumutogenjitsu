@@ -26,7 +26,6 @@ public class ItemManager : MonoBehaviour
         {
             _itemOwned[item] = false;
         }
-        _itemOwned[eItem.MedicineBlue] = true;
     }
 
     private void Update()
