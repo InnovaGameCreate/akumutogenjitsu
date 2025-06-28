@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 804a421babfb77e47937572385748e0a
+guid: 76386034b0508ee42a6c64f2e8075591
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -602278612594027848
-    second: enventory_0
+      213: 8180148711793489170
+    second: DreamBackground_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enventory_0
+      name: DreamBackground_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1000
-        height: 600
+        width: 170
+        height: 170
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b29488fac644a7f0800000000000000
-      internalID: -602278612594027848
+      spriteID: 215f150c9e9b58170800000000000000
+      internalID: 8180148711793489170
       vertices: []
       indices: 
       edges: []
