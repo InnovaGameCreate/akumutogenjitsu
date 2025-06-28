@@ -15,4 +15,4 @@ MonoBehaviour:
   _itemType: 0
   _name: "\u602A\u3057\u3044\u85AC\u54C1 - \u8D64 -"
   _description: "\u8D64\u8272\u3092\u3057\u305F\u6DB2\u4F53\u3002\u85AC\u54C1\u306B\u3057\u3066\u306F\u304B\u306A\u308A\u7DBA\u9E97\u306B\u81EA\u5206\u306E\u9854\u304C\u6620\u3063\u3066\u3044\u308B"
-  _icon: {fileID: 0}
+  _icon: {fileID: -7334219960218440064, guid: 71ea66abbeb0df442bcaf875dcf9d9e8, type: 3}
