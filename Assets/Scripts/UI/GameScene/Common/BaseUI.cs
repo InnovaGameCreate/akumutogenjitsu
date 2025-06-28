@@ -37,6 +37,7 @@ public class BaseUI : MonoBehaviour
             if (_currentMonth != value)
             {
                 _currentMonth = value;
+                _month = value;
                 UpdateDateText();
             }
         }
@@ -49,6 +50,7 @@ public class BaseUI : MonoBehaviour
             if (_currentDay != value)
             {
                 _currentDay = value;
+                _day = value;
                 UpdateDateText();
             }
         }
@@ -61,6 +63,7 @@ public class BaseUI : MonoBehaviour
             if (_currentPlace != value)
             {
                 _currentPlace = value;
+                _place = value;
                 UpdatePlaceText();
             }
         }
@@ -73,6 +76,7 @@ public class BaseUI : MonoBehaviour
             if (_currentWorldType != value)
             {
                 _currentWorldType = value;
+                _worldType = value;
                 UpdateWorldTypeImage();
             }
         }

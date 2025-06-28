@@ -24,6 +24,7 @@ public class TextBoxUI : MonoBehaviour
                 return;
             }
             _currentMessage = value;
+            _message = value;
             UpdateMessage();
         }
     }
@@ -38,6 +39,7 @@ public class TextBoxUI : MonoBehaviour
                 return;
             }
             _currentName = value;
+            _name = value;
             UpdateName();
         }
     }
