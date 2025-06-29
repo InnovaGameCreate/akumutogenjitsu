@@ -6,9 +6,6 @@ public class ItemManager : MonoBehaviour
 {
     [SerializeField] private List<ItemData> _itemDatas;
 
-    [Header("Player‚ÌUnitMove")]
-    [SerializeField] private UnitMove _playerMove;
-
     /// <summary>  
     /// ƒAƒCƒeƒ€‚ğŠ‚µ‚Ä‚¢‚é‚©‚Ìó‘Ô  
     /// </summary>  
