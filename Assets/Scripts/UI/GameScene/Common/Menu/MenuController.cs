@@ -4,6 +4,9 @@ public class MenuController : MonoBehaviour
 {
     [SerializeField] private MenuUI _view;
 
+    [Header("メニューの項目数")]
+    [SerializeField] private int _menuNum = 2;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,7 +29,7 @@ public class MenuController : MonoBehaviour
             index--;
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
-        {if (index >= 1) return;
+        {if (index >= _menuNum - 1) return;
             index++;
         }
         _view.SelectedIndex = index;
