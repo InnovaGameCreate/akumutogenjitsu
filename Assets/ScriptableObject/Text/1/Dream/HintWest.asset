@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d41f6b8989c824b9f72555aee5e560, type: 3}
+  m_Name: HintWest
+  m_EditorClassIdentifier: 
+  TextLines:
+  - SpeakerName: "\u4E3B\u4EBA\u516C"
+    CharacterSprite: {fileID: 0}
+    Message: "\u5F10\u543E\u6771\u9AD8\u6821\u306E\u30A4\u30D9\u30F3\u30C8\u6848\u5185\u3002"
+  - SpeakerName: "\u4E3B\u4EBA\u516C"
+    CharacterSprite: {fileID: 0}
+    Message: "\u4E3B\u5F35\u3059\u308B\u3088\u3046\u306B\u5F10\u306E\u90E8\u5206\u306B\u523A\u3057\u8DE1\u304C\u3042\u308B\u3002"
+  LinePerPage: 1
