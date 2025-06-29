@@ -415,6 +415,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b045c71cb6c8108489ac1b8cac5e0f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemDatas:
+  - {fileID: 11400000, guid: c63734aa2d17fb145a0af8eaed023a11, type: 2}
+  - {fileID: 11400000, guid: c90f6c1bac682514dbf02b08d48d59bf, type: 2}
+  - {fileID: 11400000, guid: be847d92573c89f4fb0cdbf240826971, type: 2}
+  - {fileID: 11400000, guid: 6d324f49f5f7bef4f8831d449c4361df, type: 2}
+  _inventoryUIPrefab: {fileID: 6523714192103968980, guid: 31b792d76b147b74b9b4a1baf2c2a45a, type: 3}
+  _playerMove: {fileID: 2235335805492443339}
 --- !u!1 &5882747794507195947
 GameObject:
   m_ObjectHideFlags: 0

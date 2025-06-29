@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ab32d04e660cd469c5b3d2c8076431, type: 3}
+  m_Name: Doll
+  m_EditorClassIdentifier: 
+  _itemType: 3
+  _name: "\u6C17\u5473\u306E\u60AA\u3044\u4EBA\u5F62"
+  _description: "\u898B\u3066\u3044\u3066\u3069\u3053\u304B\u6C17\u5473\u306E\u60AA\u3055\u3092\u611F\u3058\u308B\u4EBA\u5F62\u3002\u9752\u8272\u306E\u9AEA\u3068\u3001\u3046\u3061\u306E\u9AD8\u6821\u306E\u670D\u3092\u7740\u3066\u3044\u308B"
+  _icon: {fileID: -5231366205957992080, guid: df93fe880b3a8404681f2fd02c4d0143, type: 3}
