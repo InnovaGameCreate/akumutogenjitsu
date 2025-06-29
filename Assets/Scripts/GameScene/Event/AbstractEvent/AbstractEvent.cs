@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 
 public abstract class AbstractEvent : MonoBehaviour
@@ -130,7 +129,7 @@ public abstract class AbstractEvent : MonoBehaviour
             }
 
 #if DEBUG_MODE
-                Debug.Log($"イベント: {_event} が終了しました");
+            Debug.Log($"イベント: {_event} が終了しました");
 #endif
         }
     }
@@ -227,5 +226,25 @@ public abstract class AbstractEvent : MonoBehaviour
         {
             _eventData = value;
         }
+    }
+
+    /// <summary>
+    /// 1度しか実行しないか
+    /// </summary>
+    public bool TriggerOnce
+    {
+        get => _isTriggeredOnce;
+        set
+        {
+            _isTriggeredOnce = value;
+        }
+    }
+
+    /// <summary>
+    /// 有効か
+    /// </summary>
+    public bool Enabled
+    {
+        get => _eventData.Enabled;
     }
 }

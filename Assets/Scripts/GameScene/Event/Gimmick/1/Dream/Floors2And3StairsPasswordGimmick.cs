@@ -20,6 +20,11 @@ public class Floors2And3StairsPasswordGimmick : AbstractEvent
         {
             Debug.LogError("壁オブジェクトが設定されていません。");
         }
+
+        if (!Enabled)
+        {
+            _wall.SetActive(false);
+        }
     }
 
     public override bool IsTriggerEvent()
@@ -37,9 +42,11 @@ public class Floors2And3StairsPasswordGimmick : AbstractEvent
             if (_wall != null)
             {
                 _wall.SetActive(false);
+                // イベントを完全に無効化するためにTriggeredステータスに設定
+                EventStatus = eEventStatus.Triggered;
+                TriggerOnce = true;
+                Debug.Log("ようやくこれで１階に...");
             }
-            Debug.Log("ようやくこれで１階に...");
-            gameObject.SetActive(false);
         }
         else
         {
