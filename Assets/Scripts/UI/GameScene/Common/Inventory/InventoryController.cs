@@ -12,7 +12,7 @@ public class InventoryController : MonoBehaviour
 
     private List<ItemData> _currentOwnedItemData;
 
-    private int _selectedIndex = 0;
+    private int _selectedIndex = -1;
 
     public List<ItemData> OwnedItemDatas
     {
@@ -50,8 +50,13 @@ public class InventoryController : MonoBehaviour
         if (_itemManager == null)
         {
             Debug.LogError("ItemManagerが見つかりません。");
+            return;
         }
         _slotNum = _slotHeight * _slotWidth;
+        
+        // 初期データを設定
+        OwnedItemDatas = _itemManager.OwnedItemDatas;
+        SelectedSlotIndex = 0;
     }
 
     // Update is called once per frame
@@ -67,23 +72,23 @@ public class InventoryController : MonoBehaviour
         int index = _selectedIndex;
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (index <= 0 || index % 3 == 0) return index;
+            if (index <= 0 || index % _slotWidth == 0) return index;
             index--;
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (index > _slotNum || index % 3 == 2) return index;
+            if (index > _slotNum || index % _slotWidth == _slotWidth - 1) return index;
             index++;
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (index - 3 < 0) return index;
-            index -= 3;
+            if (index - _slotWidth < 0) return index;
+            index -= _slotWidth;
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (index + 3 >= _slotNum) return index;
-            index += 3;
+            if (index + _slotWidth >= _slotNum) return index;
+            index += _slotWidth;
         }
         return index;
     }

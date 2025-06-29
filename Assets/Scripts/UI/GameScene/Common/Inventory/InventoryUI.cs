@@ -24,9 +24,9 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Sprite _notSelectedSlotSprite;
 
     [Header("設定値")]
-    [SerializeField] private int _selectedSlotIndex = 0; // 選択されているスロット
+    [SerializeField] private int _selectedSlotIndex = -1; // 選択されているスロット
 
-    private int _currentSelectedSolotIndex;
+    private int _currentSelectedSolotIndex = -1;
 
     private List<ItemData> _ownedItemDatas = new();
 
@@ -87,12 +87,12 @@ public class InventoryUI : MonoBehaviour
         if (index < _ownedItemDatas.Count)
         {
             _itemIcons[index].sprite = _ownedItemDatas[index].Icon;
-            _itemIcons[index].color = new Color(255, 255, 255, 1.0f);
+            _itemIcons[index].color = new Color(1, 1, 1, 1.0f);
         }
         else
         {
             _itemIcons[index].sprite = null;
-            _itemIcons[index].color = new Color(255, 255, 255, 0);
+            _itemIcons[index].color = Color.clear;
         }
     }
 
@@ -108,12 +108,12 @@ public class InventoryUI : MonoBehaviour
             _itemNameText.text = "";
             _itemDescriptionText.text = "";
             _itemDetailIcon.sprite = null;
-            _itemDetailIcon.color = new Color(255, 255, 255, 0);
+            _itemDetailIcon.color = Color.clear;
             return;
         }
         _itemNameText.text = _ownedItemDatas[index].Name;
         _itemDescriptionText.text = _ownedItemDatas[index].Description;
         _itemDetailIcon.sprite = _ownedItemDatas[index].Icon;
-        _itemDetailIcon.color = new Color(255, 255, 255, 1.0f);
+        _itemDetailIcon.color = new Color(1, 1, 1, 1.0f);
     }
 }

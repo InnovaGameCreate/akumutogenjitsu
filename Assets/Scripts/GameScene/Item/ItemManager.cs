@@ -30,7 +30,7 @@ public class ItemManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             if (_isDisplayingInventory)
             {
