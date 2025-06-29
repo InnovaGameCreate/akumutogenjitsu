@@ -5,14 +5,9 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     [SerializeField] private List<ItemData> _itemDatas;
-    [SerializeField] private InventoryUI _inventoryUIPrefab;
 
     [Header("PlayerのUnitMove")]
     [SerializeField] private UnitMove _playerMove;
-
-    private bool _isDisplayingInventory = false;
-
-    private GameObject _inventoryUIObj;
 
     /// <summary>  
     /// アイテムを所持しているかの状態  
@@ -30,29 +25,6 @@ public class ItemManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            if (_isDisplayingInventory)
-            {
-                Destroy(_inventoryUIObj);
-                _isDisplayingInventory = false;
-                _playerMove.IsEnabled = true;
-            }
-            else
-            {
-                Canvas canvas = GameObject.FindGameObjectWithTag("UICanvas").GetComponent<Canvas>();
-                if (canvas == null)
-                {
-                    Debug.LogError("Canvasが見つからないです。");
-                    return;
-                }
-                InventoryUI inventoryUI = Instantiate(_inventoryUIPrefab);
-                inventoryUI.transform.SetParent(canvas.transform, false);
-                _inventoryUIObj = inventoryUI.gameObject;
-                _isDisplayingInventory = true;
-                _playerMove.IsEnabled = false;
-            }
-        }
     }
 
     /// <summary>
