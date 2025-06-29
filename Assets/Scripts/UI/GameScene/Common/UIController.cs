@@ -119,6 +119,7 @@ public class UIController : MonoBehaviour
                 if (_uiState.InventoryUI != null)
                 {
                     Destroy(_uiState.InventoryUI);
+                    _uiState.InventoryUI = null;
                     _uiState.InventoryEnabled = false;
                     _playerMove.IsEnabled = true;
                 }
@@ -141,6 +142,7 @@ public class UIController : MonoBehaviour
                 if (_uiState.MenuUI != null)
                 {
                     Destroy(_uiState.MenuUI);
+                    _uiState.MenuUI = null;
                     _uiState.MenuEnabled = false;
                     _playerMove.IsEnabled = true;
                 }
