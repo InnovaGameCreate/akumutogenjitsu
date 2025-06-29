@@ -1,19 +1,15 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class TextEvent : AbstractEvent
 {
     [SerializeField] private GameObject textBoxPrefab; // TextBoxUIコンポーネントを持つPrefab
+    [SerializeField] private TextData textData; // 会話データ
     private Canvas targetCanvas; // 配置先のCanvas
-    [SerializeField] private int linesPerPage = 2;
-    [SerializeField, TextArea(3, 10)] private string message;
-    [SerializeField] private string speakerName = ""; // 話者名
 
     private GameObject panelInstance;
     private TextBoxUI textBoxUI;
 
-    private List<string> textLines = new List<string>();
-    private int currentPage = 0;
+    private int currentLineIndex = 0;
     private bool playerInRange = false;
     private bool isDisplaying = false;
 
@@ -49,6 +45,12 @@ public class TextEvent : AbstractEvent
         // イベント開始時に必ず初期化
         _hasFinished = false;
         
+        if (textData == null || textData.TextLines == null || textData.TextLines.Length == 0)
+        {
+            Debug.LogError("TextDataが設定されていないか、会話データが空です。");
+            return;
+        }
+        
         if (panelInstance == null)
         {
             // TextBoxUIを持つPrefabをインスタンス化
@@ -70,10 +72,9 @@ public class TextEvent : AbstractEvent
             }
         }
 
-        textLines = new List<string>(message.Split('\n'));
-        currentPage = 0;
+        currentLineIndex = 0;
         isDisplaying = true;
-        DisplayPage();
+        DisplayCurrentLine();
     }
 
     public override bool IsFinishEvent()
@@ -91,30 +92,42 @@ public class TextEvent : AbstractEvent
         {
             if (isDisplaying && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)))
             {
-                NextPage();
+                NextLine();
             }
         }
     }
 
-    private void DisplayPage()
+    private void DisplayCurrentLine()
     {
-        if (textBoxUI == null) return;
+        if (textBoxUI == null || textData == null) return;
 
-        int startLine = currentPage * linesPerPage;
-        int endLine = Mathf.Min(startLine + linesPerPage, textLines.Count);
+        if (currentLineIndex >= textData.TextLines.Length)
+        {
+            isDisplaying = false;
+            ClearText();
+            return;
+        }
+
+        TextLine currentLine = textData.TextLines[currentLineIndex];
         
         // TextBoxUIのプロパティを使用してテキストを更新
-        textBoxUI.Message = string.Join("\n", textLines.GetRange(startLine, endLine - startLine));
-        textBoxUI.Name = speakerName;
+        textBoxUI.Message = currentLine.Message;
+        textBoxUI.Name = currentLine.SpeakerName;
+        
+        // TODO: 立ち絵があれば表示
+        // if (textBoxUI.HasCharacterSprite && currentLine.CharacterSprite != null)
+        // {
+        //     textBoxUI.CharacterSprite = currentLine.CharacterSprite;
+        // }
     }
 
-    private void NextPage()
+    private void NextLine()
     {
-        int nextStartLine = (currentPage + 1) * linesPerPage;
-        if (nextStartLine < textLines.Count)
+        currentLineIndex++;
+        
+        if (currentLineIndex < textData.TextLines.Length)
         {
-            currentPage++;
-            DisplayPage();
+            DisplayCurrentLine();
         }
         else
         {
@@ -131,8 +144,7 @@ public class TextEvent : AbstractEvent
             textBoxUI.Name = "";
         }
 
-        textLines.Clear();
-        currentPage = 0;
+        currentLineIndex = 0;
 
         if (panelInstance != null)
         {

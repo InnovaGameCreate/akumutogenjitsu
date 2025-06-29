@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1d41f6b8989c824b9f72555aee5e560, type: 3}
   m_Name: HintNorth
   m_EditorClassIdentifier: 
-  TextLines: []
+  TextLines:
+  - SpeakerName: "\u4E3B\u4EBA\u516C"
+    CharacterSprite: {fileID: 0}
+    Message: "\u9ED2\u677F\u306B\u65E5\u76F4\u3068\u65E5\u4ED8\u304C\u66F8\u3044\u3066\u3044\u308B\u3002"
+  - SpeakerName: "\u4E3B\u4EBA\u516C"
+    CharacterSprite: {fileID: 0}
+    Message: "5/5\u3000\u5317\u304F\u3093\u306E\u3088\u3046\u3060\u3002"
   LinePerPage: 1

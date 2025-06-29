@@ -2618,6 +2618,10 @@ PrefabInstance:
       value: 4bffdd60-877f-4162-a5b2-7bd3401c09ed
       objectReference: {fileID: 0}
     - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
+      propertyPath: textData
+      value: 
+      objectReference: {fileID: 11400000, guid: afbe307c9c1241d438bf5d88f4ce4379, type: 2}
+    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: linesPerPage
       value: 1
       objectReference: {fileID: 0}
@@ -4760,7 +4764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6916214532204980095, guid: 10214628290b6534283e0f602aff2e18, type: 3}
       propertyPath: orthographic size
-      value: 16.875
+      value: 11.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
