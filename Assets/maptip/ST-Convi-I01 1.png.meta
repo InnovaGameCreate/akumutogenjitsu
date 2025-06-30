@@ -1,0 +1,792 @@
+fileFormatVersion: 2
+guid: c24f5f05e4ed4e44f9386425f98646b1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5004829445933698554
+    second: ST-Convi-I01 1_0
+  - first:
+      213: 8701896234245335219
+    second: ST-Convi-I01 1_1
+  - first:
+      213: -4344454309837059138
+    second: ST-Convi-I01 1_2
+  - first:
+      213: 3017928782339101162
+    second: ST-Convi-I01 1_3
+  - first:
+      213: 7315732736589380242
+    second: ST-Convi-I01 1_4
+  - first:
+      213: -7984939446734060054
+    second: ST-Convi-I01 1_5
+  - first:
+      213: 6657995572019763681
+    second: ST-Convi-I01 1_6
+  - first:
+      213: 8074487528541626660
+    second: ST-Convi-I01 1_7
+  - first:
+      213: 8616783044154749694
+    second: ST-Convi-I01 1_8
+  - first:
+      213: 2590837622602317931
+    second: ST-Convi-I01 1_9
+  - first:
+      213: 2219687460993201511
+    second: ST-Convi-I01 1_10
+  - first:
+      213: -6466710361906845148
+    second: ST-Convi-I01 1_11
+  - first:
+      213: 5697599525180787715
+    second: ST-Convi-I01 1_12
+  - first:
+      213: 8894749002338819810
+    second: ST-Convi-I01 1_13
+  - first:
+      213: 4016054320154671551
+    second: ST-Convi-I01 1_14
+  - first:
+      213: 5055815679445049940
+    second: ST-Convi-I01 1_15
+  - first:
+      213: 5043180367636395937
+    second: ST-Convi-I01 1_16
+  - first:
+      213: 8327036924797628256
+    second: ST-Convi-I01 1_17
+  - first:
+      213: -1802143067827088298
+    second: ST-Convi-I01 1_18
+  - first:
+      213: -8181841933320541907
+    second: ST-Convi-I01 1_19
+  - first:
+      213: -1661813380840978057
+    second: ST-Convi-I01 1_20
+  - first:
+      213: -9059791125590676269
+    second: ST-Convi-I01 1_21
+  - first:
+      213: 7771580524187661810
+    second: ST-Convi-I01 1_22
+  - first:
+      213: 6535702969970200360
+    second: ST-Convi-I01 1_23
+  - first:
+      213: -2093803062199976653
+    second: ST-Convi-I01 1_24
+  - first:
+      213: -8436041661121255879
+    second: ST-Convi-I01 1_25
+  - first:
+      213: -1343341227570970081
+    second: ST-Convi-I01 1_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 933
+        width: 256
+        height: 347
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 602f4b9b2264b8ab0800000000000000
+      internalID: -5004829445933698554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_1
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 927
+        width: 130
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b8a08a358853c870800000000000000
+      internalID: 8701896234245335219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 869
+        width: 97
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebb4f37b2d565b3c0800000000000000
+      internalID: -4344454309837059138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_3
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 791
+        width: 189
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae1dfb4ec36d1e920800000000000000
+      internalID: 3017928782339101162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_4
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 887
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29a3b1cd924b68560800000000000000
+      internalID: 7315732736589380242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 825
+        width: 32
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae5896411ebcf2190800000000000000
+      internalID: -7984939446734060054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_6
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 823
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e99c5a72b3f56c50800000000000000
+      internalID: 6657995572019763681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 763
+        width: 32
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 421ab0270a75e0070800000000000000
+      internalID: 8074487528541626660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 763
+        width: 32
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef2f3756686f49770800000000000000
+      internalID: 8616783044154749694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_9
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 671
+        width: 160
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b60cde5471184f320800000000000000
+      internalID: 2590837622602317931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 671
+        width: 32
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76573e04cf9edce10800000000000000
+      internalID: 2219687460993201511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 703
+        width: 32
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42a643d1031a146a0800000000000000
+      internalID: -6466710361906845148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_12
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 713
+        width: 22
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30cc5dab490f11f40800000000000000
+      internalID: 5697599525180787715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_13
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 671
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ee5aaa571f707b70800000000000000
+      internalID: 8894749002338819810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_14
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 643
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb9fd7f4024ebb730800000000000000
+      internalID: 4016054320154671551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_15
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 671
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4522c27d29dd92640800000000000000
+      internalID: 5055815679445049940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_16
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 584
+        width: 76
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a7f03f03d9fcf540800000000000000
+      internalID: 5043180367636395937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_17
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 588
+        width: 66
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06faf1ee6f39f8370800000000000000
+      internalID: 8327036924797628256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_18
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 588
+        width: 28
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 654dbbf8d608df6e0800000000000000
+      internalID: -1802143067827088298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_19
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 607
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d29a8046c12447e80800000000000000
+      internalID: -8181841933320541907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 524
+        width: 52
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7798bf7e88d00f8e0800000000000000
+      internalID: -1661813380840978057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_21
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 547
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dc6eebd8f7254280800000000000000
+      internalID: -9059791125590676269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_22
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 575
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f5bc87af433adb60800000000000000
+      internalID: 7771580524187661810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 447
+        width: 256
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82f0a8a393b73ba50800000000000000
+      internalID: 6535702969970200360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 383
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33df1f7553151f2e0800000000000000
+      internalID: -2093803062199976653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 247
+        width: 256
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 936a8762ec82dea80800000000000000
+      internalID: -8436041661121255879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Convi-I01 1_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f12ce76554e7b5de0800000000000000
+      internalID: -1343341227570970081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
