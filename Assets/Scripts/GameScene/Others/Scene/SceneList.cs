@@ -39,16 +39,54 @@ public class SceneDefine
 {
     public eLocationType Type;
 
-    [SerializeField] SceneAsset _sceneAsset;
-    public string SceneName => _sceneAsset?.name;
+#if UNITY_EDITOR
+    [SerializeField] private SceneAsset _sceneAsset;
+#endif
+
+    [SerializeField] private string _sceneName;
+
+    public string SceneName => _sceneName;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (_sceneAsset != null)
+        {
+            _sceneName = _sceneAsset.name;
+        }
+    }
+
+    [ContextMenu("シーン名を更新")]
+    public void UpdateSceneName()
+    {
+        OnValidate();
+    }
+#endif
 }
 
 [CreateAssetMenu(fileName = "SceneList", menuName = "Game/SceneList")]
 public class SceneList : ScriptableObject
 {
-    [Header("場所の定義")]
-    public List<LocationDefine> Locations;
+    public List<LocationDefine> Locations = new List<LocationDefine>();
+    public List<SceneDefine> Scenes = new List<SceneDefine>();
 
-    [Header("シーンの定義")]
-    public List<SceneDefine> Scenes;
+#if UNITY_EDITOR
+    [ContextMenu("全シーン名を更新")]
+    private void UpdateAllSceneNames()
+    {
+        foreach (var scene in Scenes)
+        {
+            scene.UpdateSceneName();
+        }
+        
+        // 変更をUnityに通知
+        UnityEditor.EditorUtility.SetDirty(this);
+        Debug.Log("全シーン名を更新しました");
+    }
+    
+    private void OnValidate()
+    {
+        UpdateAllSceneNames();
+    }
+#endif
 }
