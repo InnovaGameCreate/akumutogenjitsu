@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3465a4eeae9e14096b1a814e4aedc5, type: 3}
+  m_Name: SceneList
+  m_EditorClassIdentifier: 
+  Locations:
+  - Type: 1
+    DisplayName: "\u5BB6"
+  - Type: 2
+    DisplayName: "\u8857"
+  - Type: 3
+    DisplayName: "\u5B66\u6821\u3000\uFF11\u968E\u3000\u7384\u95A2"
+  - Type: 4
+    DisplayName: "\u5B66\u6821\u3000\uFF11\u968E\u3000\u6559\u5BA4"
+  - Type: 4
+    DisplayName: "\u5B66\u6821\u3000\uFF11\u968E\u3000\u6559\u5BA4"
+  - Type: 4
+    DisplayName: "\u5B66\u6821\u3000\uFF11\u968E\u3000\u6559\u5BA4"
+  - Type: 4
+    DisplayName: "\u5B66\u6821\u3000\uFF11\u968E\u3000\u6559\u5BA4"
+  - Type: 5
+    DisplayName: "\u5B66\u6821\u3000\uFF11\u968E\u3000\u7406\u79D1\u5BA4"
+  - Type: 6
+    DisplayName: "\u5B66\u6821\u3000\uFF11\u968E\u3000\u8077\u54E1\u5BA4"
+  - Type: 7
+    DisplayName: "\u5B66\u6821\u3000\uFF12\u968E\u3000\u6559\u5BA4"
+  - Type: 7
+    DisplayName: "\u5B66\u6821\u3000\uFF12\u968E\u3000\u6559\u5BA4"
+  - Type: 7
+    DisplayName: "\u5B66\u6821\u3000\uFF12\u968E\u3000\u6559\u5BA4"
+  - Type: 7
+    DisplayName: "\u5B66\u6821\u3000\uFF12\u968E\u3000\u6559\u5BA4"
+  - Type: 8
+    DisplayName: "\u5B66\u6821\u3000\uFF12\u968E\u3000\u5ECA\u4E0B"
+  Scenes:
+  - Type: 1
+    _sceneAsset: {fileID: 102900000, guid: 180d386e74de8cd4b855343601ebf07a, type: 3}
+  - Type: 2
+    _sceneAsset: {fileID: 102900000, guid: d5df52d2cc9f01847af6c1c534c1fcdd, type: 3}
+  - Type: 3
+    _sceneAsset: {fileID: 102900000, guid: a7a2fa2b204a46b4fb7f1d3ee31021ac, type: 3}
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 33a9eabc9e66ab04087600bc72e62199, type: 3}
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: c83a9ec5140738d4aab015540fb8d103, type: 3}
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 4c5ba7236f38fb94db783c8c848cb0eb, type: 3}
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 399b1e7539448bf488b0e7a2c7975299, type: 3}
+  - Type: 5
+    _sceneAsset: {fileID: 102900000, guid: 3145a4871a1ce3c4bb4d30162208832b, type: 3}
+  - Type: 6
+    _sceneAsset: {fileID: 102900000, guid: bb207596c19f95f4095c23e12da83c27, type: 3}
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: a9eed75b3eafd2345a33e5b6d7d7e6ba, type: 3}
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: e2e7cb8245eaebe46b6d2febbbdcda44, type: 3}
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: c2df9f88f111a384bb8b80f35572a567, type: 3}
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: d6fb85b7a285e3d4c9aeec6a18274975, type: 3}
+  - Type: 6
+    _sceneAsset: {fileID: 102900000, guid: bb207596c19f95f4095c23e12da83c27, type: 3}
