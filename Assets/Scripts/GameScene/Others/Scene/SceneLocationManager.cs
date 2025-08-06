@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// シーンと場所の名前を繋ぐ
 /// </summary>
-public class SceneLocationManager  : Singleton<SceneLocationManager >
+public class SceneLocationManager  : Singleton<SceneLocationManager>
 {
     [SerializeField] private SceneList _sceneList;
     private Dictionary<string, eLocationType> _sceneToLocationTypes;
