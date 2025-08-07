@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1172801459112866695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6048492658835144219}
+  - component: {fileID: 621647135878863593}
+  m_Layer: 0
+  m_Name: DateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6048492658835144219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172801459112866695}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5150935823712475868}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &621647135878863593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172801459112866695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a3e9d83b4c2449b9889c1f34f433c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firstMonth: 9
+  _firstDay: 4
 --- !u!1 &2590375179025748498
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,6 +122,7 @@ Transform:
   m_Children:
   - {fileID: 2726362414794646519}
   - {fileID: 8802274344658551662}
+  - {fileID: 6048492658835144219}
   m_Father: {fileID: 4829411122311754825}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3808477812684150828
@@ -420,8 +467,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c90f6c1bac682514dbf02b08d48d59bf, type: 2}
   - {fileID: 11400000, guid: be847d92573c89f4fb0cdbf240826971, type: 2}
   - {fileID: 11400000, guid: 6d324f49f5f7bef4f8831d449c4361df, type: 2}
-  _inventoryUIPrefab: {fileID: 6523714192103968980, guid: 31b792d76b147b74b9b4a1baf2c2a45a, type: 3}
-  _playerMove: {fileID: 2235335805492443339}
 --- !u!1 &5882747794507195947
 GameObject:
   m_ObjectHideFlags: 0
