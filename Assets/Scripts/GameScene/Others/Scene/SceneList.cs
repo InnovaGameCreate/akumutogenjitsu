@@ -44,22 +44,15 @@ public class SceneDefine
 #endif
 
     [SerializeField] private string _sceneName;
-
     public string SceneName => _sceneName;
 
 #if UNITY_EDITOR
-    private void OnValidate()
+    public void UpdateSceneName()
     {
         if (_sceneAsset != null)
         {
             _sceneName = _sceneAsset.name;
         }
-    }
-
-    [ContextMenu("シーン名を更新")]
-    public void UpdateSceneName()
-    {
-        OnValidate();
     }
 #endif
 }
@@ -74,19 +67,30 @@ public class SceneList : ScriptableObject
     [ContextMenu("全シーン名を更新")]
     private void UpdateAllSceneNames()
     {
+        bool hasChanged = false;
+        
         foreach (var scene in Scenes)
         {
+            string oldName = scene.SceneName;
             scene.UpdateSceneName();
+            
+            if (oldName != scene.SceneName)
+            {
+                hasChanged = true;
+            }
         }
         
-        // 変更をUnityに通知
-        UnityEditor.EditorUtility.SetDirty(this);
-        Debug.Log("全シーン名を更新しました");
+        if (hasChanged)
+        {
+            EditorUtility.SetDirty(this);
+            Debug.Log("シーン名を更新しました");
+        }
     }
     
     private void OnValidate()
     {
-        UpdateAllSceneNames();
+        if (Scenes == null) Scenes = new List<SceneDefine>();
+        if (Locations == null) Locations = new List<LocationDefine>();
     }
 #endif
 }
