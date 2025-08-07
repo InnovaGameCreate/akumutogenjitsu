@@ -19,7 +19,7 @@ public class DateManager : Singleton<DateManager>
     private void initialize()
     {
         _currentDate.Month = _firstMonth;
-        _currentDate.Day = _firstMonth;
+        _currentDate.Day = _firstDay;
     }
 
     public Date GetCurrentDate()
