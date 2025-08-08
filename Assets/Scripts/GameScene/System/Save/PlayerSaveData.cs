@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 class PlayerSaveData : ISaveData
 {
     [JsonProperty("position")]
-    public Vector2 Position { get; set; }
+    public Vector3 Position { get; set; }
 
     public void DecodeToSaveData(string json)
     {
