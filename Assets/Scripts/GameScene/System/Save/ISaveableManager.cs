@@ -1,13 +1,13 @@
-public interface ISaveableManager
+public interface ISaveableManager<T> where T : ISaveData
 {
     /// <summary>
     /// ISaveDataにエンコードする
     /// </summary>
     /// <returns> セーブデータ </returns>
-    ISaveData EncodeToSaveData();
+    public T EncodeToSaveData();
     /// <summary>
     /// セーブデータをゲームに反映させる
     /// </summary>
     /// <param name="saveData"> セーブデータ </param>
-    void LoadFromSaveData(ISaveData saveData);
+    public void LoadFromSaveData(T saveData);
 }
