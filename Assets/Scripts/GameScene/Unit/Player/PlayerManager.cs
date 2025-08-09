@@ -1,7 +1,7 @@
 using UnityEngine;
 using VContainer;
 
-class PlayerManager : MonoBehaviour, ISaveableManager<PlayerSaveData>
+public class PlayerManager : MonoBehaviour, ISaveableManager<PlayerSaveData>
 {
     [Inject]
     private UnitMove _playerUnitMove;

@@ -1,17 +1,24 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 using Newtonsoft.Json;
 
 [System.Serializable]
-class PlayerSaveData : ISaveData
+public class PlayerSaveData : ISaveData
 {
     [JsonProperty("position")]
     public Vector3 Position { get; set; }
 
     public void DecodeToSaveData(string json)
     {
-        var data = JsonConvert.DeserializeObject<PlayerSaveData>(json);
-        this.Position = data.Position;
+        try
+        {
+            var data = JsonConvert.DeserializeObject<PlayerSaveData>(json);
+            this.Position = data?.Position ?? Vector3.zero;
+        }
+        catch (JsonException ex)
+        {
+            Debug.LogError($"Failed to deserialize PlayerSaveData: {ex.Message}");
+            this.Position = Vector3.zero;
+        }
     }
 
     public string EncodeToJson()
