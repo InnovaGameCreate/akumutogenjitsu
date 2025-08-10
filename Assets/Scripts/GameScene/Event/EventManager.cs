@@ -18,6 +18,77 @@ public class EventManager : MonoBehaviour, ISaveableManager<EventSaveData>
                 Debug.LogError("StoryManagerが指定されていません。");
             }
         }
+
+        // 既にロード済みのイベントデータがある場合、シーン内のイベントに適用
+        if (_loadedEventDatas.Count > 0)
+        {
+            // 少し待ってからイベントデータを適用（他のオブジェクトの初期化を待つ）
+            StartCoroutine(DelayedApplyEventData());
+        }
+    }
+
+    /// <summary>
+    /// 遅延してイベントデータを適用
+    /// </summary>
+    private System.Collections.IEnumerator DelayedApplyEventData()
+    {
+        yield return new UnityEngine.WaitForEndOfFrame();
+        yield return null; // 1フレーム待機
+        
+        ApplyLoadedDataToSceneEvents();
+    }
+
+    void OnEnable()
+    {
+        // シーン遷移後にオブジェクトが有効になったときにもイベントデータを適用
+        if (_loadedEventDatas.Count > 0)
+        {
+            // StartCoroutineが使えない場合に備えて、次フレームで実行
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+    }
+
+    void OnDisable()
+    {
+        // イベント登録解除
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+        StopAllCoroutines();
+    }
+
+    /// <summary>
+    /// シーンがロードされた時の処理
+    /// </summary>
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        // 新しいシーンのイベントを初期化
+        InitializeNewSceneEvents();
+        
+        if (_loadedEventDatas.Count > 0)
+        {
+            StartCoroutine(DelayedApplyEventData());
+        }
+    }
+
+    /// <summary>
+    /// 新しいシーンのイベントを初期化（セーブデータに存在しないイベントを追加）
+    /// </summary>
+    private void InitializeNewSceneEvents()
+    {
+        GameObject[] eventObjects = GameObject.FindGameObjectsWithTag("Event");
+        int initializedCount = 0;
+        
+        foreach (GameObject obj in eventObjects)
+        {
+            AbstractEvent evt = obj.GetComponent<AbstractEvent>();
+            if (evt == null) continue;
+
+            if (!HasLoadedEvent(evt.EventId))
+            {
+                // セーブデータに存在しない新しいイベントを初期状態で追加
+                SaveEventData(evt.EventId, evt.EventData);
+                initializedCount++;
+            }
+        }
     }
 
     /// <summary>
@@ -26,17 +97,19 @@ public class EventManager : MonoBehaviour, ISaveableManager<EventSaveData>
     public void SaveAllEventInScene()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Event");
+        int savedCount = 0;
+        
         foreach (GameObject obj in objs)
         {
             AbstractEvent evt = obj.GetComponent<AbstractEvent>();
             if (evt == null)
             {
-                Debug.LogError($"イベントがコンポーネントされていません。(Event: {obj})");
+                Debug.LogError($"イベントがコンポーネントされていません。(Event: {obj.name})");
+                continue;
             }
-            else
-            {
-                SaveEventData(evt.EventId, evt.EventData);
-            }
+
+            SaveEventData(evt.EventId, evt.EventData);
+            savedCount++;
         }
     }
 
@@ -86,18 +159,11 @@ public class EventManager : MonoBehaviour, ISaveableManager<EventSaveData>
     }
 
     /// <summary>
-    /// シーン上のイベントのEventDataをロードする
+    /// シーン上のイベントのEventDataをロードする（既存メソッド、下位互換性のため保持）
     /// </summary>
     public void LoadAllEventInScene()
     {
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Event"))
-        {
-            AbstractEvent evt = obj.GetComponent<AbstractEvent>();
-            if (evt != null && HasLoadedEvent(evt.EventId))
-            {
-                evt.InitWithEventData(_loadedEventDatas[evt.EventId]);
-            }
-        }
+        ApplyLoadedDataToSceneEvents();
     }
 
     /// <summary>
@@ -117,6 +183,9 @@ public class EventManager : MonoBehaviour, ISaveableManager<EventSaveData>
 
     public EventSaveData EncodeToSaveData()
     {
+        // セーブ前にシーン内のすべてのイベントを自動保存
+        SaveAllEventInScene();
+        
         EventSaveData saveData = new EventSaveData();
         
         if (_storyManager != null)
@@ -125,6 +194,7 @@ public class EventManager : MonoBehaviour, ISaveableManager<EventSaveData>
         }
         
         saveData.EventData = _loadedEventDatas;
+        
         return saveData;
     }
 
@@ -142,5 +212,61 @@ public class EventManager : MonoBehaviour, ISaveableManager<EventSaveData>
         }
         
         _loadedEventDatas = saveData.EventData ?? new Dictionary<string, EventData>();
+        
+        // セーブデータからロード後、シーン内のイベントに反映
+        ApplyLoadedDataToSceneEvents();
+    }
+
+    /// <summary>
+    /// ロード済みのEventDataをシーン内のイベントに反映する
+    /// </summary>
+    public void ApplyLoadedDataToSceneEvents()
+    {
+        GameObject[] eventObjects = GameObject.FindGameObjectsWithTag("Event");
+        int appliedCount = 0;
+        
+        foreach (GameObject obj in eventObjects)
+        {
+            AbstractEvent evt = obj.GetComponent<AbstractEvent>();
+            if (evt == null)
+            {
+                Debug.LogWarning($"EventタグのオブジェクトにAbstractEventコンポーネントがありません: {obj.name}");
+                continue;
+            }
+
+            if (HasLoadedEvent(evt.EventId))
+            {
+                EventData loadedData = _loadedEventDatas[evt.EventId];
+                evt.InitWithEventData(loadedData);
+                appliedCount++;
+            }
+            else
+            {
+                // 初期状態を維持（ログ出力なし）
+            }
+        }
+        
+        Debug.Log($"イベントデータ適用完了: {appliedCount}個のイベントに適用");
+    }
+
+    /// <summary>
+    /// 強制的にすべてのイベントデータを再適用する（デバッグ用）
+    /// </summary>
+    public void ForceApplyAllEventData()
+    {
+        Debug.Log("強制的にすべてのイベントデータを再適用します。");
+        ApplyLoadedDataToSceneEvents();
+    }
+
+    /// <summary>
+    /// 現在ロードされているイベントデータの情報を表示（デバッグ用）
+    /// </summary>
+    public void DebugPrintLoadedEventData()
+    {
+        Debug.Log($"現在ロードされているイベントデータ数: {_loadedEventDatas.Count}");
+        foreach (var kvp in _loadedEventDatas)
+        {
+            Debug.Log($"EventID: {kvp.Key}, EventData: {kvp.Value}");
+        }
     }
 }
