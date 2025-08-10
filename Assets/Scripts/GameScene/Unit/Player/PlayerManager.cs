@@ -9,12 +9,15 @@ public class PlayerManager : MonoBehaviour, ISaveableManager<PlayerSaveData>
     public PlayerSaveData EncodeToSaveData()
     {
         PlayerSaveData saveData = new PlayerSaveData();
-        saveData.Position = _playerUnitMove.transform.position;
+        saveData.Position = new SerializableVector3(_playerUnitMove.transform.position);
         return saveData;
     }
 
     public void LoadFromSaveData(PlayerSaveData saveData)
     {
-        _playerUnitMove.transform.position = saveData.Position;
+        if (saveData?.Position != null)
+        {
+            _playerUnitMove.transform.position = saveData.Position.ToVector3();
+        }
     }
 }
