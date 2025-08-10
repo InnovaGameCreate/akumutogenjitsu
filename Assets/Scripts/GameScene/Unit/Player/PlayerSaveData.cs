@@ -26,9 +26,4 @@ public class PlayerSaveData : ISaveData
         // TODO: Formatting.Noneに変更する
         return JsonConvert.SerializeObject(this, Formatting.Indented);
     }
-
-    public string SaveDataName()
-    {
-        return "Player";
-    }
 }

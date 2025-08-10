@@ -39,9 +39,4 @@ public class EventSaveData : ISaveData
         };
         return JsonConvert.SerializeObject(this, setting);
     }
-
-    public string SaveDataName()
-    {
-        return "event";
-    }
 }

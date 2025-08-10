@@ -24,9 +24,4 @@ public class SystemSaveData : ISaveData
     {
         return JsonConvert.SerializeObject(this, Formatting.Indented);
     }
-
-    public string SaveDataName()
-    {
-        return "system";
-    }
 }

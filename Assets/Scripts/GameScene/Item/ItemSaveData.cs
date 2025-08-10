@@ -25,9 +25,4 @@ public class ItemSaveData : ISaveData
     {
         return JsonConvert.SerializeObject(this, Formatting.Indented);
     }
-
-    public string SaveDataName()
-    {
-        return "item";
-    }
 }
