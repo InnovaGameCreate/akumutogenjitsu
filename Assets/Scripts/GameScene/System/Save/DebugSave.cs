@@ -14,9 +14,12 @@ public class DebugSave : ITickable
     public void Tick()
     {
         Debug.Log("Save");
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log("保存できました。");
+            _saveMgr.LoadFromFile(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
             _saveMgr.SaveToFile(1);
         }
     }
