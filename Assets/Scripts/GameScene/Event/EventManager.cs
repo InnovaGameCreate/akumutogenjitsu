@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventManager : MonoBehaviour
+public class EventManager : MonoBehaviour, ISaveableManager<EventSaveData>
 {
     // ロードされたEventData
     private Dictionary<string, EventData> _loadedEventDatas = new();
@@ -74,7 +74,15 @@ public class EventManager : MonoBehaviour
     /// <returns> データ </returns>
     public EventData LoadEventData(string eventId)
     {
-        return _loadedEventDatas[eventId];
+        if (_loadedEventDatas.TryGetValue(eventId, out EventData eventData))
+        {
+            return eventData;
+        }
+        else
+        {
+            Debug.LogError($"EventData not found for ID: {eventId}");
+            return default(EventData);
+        }
     }
 
     /// <summary>
@@ -101,5 +109,38 @@ public class EventManager : MonoBehaviour
         {
             return _loadedEventDatas;
         }
+    }
+
+    /// <summary>
+    /// イベント関連のセーブ・ロード機能
+    /// </summary>
+
+    public EventSaveData EncodeToSaveData()
+    {
+        EventSaveData saveData = new EventSaveData();
+        
+        if (_storyManager != null)
+        {
+            saveData.CurrentStoryLayer = _storyManager.CurrentStoryLayer;
+        }
+        
+        saveData.EventData = _loadedEventDatas;
+        return saveData;
+    }
+
+    public void LoadFromSaveData(EventSaveData saveData)
+    {
+        if (saveData == null)
+        {
+            Debug.LogError("EventSaveData is null");
+            return;
+        }
+
+        if (_storyManager != null)
+        {
+            _storyManager.CurrentStoryLayer = saveData.CurrentStoryLayer;
+        }
+        
+        _loadedEventDatas = saveData.EventData ?? new Dictionary<string, EventData>();
     }
 }
