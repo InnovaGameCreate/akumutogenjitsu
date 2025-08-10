@@ -29,14 +29,36 @@ public class SceneLocationManager  : Singleton<SceneLocationManager>
 
         try
         {
-            _sceneToLocationTypes = _sceneList.Scenes?
-                .ToDictionary(scene => scene.SceneName, scene => scene.Type) ?? new Dictionary<string, eLocationType>();
-            _locationTypeToDisplayNames = _sceneList.Locations?
-                .ToDictionary(scene => scene.Type, scene => scene.DisplayName) ?? new Dictionary<eLocationType, string>();
+            _sceneToLocationTypes = new Dictionary<string, eLocationType>();
+            _locationTypeToDisplayNames = new Dictionary<eLocationType, string>();
+
+            // 重複を避けながら辞書を構築
+            if (_sceneList.Scenes != null)
+            {
+                foreach (var scene in _sceneList.Scenes)
+                {
+                    if (!_sceneToLocationTypes.ContainsKey(scene.SceneName))
+                    {
+                        _sceneToLocationTypes[scene.SceneName] = scene.Type;
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"重複するシーン名をスキップしました: {scene.SceneName}");
+                    }
+                }
+            }
+
+            if (_sceneList.Locations != null)
+            {
+                foreach (var location in _sceneList.Locations)
+                {
+                    _locationTypeToDisplayNames[location.Type] = location.DisplayName;
+                }
+            }
         }
-        catch (System.ArgumentException ex)
+        catch (System.Exception ex)
         {
-            Debug.LogError($"SceneListに重複するキーが存在します: {ex.Message}");
+            Debug.LogError($"SceneListの初期化に失敗しました: {ex.Message}");
             _sceneToLocationTypes = new Dictionary<string, eLocationType>();
             _locationTypeToDisplayNames = new Dictionary<eLocationType, string>();
         }

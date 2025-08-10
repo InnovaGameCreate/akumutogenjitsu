@@ -11,7 +11,15 @@ public class PlayerMapMove : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        _eventMgr = GameObject.FindGameObjectWithTag("EventMgr").GetComponent<EventManager>();
+
+        _eventMgr = FindAnyObjectByType<EventManager>();
+        
+        if (_eventMgr == null)
+        {
+            var eventObj = GameObject.FindGameObjectWithTag("EventMgr");
+            _eventMgr = eventObj?.GetComponent<EventManager>();
+        }
+
         if (_eventMgr == null)
         {
             Debug.LogError("EventManagerÇ™å©Ç¬Ç©ÇËÇ‹ÇπÇÒÇ≈ÇµÇΩÅB");
