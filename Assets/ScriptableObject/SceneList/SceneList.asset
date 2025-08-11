@@ -81,6 +81,3 @@ MonoBehaviour:
   - Type: 7
     _sceneAsset: {fileID: 102900000, guid: d6fb85b7a285e3d4c9aeec6a18274975, type: 3}
     _sceneName: First_1_real_class204
-  - Type: 6
-    _sceneAsset: {fileID: 102900000, guid: bb207596c19f95f4095c23e12da83c27, type: 3}
-    _sceneName: First_1_real_teacherRoom

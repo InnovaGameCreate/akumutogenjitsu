@@ -11,6 +11,9 @@ TagManager:
   - StoryMgr
   - EssentialObject
   - UICanvas
+  - SystemMgr
+  - PlayerMgr
+  - DateMgr
   layers:
   - Default
   - TransparentFX
