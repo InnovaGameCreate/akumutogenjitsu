@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Linq;
 using UnityEngine;
 
-public class ItemManager : MonoBehaviour
+public class ItemManager : MonoBehaviour, ISaveableManager<ItemSaveData>
 {
     [SerializeField] private List<ItemData> _itemDatas;
 
@@ -18,10 +18,6 @@ public class ItemManager : MonoBehaviour
         {
             _itemOwned[item] = false;
         }
-    }
-
-    private void Update()
-    {
     }
 
     /// <summary>
@@ -67,6 +63,35 @@ public class ItemManager : MonoBehaviour
     public ItemData GetItemData(eItem itemType)
     {
         return _itemDatas.Find(data => data.ItemType == itemType);
+    }
+
+    public ItemSaveData EncodeToSaveData()
+    {
+        ItemSaveData saveData = new ItemSaveData();
+        foreach (var item in _itemOwned)
+        {
+            if (item.Value)
+            {
+                saveData.OwnedItems.Add(item.Key);
+            }
+        }
+        return saveData;
+    }
+
+    public void LoadFromSaveData(ItemSaveData saveData)
+    {
+        foreach (var item in _itemOwned.Keys.ToList())
+        {
+            _itemOwned[item] = false;
+        }
+        
+        foreach (eItem savedItem in saveData.OwnedItems)
+        {
+            if (_itemOwned.ContainsKey(savedItem))
+            {
+                _itemOwned[savedItem] = true;
+            }
+        }
     }
 
     /// <summary>

@@ -8,7 +8,7 @@ public class UnitMove : MonoBehaviour
 
     // •ûŒü
     private UnitMoveStatus _unitMoveStatus;
-    
+
     // Unit‚ªˆÚ“®‚·‚é‚©
     private bool _isEnabled;
 
@@ -96,9 +96,9 @@ public class UnitMove : MonoBehaviour
             // ‘¬“x‚ğİ’è
             _speed = value;
 
-            #if DEBUG_MODE
-                Debug.Log("Speed‚ğ" + _speed + "‚Éİ’è‚µ‚Ü‚µ‚½");
-            #endif
+#if DEBUG_MODE
+            Debug.Log("Speed‚ğ" + _speed + "‚Éİ’è‚µ‚Ü‚µ‚½");
+#endif
         }
     }
 

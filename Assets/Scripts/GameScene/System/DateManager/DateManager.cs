@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class DateManager : Singleton<DateManager>
+public class DateManager : Singleton<DateManager>, ISaveableManager<DateSaveData>
 {
     [SerializeField] private int _firstMonth;
     [SerializeField] private int _firstDay;
@@ -35,5 +35,19 @@ public class DateManager : Singleton<DateManager>
     public void PlusOneDay()
     {
         _currentDate.Day++;
+    }
+
+    public DateSaveData EncodeToSaveData()
+    {
+        DateSaveData saveData = new DateSaveData();
+        saveData.Month = _currentDate.Month;
+        saveData.Day = _currentDate.Day;
+        return saveData;
+    }
+
+    public void LoadFromSaveData(DateSaveData saveData)
+    {
+        _currentDate.Month = saveData.Month;
+        _currentDate.Day = saveData.Day;
     }
 }

@@ -50,7 +50,7 @@ public abstract class AbstractEvent : MonoBehaviour
             Debug.LogError("StoryManager‚ª‘¶İ‚µ‚Ü‚¹‚ñB");
             return;
         }
-        _eventManager = GameObject.FindGameObjectWithTag("EventMgr").GetComponent<EventManager>();
+        _eventManager = FindAnyObjectByType<EventManager>();
         if (_eventManager == null)
         {
             Debug.LogError("EventManager‚ª‘¶İ‚µ‚Ü‚¹‚ñB");
