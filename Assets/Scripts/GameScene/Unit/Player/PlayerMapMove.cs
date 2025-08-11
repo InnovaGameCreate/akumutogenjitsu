@@ -12,25 +12,14 @@ public class PlayerMapMove : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
-        _eventMgr = FindAnyObjectByType<EventManager>();
-        
+        GameObject eventMgr = GameObject.FindWithTag("EventMgr");
+        _eventMgr = eventMgr.GetComponent<EventManager>();
         if (_eventMgr == null)
         {
-            var eventObj = GameObject.FindGameObjectWithTag("EventMgr");
-            _eventMgr = eventObj?.GetComponent<EventManager>();
-        }
-
-        if (_eventMgr == null)
-        {
-            Debug.LogError("EventManagerが見つかりませんでした。");
+            Debug.LogError("EventManagerが存在しません。");
         }
     }
 
-    /// <summary>
-    //  マップを移動する
-    /// </summary>
-    /// <param name="sceneName"> シーン名 </param>
-    /// <param name="position"> 移動先の座標 </param>
     public void MapMove(string sceneName, Vector2 position)
     {
         _eventMgr.SaveAllEventInScene();
@@ -39,9 +28,6 @@ public class PlayerMapMove : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    /// <summary>
-    /// シーンをロードした直後
-    /// </summary>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         transform.position = _newPosition;
