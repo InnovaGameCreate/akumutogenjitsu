@@ -75,7 +75,6 @@ public class EventManager : MonoBehaviour, ISaveableManager<EventSaveData>
     private void InitializeNewSceneEvents()
     {
         GameObject[] eventObjects = GameObject.FindGameObjectsWithTag("Event");
-        int initializedCount = 0;
         
         foreach (GameObject obj in eventObjects)
         {
@@ -86,7 +85,6 @@ public class EventManager : MonoBehaviour, ISaveableManager<EventSaveData>
             {
                 // セーブデータに存在しない新しいイベントを初期状態で追加
                 SaveEventData(evt.EventId, evt.EventData);
-                initializedCount++;
             }
         }
     }
@@ -97,7 +95,6 @@ public class EventManager : MonoBehaviour, ISaveableManager<EventSaveData>
     public void SaveAllEventInScene()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Event");
-        int savedCount = 0;
         
         foreach (GameObject obj in objs)
         {
@@ -109,7 +106,6 @@ public class EventManager : MonoBehaviour, ISaveableManager<EventSaveData>
             }
 
             SaveEventData(evt.EventId, evt.EventData);
-            savedCount++;
         }
     }
 
@@ -239,10 +235,6 @@ public class EventManager : MonoBehaviour, ISaveableManager<EventSaveData>
                 EventData loadedData = _loadedEventDatas[evt.EventId];
                 evt.InitWithEventData(loadedData);
                 appliedCount++;
-            }
-            else
-            {
-                // 初期状態を維持（ログ出力なし）
             }
         }
         
