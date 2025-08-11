@@ -19,7 +19,14 @@ public class DebugSave : ITickable
             _saveMgr.LoadFromFile(1);
         }
         if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.W))
         {
+            Debug.Log("Load");
+            _saveMgr.LoadFromFile(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log("Save");
             _saveMgr.SaveToFile(1);
         }
     }
