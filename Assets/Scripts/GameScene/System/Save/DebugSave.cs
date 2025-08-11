@@ -13,12 +13,6 @@ public class DebugSave : ITickable
 
     public void Tick()
     {
-        Debug.Log("Save");
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            _saveMgr.LoadFromFile(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
         if (Input.GetKeyDown(KeyCode.W))
         {
             Debug.Log("Load");

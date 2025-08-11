@@ -73,7 +73,7 @@ public class PlayerManager : MonoBehaviour, ISaveableManager<PlayerSaveData>
     }
 
     /// <summary>
-    /// 遅延してポジションをロードする
+    /// 位置の復元を遅延実行する
     /// </summary>
     private System.Collections.IEnumerator DelayedLoadPosition(PlayerSaveData saveData)
     {
