@@ -383,6 +383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4658007349518945633}
   - component: {fileID: 86325482942787603}
+  - component: {fileID: 3294360495462395098}
   m_Layer: 0
   m_Name: SaveSystemInstaller
   m_TagString: Untagged
@@ -421,6 +422,23 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
+--- !u!114 &3294360495462395098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8263797694506225575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0f13401293659499376b2d87838ae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentReference:
+    TypeName: 
+  autoRun: 1
+  autoInjectGameObjects: []
+  _saveMenuView: {fileID: 1698178650519473913, guid: d2539cf8c2229a244b5d0a49d3eb3035, type: 3}
 --- !u!1 &8876513806125222607
 GameObject:
   m_ObjectHideFlags: 0

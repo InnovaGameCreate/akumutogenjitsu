@@ -12,7 +12,7 @@ public class GameSceneLifetimeScope : LifetimeScope
 
     protected override void Configure(IContainerBuilder builder)
     {
-        if (_systemMgr != null) 
+        if (_systemMgr != null)
         {
             builder.RegisterComponent(_systemMgr);
         }
@@ -21,7 +21,7 @@ public class GameSceneLifetimeScope : LifetimeScope
             Debug.LogError("SystemManagerがnullです！");
         }
 
-        if (_eventMgr != null) 
+        if (_eventMgr != null)
         {
             builder.RegisterComponent(_eventMgr);
         }
@@ -30,7 +30,7 @@ public class GameSceneLifetimeScope : LifetimeScope
             Debug.LogError("EventManagerがnullです！");
         }
 
-        if (_itemMgr != null) 
+        if (_itemMgr != null)
         {
             builder.RegisterComponent(_itemMgr);
         }
@@ -39,7 +39,7 @@ public class GameSceneLifetimeScope : LifetimeScope
             Debug.LogError("ItemManagerがnullです！");
         }
 
-        if (_dateMgr != null) 
+        if (_dateMgr != null)
         {
             builder.RegisterComponent(_dateMgr);
         }
@@ -48,7 +48,7 @@ public class GameSceneLifetimeScope : LifetimeScope
             Debug.LogError("DateManagerがnullです！");
         }
 
-        if (_playerMgr != null) 
+        if (_playerMgr != null)
         {
             builder.RegisterComponent(_playerMgr);
         }
