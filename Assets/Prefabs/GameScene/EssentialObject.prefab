@@ -517,6 +517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventoryControllerPrefab: {fileID: 1881643751599663716, guid: 31b792d76b147b74b9b4a1baf2c2a45a, type: 3}
   _menuControllerPrefab: {fileID: 2260412069854406637, guid: 44ce6f9144aba2f42b77746fbebce9c3, type: 3}
+  _saveMenuPrefab: {fileID: 1698178650519473913, guid: d2539cf8c2229a244b5d0a49d3eb3035, type: 3}
   _canvas: {fileID: 802448977343208206}
   _playerMove: {fileID: 0}
 --- !u!1001 &1934085493245665595
