@@ -29,7 +29,8 @@ public class MenuController : MonoBehaviour
             index--;
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
-        {if (index >= _menuNum - 1) return;
+        {
+            if (index >= _menuNum - 1) return;
             index++;
         }
         _view.SelectedIndex = index;

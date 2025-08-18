@@ -9,8 +9,10 @@ public class UIController : MonoBehaviour
     {
         private bool _inventoryEnabled;
         private bool _menuEnabled;
+        private bool _saveMenuEnabled;
         private GameObject _inventoryUI;
         private GameObject _menuUI;
+        private GameObject _saveMenuUI;
 
         /// <summary>
         /// インベントリが表示されているか
@@ -28,6 +30,16 @@ public class UIController : MonoBehaviour
             get { return _menuEnabled; }
             set { _menuEnabled = value; }
         }
+
+        /// <summary>
+        /// セーブメニューが表示されているか
+        /// </summary>
+        public bool SaveMenuEnabled
+        { 
+            set { _saveMenuEnabled = value; }
+            get { return _saveMenuEnabled; }
+        }
+
         /// <summary>
         /// インベントリのUI
         /// </summary>
@@ -45,18 +57,30 @@ public class UIController : MonoBehaviour
             set { _menuUI = value; }
         }
 
-        public UIState(bool inventoryEnabled, bool menuEnabled, GameObject inventory, GameObject menu)
+        /// <summary>
+        /// セーブメニューのUI
+        /// </summary>
+        public GameObject SaveMenuUI
+        {
+            get { return _saveMenuUI; }
+            set { _saveMenuUI = value; }
+        }
+
+        public UIState(bool inventoryEnabled, bool menuEnabled, bool saveMenuEnabled, GameObject inventory, GameObject menu, GameObject saveMenu)
         {
             _inventoryEnabled = inventoryEnabled;
             _menuEnabled = menuEnabled;
+            _saveMenuEnabled = saveMenuEnabled;
             _inventoryUI = inventory;
             _menuUI = menu;
+            _saveMenuUI = saveMenu;
         }
     }
 
     [Header("UI Controller")]
     [SerializeField] private InventoryController _inventoryControllerPrefab;
     [SerializeField] private MenuController _menuControllerPrefab;
+    [SerializeField] private SaveMenuView _saveMenuPrefab;
     [Header("Canvas")]
     [SerializeField] private Canvas _canvas;
     [Header("UnitMove(アサインしなくてもいい)")]
@@ -94,7 +118,7 @@ public class UIController : MonoBehaviour
         }
         
         // UIStateを初期化
-        _uiState = new UIState(false, false, null, null);
+        _uiState = new UIState(false, false, false, null, null, null);
     }
 
     // Update is called once per frame
@@ -102,6 +126,7 @@ public class UIController : MonoBehaviour
     {
         UpdateInventoryUI();
         UpdateMenuUI();
+        UpdateSaveMenuUI();
     }
 
     private void UpdateInventoryUI()
@@ -129,7 +154,7 @@ public class UIController : MonoBehaviour
 
     private void UpdateMenuUI()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !_uiState.InventoryEnabled)
+        if (Input.GetKeyDown(KeyCode.Escape) && !_uiState.InventoryEnabled && !_uiState.SaveMenuEnabled)
         {
             if (!_uiState.MenuEnabled)
             {
@@ -150,18 +175,41 @@ public class UIController : MonoBehaviour
         }
     }
 
+    private void UpdateSaveMenuUI()
+    {
+        if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)) && _uiState.MenuEnabled && _uiState.MenuUI.GetComponent<MenuUI>().SelectedIndex == 0)
+        {
+            if (!_uiState.SaveMenuEnabled)
+            {
+                GameObject saveMenuUI = CreateUI(_saveMenuPrefab.gameObject);
+                _uiState.SaveMenuEnabled = true;
+                _uiState.SaveMenuUI = saveMenuUI;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && _uiState.SaveMenuEnabled)
+        {
+            if (_uiState.SaveMenuUI != null)
+            {
+                Destroy(_uiState.SaveMenuUI);
+                _uiState.SaveMenuUI = null;
+                _uiState.SaveMenuEnabled = false;
+            }
+        }
+    }
+
     private GameObject CreateUI(GameObject uiPrefab)
     {
         GameObject uiObj = Instantiate(uiPrefab);
         uiObj.transform.SetParent(_canvas.gameObject.transform, false);
-        
+
         // 位置を(0, 0, 0)に設定
         uiObj.transform.localPosition = Vector3.zero;
         uiObj.transform.localScale = Vector3.one;
 
         // Playerの動きを止める
         _playerMove.IsEnabled = false;
-        
+
         return uiObj;
     }
 }

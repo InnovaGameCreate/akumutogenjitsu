@@ -6529,6 +6529,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 853031480009424407, guid: 10e9f26f4c9d0e6458a827320fedfd55, type: 3}
+      propertyPath: _saveMenuInstaller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2805000949155042888, guid: 10e9f26f4c9d0e6458a827320fedfd55, type: 3}
       propertyPath: _defaultSpeed
       value: 20
@@ -6589,7 +6593,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 10.63
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3294360495462395098, guid: 10e9f26f4c9d0e6458a827320fedfd55, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5007027720735974258, guid: 10e9f26f4c9d0e6458a827320fedfd55, type: 3}
     m_AddedGameObjects: []

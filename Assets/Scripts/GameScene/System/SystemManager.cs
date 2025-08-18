@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,7 @@ public class SystemManager : MonoBehaviour, ISaveableManager<SystemSaveData>
     {
         SystemSaveData saveData = new SystemSaveData();
         saveData.CurrentSceneName = SceneManager.GetActiveScene().name;
+        saveData.SystemDate = DateTime.Now.ToString("yyyy/M/dd H:mm");
         return saveData;
     }
 
