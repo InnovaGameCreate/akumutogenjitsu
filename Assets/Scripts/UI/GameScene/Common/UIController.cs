@@ -74,7 +74,6 @@ public class UIController : MonoBehaviour
             _inventoryUI = inventory;
             _menuUI = menu;
             _saveMenuUI = saveMenu;
-            SaveMenuUI = saveMenu;
         }
     }
 
