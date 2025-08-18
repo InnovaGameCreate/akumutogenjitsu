@@ -131,7 +131,6 @@ public class SaveMenuModel : MonoBehaviour
     public void UpdateSaveTitleList()
     {
         var newList = new List<SaveList>();
-        Date firstDate = new Date(9, 6);
 
         for (int i = 0; i < SaveConstants.MAX_SAVE_SLOTS; ++i)
         {
@@ -140,13 +139,13 @@ public class SaveMenuModel : MonoBehaviour
 
             if (saveData != null)
             {
-                Date saveDate = new Date(saveData.DateData.Month, saveData.DateData.Day);
-                string dateString = Date.Format(saveDate);
-                int diffDays = Date.DiffDate(saveDate, firstDate);
+                Date savedDate = new Date(saveData.DateData.Month, saveData.DateData.Day);
+                string dateString = Date.Format(savedDate);
+                int diffDays = Date.DiffDate(savedDate, Date.FirstDate);
                 string location = SceneLocationManager.Instance.GetLocationDisplayNameFromSceneName(saveData.SystemData.CurrentSceneName);
 
                 saveList.Date = saveData.SystemData.SystemDate;
-                saveList.Title = $"{dateString}({diffDays + 1}日目) - {location}";
+                saveList.Title = $"{dateString}({ (Date.IsEarlier(savedDate, Date.FirstDate) || Date.IsSameDate(savedDate, Date.FirstDate) ? (diffDays + 1) : (-diffDays - 1)) }日目) - {location}";
             }
             else
             {

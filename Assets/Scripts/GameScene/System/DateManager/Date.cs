@@ -17,6 +17,11 @@ public struct Date
     public int Day;
 
     /// <summary>
+    /// 一番最初の日
+    /// </summary>
+    public static readonly Date FirstDate = new(9, 6);
+
+    /// <summary>
     /// 2つの日付の差を日数で計算する
     /// </summary>
     /// <param name="date1">日付1</param>
