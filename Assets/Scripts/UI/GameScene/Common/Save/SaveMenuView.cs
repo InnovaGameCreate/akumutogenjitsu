@@ -29,6 +29,7 @@ public class SaveMenuView : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.UpArrow)) return KeyCode.UpArrow;
                 if (Input.GetKeyDown(KeyCode.DownArrow)) return KeyCode.DownArrow;
                 if (Input.GetKeyDown(KeyCode.Return)) return KeyCode.Return;
+                if (Input.GetKeyDown(KeyCode.Z)) return KeyCode.Z;
                 return KeyCode.None;
             })
             .Where(key => key != KeyCode.None);
@@ -45,6 +46,22 @@ public class SaveMenuView : MonoBehaviour
         {
             if (_slots[i]?.SlotBg != null)
                 _slots[i].SlotBg.sprite = i == slot ? _activeSlotBg : _inactiveSlotBg;
+        }
+    }
+
+    public void UpdateSaveList(List<SaveList> saveLists)
+    {
+        if (saveLists == null || _slots == null) return;
+
+        int minCount = Mathf.Min(saveLists.Count, _slots.Count);
+        
+        for (int i = 0; i < minCount; ++i)
+        {
+            if (_slots[i]?.Date != null)
+                _slots[i].Date.text = saveLists[i].Date;
+                
+            if (_slots[i]?.Title != null)
+                _slots[i].Title.text = saveLists[i].Title;
         }
     }
 }

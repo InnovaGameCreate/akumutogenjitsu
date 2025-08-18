@@ -11,6 +11,7 @@ public class SaveMenuPresenter : MonoBehaviour
     void Start()
     {
         _model.Initialize();
+        _model.UpdateSaveTitleList();
         Bind();
     }
 
@@ -19,25 +20,32 @@ public class SaveMenuPresenter : MonoBehaviour
         _view.OnKeyPressed
             .Subscribe(keyCode =>
             {
-                switch (keyCode)
+                if (keyCode == KeyCode.UpArrow)
                 {
-                    case KeyCode.UpArrow:
-                        _model.MoveUpSlot();
-                        break;
-
-                    case KeyCode.DownArrow:
-                        _model.MoveDownSlot();
-                        break;
-
-                    case KeyCode.Return:
-                        Debug.Log($"スロット{_model.ActiveSlotIndex.CurrentValue}が選択されました");
-                        break;
+                    _model.MoveUpSlot();
+                }
+                if (keyCode == KeyCode.DownArrow)
+                {
+                    _model.MoveDownSlot();
+                }
+                if (keyCode == KeyCode.Z || keyCode == KeyCode.Return)
+                {
+                    _model.Save();
                 }
             })
         .AddTo(_disposal);
 
         _model.ActiveSlotIndex
             .Subscribe(slotIndex => _view.ChangeActiveSlot(slotIndex))
+            .AddTo(_disposal);
+
+        _model.SaveTitleList
+            .Subscribe(saveList => _view.UpdateSaveList(saveList))
+            .AddTo(_disposal);
+
+        // 定期的にセーブリストを更新（外部からのセーブファイル変更に対応）
+        Observable.Timer(System.TimeSpan.Zero, System.TimeSpan.FromSeconds(2))
+            .Subscribe(_ => _model.UpdateSaveTitleList())
             .AddTo(_disposal);
     }
 
