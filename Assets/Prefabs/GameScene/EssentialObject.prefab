@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstMonth: 9
-  _firstDay: 4
+  _firstDay: 6
 --- !u!1 &5670342439500447563
 GameObject:
   m_ObjectHideFlags: 0

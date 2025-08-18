@@ -146,7 +146,7 @@ public class SaveMenuModel : MonoBehaviour
                 string location = SceneLocationManager.Instance.GetLocationDisplayNameFromSceneName(saveData.SystemData.CurrentSceneName);
 
                 saveList.Date = saveData.SystemData.SystemDate;
-                saveList.Title = $"{dateString}({diffDays}日目) - {location}";
+                saveList.Title = $"{dateString}({diffDays + 1}日目) - {location}";
             }
             else
             {
