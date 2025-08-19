@@ -187,7 +187,7 @@ public class UIController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && _uiState.SaveMenuEnabled)
+        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.X)) && _uiState.SaveMenuEnabled)
         {
             if (_uiState.SaveMenuUI != null)
             {
