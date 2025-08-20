@@ -1,9 +1,38 @@
 using UnityEngine;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class TextLine
+{
+    [Header("話者")]
+    public CharacterData characterData;
+
+    [Header("メッセージ")]
+    [TextArea(3, 5)]
+    public string Message;
+
+    // プロパティで統一的にアクセス
+    public string GetCurrentSpeakerName()
+    {
+        if (characterData != null)
+            return characterData.CharacterName;
+        return "";
+    }
+
+    public Sprite GetCurrentCharacterSprite()
+    {
+        if (characterData != null)
+            return characterData.CharacterSprite;
+        return null;
+    }
+}
 
 public class TextEvent : AbstractEvent
 {
     [SerializeField] private GameObject textBoxPrefab; // TextBoxUIコンポーネントを持つPrefab
-    [SerializeField] private TextData textData; // 会話データ
+    [SerializeField] private List<TextLine> textLines = new List<TextLine>(); // TextData.TextLinesを直接埋め込み
+    [SerializeField] private int linePerPage = 1; // TextData.LinePerPageを直接埋め込み
+
     private Canvas targetCanvas; // 配置先のCanvas
 
     private GameObject panelInstance;
@@ -20,7 +49,6 @@ public class TextEvent : AbstractEvent
         targetCanvas = GameObject.FindGameObjectWithTag("UICanvas").GetComponent<Canvas>();
         if (targetCanvas == null)
         {
-            Debug.LogError("Canvasがアサインされていません。");
             return;
         }
     }
@@ -44,18 +72,17 @@ public class TextEvent : AbstractEvent
     {
         // イベント開始時に必ず初期化
         _hasFinished = false;
-        
-        if (textData == null || textData.TextLines == null || textData.TextLines.Length == 0)
+
+        if (textLines == null || textLines.Count == 0)
         {
-            Debug.LogError("TextDataが設定されていないか、会話データが空です。");
             return;
         }
-        
+
         if (panelInstance == null)
         {
             // TextBoxUIを持つPrefabをインスタンス化
             panelInstance = Instantiate(textBoxPrefab);
-            
+
             // 指定されたCanvasに配置、なければ自動検索
             Canvas canvas = targetCanvas != null ? targetCanvas : FindFirstObjectByType<Canvas>();
             if (canvas != null)
@@ -67,7 +94,6 @@ public class TextEvent : AbstractEvent
             textBoxUI = panelInstance.GetComponent<TextBoxUI>();
             if (textBoxUI == null)
             {
-                Debug.LogError("TextBoxUIコンポーネントがPrefabに見つかりません。");
                 return;
             }
         }
@@ -99,33 +125,30 @@ public class TextEvent : AbstractEvent
 
     private void DisplayCurrentLine()
     {
-        if (textBoxUI == null || textData == null) return;
+        if (textBoxUI == null || textLines == null) return;
 
-        if (currentLineIndex >= textData.TextLines.Length)
+        if (currentLineIndex >= textLines.Count)
         {
             isDisplaying = false;
             ClearText();
             return;
         }
 
-        TextLine currentLine = textData.TextLines[currentLineIndex];
-        
-        // TextBoxUIのプロパティを使用してテキストを更新
+        TextLine currentLine = textLines[currentLineIndex];
+
+        // テキストと名前の更新
         textBoxUI.Message = currentLine.Message;
-        textBoxUI.Name = currentLine.SpeakerName;
-        
-        // TODO: 立ち絵があれば表示
-        // if (textBoxUI.HasCharacterSprite && currentLine.CharacterSprite != null)
-        // {
-        //     textBoxUI.CharacterSprite = currentLine.CharacterSprite;
-        // }
+        textBoxUI.Name = currentLine.GetCurrentSpeakerName();
+
+        // スプライト表示（コメントアウト解除済）
+        textBoxUI.CharacterSprite = currentLine.GetCurrentCharacterSprite();
     }
 
     private void NextLine()
     {
         currentLineIndex++;
-        
-        if (currentLineIndex < textData.TextLines.Length)
+
+        if (currentLineIndex < textLines.Count)
         {
             DisplayCurrentLine();
         }
@@ -154,5 +177,18 @@ public class TextEvent : AbstractEvent
         }
 
         _hasFinished = true;
+    }
+
+    // エディタ用のヘルパーメソッド
+    [ContextMenu("Add Text Line")]
+    private void AddTextLine()
+    {
+        textLines.Add(new TextLine());
+    }
+
+    [ContextMenu("Clear All Lines")]
+    private void ClearAllLines()
+    {
+        textLines.Clear();
     }
 }
