@@ -1,10 +1,17 @@
 using UnityEngine;
+
 [CreateAssetMenu(fileName = "TextData", menuName = "Game/Text")]
+
 public class TextData : ScriptableObject
+
 {
-    [Header("会話データ")]
+
+    [Header("莨夊ｩｱ繝�繝ｼ繧ｿ")]
+
     public TextLine[] TextLines;
 
-    [Header("1ページで表示する行数")]
+    [Header("1繝壹�ｼ繧ｸ縺ｧ陦ｨ遉ｺ縺吶ｋ陦梧焚")]
+
     public int LinePerPage = 1;
+
 }

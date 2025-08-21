@@ -83,7 +83,6 @@ public class TextEvent : AbstractEvent
             // TextBoxUIを持つPrefabをインスタンス化
             panelInstance = Instantiate(textBoxPrefab);
 
-            // 指定されたCanvasに配置、なければ自動検索
             Canvas canvas = targetCanvas != null ? targetCanvas : FindFirstObjectByType<Canvas>();
             if (canvas != null)
             {
