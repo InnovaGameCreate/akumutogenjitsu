@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TextBoxUI : MonoBehaviour
 {
@@ -11,9 +10,6 @@ public class TextBoxUI : MonoBehaviour
     [Header("値")]
     [SerializeField] private string _name;
     [SerializeField] private string _message;
-
-    [SerializeField] private Image _characterImage;
-    private Sprite _currentSprite;
 
     private string _currentMessage;
     private string _currentName;
@@ -45,17 +41,6 @@ public class TextBoxUI : MonoBehaviour
             _currentName = value;
             _name = value;
             UpdateName();
-        }
-    }
-
-    public Sprite CharacterSprite
-    {
-        get => _currentSprite;
-        set
-        {
-            if (_currentSprite == value) return;
-            _currentSprite = value;
-            UpdateSprite();
         }
     }
 
@@ -92,15 +77,4 @@ public class TextBoxUI : MonoBehaviour
         if (_nameText == null) return;
         _nameText.text = _currentName;
     }
-    private void UpdateSprite()//一応
-    {
-        if (_characterImage == null) return;
-
-        _characterImage.sprite = _currentSprite;
-
-        // スプライトがある時は表示、ない時は非表示
-        _characterImage.gameObject.SetActive(_currentSprite != null);
-    }
 }
-
-
