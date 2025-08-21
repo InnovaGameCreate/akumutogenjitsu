@@ -31,7 +31,7 @@ public class TextEvent : AbstractEvent
 {
     [SerializeField] private GameObject textBoxPrefab; // TextBoxUIコンポーネントを持つPrefab
     [SerializeField] private List<TextLine> textLines = new List<TextLine>(); // TextData.TextLinesを直接埋め込み
-    [SerializeField] private int linePerPage = 1; // TextData.LinePerPageを直接埋め込み
+
 
     private Canvas targetCanvas; // 配置先のCanvas
 
@@ -83,7 +83,6 @@ public class TextEvent : AbstractEvent
             // TextBoxUIを持つPrefabをインスタンス化
             panelInstance = Instantiate(textBoxPrefab);
 
-            // 指定されたCanvasに配置、なければ自動検索
             Canvas canvas = targetCanvas != null ? targetCanvas : FindFirstObjectByType<Canvas>();
             if (canvas != null)
             {

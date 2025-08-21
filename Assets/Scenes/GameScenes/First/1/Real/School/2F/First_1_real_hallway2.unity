@@ -997,45 +997,13 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
-      propertyPath: textBoxPrefab
-      value: 
-      objectReference: {fileID: 6442152411064900370, guid: f1748129ab547ae4d9d6150508febd2d, type: 3}
-    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
-      propertyPath: _isTriggeredOnce
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: textLines.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
-      propertyPath: textLines.Array.data[0].Message
-      value: "\u3053\u3093\u306B\u3061\u306F"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
-      propertyPath: textLines.Array.data[1].Message
-      value: "\u3053\u3093\u306B\u3061\u306F"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
-      propertyPath: textLines.Array.data[0].SpeakerName
-      value: "\u4E3B\u4EBA\u516C"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
-      propertyPath: textLines.Array.data[1].SpeakerName
-      value: "\u4E3B\u4EBA\u516C"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: textLines.Array.data[0].characterData
       value: 
-      objectReference: {fileID: 11400000, guid: 97be2c94c511e2d468ebb9d796ec1af0, type: 2}
-    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
-      propertyPath: textLines.Array.data[0].CharacterSprite
-      value: 
-      objectReference: {fileID: 2412648827145152430, guid: 18926316c34dc6a4fb2126d74c5edbde, type: 3}
-    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
-      propertyPath: textLines.Array.data[1].CharacterSprite
-      value: 
-      objectReference: {fileID: 2412648827145152430, guid: 18926316c34dc6a4fb2126d74c5edbde, type: 3}
+      objectReference: {fileID: 11400000, guid: 9ffb4fa11dc18d64fb10c5e0e275188d, type: 2}
     - target: {fileID: 3718633801902478523, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: m_Name
       value: TextEvent_HintWest
@@ -6349,7 +6317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6916214532204980095, guid: 10214628290b6534283e0f602aff2e18, type: 3}
       propertyPath: orthographic size
-      value: 9.1875
+      value: 11.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

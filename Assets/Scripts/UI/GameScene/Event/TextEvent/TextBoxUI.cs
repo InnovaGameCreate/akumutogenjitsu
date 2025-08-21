@@ -12,11 +12,11 @@ public class TextBoxUI : MonoBehaviour
     [SerializeField] private string _name;
     [SerializeField] private string _message;
 
-    [SerializeField] private Image _characterImage;
-    private Sprite _currentSprite;
-
     private string _currentMessage;
     private string _currentName;
+
+    [SerializeField] private Image _characterImage;
+    private Sprite _currentSprite;
 
     public string Message
     {
@@ -59,6 +59,13 @@ public class TextBoxUI : MonoBehaviour
         }
     }
 
+    private void UpdateSprite()
+    {
+        if (_characterImage == null) return;
+        _characterImage.sprite = _currentSprite;
+        _characterImage.gameObject.SetActive(_currentSprite != null);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -92,15 +99,4 @@ public class TextBoxUI : MonoBehaviour
         if (_nameText == null) return;
         _nameText.text = _currentName;
     }
-    private void UpdateSprite()//一応
-    {
-        if (_characterImage == null) return;
-
-        _characterImage.sprite = _currentSprite;
-
-        // スプライトがある時は表示、ない時は非表示
-        _characterImage.gameObject.SetActive(_currentSprite != null);
-    }
 }
-
-
