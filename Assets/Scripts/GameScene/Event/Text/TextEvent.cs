@@ -31,7 +31,7 @@ public class TextEvent : AbstractEvent
 {
     [SerializeField] private GameObject textBoxPrefab; // TextBoxUIコンポーネントを持つPrefab
     [SerializeField] private List<TextLine> textLines = new List<TextLine>(); // TextData.TextLinesを直接埋め込み
-    [SerializeField] private int linePerPage = 1; // TextData.LinePerPageを直接埋め込み
+
 
     private Canvas targetCanvas; // 配置先のCanvas
 
