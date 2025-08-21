@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TextBoxUI : MonoBehaviour
 {
@@ -14,9 +13,6 @@ public class TextBoxUI : MonoBehaviour
 
     private string _currentMessage;
     private string _currentName;
-
-    [SerializeField] private Image _characterImage;
-    private Sprite _currentSprite;
 
     public string Message
     {
@@ -46,24 +42,6 @@ public class TextBoxUI : MonoBehaviour
             _name = value;
             UpdateName();
         }
-    }
-
-    public Sprite CharacterSprite
-    {
-        get => _currentSprite;
-        set
-        {
-            if (_currentSprite == value) return;
-            _currentSprite = value;
-            UpdateSprite();
-        }
-    }
-
-    private void UpdateSprite()
-    {
-        if (_characterImage == null) return;
-        _characterImage.sprite = _currentSprite;
-        _characterImage.gameObject.SetActive(_currentSprite != null);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -996,14 +996,6 @@ PrefabInstance:
       propertyPath: linesPerPage
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
-      propertyPath: textLines.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
-      propertyPath: textLines.Array.data[0].characterData
-      value: 
-      objectReference: {fileID: 11400000, guid: 9ffb4fa11dc18d64fb10c5e0e275188d, type: 2}
     - target: {fileID: 3718633801902478523, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: m_Name
       value: TextEvent_HintWest
