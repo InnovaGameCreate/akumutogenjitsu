@@ -32,11 +32,6 @@ public class UnitMove : MonoBehaviour
         _isEnabled = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     /// <summary>
     /// Unit‚ð“®‚©‚·
     /// </summary>
@@ -45,6 +40,7 @@ public class UnitMove : MonoBehaviour
     {
         if (!_isEnabled)
         {
+            Debug.Log("UnitMove‚ª–³Œø‰»‚³‚ê‚Ä‚¢‚Ü‚·");
             return;
         }
 
@@ -66,7 +62,8 @@ public class UnitMove : MonoBehaviour
         {
             move.y = -1;
         }
-        move = move.normalized * _speed * Time.fixedDeltaTime;
+
+        move = move.normalized * _speed * Time.deltaTime;
 
         // ˆÚ“®
         _rigidbody.MovePosition(_rigidbody.position + move);

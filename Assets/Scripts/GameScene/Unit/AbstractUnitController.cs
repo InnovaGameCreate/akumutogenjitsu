@@ -53,7 +53,8 @@ public abstract class AbstractUnitController : MonoBehaviour
     /// </summary>
     protected void Move()
     {
-        _unitMove.Move(GetMoveStatus());
+        var moveStatus = GetMoveStatus();
+        _unitMove.Move(moveStatus);
     }
 
     /// <summary>
