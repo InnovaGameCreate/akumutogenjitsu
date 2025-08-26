@@ -6,14 +6,11 @@ public class UIModel : MonoBehaviour
     private readonly ReactiveProperty<bool> _isShowBase = new(true);
     public ReadOnlyReactiveProperty<bool> IsShowBase => _isShowBase;
 
-    private readonly ReactiveProperty<bool> _isShowInventory = new();
+    private readonly ReactiveProperty<bool> _isShowInventory = new(false);
     public ReadOnlyReactiveProperty<bool> IsShowInventory => _isShowInventory;
 
-    private readonly ReactiveProperty<bool> _isShowMenu = new();
+    private readonly ReactiveProperty<bool> _isShowMenu = new(false);
     public ReadOnlyReactiveProperty<bool> IsShowMenu => _isShowMenu;
-
-    private readonly ReactiveProperty<bool> _isShowSaveMenu = new();
-    public ReadOnlyReactiveProperty<bool> IsShowSaveMenu => _isShowSaveMenu;
 
     public void ActiveBase(bool active)
     {
@@ -28,10 +25,5 @@ public class UIModel : MonoBehaviour
     public void ActiveMenu(bool active)
     {
         _isShowMenu.Value = active;
-    }
-
-    public void ActiveSaveMenu(bool active)
-    {
-        _isShowSaveMenu.Value = active;
     }
 }

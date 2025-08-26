@@ -463,6 +463,7 @@ GameObject:
   - component: {fileID: 5265262633914423197}
   - component: {fileID: 6523714192103968980}
   - component: {fileID: 1881643751599663716}
+  - component: {fileID: 7815927041449085078}
   m_Layer: 0
   m_Name: InventoryUI
   m_TagString: Untagged
@@ -500,7 +501,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1880793682558768645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f00f5acbc82d204ab8f122b94c331eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 735cf0f742fe90942a61ace8a6d02e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _slotBackgrounds:
@@ -528,7 +529,6 @@ MonoBehaviour:
   _itemDescriptionText: {fileID: 2822510035330939381}
   _selectedSlotSprite: {fileID: -3215976885786057591, guid: 01e37a0a37169ca48856ba3ae10d23fc, type: 3}
   _notSelectedSlotSprite: {fileID: -6502582987796363333, guid: 59a83513f20c76849965a424e453d48a, type: 3}
-  _selectedSlotIndex: 0
 --- !u!114 &1881643751599663716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,12 +538,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1880793682558768645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff1917ee335d294498dcc5081a38a131, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b0c56153ac6d714e81f669606016b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7815927041449085078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880793682558768645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db075d71902e8e419ea21a983ea6eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _model: {fileID: 1881643751599663716}
   _view: {fileID: 6523714192103968980}
-  _slotWidth: 3
-  _slotHeight: 3
 --- !u!1 &2004251173235665830
 GameObject:
   m_ObjectHideFlags: 0

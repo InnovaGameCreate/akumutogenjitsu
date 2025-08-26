@@ -1,6 +1,5 @@
 using R3;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class UIView : MonoBehaviour
 {
@@ -8,7 +7,6 @@ public class UIView : MonoBehaviour
     [SerializeField] private GameObject _baseUIPrefab;
     [SerializeField] private GameObject _inventoryUIPrefab;
     [SerializeField] private GameObject _menuUIPrefab;
-    [SerializeField] private GameObject _saveMenuUIPrefab;
 
     [Header("UIを表示するCanvas")]
     [SerializeField] private Canvas _canvas;
@@ -17,19 +15,22 @@ public class UIView : MonoBehaviour
     private GameObject _baseUIObj;
     private GameObject _inventoryUIObj;
     private GameObject _menuUIObj;
-    private GameObject _saveMenuUIObj;
 
-    private readonly Subject<Unit> _onShowBase = new();
-    public Observable<Unit> OnShowBase => _onShowBase;
+    private readonly Subject<Unit> _baseInput = new();
+    public Observable<Unit> BaseInput => _baseInput;
 
-    private readonly Subject<Unit> _onShowInventory = new();
-    public Observable<Unit> OnShowInventory => _onShowInventory;
+    private readonly Subject<Unit> _inventoryInput = new();
+    public Observable<Unit> InventoryInput => _inventoryInput;
 
-    private readonly Subject<Unit> _onShowMenu = new();
-    public Observable<Unit> OnShowMenu => _onShowMenu;
+    private readonly Subject<Unit> _menuInput = new();
+    public Observable<Unit> MenuInput => _menuInput;
 
-    private readonly Subject<Unit> _onShowSaveMenu = new();
-    public Observable<Unit> OnShowSaveMenu => _onShowSaveMenu;
+    private UIInput _uiInput;
+
+    void Awake()
+    {
+        _uiInput = new UIInput();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,14 +40,37 @@ public class UIView : MonoBehaviour
         _baseUIObj = Instantiate(_baseUIPrefab, parent);
         _inventoryUIObj = Instantiate(_inventoryUIPrefab, parent);
         _menuUIObj = Instantiate(_menuUIPrefab, parent);
-        _saveMenuUIObj = Instantiate(_saveMenuUIPrefab, parent);
 
         _baseUIObj.SetActive(true);
         _inventoryUIObj.SetActive(false);
         _menuUIObj.SetActive(false);
-        _saveMenuUIObj.SetActive(false);
+
+        BindToInput();
     }
 
+    public void BindToInput()
+    {
+        _uiInput.Base.OpenMenu.performed += ctx =>
+        {
+            if (ctx.ReadValueAsButton())
+            {
+                OnMenuInput();
+            }
+        };
+
+        _uiInput.Base.OpenInventory.performed += ctx =>
+        {
+            if (ctx.ReadValueAsButton())
+            {
+                OnInventoryInput();
+            }
+        };
+
+        _uiInput.Base.Enable();
+    }
+
+    // MARK: Show
+    
     public void ShowBase(bool active)
     {
         _baseUIObj?.SetActive(active);
@@ -62,48 +86,64 @@ public class UIView : MonoBehaviour
         _menuUIObj?.SetActive(active);
     }
 
-    public void ShowSaveMenu(bool active)
+    // MARK: Input
+
+    public void OnBaseInput()
     {
-        _saveMenuUIObj?.SetActive(active);
+        _baseInput?.OnNext(Unit.Default);
     }
 
-    public void OnBaseInput(InputAction.CallbackContext context)
+    public void OnInventoryInput()
     {
-        if (context.performed)
+        _inventoryInput?.OnNext(Unit.Default);
+    }
+
+    public void OnMenuInput()
+    {
+        _menuInput?.OnNext(Unit.Default);
+    }
+
+    // MARK: ActionMap
+    public void ActoinMapToBase(bool active)
+    {
+        if (active)
         {
-            _onShowBase?.OnNext(Unit.Default);
+            _uiInput.Base.Enable();
+        }
+        else
+        {
+            _uiInput.Base.Disable();
         }
     }
 
-    public void OnInventoryInput(InputAction.CallbackContext context)
+    public void ActionMapToMenu(bool active)
     {
-        if (context.performed)
+        if (active)
         {
-            _onShowInventory?.OnNext(Unit.Default);
+            _uiInput.Menu.Enable();
+        }
+        else
+        {
+            _uiInput.Menu.Disable();
         }
     }
 
-    public void OnMenuInput(InputAction.CallbackContext context)
+    public void ActionMapToInventory(bool active)
     {
-        if (context.performed)
+        if (active)
         {
-            _onShowMenu?.OnNext(Unit.Default);
+            _uiInput.Inventory.Enable();
         }
-    }
-
-    public void OnSaveMenuInput(InputAction.CallbackContext context)
-    {
-        if (context.performed)
+        else
         {
-            _onShowSaveMenu?.OnNext(Unit.Default);
+            _uiInput.Inventory.Disable();
         }
     }
 
     void OnDestroy()
     {
-        _onShowBase?.Dispose();
-        _onShowInventory?.Dispose();
-        _onShowMenu?.Dispose();
-        _onShowSaveMenu?.Dispose();
+        _baseInput?.Dispose();
+        _inventoryInput?.Dispose();
+        _menuInput?.Dispose();
     }
 }

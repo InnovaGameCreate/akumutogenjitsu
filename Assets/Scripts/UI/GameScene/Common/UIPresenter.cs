@@ -16,7 +16,7 @@ public class UIPresenter : MonoBehaviour
 
     private void Bind()
     {
-        _view.OnShowBase
+        _view.BaseInput
             .Subscribe(_ =>
             {
                 if (_model.IsShowBase.CurrentValue)
@@ -30,7 +30,7 @@ public class UIPresenter : MonoBehaviour
             })
             .AddTo(_disposable);
 
-        _view.OnShowInventory
+        _view.InventoryInput
             .Subscribe(_ =>
             {
                 if (_model.IsShowInventory.CurrentValue)
@@ -44,7 +44,7 @@ public class UIPresenter : MonoBehaviour
             })
             .AddTo(_disposable);
 
-        _view.OnShowMenu
+        _view.MenuInput
             .Subscribe(_ =>
             {
                 if (_model.IsShowMenu.CurrentValue)
@@ -58,36 +58,30 @@ public class UIPresenter : MonoBehaviour
             })
             .AddTo(_disposable);
 
-        _view.OnShowSaveMenu
-            .Subscribe(_ =>
+        _model.IsShowBase
+            .Subscribe(active =>
             {
-                if (_model.IsShowSaveMenu.CurrentValue)
-                {
-                    _model.ActiveSaveMenu(false);
-                    _model.ActiveMenu(true);
-                }
-                else
-                {
-                    _model.ActiveSaveMenu(true);
-                    _model.ActiveMenu(false);
-                }
+                _view.ShowBase(active);
+                _view.ActoinMapToBase(active);
             })
             .AddTo(_disposable);
 
-        _model.IsShowBase
-            .Subscribe(active => _view.ShowBase(active))
-            .AddTo(_disposable);
-
         _model.IsShowInventory
-            .Subscribe(active => _view.ShowInventory(active))
+            .Subscribe(active =>
+            {
+                _view.ShowInventory(active);
+                _view.ActoinMapToBase(!active);
+                _view.ActionMapToInventory(active);
+            })
             .AddTo(_disposable);
 
         _model.IsShowMenu
-            .Subscribe(active => _view.ShowMenu(active))
-            .AddTo(_disposable);
-
-        _model.IsShowSaveMenu
-            .Subscribe(active => _view.ShowSaveMenu(active))
+            .Subscribe(active =>
+            {
+                _view.ShowMenu(active);
+                _view.ActoinMapToBase(!active);
+                _view.ActionMapToMenu(active);
+            })
             .AddTo(_disposable);
     }
 

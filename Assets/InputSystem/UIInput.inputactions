@@ -31,7 +31,7 @@
                     "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "OpenInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -40,9 +40,9 @@
                     "name": "",
                     "id": "2ab0181b-1db5-4274-82d3-3b356722e563",
                     "path": "<Keyboard>/escape",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "OpenMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -146,12 +146,21 @@
             "id": "7bce8d9e-dc43-40f1-9e52-bdada9d4bbcf",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "MoveToLeft",
                     "type": "Button",
                     "id": "98a1db1b-7095-49aa-a428-97294bc5da0d",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveToRight",
+                    "type": "Button",
+                    "id": "7a608446-1176-486c-9d36-7f3e2dedd884",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -169,30 +178,19 @@
                     "id": "94781c9d-9719-4a5a-acd8-d5311ba2cf44",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "2e8d9e08-c2e1-40f3-a7d3-ca6d6a9ebf29",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "30f2c36e-324d-431d-b5ca-c86693efd694",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Move",
+                    "groups": ";Keyboard",
+                    "action": "MoveToLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -202,7 +200,7 @@
                     "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -222,9 +220,9 @@
                     "name": "",
                     "id": "d1e7a869-5a82-4e5f-a1bf-33981e19bca0",
                     "path": "<Keyboard>/x",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "Close",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -235,8 +233,19 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "Close",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5dbcf3c1-fe32-405c-ad5c-cd2df619d13b",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "MoveToRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -247,9 +256,18 @@
             "id": "a2b9e6cb-3b93-4a34-89d3-6ca52619c8f1",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "MoveToUp",
                     "type": "Button",
-                    "id": "7f957b1a-acbc-4040-86d8-7c73b70f19ca",
+                    "id": "54689ddb-8550-491a-9390-84f0918f44be",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveToDown",
+                    "type": "Button",
+                    "id": "9cf3cc39-1548-444e-8472-c24844dc1054",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
@@ -277,28 +295,6 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "678acf5d-1c5c-42ea-acbd-78c04d406e94",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d39f7bc5-cf33-475c-97a7-5d9be92b2fd2",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0ddaa55a-224c-4da0-afb5-da201b811f8c",
                     "path": "<Keyboard>/z",
                     "interactions": "",
@@ -316,6 +312,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e79a37e-bd54-4887-98a9-89d54c4deba6",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "MoveToUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f98202a0-70ed-4913-8d96-a4969a769748",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "MoveToDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

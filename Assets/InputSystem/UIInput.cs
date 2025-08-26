@@ -117,7 +117,7 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""OpenInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -126,9 +126,9 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""2ab0181b-1db5-4274-82d3-3b356722e563"",
                     ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""OpenMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -232,12 +232,21 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
             ""id"": ""7bce8d9e-dc43-40f1-9e52-bdada9d4bbcf"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""MoveToLeft"",
                     ""type"": ""Button"",
                     ""id"": ""98a1db1b-7095-49aa-a428-97294bc5da0d"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveToRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a608446-1176-486c-9d36-7f3e2dedd884"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -255,30 +264,19 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
                     ""id"": ""94781c9d-9719-4a5a-acd8-d5311ba2cf44"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""2e8d9e08-c2e1-40f3-a7d3-ca6d6a9ebf29"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""30f2c36e-324d-431d-b5ca-c86693efd694"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -288,7 +286,7 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -308,9 +306,9 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""d1e7a869-5a82-4e5f-a1bf-33981e19bca0"",
                     ""path"": ""<Keyboard>/x"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""Close"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -321,8 +319,19 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""Close"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5dbcf3c1-fe32-405c-ad5c-cd2df619d13b"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -333,9 +342,18 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
             ""id"": ""a2b9e6cb-3b93-4a34-89d3-6ca52619c8f1"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""MoveToUp"",
                     ""type"": ""Button"",
-                    ""id"": ""7f957b1a-acbc-4040-86d8-7c73b70f19ca"",
+                    ""id"": ""54689ddb-8550-491a-9390-84f0918f44be"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveToDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""9cf3cc39-1548-444e-8472-c24844dc1054"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press"",
@@ -363,28 +381,6 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""678acf5d-1c5c-42ea-acbd-78c04d406e94"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d39f7bc5-cf33-475c-97a7-5d9be92b2fd2"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""0ddaa55a-224c-4da0-afb5-da201b811f8c"",
                     ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
@@ -402,6 +398,28 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e79a37e-bd54-4887-98a9-89d54c4deba6"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f98202a0-70ed-4913-8d96-a4969a769748"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -454,12 +472,14 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
         m_Inventory_Close = m_Inventory.FindAction("Close", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
-        m_Menu_Move = m_Menu.FindAction("Move", throwIfNotFound: true);
+        m_Menu_MoveToLeft = m_Menu.FindAction("MoveToLeft", throwIfNotFound: true);
+        m_Menu_MoveToRight = m_Menu.FindAction("MoveToRight", throwIfNotFound: true);
         m_Menu_Select = m_Menu.FindAction("Select", throwIfNotFound: true);
         m_Menu_Close = m_Menu.FindAction("Close", throwIfNotFound: true);
         // Save
         m_Save = asset.FindActionMap("Save", throwIfNotFound: true);
-        m_Save_Move = m_Save.FindAction("Move", throwIfNotFound: true);
+        m_Save_MoveToUp = m_Save.FindAction("MoveToUp", throwIfNotFound: true);
+        m_Save_MoveToDown = m_Save.FindAction("MoveToDown", throwIfNotFound: true);
         m_Save_Select = m_Save.FindAction("Select", throwIfNotFound: true);
         m_Save_Close = m_Save.FindAction("Close", throwIfNotFound: true);
     }
@@ -759,7 +779,8 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
     // Menu
     private readonly InputActionMap m_Menu;
     private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
-    private readonly InputAction m_Menu_Move;
+    private readonly InputAction m_Menu_MoveToLeft;
+    private readonly InputAction m_Menu_MoveToRight;
     private readonly InputAction m_Menu_Select;
     private readonly InputAction m_Menu_Close;
     /// <summary>
@@ -774,9 +795,13 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
         /// </summary>
         public MenuActions(@UIInput wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Menu/Move".
+        /// Provides access to the underlying input action "Menu/MoveToLeft".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_Menu_Move;
+        public InputAction @MoveToLeft => m_Wrapper.m_Menu_MoveToLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "Menu/MoveToRight".
+        /// </summary>
+        public InputAction @MoveToRight => m_Wrapper.m_Menu_MoveToRight;
         /// <summary>
         /// Provides access to the underlying input action "Menu/Select".
         /// </summary>
@@ -811,9 +836,12 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
+            @MoveToLeft.started += instance.OnMoveToLeft;
+            @MoveToLeft.performed += instance.OnMoveToLeft;
+            @MoveToLeft.canceled += instance.OnMoveToLeft;
+            @MoveToRight.started += instance.OnMoveToRight;
+            @MoveToRight.performed += instance.OnMoveToRight;
+            @MoveToRight.canceled += instance.OnMoveToRight;
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
@@ -831,9 +859,12 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
         /// <seealso cref="MenuActions" />
         private void UnregisterCallbacks(IMenuActions instance)
         {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
+            @MoveToLeft.started -= instance.OnMoveToLeft;
+            @MoveToLeft.performed -= instance.OnMoveToLeft;
+            @MoveToLeft.canceled -= instance.OnMoveToLeft;
+            @MoveToRight.started -= instance.OnMoveToRight;
+            @MoveToRight.performed -= instance.OnMoveToRight;
+            @MoveToRight.canceled -= instance.OnMoveToRight;
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
@@ -877,7 +908,8 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
     // Save
     private readonly InputActionMap m_Save;
     private List<ISaveActions> m_SaveActionsCallbackInterfaces = new List<ISaveActions>();
-    private readonly InputAction m_Save_Move;
+    private readonly InputAction m_Save_MoveToUp;
+    private readonly InputAction m_Save_MoveToDown;
     private readonly InputAction m_Save_Select;
     private readonly InputAction m_Save_Close;
     /// <summary>
@@ -892,9 +924,13 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
         /// </summary>
         public SaveActions(@UIInput wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Save/Move".
+        /// Provides access to the underlying input action "Save/MoveToUp".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_Save_Move;
+        public InputAction @MoveToUp => m_Wrapper.m_Save_MoveToUp;
+        /// <summary>
+        /// Provides access to the underlying input action "Save/MoveToDown".
+        /// </summary>
+        public InputAction @MoveToDown => m_Wrapper.m_Save_MoveToDown;
         /// <summary>
         /// Provides access to the underlying input action "Save/Select".
         /// </summary>
@@ -929,9 +965,12 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_SaveActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_SaveActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
+            @MoveToUp.started += instance.OnMoveToUp;
+            @MoveToUp.performed += instance.OnMoveToUp;
+            @MoveToUp.canceled += instance.OnMoveToUp;
+            @MoveToDown.started += instance.OnMoveToDown;
+            @MoveToDown.performed += instance.OnMoveToDown;
+            @MoveToDown.canceled += instance.OnMoveToDown;
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
@@ -949,9 +988,12 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
         /// <seealso cref="SaveActions" />
         private void UnregisterCallbacks(ISaveActions instance)
         {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
+            @MoveToUp.started -= instance.OnMoveToUp;
+            @MoveToUp.performed -= instance.OnMoveToUp;
+            @MoveToUp.canceled -= instance.OnMoveToUp;
+            @MoveToDown.started -= instance.OnMoveToDown;
+            @MoveToDown.performed -= instance.OnMoveToDown;
+            @MoveToDown.canceled -= instance.OnMoveToDown;
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
@@ -1056,12 +1098,19 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
     public interface IMenuActions
     {
         /// <summary>
-        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "MoveToLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMove(InputAction.CallbackContext context);
+        void OnMoveToLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveToRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToRight(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Select" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1085,12 +1134,19 @@ public partial class @UIInput: IInputActionCollection2, IDisposable
     public interface ISaveActions
     {
         /// <summary>
-        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "MoveToUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMove(InputAction.CallbackContext context);
+        void OnMoveToUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveToDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToDown(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Select" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
