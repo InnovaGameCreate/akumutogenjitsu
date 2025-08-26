@@ -31,11 +31,8 @@ public class MenuView : MonoBehaviour
     private readonly Subject<Unit> _close = new();
     public Observable<Unit> Close => _close;
 
-    private PlayerOperation _playerOperation;
-
     void Awake()
     {
-        _playerOperation = new PlayerOperation();
     }
 
     void Start()
@@ -52,23 +49,17 @@ public class MenuView : MonoBehaviour
 
     void OnEnable()
     {
-        if (_playerOperation != null)
-        {
-            ActionMapToMenu(true);
-        }
+        ActionMapToMenu(true);
     }
 
     void OnDisable()
     {
-        if (_playerOperation != null)
-        {
-            ActionMapToMenu(false);
-        }
+        ActionMapToMenu(false);
     }
 
     public void BindToInput()
     {
-        _playerOperation.Menu.MoveToLeft.performed += ctx =>
+        PlayerInput.Instance.Input.Menu.MoveToLeft.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -76,7 +67,7 @@ public class MenuView : MonoBehaviour
             }
         };
 
-        _playerOperation.Menu.MoveToRight.performed += ctx =>
+        PlayerInput.Instance.Input.Menu.MoveToRight.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -84,7 +75,7 @@ public class MenuView : MonoBehaviour
             }
         };
 
-        _playerOperation.Menu.Select.performed += ctx =>
+        PlayerInput.Instance.Input.Menu.Select.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -92,7 +83,7 @@ public class MenuView : MonoBehaviour
             }
         };
 
-        _playerOperation.Menu.Close.performed += ctx =>
+        PlayerInput.Instance.Input.Menu.Close.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -151,11 +142,11 @@ public class MenuView : MonoBehaviour
     {
         if (active)
         {
-            _playerOperation.Menu.Enable();
+            PlayerInput.Instance.Input.Menu.Enable();
         }
         else
         {
-            _playerOperation.Menu.Disable();
+            PlayerInput.Instance.Input.Menu.Disable();
         }
     }
 
@@ -163,17 +154,16 @@ public class MenuView : MonoBehaviour
     {
         if (active)
         {
-            _playerOperation.Save.Enable();
+            PlayerInput.Instance.Input.Save.Enable();
         }
         else
         {
-            _playerOperation.Save.Disable();
+            PlayerInput.Instance.Input.Save.Disable();
         }
     }
 
     void OnDestroy()
     {
-        _playerOperation?.Dispose();
         _moveLeft?.Dispose();
         _moveRight?.Dispose();
         _select?.Dispose();

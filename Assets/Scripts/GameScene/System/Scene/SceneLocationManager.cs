@@ -13,10 +13,7 @@ public class SceneLocationManager  : Singleton<SceneLocationManager>
 
     void Awake()
     {
-        if (CheckInstance())
-        {
-            InitializeDictionaries();
-        }
+        InitializeDictionaries();
     }
 
     private void InitializeDictionaries()

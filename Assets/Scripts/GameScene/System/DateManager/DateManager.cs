@@ -10,10 +10,7 @@ public class DateManager : Singleton<DateManager>, ISaveableManager<DateSaveData
 
     void Awake()
     {
-        if (CheckInstance())
-        {
-            initialize();
-        }
+        initialize();
     }
 
     private void initialize()

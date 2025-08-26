@@ -6,15 +6,12 @@ public class PlayerController : AbstractUnitController
     private UnitMoveStatus _moveStatus;
     private Vector2 _currentMoveInput;
 
-    private PlayerOperation _playerOperation;
-
     protected override void OnStartUnitController()
     {
-        _playerOperation = new PlayerOperation();
-        _playerOperation.Base.PlayerMove.started += ctx => OnMove(ctx);
-        _playerOperation.Base.PlayerMove.performed += ctx => OnMove(ctx);
-        _playerOperation.Base.PlayerMove.canceled += ctx => OnMove(ctx);
-        _playerOperation.Base.Enable();
+        PlayerInput.Instance.Input.Base.PlayerMove.started += ctx => OnMove(ctx);
+        PlayerInput.Instance.Input.Base.PlayerMove.performed += ctx => OnMove(ctx);
+        PlayerInput.Instance.Input.Base.PlayerMove.canceled += ctx => OnMove(ctx);
+        PlayerInput.Instance.Input.Base.Enable();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -30,10 +27,5 @@ public class PlayerController : AbstractUnitController
     public override UnitMoveStatus GetMoveStatus()
     {
         return _moveStatus;
-    }
-
-    void OnDestroy()
-    {
-        _playerOperation?.Dispose();
     }
 }

@@ -44,6 +44,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee3088b5914cf741b45018ced669df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1248382596853323698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4931082948711464404}
+  - component: {fileID: 1319830576373882250}
+  m_Layer: 0
+  m_Name: PlayerInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4931082948711464404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248382596853323698}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 740.9973, y: 334.3196, z: -7.6471534}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7241027210948899250}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1319830576373882250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248382596853323698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e318e857c58eda140a96ccd978211a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1473217375424664887
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +385,7 @@ Transform:
   - {fileID: 3953336418088769582}
   - {fileID: 80324910110936971}
   - {fileID: 6642558719639101992}
+  - {fileID: 4931082948711464404}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8153368333351486808
@@ -533,7 +578,6 @@ MonoBehaviour:
   _baseUIPrefab: {fileID: 5381343857774880067, guid: 04c90dd8d121e2842a26a776080fc1bb, type: 3}
   _inventoryUIPrefab: {fileID: 1880793682558768645, guid: 31b792d76b147b74b9b4a1baf2c2a45a, type: 3}
   _menuUIPrefab: {fileID: 8819412573766384333, guid: 44ce6f9144aba2f42b77746fbebce9c3, type: 3}
-  _saveMenuUIPrefab: {fileID: 5985804347165642844, guid: d2539cf8c2229a244b5d0a49d3eb3035, type: 3}
   _canvas: {fileID: 802448977343208206}
 --- !u!114 &7343519142126721159
 MonoBehaviour:

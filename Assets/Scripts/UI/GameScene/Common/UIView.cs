@@ -25,11 +25,8 @@ public class UIView : MonoBehaviour
     private readonly Subject<Unit> _menuInput = new();
     public Observable<Unit> MenuInput => _menuInput;
 
-    private PlayerOperation _playerOperation;
-
     void Awake()
     {
-        _playerOperation = new PlayerOperation();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -50,7 +47,7 @@ public class UIView : MonoBehaviour
 
     public void BindToInput()
     {
-        _playerOperation.Base.OpenMenu.performed += ctx =>
+        PlayerInput.Instance.Input.Base.OpenMenu.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -58,7 +55,7 @@ public class UIView : MonoBehaviour
             }
         };
 
-        _playerOperation.Base.OpenInventory.performed += ctx =>
+        PlayerInput.Instance.Input.Base.OpenInventory.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -66,7 +63,7 @@ public class UIView : MonoBehaviour
             }
         };
 
-        _playerOperation.Base.Enable();
+        PlayerInput.Instance.Input.Base.Enable();
     }
 
     // MARK: Show
@@ -108,11 +105,11 @@ public class UIView : MonoBehaviour
     {
         if (active)
         {
-            _playerOperation.Base.Enable();
+            PlayerInput.Instance.Input.Base.Enable();
         }
         else
         {
-            _playerOperation.Base.Disable();
+            PlayerInput.Instance.Input.Base.Disable();
         }
     }
 
@@ -120,11 +117,11 @@ public class UIView : MonoBehaviour
     {
         if (active)
         {
-            _playerOperation.Menu.Enable();
+            PlayerInput.Instance.Input.Menu.Enable();
         }
         else
         {
-            _playerOperation.Menu.Disable();
+            PlayerInput.Instance.Input.Menu.Disable();
         }
     }
 
@@ -132,11 +129,11 @@ public class UIView : MonoBehaviour
     {
         if (active)
         {
-            _playerOperation.Inventory.Enable();
+            PlayerInput.Instance.Input.Inventory.Enable();
         }
         else
         {
-            _playerOperation.Inventory.Disable();
+            PlayerInput.Instance.Input.Inventory.Disable();
         }
     }
 

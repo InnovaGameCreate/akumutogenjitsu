@@ -1,48 +1,70 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// MonoBehaviour逕ｨ縺ｮ繧ｷ繝ｳ繧ｰ繝ｫ繝医Φ繝吶�ｼ繧ｹ繧ｯ繝ｩ繧ｹ
+/// </summary>
+/// <typeparam name="T">繧ｷ繝ｳ繧ｰ繝ｫ繝医Φ縺ｨ縺励※謇ｱ縺�MonoBehaviour繧ｯ繝ｩ繧ｹ</typeparam>
 public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private static T instance;
+    private static T _instance;
+    private static readonly object _lock = new object();
+    private static bool _applicationIsQuitting = false;
+
     public static T Instance
     {
         get
         {
-            if (instance == null)
+            if (_applicationIsQuitting)
             {
-                Type t = typeof(T);
-
-                instance = (T)FindObjectOfType(t);
-                if (instance == null)
-                {
-                    Debug.LogError(t + " をアタッチしているGameObjectはありません");
-                }
+                Debug.LogWarning($"[Singleton] Instance '{typeof(T)}' already destroyed on application quit. Won't create again - returning null.");
+                return null;
             }
 
-            return instance;
+            lock (_lock)
+            {
+                if (_instance == null)
+                {
+                    _instance = FindFirstObjectByType<T>();
+
+                    if (_instance == null)
+                    {
+                        Debug.LogError($"[Singleton] An instance of {typeof(T)} is needed in the scene, but there is none.");
+                    }
+                    else
+                    {
+                        DontDestroyOnLoad(_instance.gameObject);
+                    }
+                }
+
+                return _instance;
+            }
         }
     }
 
-    virtual protected void Update()
+    protected virtual void Awake()
     {
-        CheckInstance();
+        if (_instance == null)
+        {
+            _instance = this as T;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (_instance != this)
+        {
+            Debug.LogWarning($"[Singleton] Another instance of {typeof(T)} already exists. Destroying this one.");
+            Destroy(gameObject);
+        }
     }
 
-    protected bool CheckInstance()
+    protected virtual void OnApplicationQuit()
     {
-        if (instance == null)
-        {
-            instance = this as T;
-            return true;
-        }
-        else if (Instance == this)
-        {
-            return true;
-        }
-        Destroy(this);
+        _applicationIsQuitting = true;
+    }
 
-        return false;
+    protected virtual void OnDestroy()
+    {
+        if (_instance == this)
+        {
+            _instance = null;
+        }
     }
 }
