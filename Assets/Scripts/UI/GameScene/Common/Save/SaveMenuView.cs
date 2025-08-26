@@ -34,12 +34,12 @@ public class SaveMenuView : MonoBehaviour
     private readonly Subject<Unit> _close = new();
     public Observable<Unit> Close => _close;
 
-    private UIInput _uiInput;
+    private PlayerOperation _playerOperation;
     private MenuView _menuView;
 
     void Awake()
     {
-        _uiInput = new UIInput();
+        _playerOperation = new PlayerOperation();
     }
 
     void Start()
@@ -52,7 +52,7 @@ public class SaveMenuView : MonoBehaviour
     void OnEnable()
     {
         // SaveMenuが表示された時にActionMapを有効にする
-        if (_uiInput != null)
+        if (_playerOperation != null)
         {
             ActionMapToSave(true);
         }
@@ -61,7 +61,7 @@ public class SaveMenuView : MonoBehaviour
     void OnDisable()
     {
         // SaveMenuが非表示になった時にActionMapを無効にする
-        if (_uiInput != null)
+        if (_playerOperation != null)
         {
             ActionMapToSave(false);
         }
@@ -69,7 +69,7 @@ public class SaveMenuView : MonoBehaviour
 
     public void BindToInput()
     {
-        _uiInput.Save.MoveToUp.performed += ctx =>
+        _playerOperation.Save.MoveToUp.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -77,7 +77,7 @@ public class SaveMenuView : MonoBehaviour
             }
         };
 
-        _uiInput.Save.MoveToDown.performed += ctx =>
+        _playerOperation.Save.MoveToDown.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -85,7 +85,7 @@ public class SaveMenuView : MonoBehaviour
             }
         };
 
-        _uiInput.Save.Select.performed += ctx =>
+        _playerOperation.Save.Select.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -93,7 +93,7 @@ public class SaveMenuView : MonoBehaviour
             }
         };
 
-        _uiInput.Save.Close.performed += ctx =>
+        _playerOperation.Save.Close.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -170,11 +170,11 @@ public class SaveMenuView : MonoBehaviour
     {
         if (active)
         {
-            _uiInput.Save.Enable();
+            _playerOperation.Save.Enable();
         }
         else
         {
-            _uiInput.Save.Disable();
+            _playerOperation.Save.Disable();
         }
     }
 
@@ -182,17 +182,17 @@ public class SaveMenuView : MonoBehaviour
     {
         if (active)
         {
-            _uiInput.Menu.Enable();
+            _playerOperation.Menu.Enable();
         }
         else
         {
-            _uiInput.Menu.Disable();
+            _playerOperation.Menu.Disable();
         }
     }
 
     void OnDestroy()
     {
-        _uiInput?.Dispose();
+        _playerOperation?.Dispose();
         _moveUp?.Dispose();
         _moveDown?.Dispose();
         _select?.Dispose();

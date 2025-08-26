@@ -25,11 +25,11 @@ public class UIView : MonoBehaviour
     private readonly Subject<Unit> _menuInput = new();
     public Observable<Unit> MenuInput => _menuInput;
 
-    private UIInput _uiInput;
+    private PlayerOperation _playerOperation;
 
     void Awake()
     {
-        _uiInput = new UIInput();
+        _playerOperation = new PlayerOperation();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -50,7 +50,7 @@ public class UIView : MonoBehaviour
 
     public void BindToInput()
     {
-        _uiInput.Base.OpenMenu.performed += ctx =>
+        _playerOperation.Base.OpenMenu.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -58,7 +58,7 @@ public class UIView : MonoBehaviour
             }
         };
 
-        _uiInput.Base.OpenInventory.performed += ctx =>
+        _playerOperation.Base.OpenInventory.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -66,7 +66,7 @@ public class UIView : MonoBehaviour
             }
         };
 
-        _uiInput.Base.Enable();
+        _playerOperation.Base.Enable();
     }
 
     // MARK: Show
@@ -108,11 +108,11 @@ public class UIView : MonoBehaviour
     {
         if (active)
         {
-            _uiInput.Base.Enable();
+            _playerOperation.Base.Enable();
         }
         else
         {
-            _uiInput.Base.Disable();
+            _playerOperation.Base.Disable();
         }
     }
 
@@ -120,11 +120,11 @@ public class UIView : MonoBehaviour
     {
         if (active)
         {
-            _uiInput.Menu.Enable();
+            _playerOperation.Menu.Enable();
         }
         else
         {
-            _uiInput.Menu.Disable();
+            _playerOperation.Menu.Disable();
         }
     }
 
@@ -132,11 +132,11 @@ public class UIView : MonoBehaviour
     {
         if (active)
         {
-            _uiInput.Inventory.Enable();
+            _playerOperation.Inventory.Enable();
         }
         else
         {
-            _uiInput.Inventory.Disable();
+            _playerOperation.Inventory.Disable();
         }
     }
 

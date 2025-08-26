@@ -25,11 +25,11 @@ public class InventoryView : MonoBehaviour
     private readonly Subject<Unit> _close = new();
     public Observable<Unit> Close => _close;
 
-    private UIInput _uiInput;
+    private PlayerOperation _playerOperation;
 
     void Awake()
     {
-        _uiInput = new UIInput();
+        _playerOperation = new PlayerOperation();
     }
 
     void Start()
@@ -39,7 +39,7 @@ public class InventoryView : MonoBehaviour
 
     void OnEnable()
     {
-        if (_uiInput != null)
+        if (_playerOperation != null)
         {
             ActionMapToInventory(true);
         }
@@ -47,7 +47,7 @@ public class InventoryView : MonoBehaviour
 
     void OnDisable()
     {
-        if (_uiInput != null)
+        if (_playerOperation != null)
         {
             ActionMapToInventory(false);
         }
@@ -55,7 +55,7 @@ public class InventoryView : MonoBehaviour
 
     public void BindToInput()
     {
-        _uiInput.Inventory.Move.performed += ctx =>
+        _playerOperation.Inventory.Move.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -75,7 +75,7 @@ public class InventoryView : MonoBehaviour
             }
         };
 
-        _uiInput.Inventory.Close.performed += ctx =>
+        _playerOperation.Inventory.Close.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
             {
@@ -155,17 +155,17 @@ public class InventoryView : MonoBehaviour
     {
         if (active)
         {
-            _uiInput.Inventory.Enable();
+            _playerOperation.Inventory.Enable();
         }
         else
         {
-            _uiInput.Inventory.Disable();
+            _playerOperation.Inventory.Disable();
         }
     }
 
     void OnDestroy()
     {
-        _uiInput?.Dispose();
+        _playerOperation?.Dispose();
         _move?.Dispose();
         _close?.Dispose();
     }
