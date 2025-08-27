@@ -11,7 +11,6 @@ public class InventoryModel : MonoBehaviour
     public ReadOnlyReactiveProperty<List<ItemData>> OwnedItemDatas => _ownedItemDatas;
 
     private readonly int _slotWidth = 3;
-    private readonly int _slotHeight = 3;
     private readonly int _totalSlots = 9;
 
     private ItemManager _itemManager;
