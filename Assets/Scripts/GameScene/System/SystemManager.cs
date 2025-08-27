@@ -4,6 +4,17 @@ using UnityEngine.SceneManagement;
 
 public class SystemManager : MonoBehaviour, ISaveableManager<SystemSaveData>
 {
+    [SerializeField] private GameObject _playerPrefab;
+    void Awake()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player == null)
+        {
+            Debug.Log("Playerが存在しないので生成しました。");
+            Instantiate(_playerPrefab);
+        }
+    }
+
     // MARK: セーブ機能
 
     public SystemSaveData EncodeToSaveData()
