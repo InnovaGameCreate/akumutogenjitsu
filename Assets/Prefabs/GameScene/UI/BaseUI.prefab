@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 9/10
+  m_text: 9/6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b5c5f5714f38baf4a8d20f1b49859796, type: 2}
   m_sharedMaterial: {fileID: 3422399914013159505, guid: b5c5f5714f38baf4a8d20f1b49859796, type: 2}
@@ -145,7 +145,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1672486644910339427}
-  - component: {fileID: 3169466907776322689}
+  - component: {fileID: 2304527381938166469}
+  - component: {fileID: 3718217300580075609}
+  - component: {fileID: 336556498952247760}
   m_Layer: 5
   m_Name: BaseUI
   m_TagString: Untagged
@@ -174,7 +176,7 @@ RectTransform:
   m_AnchoredPosition: {x: 546.64, y: 263.7}
   m_SizeDelta: {x: 620.68005, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3169466907776322689
+--- !u!114 &2304527381938166469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,17 +185,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 5381343857774880067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8cee989d108449428823acd991cb252, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c8139f08306e424db0d992c4f62ce92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialWorldType: 0
+--- !u!114 &3718217300580075609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5381343857774880067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e4e1c92163e6b419b4423f5dfcbffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _model: {fileID: 2304527381938166469}
+  _view: {fileID: 336556498952247760}
+--- !u!114 &336556498952247760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5381343857774880067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4874ecdda9e846e4eab0081544867108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _backgroundImage: {fileID: 2093996822664900424}
   _dayText: {fileID: 1283216206544460835}
   _worldTypeIcon: {fileID: 2940124176363917033}
   _placeText: {fileID: 5294547772723611474}
-  _month: 9
-  _day: 10
-  _worldType: 0
-  _place: "\u5B66\u6821 2F \u5ECA\u4E0B"
   _realIcon: {fileID: 605162050437240712, guid: 02e9bdc504d0e234e92cf09b83cdc530, type: 3}
   _dreamIcon: {fileID: 21300000, guid: 9ccc97ed39d87ef40a4010394ee30d1b, type: 3}
   _realBackground: {fileID: -4082387734001334768, guid: b09aa5784042e2943bfb1e291c850efe, type: 3}
@@ -341,7 +366,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8180148711793489170, guid: 13d889145991f654e89094ce9767ffe6, type: 3}
+  m_Sprite: {fileID: -4082387734001334768, guid: b09aa5784042e2943bfb1e291c850efe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
