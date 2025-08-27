@@ -52,11 +52,6 @@ public class InventoryPresenter : MonoBehaviour
             _view.UpdateInventory(data.ItemDatas, data.SelectedIndex);
         })
         .AddTo(_disposable);
-
-        // 定期的にアイテムデータを更新
-        Observable.Timer(System.TimeSpan.Zero, System.TimeSpan.FromSeconds(0.1f))
-            .Subscribe(_ => _model.UpdateItemData())
-            .AddTo(_disposable);
     }
 
     void OnDestroy()
