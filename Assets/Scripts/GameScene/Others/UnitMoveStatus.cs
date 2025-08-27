@@ -1,7 +1,5 @@
-using R3;
-
 /// <summary>
-/// Unit?¿½ÌˆÚ“ï¿½?¿½?¿½?¿½
+/// Unit‚Ì“®‚¢‚Ä‚¢‚éó‘Ô
 /// </summary>
 public struct UnitMoveStatus
 {
