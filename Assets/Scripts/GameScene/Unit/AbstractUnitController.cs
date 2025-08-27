@@ -4,7 +4,7 @@ public abstract class AbstractUnitController : MonoBehaviour
 {
     private UnitMove _unitMove;
 
-    // Unit‚Ì“®‚«‚Ìó‘Ô
+    // Unitï¿½Ì“ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½
     private UnitMoveStatus _unitMoveStatus;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -13,7 +13,7 @@ public abstract class AbstractUnitController : MonoBehaviour
         _unitMove = GetComponent<UnitMove>();
         if (_unitMove == null)
         {
-            Debug.LogError("UnitMove‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+            Debug.LogError("UnitMoveï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½");
         }
 
         OnStartUnitController();
@@ -22,12 +22,16 @@ public abstract class AbstractUnitController : MonoBehaviour
     void Update()
     {
         OnUpdateUnitController();
-        Move();
         _unitMoveStatus = GetMoveStatus(); 
     }
 
+    void FixedUpdate()
+    {
+        Move();
+    }
+
     /// <summary>
-    /// UnitController‚Ì‰Šú‰»ˆ—(Start()‚Ì‘ã‚í‚è)
+    /// UnitControllerï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(Start()ï¿½Ì‘ï¿½ï¿½ï¿½)
     /// </summary>
     protected virtual void OnStartUnitController()
     {
@@ -35,7 +39,7 @@ public abstract class AbstractUnitController : MonoBehaviour
     }
 
     /// <summary>
-    /// UnitController‚ÌXVˆ—(Update()‚Ì‘ã‚í‚è)
+    /// UnitControllerï¿½ÌXï¿½Vï¿½ï¿½ï¿½ï¿½(Update()ï¿½Ì‘ï¿½ï¿½ï¿½)
     /// </summary>
     protected virtual void OnUpdateUnitController()
     {
@@ -43,13 +47,13 @@ public abstract class AbstractUnitController : MonoBehaviour
     }
 
     /// <summary>
-    /// Unit‚ÌˆÚ“®ó‘Ô‚ğæ“¾‚·‚é
+    /// Unitï¿½ÌˆÚ“ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
     /// </summary>
-    /// <returns> ˆÚ“®ó‘Ô </returns>
+    /// <returns> ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ </returns>
     public abstract UnitMoveStatus GetMoveStatus();
 
     /// <summary>
-    /// Unit‚ÌˆÚ“®
+    /// Unitï¿½ÌˆÚ“ï¿½
     /// </summary>
     protected void Move()
     {
@@ -58,7 +62,7 @@ public abstract class AbstractUnitController : MonoBehaviour
     }
 
     /// <summary>
-    /// Unit‚ÌˆÚ“®ó‘Ô‚ğæ“¾‚·‚é
+    /// Unitï¿½ÌˆÚ“ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public UnitMoveStatus unitMoveStatus
     {

@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class UnitMove : MonoBehaviour
 {
-    // ‘¬“x
+    // ï¿½ï¿½ï¿½x
     [SerializeField] private float _defaultSpeed;
     private float _speed;
 
-    // •ûŒü
+    // ï¿½ï¿½ï¿½ï¿½
     private UnitMoveStatus _unitMoveStatus;
 
-    // Unit‚ªˆÚ“®‚·‚é‚©
+    // Unitï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½ï¿½é‚©
     private bool _isEnabled;
 
     private Rigidbody2D _rigidbody;
@@ -19,13 +19,13 @@ public class UnitMove : MonoBehaviour
     {
         if (_defaultSpeed == 0)
         {
-            Debug.LogError("DefaultSpeed‚ª0‚Éİ’è‚³‚ê‚Ä‚¢‚Ü‚·");
+            Debug.LogError("DefaultSpeedï¿½ï¿½0ï¿½Éİ’è‚³ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½");
         }
 
         _rigidbody = GetComponent<Rigidbody2D>();
         if (_rigidbody == null)
         {
-            Debug.LogError("Rigidbody2D‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+            Debug.LogError("Rigidbody2Dï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½");
         }
 
         _speed = _defaultSpeed;
@@ -33,14 +33,14 @@ public class UnitMove : MonoBehaviour
     }
 
     /// <summary>
-    /// Unit‚ğ“®‚©‚·
+    /// Unitï¿½ğ“®‚ï¿½ï¿½ï¿½
     /// </summary>
-    /// <param name="direction"> “®‚©‚·•ûŒü </param>
+    /// <param name="direction"> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ </param>
     public void Move(UnitMoveStatus unitmovestatus)
     {
         if (!_isEnabled)
         {
-            Debug.Log("UnitMove‚ª–³Œø‰»‚³‚ê‚Ä‚¢‚Ü‚·");
+            Debug.Log("UnitMoveï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½");
             return;
         }
 
@@ -63,17 +63,17 @@ public class UnitMove : MonoBehaviour
             move.y = -1;
         }
 
-        move = move.normalized * _speed * Time.deltaTime;
+        move = move.normalized * _speed * Time.fixedDeltaTime;
 
-        // ˆÚ“®
+        // ï¿½Ú“ï¿½
         _rigidbody.MovePosition(_rigidbody.position + move);
 
-        // •ûŒü‚ğæ“¾
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾
         _unitMoveStatus = unitmovestatus;
     }
 
     /// <summary>
-    /// Unit‚Ì‘¬“x
+    /// Unitï¿½Ì‘ï¿½ï¿½x
     /// </summary>
     public float Speed
     {
@@ -86,21 +86,21 @@ public class UnitMove : MonoBehaviour
         {
             if (value < 0)
             {
-                Debug.LogError("Speed‚É•‰‚Ì’l‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚·");
+                Debug.LogError("Speedï¿½É•ï¿½ï¿½Ì’lï¿½ï¿½ï¿½İ’è‚³ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½");
                 return;
             }
 
-            // ‘¬“x‚ğİ’è
+            // ï¿½ï¿½ï¿½xï¿½ï¿½İ’ï¿½
             _speed = value;
 
 #if DEBUG_MODE
-            Debug.Log("Speed‚ğ" + _speed + "‚Éİ’è‚µ‚Ü‚µ‚½");
+            Debug.Log("Speedï¿½ï¿½" + _speed + "ï¿½Éİ’è‚µï¿½Ü‚ï¿½ï¿½ï¿½");
 #endif
         }
     }
 
     /// <summary>
-    /// Unit‚ªˆÚ“®‚·‚é‚©
+    /// Unitï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½ï¿½é‚©
     /// </summary>
     public bool IsEnabled
     {

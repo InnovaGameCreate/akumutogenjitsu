@@ -2,7 +2,7 @@ public class PlayerInput : Singleton<PlayerInput>
 {
     private PlayerOperation _playerOperationInput;
 
-    void Awake()
+    void Start()
     {
         _playerOperationInput = new PlayerOperation();
     }
