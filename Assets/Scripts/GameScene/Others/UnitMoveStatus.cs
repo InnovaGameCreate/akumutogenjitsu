@@ -1,5 +1,5 @@
 /// <summary>
-/// Unit‚ÌˆÚ“®ó‘Ô
+/// Unit‚Ì“®‚¢‚Ä‚¢‚éó‘Ô
 /// </summary>
 public struct UnitMoveStatus
 {
@@ -7,4 +7,15 @@ public struct UnitMoveStatus
     public bool Right;
     public bool Up;
     public bool Down;
+
+    public static UnitMoveStatus CreateMoveStatus(bool up, bool down, bool right, bool left)
+    {
+        UnitMoveStatus moveStatus = new UnitMoveStatus();
+        moveStatus.Up = up;
+        moveStatus.Down = down;
+        moveStatus.Right = right;
+        moveStatus.Left = left;
+
+        return moveStatus;
+    }
 }

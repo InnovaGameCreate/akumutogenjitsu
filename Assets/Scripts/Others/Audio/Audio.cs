@@ -17,36 +17,28 @@ public class Audio : Singleton<Audio>
     // Audio Audio Clip
     [SerializeField] private AudioData[] _audioDatas;
 
-    private void Awake()
-    {
-        if (CheckInstance())
-        {
-            DontDestroyOnLoad(this);
-        }
-    }
-
     /// <summary>
-    /// Audio‚ÌÄ¶(ex: Audio.Instance.Play(0, false);)
+    /// Audioï¿½ÌÄï¿½(ex: Audio.Instance.Play(0, false);)
     /// </summary>
-    /// <param name="index"> Clip‚Ìindex </param>
-    /// <param name="isLoop"> ƒ‹[ƒv‚·‚é‚© </param>
+    /// <param name="index"> Clipï¿½ï¿½index </param>
+    /// <param name="isLoop"> ï¿½ï¿½ï¿½[ï¿½vï¿½ï¿½ï¿½é‚© </param>
     public void Play(int index, bool isLoop)
     {
         if (index < 0 || index >= _audioDatas.Length)
         {
-            Debug.Log($"ƒCƒ“ƒfƒbƒNƒX‚ª”ÍˆÍŠO‚Å‚·B({index})");
+            Debug.Log($"ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½ÍˆÍŠOï¿½Å‚ï¿½ï¿½B({index})");
             return;
         }
 
         if (_audioDatas[index].Clip == null)
         {
-            Debug.Log($"AudioClip‚ª‚È‚¢‚Å‚·B{index}");
+            Debug.Log($"AudioClipï¿½ï¿½ï¿½È‚ï¿½ï¿½Å‚ï¿½ï¿½B{index}");
             return;
         }
 
         if (_audioDatas[index].AudioSource == null)
         {
-            Debug.Log("AudioSource‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+            Debug.Log("AudioSourceï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B");
             return;
         }
 
@@ -57,26 +49,26 @@ public class Audio : Singleton<Audio>
     }
 
     /// <summary>
-    /// 1‰ñ‚¾‚¯SE‚ğ—¬‚·
+    /// 1ï¿½ñ‚¾‚ï¿½SEï¿½ğ—¬‚ï¿½
     /// </summary>
-    /// <param name="index"> Clip‚Ìindex </param>
+    /// <param name="index"> Clipï¿½ï¿½index </param>
     public void PlayOneShot(int index)
     {
         if (index < 0 || index >= _audioDatas.Length)
         {
-            Debug.LogError($"ƒCƒ“ƒfƒbƒNƒX‚ª”ÍˆÍŠO‚Å‚·B({index})");
+            Debug.LogError($"ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½ÍˆÍŠOï¿½Å‚ï¿½ï¿½B({index})");
             return;
         }
 
         if (_audioDatas[index].Clip == null)
         {
-            Debug.LogError($"AudioClip‚ª‚È‚¢‚Å‚·B{index}");
+            Debug.LogError($"AudioClipï¿½ï¿½ï¿½È‚ï¿½ï¿½Å‚ï¿½ï¿½B{index}");
             return;
         }
 
         if (_audioDatas[index].AudioSource == null)
         {
-            Debug.LogError("AudioSource‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+            Debug.LogError("AudioSourceï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B");
             return;
         }
 
@@ -85,19 +77,19 @@ public class Audio : Singleton<Audio>
     }
 
     /// <summary>
-    /// Audio‚ÌÄ¶‚ğ~‚ß‚é
+    /// Audioï¿½ÌÄï¿½ï¿½ï¿½ï¿½~ï¿½ß‚ï¿½
     /// </summary>
     public void Stop(int index)
     {
         if (index < 0 || index >= _audioDatas.Length)
         {
-            Debug.LogError($"ƒCƒ“ƒfƒbƒNƒX‚ª”ÍˆÍŠO‚Å‚·B({index})");
+            Debug.LogError($"ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½ÍˆÍŠOï¿½Å‚ï¿½ï¿½B({index})");
             return;
         }
 
         if (_audioDatas[index].AudioSource == null)
         {
-            Debug.LogError("AudioSource‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+            Debug.LogError("AudioSourceï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B");
             return;
         }
 

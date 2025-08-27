@@ -8,12 +8,9 @@ public class DateManager : Singleton<DateManager>, ISaveableManager<DateSaveData
 
     private Date _currentDate;
 
-    void Awake()
+    void Start()
     {
-        if (CheckInstance())
-        {
-            initialize();
-        }
+        initialize();
     }
 
     private void initialize()

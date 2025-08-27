@@ -11,12 +11,9 @@ public class SceneLocationManager  : Singleton<SceneLocationManager>
     private Dictionary<string, eLocationType> _sceneToLocationTypes;
     private Dictionary<eLocationType, string> _locationTypeToDisplayNames;
 
-    void Awake()
+    void Start()
     {
-        if (CheckInstance())
-        {
-            InitializeDictionaries();
-        }
+        InitializeDictionaries();
     }
 
     private void InitializeDictionaries()

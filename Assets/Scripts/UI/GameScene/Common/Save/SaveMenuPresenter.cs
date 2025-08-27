@@ -12,28 +12,40 @@ public class SaveMenuPresenter : MonoBehaviour
     {
         _model.Initialize();
         _model.UpdateSaveTitleList();
+
         Bind();
     }
 
     private void Bind()
     {
-        _view.OnKeyPressed
-            .Subscribe(keyCode =>
+        _view.MoveDown
+            .Subscribe(_ =>
             {
-                if (keyCode == KeyCode.UpArrow)
-                {
-                    _model.MoveUpSlot();
-                }
-                if (keyCode == KeyCode.DownArrow)
-                {
-                    _model.MoveDownSlot();
-                }
-                if (keyCode == KeyCode.Z || keyCode == KeyCode.Return)
-                {
-                    _model.Save();
-                }
+                _model.MoveDownSlot();
             })
-        .AddTo(_disposal);
+            .AddTo(_disposal);
+
+        _view.MoveUp
+            .Subscribe(_ =>
+            {
+                _model.MoveUpSlot();
+            })
+            .AddTo(_disposal);
+
+        _view.Select
+            .Subscribe(_ =>
+            {
+                _model.Save();
+            })
+            .AddTo(_disposal);
+
+        _view.Close
+            .Subscribe(_ =>
+            {
+                // SaveMenuViewのReturnToMenuメソッドを使用
+                _view.ReturnToMenu();
+            })
+            .AddTo(_disposal);
 
         _model.ActiveSlotIndex
             .Subscribe(slotIndex => _view.ChangeActiveSlot(slotIndex))

@@ -237,7 +237,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3906880389110748526}
   - component: {fileID: 8075698747833092836}
-  - component: {fileID: 2260412069854406637}
+  - component: {fileID: 1597572206027963366}
+  - component: {fileID: 5669735634376210849}
   m_Layer: 0
   m_Name: MenuUI
   m_TagString: Untagged
@@ -283,7 +284,8 @@ MonoBehaviour:
   _notSelectedSaveSprite: {fileID: -3874427190032225847, guid: 7837811af17d3304ea40f57e64e917b9, type: 3}
   _selectedTitleSprite: {fileID: -8532054512090113354, guid: ef5c8fd55dccac04bb7a26090b520b72, type: 3}
   _notSelectedTitleSprite: {fileID: -5773169461709424234, guid: c97781697bc597747a4555baf38b6529, type: 3}
---- !u!114 &2260412069854406637
+  _saveMenuPrefab: {fileID: 5985804347165642844, guid: d2539cf8c2229a244b5d0a49d3eb3035, type: 3}
+--- !u!114 &1597572206027963366
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,7 +294,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8819412573766384333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 591b424af813af4479936e3a22c52468, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b2707143e42e814c9bb42c572586b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 5669735634376210849}
   _view: {fileID: 8075698747833092836}
+--- !u!114 &5669735634376210849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8819412573766384333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93c033eb33d1db4d830db05ef9a8fb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
