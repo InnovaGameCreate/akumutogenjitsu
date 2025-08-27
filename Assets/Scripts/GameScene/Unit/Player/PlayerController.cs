@@ -4,24 +4,35 @@ using UnityEngine.InputSystem;
 public class PlayerController : AbstractUnitController
 {
     private UnitMoveStatus _moveStatus;
-    private Vector2 _currentMoveInput;
+    private Vector2 _currentInputVector;
 
     protected override void OnStartUnitController()
     {
-        PlayerInput.Instance.Input.Base.PlayerMove.started += ctx => OnMove(ctx);
-        PlayerInput.Instance.Input.Base.PlayerMove.performed += ctx => OnMove(ctx);
-        PlayerInput.Instance.Input.Base.PlayerMove.canceled += ctx => OnMove(ctx);
-        PlayerInput.Instance.Input.Base.Enable();
+        PlayerInput.Instance.Input.Base.PlayerMove.started += OnMoveInput;
+        PlayerInput.Instance.Input.Base.PlayerMove.canceled += OnMoveInput;
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    private void OnMoveInput(InputAction.CallbackContext context)
     {
-        _currentMoveInput = context.ReadValue<Vector2>();
+        _currentInputVector = context.ReadValue<Vector2>();
+        UpdateMoveStatus();
+    }
 
-        _moveStatus.Up = _currentMoveInput.y > 0;
-        _moveStatus.Down = _currentMoveInput.y < 0;
-        _moveStatus.Right = _currentMoveInput.x > 0;
-        _moveStatus.Left = _currentMoveInput.x < 0;
+    protected override void OnUpdateUnitController()
+    {
+        if (PlayerInput.Instance?.Input?.Base.PlayerMove != null)
+        {
+            _currentInputVector = PlayerInput.Instance.Input.Base.PlayerMove.ReadValue<Vector2>();
+            UpdateMoveStatus();
+        }
+    }
+
+    private void UpdateMoveStatus()
+    {
+        _moveStatus.Up = _currentInputVector.y > 0.1f;
+        _moveStatus.Down = _currentInputVector.y < -0.1f;
+        _moveStatus.Right = _currentInputVector.x > 0.1f;
+        _moveStatus.Left = _currentInputVector.x < -0.1f;
     }
 
     public override UnitMoveStatus GetMoveStatus()
