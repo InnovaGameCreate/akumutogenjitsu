@@ -56,11 +56,6 @@ public class PlayerController : AbstractUnitController
         _moveStatus.Down = _currentInputVector.y < -0.1f;
         _moveStatus.Right = _currentInputVector.x > 0.1f;
         _moveStatus.Left = _currentInputVector.x < -0.1f;
-
-        if (!_moveStatus.Up && !_moveStatus.Down && !_moveStatus.Left && !_moveStatus.Right)
-        {
-            Debug.Log("Stop");
-        }
     }
 
     public override UnitMoveStatus GetMoveStatus()
