@@ -101,7 +101,7 @@ public class UIView : MonoBehaviour
     }
 
     // MARK: ActionMap
-    public void ActoinMapToBase(bool active)
+    public void ActionMapToBase(bool active)
     {
         if (active)
         {

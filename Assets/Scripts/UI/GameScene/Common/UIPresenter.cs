@@ -62,7 +62,7 @@ public class UIPresenter : MonoBehaviour
             .Subscribe(active =>
             {
                 _view.ShowBase(active);
-                _view.ActoinMapToBase(active);
+                _view.ActionMapToBase(active);
             })
             .AddTo(_disposable);
 
@@ -70,7 +70,7 @@ public class UIPresenter : MonoBehaviour
             .Subscribe(active =>
             {
                 _view.ShowInventory(active);
-                _view.ActoinMapToBase(!active);
+                _view.ActionMapToBase(!active);
                 _view.ActionMapToInventory(active);
             })
             .AddTo(_disposable);
@@ -79,7 +79,7 @@ public class UIPresenter : MonoBehaviour
             .Subscribe(active =>
             {
                 _view.ShowMenu(active);
-                _view.ActoinMapToBase(!active);
+                _view.ActionMapToBase(!active);
                 _view.ActionMapToMenu(active);
             })
             .AddTo(_disposable);
