@@ -72,7 +72,6 @@ public abstract class AbstractEvent : MonoBehaviour
             _eventData.EventType = _event;
             _eventData.EventId = _eventId;
             _eventData.EventStatus = eEventStatus.NotTriggered;
-            _eventData.StoryLayer = _storyLayer;
             _eventData.Enabled = true;
             _eventManager.SaveEventData(_eventId, _eventData);
         }
@@ -86,7 +85,7 @@ public abstract class AbstractEvent : MonoBehaviour
     void Update()
     {
         // EventStory‚ÆEventStatus‚Å—LŒø/–³Œø‚ðŒˆ‚ß‚é
-        if (_storyManager.CurrentStoryLayer == _eventData.StoryLayer || _eventData.StoryLayer == 0)
+        if (_storyManager.CurrentStoryLayer == _storyLayer || _storyLayer == 0)
         {
             _eventData.Enabled = _eventData.EventStatus != eEventStatus.Triggered;
         }
