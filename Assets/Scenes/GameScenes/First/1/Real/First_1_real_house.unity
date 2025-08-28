@@ -147,6 +147,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapMoveEventStreet
       objectReference: {fileID: 0}
+    - target: {fileID: 2560755672142384506, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6475258425735908495, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -389,7 +393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5246769255017206682, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7262873857064080201, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: m_LocalPosition.x
