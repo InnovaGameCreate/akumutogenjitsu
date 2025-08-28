@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 7906648000925570130}
   - component: {fileID: 7122520504315164083}
   - component: {fileID: 5246769255017206682}
-  - component: {fileID: 2265354364521353274}
+  - component: {fileID: -8269791697374650952}
   m_Layer: 0
-  m_Name: TextEvent
-  m_TagString: Event
+  m_Name: EventQueue
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   - {fileID: -5825529846384061753, guid: 2b6ba74622cacf245b727cce629f6562, type: 3}
   _waitTime: 0.05
   _isEnabled: 1
---- !u!114 &2265354364521353274
+--- !u!114 &-8269791697374650952
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -224,13 +224,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3718633801902478523}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce43c1a2ec3eff945bd8ddddedc529a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 959832148c7102f48a0bce616b71b38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _event: 1
-  _isTriggeredOnce: 0
-  _eventId: 
-  _storyLayer: 0
-  _isUpStoryLayer: 0
-  textBoxPrefab: {fileID: 6442152411064900370, guid: f1748129ab547ae4d9d6150508febd2d, type: 3}
-  textLines: []
+  _eventQueue:
+  - {fileID: 0}
+  _isTriggerOnce: 0

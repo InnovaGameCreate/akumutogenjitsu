@@ -4,7 +4,6 @@ public struct EventData
 {
     private eEvent _eventType;
     private string _eventId;
-    private int _storyLayer;
     private eEventStatus _eventStatus;
     private bool _enabled;
 
@@ -39,26 +38,6 @@ public struct EventData
                 }
                 _eventId = value;
             }
-        }
-    }
-
-    /// <summary>
-    /// StoryLayer(0のときは常に有効で、指定するときは1以上に設定する。)
-    /// </summary>
-    public int StoryLayer
-    {
-        get
-        {
-            return _storyLayer;
-        }
-        set
-        {
-            if (value < 0)
-            {
-                Debug.LogError($"EventLayerは0以上を設定してください。({value})");
-                return;
-            }
-            _storyLayer = value;
         }
     }
 

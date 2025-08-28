@@ -129,7 +129,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _eventId
-      value: 2487a861-35e5-4563-b505-72d71ad481e9
+      value: 22515c7f-5ad2-4f63-b001-60693f737b34
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
@@ -149,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _storyLayer
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _isUpStoryLayer
@@ -37786,7 +37786,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _eventId
-      value: 4c1651ed-5dd8-47a5-a0da-aa0aeb800f51
+      value: 22515c7f-5ad2-4f63-b001-60693f737b34
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
@@ -37806,7 +37806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _storyLayer
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _isUpStoryLayer
@@ -49514,10 +49514,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
-      propertyPath: _eventId
-      value: 27b0684f-ff41-4a1a-b061-c6f9a23fa955
-      objectReference: {fileID: 0}
-    - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
       value: First_1_real_house
       objectReference: {fileID: 0}
@@ -49729,14 +49725,6 @@ PrefabInstance:
     - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: _event
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
-      propertyPath: _eventId
-      value: 25a9f8fb-9cad-4e87-8fcf-77fe844cce36
-      objectReference: {fileID: 0}
-    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
-      propertyPath: _storyLayer
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: textLines.Array.size

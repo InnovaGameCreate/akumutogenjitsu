@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using R3;
 using UnityEngine;
 
 public abstract class AbstractEvent : MonoBehaviour
@@ -25,6 +26,10 @@ public abstract class AbstractEvent : MonoBehaviour
 
     // 保存するデータ
     private EventData _eventData = new EventData();
+
+    // 初期化されたか
+    private readonly ReactiveProperty<bool> _initialized = new(false);
+    public ReadOnlyReactiveProperty<bool> Initialized => _initialized;
 
     /// <summary>
     /// イベントID
@@ -67,19 +72,20 @@ public abstract class AbstractEvent : MonoBehaviour
             _eventData.EventType = _event;
             _eventData.EventId = _eventId;
             _eventData.EventStatus = eEventStatus.NotTriggered;
-            _eventData.StoryLayer = _storyLayer;
             _eventData.Enabled = true;
             _eventManager.SaveEventData(_eventId, _eventData);
         }
 
         OnStartEvent();
+
+        _initialized.Value = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         // EventStoryとEventStatusで有効/無効を決める
-        if (_storyManager.CurrentStoryLayer == _eventData.StoryLayer || _eventData.StoryLayer == 0)
+        if (_storyManager.CurrentStoryLayer == _storyLayer || _storyLayer == 0)
         {
             _eventData.Enabled = _eventData.EventStatus != eEventStatus.Triggered;
         }
@@ -92,7 +98,11 @@ public abstract class AbstractEvent : MonoBehaviour
         if (_eventData.Enabled == false)
         {
             BasicAnimation animation = gameObject.GetComponent<BasicAnimation>();
-            animation.Enabled = false;
+            if (animation != null)
+            {
+                // EventQueueを使ったときSetActive(false);をされ、nullになる可能性がある。
+                animation.Enabled = false;
+            }
             _eventManager.SaveEventData(_eventId, _eventData);
             return;
         }
@@ -246,5 +256,6 @@ public abstract class AbstractEvent : MonoBehaviour
     public bool Enabled
     {
         get => _eventData.Enabled;
+        set => _eventData.Enabled = value;
     }
 }
