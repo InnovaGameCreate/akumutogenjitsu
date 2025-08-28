@@ -16,7 +16,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (_applicationIsQuitting)
             {
-                Debug.LogWarning($"[Singleton] Instance '{typeof(T)}' already destroyed on application quit. Won't create again - returning null.");
+                Debug.Log($"[Singleton] アプリケーション終了時にインスタンス '{typeof(T)}' はすでに破棄されています。再生成せず、nullを返します。");
                 return null;
             }
 
@@ -28,7 +28,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
                     if (_instance == null)
                     {
-                        Debug.LogError($"[Singleton] An instance of {typeof(T)} is needed in the scene, but there is none.");
+                        Debug.Log($"[Singleton] シーンに {typeof(T)} のインスタンスが必要ですが、存在しません。");
                     }
                     else
                     {
@@ -50,7 +50,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
         else if (_instance != this)
         {
-            Debug.LogWarning($"[Singleton] Another instance of {typeof(T)} already exists. Destroying this one.");
+            Debug.Log($"[Singleton] 他のインスタンス[{typeof(T)}]がすでに存在していますので、このオブジェクトを削除します。");
             Destroy(gameObject);
         }
     }
