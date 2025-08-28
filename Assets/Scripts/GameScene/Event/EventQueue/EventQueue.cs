@@ -50,7 +50,7 @@ public class EventQueue : MonoBehaviour
         foreach (var eventObj in _eventQueue)
         {
             AbstractEvent ev = eventObj.GetComponent<AbstractEvent>();
-            if (ev == null)
+            if (ev == null || ev.EventStatus == eEventStatus.Triggered)
             {
                 Debug.Log("EventQueueにAbstractEventをアサインしていないGameObjectが指定されています。");
                 continue;
@@ -59,6 +59,13 @@ public class EventQueue : MonoBehaviour
             _allEvents.Add(ev);
             ev.gameObject.SetActive(false);
         }
+
+        if (_allEvents.Count == 0)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         _currentEventIndex = 0;
         _allEvents[0].gameObject.SetActive(true);
     }

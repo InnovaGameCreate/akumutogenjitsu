@@ -229,11 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _event: 1
   _isTriggeredOnce: 0
-  _eventId: 80066047-fc81-4ec5-9058-0a60cc1462e1
+  _eventId: 
   _storyLayer: 0
   _isUpStoryLayer: 0
   textBoxPrefab: {fileID: 6442152411064900370, guid: f1748129ab547ae4d9d6150508febd2d, type: 3}
-  targetCanvas: {fileID: 0}
-  linesPerPage: 1
-  message: "\u3069\u3046\u3082\u3053\u3093\u3044\u3061\u306F\n\u3070\u304B\u3067\u3059\n\u3042\u307B\u3067\u3059"
-  speakerName: "\u4E3B\u4EBA\u516C"
+  textLines: []
