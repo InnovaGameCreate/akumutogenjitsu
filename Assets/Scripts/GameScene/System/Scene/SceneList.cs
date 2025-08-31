@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.VisualScripting;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -86,11 +88,13 @@ public class SceneList : ScriptableObject
             Debug.Log("シーン名を更新しました");
         }
     }
-    
+
     private void OnValidate()
     {
         if (Scenes == null) Scenes = new List<SceneDefine>();
         if (Locations == null) Locations = new List<LocationDefine>();
+
+        UpdateAllSceneNames();
     }
 #endif
 }

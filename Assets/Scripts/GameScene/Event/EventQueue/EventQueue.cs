@@ -57,7 +57,7 @@ public class EventQueue : MonoBehaviour
             }
             ev.TriggerOnce = true;
             _allEvents.Add(ev);
-            ev.gameObject.SetActive(false);
+            ev.Enabled = false;
         }
 
         if (_allEvents.Count == 0)
@@ -67,25 +67,13 @@ public class EventQueue : MonoBehaviour
         }
 
         _currentEventIndex = 0;
-        _allEvents[0].gameObject.SetActive(true);
+        _allEvents[0].Enabled = true;
     }
 
     private void SetupNextEvent(AbstractEvent nextEvent)
     {
-        nextEvent.gameObject.SetActive(true);
-        BasicAnimation animation = nextEvent.gameObject.GetComponent<BasicAnimation>();
-        if (animation != null)
-        {
-            Destroy(animation);
-        }
-        nextEvent.Initialized
-            .Where(isInit => isInit)
-            .Take(1)
-            .Subscribe(_ =>
-            {
-                nextEvent.TriggerEvent();
-                nextEvent.EventStatus = eEventStatus.Running;
-            })
-            .AddTo(_disposable);
+        nextEvent.Enabled = true;
+        // イベントを実行する
+        nextEvent.EventStatus = eEventStatus.Running;
     }
 }

@@ -6,7 +6,6 @@ public struct EventData
     private string _eventId;
     private eEventStatus _eventStatus;
     private bool _enabled;
-
     public eEvent EventType
     {
         get

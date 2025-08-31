@@ -6,15 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DeveloppingScenes/UnitController.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/DeveloppingScenes/MapMove/testmap.unity
-    guid: 9e51c509a61709a42a17661cd612ed12
-  - enabled: 1
-    path: Assets/Scenes/DeveloppingScenes/MapMove/testmap2.unity
-    guid: 41186dd123f1ac841a7fb874d7703e4f
-  - enabled: 1
     path: Assets/Scenes/GameScenes/First/1/Real/School/1F/First_1_real_class101.unity
     guid: 33a9eabc9e66ab04087600bc72e62199
   - enabled: 1
@@ -54,8 +45,29 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/First/1/Real/First_1_real_street.unity
     guid: d5df52d2cc9f01847af6c1c534c1fcdd
   - enabled: 1
-    path: Assets/Scenes/GameScenes/First/1/Real/School/1F/First_1_real_scienceroom.unity
-    guid: 3145a4871a1ce3c4bb4d30162208832b
+    path: Assets/Scenes/GameScenes/First/1/Dream/School/2F/First_1_dream_hallway2.unity
+    guid: 09c0925465e19db4c9644cb3f3074672
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Dream/School/2F/First_1_dream_class201.unity
+    guid: 861d691f7095b5544b5b8cda0a582a59
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Dream/School/2F/First_1_dream_class202.unity
+    guid: 5ccdbb6b8122e5c45b9b4ec6e6d77701
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Dream/School/2F/First_1_dream_class203.unity
+    guid: 6b2fa4d415c86f048879eb01f85b5313
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Dream/School/2F/First_1_dream_class204.unity
+    guid: 19df23d253fba9040bdee1f2965850ed
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Dream/School/1F/First_1_dream_class101.unity
+    guid: a8855e825b52dec4eb62a6c2770b3ce2
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Dream/School/1F/First_1_dream_class102.unity
+    guid: 5f4e1d573a73126448e07067655693bd
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Dream/School/1F/First_1_dream_class103.unity
+    guid: 554b92666cb9dae41bb021ea0ea4b328
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

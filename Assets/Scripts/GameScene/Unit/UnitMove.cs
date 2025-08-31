@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class UnitMove : MonoBehaviour
 {
-    // ���x
+    // 速度の初期値
     [SerializeField] private float _defaultSpeed;
     private float _speed;
 
-    // ����
+    // 移動入力状態
     private UnitMoveStatus _unitMoveStatus;
 
-    // Unit���ړ����邩
+    // Unitの移動有効フラグ
     private bool _isEnabled;
 
     private Rigidbody2D _rigidbody;
@@ -19,13 +19,13 @@ public class UnitMove : MonoBehaviour
     {
         if (_defaultSpeed == 0)
         {
-            Debug.LogError("DefaultSpeed��0�ɐݒ肳��Ă��܂�");
+            Debug.LogError("DefaultSpeedが0に設定されています。");
         }
 
         _rigidbody = GetComponent<Rigidbody2D>();
         if (_rigidbody == null)
         {
-            Debug.LogError("Rigidbody2D���A�^�b�`����Ă��܂���");
+            Debug.LogError("Rigidbody2Dがアタッチされていません。");
         }
 
         _speed = _defaultSpeed;
@@ -33,14 +33,14 @@ public class UnitMove : MonoBehaviour
     }
 
     /// <summary>
-    /// Unit�𓮂���
+    /// ユニットを移動させる
     /// </summary>
-    /// <param name="direction"> ���������� </param>
+    /// <param name="direction"> 移動方向の入力状態 </param>
     public void Move(UnitMoveStatus unitmovestatus)
     {
         if (!_isEnabled)
         {
-            Debug.Log("UnitMove������������Ă��܂�");
+            Debug.Log("UnitMoveが無効化されています。移動できません。");
             return;
         }
 
@@ -65,15 +65,15 @@ public class UnitMove : MonoBehaviour
 
         move = move.normalized * _speed * Time.fixedDeltaTime;
 
-        // �ړ�
+    // 移動実行
         _rigidbody.MovePosition(_rigidbody.position + move);
 
-        // �������擾
+    // 入力状態を保持
         _unitMoveStatus = unitmovestatus;
     }
 
     /// <summary>
-    /// Unit�̑��x
+    /// ユニットの速度
     /// </summary>
     public float Speed
     {
@@ -86,21 +86,21 @@ public class UnitMove : MonoBehaviour
         {
             if (value < 0)
             {
-                Debug.LogError("Speed�ɕ��̒l���ݒ肳��Ă��܂�");
+                Debug.LogError("Speedに負の値を設定することはできません。");
                 return;
             }
 
-            // ���x��ݒ�
+            // 速度を設定
             _speed = value;
 
 #if DEBUG_MODE
-            Debug.Log("Speed��" + _speed + "�ɐݒ肵�܂���");
+            Debug.Log("Speedが" + _speed + "に設定されました");
 #endif
         }
     }
 
     /// <summary>
-    /// Unit���ړ����邩
+    /// ユニットの移動有効フラグ
     /// </summary>
     public bool IsEnabled
     {
