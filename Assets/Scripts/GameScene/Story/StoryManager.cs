@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StoryManager : MonoBehaviour
+public class StoryManager : Singleton<StoryManager>
 {
     [SerializeField] private int _storyLayer = 1;
     

@@ -84,3 +84,18 @@ MonoBehaviour:
   - Type: 8
     _sceneAsset: {fileID: 102900000, guid: 3ae87ca17ee18864bac8719311e45ae3, type: 3}
     _sceneName: First_1_real_hallway2
+  - Type: 8
+    _sceneAsset: {fileID: 102900000, guid: 09c0925465e19db4c9644cb3f3074672, type: 3}
+    _sceneName: First_1_dream_hallway2
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 19df23d253fba9040bdee1f2965850ed, type: 3}
+    _sceneName: First_1_dream_class204
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 6b2fa4d415c86f048879eb01f85b5313, type: 3}
+    _sceneName: First_1_dream_class203
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 5ccdbb6b8122e5c45b9b4ec6e6d77701, type: 3}
+    _sceneName: First_1_dream_class202
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 861d691f7095b5544b5b8cda0a582a59, type: 3}
+    _sceneName: First_1_dream_class201

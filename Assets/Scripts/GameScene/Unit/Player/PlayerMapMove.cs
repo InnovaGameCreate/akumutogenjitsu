@@ -31,6 +31,7 @@ public class PlayerMapMove : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         transform.position = _newPosition;
+        EventManager.Instance.InitializeAllEventInScene();
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

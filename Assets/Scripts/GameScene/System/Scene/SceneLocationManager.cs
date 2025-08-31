@@ -71,7 +71,7 @@ public class SceneLocationManager  : Singleton<SceneLocationManager>
         else
         {
             Debug.LogError("不正なシーン名が指定されました。");
-            return "不明なシーン";
+            return "■■■■■";
         }
     }
 }
