@@ -6,6 +6,16 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
     // イベントの全てのデータ
     private Dictionary<string, EventData> _savedEventDatas = new();
 
+    private List<AbstractEvent> _allEventsInScene = new();
+
+    void Update()
+    {
+        foreach (var eventData in _savedEventDatas.Values)
+        {
+            UpdateActive(eventData.EventId);
+        }
+    }
+
     void OnEnable()
     {
         InitializeAllEventInScene();
@@ -91,10 +101,8 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
     /// </summary>
     public void SaveAllEventInScene()
     {
-        GameObject[] allEventObjs = GameObject.FindGameObjectsWithTag("Event");
-        foreach (GameObject eventObj in allEventObjs)
+        foreach (var ev in _allEventsInScene)
         {
-            AbstractEvent ev = eventObj.GetComponent<AbstractEvent>();
             if (ev == null)
             {
                 Debug.LogError("AbstractEventがコンポーネントされていません。");
@@ -122,6 +130,7 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
     {
         int currentStoryLayer = StoryManager.Instance.CurrentStoryLayer;
         AbstractEvent ev = GetEventByEventId(eventData.EventId);
+        if (ev == null) return false;
 
         return ev.StoryLayer == 0 || ev.StoryLayer == currentStoryLayer;
     }
@@ -133,7 +142,9 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
     /// <returns></returns>
     private bool IsActiveByTriggeredOnce(EventData eventData)
     {
-        AbstractEvent ev = EventManager.GetEventByEventId(eventData.EventId);
+        AbstractEvent ev = GetEventByEventId(eventData.EventId);
+        if (ev == null) return false;
+
         if (ev.TriggerOnce && eventData.EventStatus == eEventStatus.Triggered)
         {
             return false;
@@ -161,7 +172,7 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
     {
         foreach (var eventData in _savedEventDatas)
         {
-            AbstractEvent ev = EventManager.GetEventByEventId(eventData.Value.EventId);
+            AbstractEvent ev = GetEventByEventId(eventData.Value.EventId);
             if (ev == null)
             {
                 // 別シーンのイベントのとき
@@ -184,15 +195,18 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
     /// </summary>
     private void LoadAllEventInScene()
     {
-        GameObject[] allEventObjs = GameObject.FindGameObjectsWithTag("Event");
-        foreach (GameObject eventObj in allEventObjs)
+        _allEventsInScene.Clear();
+        // シーン内のEventを取得
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Event");
+        foreach (var obj in objs)
         {
-            AbstractEvent ev = eventObj.GetComponent<AbstractEvent>();
+            AbstractEvent ev = obj.GetComponent<AbstractEvent>();
             if (ev == null)
             {
                 Debug.LogError("AbstractEventがコンポーネントされていません。");
                 continue;
             }
+            _allEventsInScene.Add(ev);
             string eventId = ev.EventId;
             if (_savedEventDatas.ContainsKey(eventId))
             {
@@ -205,12 +219,10 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
         }
     }
 
-    private static AbstractEvent GetEventByEventId(string eventId)
+    private AbstractEvent GetEventByEventId(string eventId)
     {
-        GameObject[] eventObjs = GameObject.FindGameObjectsWithTag("Event");
-        foreach (var obj in eventObjs)
+        foreach (var ev in _allEventsInScene)
         {
-            AbstractEvent ev = obj.GetComponent<AbstractEvent>();
             if (ev == null)
             {
                 Debug.LogError("AbstractEventをコンポーネントしていません。");

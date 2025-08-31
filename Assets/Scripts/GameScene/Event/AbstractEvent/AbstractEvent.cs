@@ -60,8 +60,6 @@ public abstract class AbstractEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EventManager.Instance.UpdateActive(_eventId);
-
         OnUpdateEvent();
 
         // イベントが実行中はトリガーしない
