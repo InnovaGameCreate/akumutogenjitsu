@@ -37,6 +37,15 @@ public abstract class AbstractEvent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 強制的にイベントを実行する
+    /// </summary>
+    public void TriggerEventForce()
+    {
+        EventStatus = eEventStatus.Running;
+        TriggerEvent();
+    }
+
     void Start()
     {
         if (EventManager.Instance == null)

@@ -13,8 +13,6 @@ public class EventQueue : MonoBehaviour
 
     private int _currentEventIndex = 0;
 
-    private readonly CompositeDisposable _disposable = new();
-
     void Start()
     {
         Initialize();
@@ -24,7 +22,7 @@ public class EventQueue : MonoBehaviour
     void Update()
     {
         AbstractEvent currentEvent = _allEvents[_currentEventIndex];
-        if (currentEvent.EventStatus == eEventStatus.Triggered)
+        if (currentEvent.EventStatus == eEventStatus.Triggered || !currentEvent.Enabled)
         {
             currentEvent.Enabled = false;
 
@@ -34,7 +32,7 @@ public class EventQueue : MonoBehaviour
                 AbstractEvent nextEvent = _allEvents[_currentEventIndex];
                 SetupNextEvent(nextEvent);
             }
-            else if (_isTriggerOnce)
+            else if (!_isTriggerOnce)
             {
                 Initialize();
             }
@@ -52,10 +50,8 @@ public class EventQueue : MonoBehaviour
             AbstractEvent ev = eventObj.GetComponent<AbstractEvent>();
             if (ev == null || ev.EventStatus == eEventStatus.Triggered)
             {
-                Debug.Log("EventQueueにAbstractEventをアサインしていないGameObjectが指定されています。");
                 continue;
             }
-            ev.TriggerOnce = true;
             _allEvents.Add(ev);
             ev.Enabled = false;
         }
@@ -75,5 +71,7 @@ public class EventQueue : MonoBehaviour
         nextEvent.Enabled = true;
         // イベントを実行する
         nextEvent.EventStatus = eEventStatus.Running;
+        nextEvent.TriggerEvent();
+        nextEvent.EventStatus = eEventStatus.NotTriggered;
     }
 }
