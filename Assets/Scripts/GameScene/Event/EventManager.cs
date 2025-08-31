@@ -180,13 +180,13 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
             }
 
             if (!IsActiveByTriggeredOnce(eventData.Value) && !IsActiveByStoryLayer(eventData.Value) && !IsActiveByEventDataEnable(eventData.Value))
-                {
-                    ev.gameObject.SetActive(false);
-                }
-                else
-                {
-                    ev.gameObject.SetActive(true);
-                }
+            {
+                ev.gameObject.SetActive(false);
+            }
+            else
+            {
+                ev.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -208,11 +208,7 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
             }
             _allEventsInScene.Add(ev);
             string eventId = ev.EventId;
-            if (_savedEventDatas.ContainsKey(eventId))
-            {
-                _savedEventDatas[eventId] = ev.EventData;
-            }
-            else
+            if (!_savedEventDatas.ContainsKey(eventId))
             {
                 _savedEventDatas.Add(eventId, ev.DefaultEventData);
             }
@@ -242,12 +238,16 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
 
     public EventSaveData EncodeToSaveData()
     {
-        // TODO: Implement logic to encode current state to EventSaveData
-        return new EventSaveData();
+        EventSaveData saveData = new EventSaveData();
+        saveData.CurrentStoryLayer = StoryManager.Instance.CurrentStoryLayer;
+        saveData.EventData = _savedEventDatas;
+
+        return saveData;
     }
 
-	public void LoadFromSaveData(EventSaveData data)
-	{
-		// TODO: Implement logic to load state from EventSaveData
+    public void LoadFromSaveData(EventSaveData saveData)
+    {
+        StoryManager.Instance.CurrentStoryLayer = saveData.CurrentStoryLayer;
+        _savedEventDatas = saveData.EventData;
 	}
 }
