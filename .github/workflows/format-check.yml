@@ -8,6 +8,8 @@ on:
     branches: [ main ]
     paths: [ 'Assets/Scripts/**/*.cs' ]
 
+  workflow_dispatch:
+
 jobs:
   format-check:
     runs-on: windows-latest
