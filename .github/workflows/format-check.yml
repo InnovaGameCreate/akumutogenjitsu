@@ -2,10 +2,10 @@ name: Code Format Check
 
 on:
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main ]
     paths: [ 'Assets/Scripts/**/*.cs' ]
   push:
-    branches: [ main, develop ]
+    branches: [ main ]
     paths: [ 'Assets/Scripts/**/*.cs' ]
 
 jobs:
