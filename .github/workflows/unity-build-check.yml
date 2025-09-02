@@ -3,7 +3,7 @@ name: Unity Build Check
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: '**'
   
   workflow_dispatch:
 
