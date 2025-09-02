@@ -1,0 +1,35 @@
+name: Code Format Check
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+    paths: [ 'Assets/Scripts/**/*.cs' ]
+  push:
+    branches: [ main, develop ]
+    paths: [ 'Assets/Scripts/**/*.cs' ]
+
+jobs:
+  format-check:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
+    
+    - name: Check format
+      run: dotnet format --verify-no-changes --verbosity diagnostic --include "**/*.cs"
+      working-directory: ./Assets/Scripts
+      
+    - name: Format check failed
+      if: failure()
+      run: |
+        echo "❌ コードフォーマットが .editorconfig のルールに従っていません"
+        echo "📝 修正方法："
+        echo "   1. ローカルで 'dotnet format' を実行"
+        echo "   2. 変更をコミット・プッシュ"
+        exit 1
