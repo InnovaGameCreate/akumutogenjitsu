@@ -2,10 +2,10 @@ name: Code Format Check
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: '**'
     paths: [ 'Assets/Scripts/**/*.cs' ]
   push:
-    branches: [ main ]
+    branches: '**'
     paths: [ 'Assets/Scripts/**/*.cs' ]
 
   workflow_dispatch:
