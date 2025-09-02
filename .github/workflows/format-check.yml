@@ -18,20 +18,58 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     
+    # Step 1: 基本的なファイル形式をチェック
+    - name: EditorConfig Checker
+      uses: editorconfig-checker/action-editorconfig-checker@main
+        
+    # Step 2: C# 特有の命名規則・構造をチェック
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
-    
-    - name: Check format
-      run: dotnet format --verify-no-changes --verbosity diagnostic --include "**/*.cs"
+        
+    - name: Create temporary C# project for format check
+      run: |
+        cd Assets/Scripts
+        dotnet new console --force --name TempFormatCheck
+        Remove-Item Program.cs
+        # Include all CS files in the project
+        $csprojContent = @'
+        <Project Sdk="Microsoft.NET.Sdk">
+          <PropertyGroup>
+            <TargetFramework>net8.0</TargetFramework>
+            <Nullable>enable</Nullable>
+            <OutputType>Library</OutputType>
+          </PropertyGroup>
+          <ItemGroup>
+            <Compile Include="**/*.cs" Exclude="TempFormatCheck.csproj" />
+          </ItemGroup>
+        </Project>
+        '@
+        Set-Content -Path "TempFormatCheck.csproj" -Value $csprojContent
+      shell: pwsh
+        
+    - name: Check C# format with .editorconfig rules
+      run: dotnet format TempFormatCheck.csproj --verify-no-changes --verbosity diagnostic
       working-directory: ./Assets/Scripts
+      continue-on-error: true
+      id: format-check
+      
+    - name: Clean up temporary files
+      run: |
+        cd Assets/Scripts
+        Remove-Item TempFormatCheck -ErrorAction SilentlyContinue
+      shell: pwsh
       
     - name: Format check failed
-      if: failure()
+      if: steps.format-check.outcome == 'failure'
       run: |
         echo "❌ コードフォーマットが .editorconfig のルールに従っていません"
         echo "📝 修正方法："
-        echo "   1. ローカルで 'dotnet format' を実行"
+        echo "   1. ローカルで以下を実行:"
+        echo "      cd Assets/Scripts"
+        echo "      dotnet new console --force --name TempFormat"
+        echo "      dotnet format TempFormat.csproj"
+        echo "      Remove-Item TempFormat"
         echo "   2. 変更をコミット・プッシュ"
         exit 1
