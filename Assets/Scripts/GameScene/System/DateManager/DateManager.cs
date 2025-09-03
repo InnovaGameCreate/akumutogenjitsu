@@ -10,10 +10,10 @@ public class DateManager : Singleton<DateManager>, ISaveableManager<DateSaveData
 
     void Start()
     {
-        initialize();
+        Initialize();
     }
 
-    private void initialize()
+    private void Initialize()
     {
         _currentDate.Month = _firstMonth;
         _currentDate.Day = _firstDay;
@@ -32,6 +32,9 @@ public class DateManager : Singleton<DateManager>, ISaveableManager<DateSaveData
     public void PlusOneDay()
     {
         _currentDate.Day++;
+
+        // 日付を超えたらストーリーレイヤーを初期化する
+        StoryManager.Instance.Initialize();
     }
 
     public DateSaveData EncodeToSaveData()
