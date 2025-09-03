@@ -26,6 +26,6 @@ public class StoryManager : Singleton<StoryManager>
 
     public void Initialize()
     {
-        _storyLayer = 0;
+        _storyLayer = 1;
     }
 }
