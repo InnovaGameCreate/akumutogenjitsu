@@ -10,10 +10,10 @@ public class DateManager : Singleton<DateManager>, ISaveableManager<DateSaveData
 
     void Start()
     {
-        initialize();
+        Initialize();
     }
 
-    private void initialize()
+    private void Initialize()
     {
         _currentDate.Month = _firstMonth;
         _currentDate.Day = _firstDay;
