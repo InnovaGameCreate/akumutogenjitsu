@@ -10,6 +10,7 @@ public enum eEvent
     SpawnEnemyEvent, // 敵生成イベント
     TextEvent, // テキスト表示イベント
     DarkEvent,      // 暗転イベント
+    SetDateEvent,   // 日付を設定するイベント
 
     // 1日目 Dream
     CreateEntranceKeyWithMedicine,  // 薬品で玄関の鍵を作成する
