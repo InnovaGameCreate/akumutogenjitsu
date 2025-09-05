@@ -1,18 +1,19 @@
 /// <summary>
-/// ƒCƒxƒ“ƒg‚Ìí—Ş
+/// ã‚¤ãƒ™ãƒ³ãƒˆã®ç¨®é¡
 /// </summary>
 public enum eEvent
 {
     None,
     TestEvent,
-    MapMoveEvent,   // ƒ}ƒbƒvˆÚ“®ƒCƒxƒ“ƒg
-    ItemEvent,      // ƒAƒCƒeƒ€ƒCƒxƒ“ƒg
-    SpawnEnemyEvent, // “G¶¬ƒCƒxƒ“ƒg
-    TextEvent, // ƒeƒLƒXƒg•\¦ƒCƒxƒ“ƒg
-    DarkEvent,      // ˆÃ“]ƒCƒxƒ“ƒg
-    SetDateEvent,   // “ú•t‚ğİ’è‚·‚éƒCƒxƒ“ƒg
+    MapMoveEvent,   // ãƒãƒƒãƒ—ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆ
+    ItemEvent,      // ã‚¢ã‚¤ãƒ†ãƒ ã‚¤ãƒ™ãƒ³ãƒˆ
+    SpawnEnemyEvent, // æ•µã‚¹ãƒãƒ¼ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
+    TextEvent, // ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤ºã‚¤ãƒ™ãƒ³ãƒˆ
+    DarkEvent,      // æš—è»¢ã‚¤ãƒ™ãƒ³ãƒˆ
+    SetDateEvent,   // æ—¥ä»˜ã‚’è¨­å®šã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
+    PrologueEvent,  // ãƒ—ãƒ­ãƒ­ãƒ¼ã‚°ã‚¤ãƒ™ãƒ³ãƒˆï¼ˆãƒ›ãƒ©ãƒ¼ç”¨ï¼‰
 
-    // 1“ú–Ú Dream
-    CreateEntranceKeyWithMedicine,  // –ò•i‚ÅŒºŠÖ‚ÌŒ®‚ğì¬‚·‚é
-    Floors2And3StairsPasswordGimmick    // ŠK’i‚ÌƒpƒXƒ[ƒhƒMƒ~ƒbƒN
+    // 1éšå±¤ Dream
+    CreateEntranceKeyWithMedicine,  // è–¬å“ã§ç„é–¢ã¸ã®éµã‚’ä½œæˆã™ã‚‹
+    Floors2And3StairsPasswordGimmick    // éšæ®µã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚®ãƒŸãƒƒã‚¯
 }
