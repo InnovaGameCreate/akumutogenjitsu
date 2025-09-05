@@ -1,9 +1,11 @@
 using UnityEngine;
 
-class SetDateEvent : AbstractEvent
+public class SetDateEvent : AbstractEvent
 {
     [Header("シーンに入ったらすぐに実行するか")]
     [SerializeField] private bool _isTriggerForce = false;
+    [Header("変更後の日付")]
+    [SerializeField] private Date _newDate = new Date(9, 6);
 
     private bool _isInEvent = false;
 
@@ -11,8 +13,14 @@ class SetDateEvent : AbstractEvent
 
     public override void TriggerEvent()
     {
-        Date currentDate = DateManager.Instance.GetCurrentDate();
-        DateManager.Instance.SetCurrentDate(Date.AddDays(currentDate, 1));
+        // 日付の妥当性チェックを追加
+        if (!Date.IsValid(_newDate))
+        {
+            Debug.LogError($"無効な日付が設定されています: {_newDate}");
+            return;
+        }
+
+        DateManager.Instance.SetCurrentDate(_newDate);
         _hasFinished = true;
     }
 
