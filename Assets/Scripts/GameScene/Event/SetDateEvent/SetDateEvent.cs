@@ -13,9 +13,9 @@ public class SetDateEvent : AbstractEvent
 
     public override void TriggerEvent()
     {
-        // 日付の妥当性チェックを追加
         if (!Date.IsValid(_newDate))
         {
+            _hasFinished = true;
             Debug.LogError($"無効な日付が設定されています: {_newDate}");
             return;
         }
