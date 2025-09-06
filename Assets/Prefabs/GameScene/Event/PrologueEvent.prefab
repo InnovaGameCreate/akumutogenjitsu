@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c492a517c24641e46a3b0c273df3b7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _event: 0
+  _event: 8
   _isTriggeredOnce: 0
   _eventId: 
   _storyLayer: 0
