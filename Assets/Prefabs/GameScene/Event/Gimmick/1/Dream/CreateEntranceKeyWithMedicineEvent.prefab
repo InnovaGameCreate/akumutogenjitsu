@@ -103,8 +103,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca4cd81d0dbf4447b3ea0ca79df3d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _event: 6
+  _event: 9
   _isTriggeredOnce: 0
+  _eventId: 
+  _storyLayer: 0
+  _isUpStoryLayer: 0
 --- !u!50 &7075154201759708481
 Rigidbody2D:
   serializedVersion: 5
