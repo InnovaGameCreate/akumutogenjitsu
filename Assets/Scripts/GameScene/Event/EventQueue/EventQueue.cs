@@ -21,6 +21,10 @@ public class EventQueue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_currentEventIndex > _allEvents.Count)
+        {
+            return;
+        }
         AbstractEvent currentEvent = _allEvents[_currentEventIndex];
         if (currentEvent.EventStatus == eEventStatus.Triggered || !currentEvent.Enabled)
         {
