@@ -638,16 +638,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6348cf89244bafe40a4a90b9f948494f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlGuidePanel: {fileID: 0}
   controlGuideText: {fileID: 1039823455138271707}
-  inventoryUIName: InventoryUI
-  menuUIName: MenuUI
-  saveUIName: TextBoxUI
-  inventoryUI: {fileID: 1880793682558768645, guid: 31b792d76b147b74b9b4a1baf2c2a45a, type: 3}
-  menuUI: {fileID: 8819412573766384333, guid: 44ce6f9144aba2f42b77746fbebce9c3, type: 3}
-  saveUI: {fileID: 5985804347165642844, guid: d2539cf8c2229a244b5d0a49d3eb3035, type: 3}
-  hideText: 1
-  hidePanel: 0
+  checkInterval: 0.1
+  refreshInterval: 5
 --- !u!1 &7493557256917815126
 GameObject:
   m_ObjectHideFlags: 0
