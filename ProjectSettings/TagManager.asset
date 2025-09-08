@@ -15,6 +15,7 @@ TagManager:
   - PlayerMgr
   - DateMgr
   - SaveMgr
+  - UI
   layers:
   - Default
   - TransparentFX
