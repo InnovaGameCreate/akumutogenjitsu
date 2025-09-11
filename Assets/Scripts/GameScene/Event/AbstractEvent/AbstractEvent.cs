@@ -5,27 +5,27 @@ using UnityEngine;
 
 public abstract class AbstractEvent : MonoBehaviour
 {
-    [Header("ƒCƒxƒ“ƒg‚Ìİ’è")]
-    // ƒCƒxƒ“ƒg‚Ìí—Ş
+    [Header("ã‚¤ãƒ™ãƒ³ãƒˆã®è¨­å®š")]
+    // ã‚¤ãƒ™ãƒ³ãƒˆã®ç¨®é¡
     [SerializeField] private eEvent _event;
 
-    [Header("1‰ñ‚¾‚¯Às‚·‚é")]
-    // i‰ñ‚¾‚¯ƒgƒŠƒK[‚·‚é‚©
+    [Header("1å›ã ã‘å®Ÿè¡Œã™ã‚‹")]
+    // iå›ã ã‘ãƒˆãƒªã‚¬ãƒ¼ã™ã‚‹ã‹
     [SerializeField] private bool _isTriggeredOnce;
 
-    [Header("ƒCƒxƒ“ƒgIDi©“®¶¬E•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢j")]
+    [Header("ã‚¤ãƒ™ãƒ³ãƒˆIDï¼ˆè‡ªå‹•ç”Ÿæˆãƒ»å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ï¼‰")]
     [SerializeField] private string _eventId;
 
-    [Header("StoryLayer(0‚Ì‚Æ‚«‚Íí‚É—LŒø‚ÅAw’è‚·‚é‚Æ‚«‚Í1ˆÈã‚Éİ’è‚·‚éB)")]
+    [Header("StoryLayer(0ã®ã¨ãã¯å¸¸ã«æœ‰åŠ¹ã§ã€æŒ‡å®šã™ã‚‹ã¨ãã¯1ä»¥ä¸Šã«è¨­å®šã™ã‚‹ã€‚)")]
     [SerializeField] private int _storyLayer = 0;
 
-    [Header("‚±‚ÌƒCƒxƒ“ƒg‚ªI—¹‚µ‚½‚çStoryLayer‚ğã‚°‚é‚©")]
+    [Header("ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆãŒçµ‚äº†ã—ãŸã‚‰StoryLayerã‚’ä¸Šã’ã‚‹ã‹")]
     [SerializeField] private bool _isUpStoryLayer = false;
 
     private bool _isTriggerForce = false;
 
     /// <summary>
-    /// ƒCƒxƒ“ƒgID
+    /// ã‚¤ãƒ™ãƒ³ãƒˆID
     /// </summary>
     public string EventId
     {
@@ -40,7 +40,7 @@ public abstract class AbstractEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// ‹­§“I‚ÉƒCƒxƒ“ƒg‚ğÀs‚·‚é
+    /// å¼·åˆ¶çš„ã«ã‚¤ãƒ™ãƒ³ãƒˆã‚’å®Ÿè¡Œã™ã‚‹
     /// </summary>
     public void TriggerEventForce()
     {
@@ -51,7 +51,7 @@ public abstract class AbstractEvent : MonoBehaviour
     {
         if (EventManager.Instance == null)
         {
-            Debug.LogError("EventManager‚ª‘¶İ‚µ‚Ü‚¹‚ñB");
+            Debug.LogError("EventManagerãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚");
             return;
         }
 
@@ -63,12 +63,12 @@ public abstract class AbstractEvent : MonoBehaviour
     {
         OnUpdateEvent();
 
-        // ƒCƒxƒ“ƒg‚ªÀs’†‚ÍƒgƒŠƒK[‚µ‚È‚¢
+        // ã‚¤ãƒ™ãƒ³ãƒˆãŒå®Ÿè¡Œä¸­ã¯ãƒˆãƒªã‚¬ãƒ¼ã—ãªã„
         if (EventStatus != eEventStatus.Running)
         {
             if (IsTriggerEvent() || _isTriggerForce)
             {
-                SetIsUnitMove(false); // Unit‚ÌˆÚ“®‚ğ–³Œø‚É‚·‚é
+                SetIsUnitMove(false); // Unitã®ç§»å‹•ã‚’ç„¡åŠ¹ã«ã™ã‚‹
                 TriggerEvent();
                 EventStatus = eEventStatus.Running;
             }
@@ -81,11 +81,11 @@ public abstract class AbstractEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚ÌI—¹ˆ—
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã®çµ‚äº†å‡¦ç†
     /// </summary>
     private void FinishEvent()
     {
-        SetIsUnitMove(true); // Unit‚ÌˆÚ“®‚ğ—LŒø‚É‚·‚é
+        SetIsUnitMove(true); // Unitã®ç§»å‹•ã‚’æœ‰åŠ¹ã«ã™ã‚‹
 
         EventStatus = _isTriggeredOnce ? eEventStatus.Triggered : eEventStatus.NotTriggered;
         if (_isUpStoryLayer)
@@ -94,17 +94,17 @@ public abstract class AbstractEvent : MonoBehaviour
         }
 
 #if DEBUG_MODE
-        Debug.Log($"ƒCƒxƒ“ƒg: {_event} ‚ªI—¹‚µ‚Ü‚µ‚½");
+        Debug.Log($"ã‚¤ãƒ™ãƒ³ãƒˆ: {_event} ãŒçµ‚äº†ã—ã¾ã—ãŸ");
 #endif
     }
 
     /// <summary>
-    /// Unit‚ÌˆÚ“®‚ğ—LŒø/–³Œø‚É‚·‚é
+    /// Unitã®ç§»å‹•ã‚’æœ‰åŠ¹/ç„¡åŠ¹ã«ã™ã‚‹
     /// </summary>
-    /// <param name="isUnitMove"> —LŒø/–³Œø </param>
+    /// <param name="isUnitMove"> æœ‰åŠ¹/ç„¡åŠ¹ </param>
     private void SetIsUnitMove(bool isUnitMove)
     {
-        // ‘S‚Ä‚ÌUnit‚ÌUnitMove‚ğæ“¾
+        // å…¨ã¦ã®Unitã®UnitMoveã‚’å–å¾—
         List<UnitMove> units = new List<UnitMove>(FindObjectsByType<UnitMove>(FindObjectsSortMode.None));
 
         foreach (UnitMove unit in units)
@@ -114,38 +114,38 @@ public abstract class AbstractEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚Ì‰Šú‰»ˆ—(Start()‚Ì‘ã‚í‚è)
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã®åˆæœŸåŒ–å‡¦ç†(Start()ã®ä»£ã‚ã‚Š)
     /// </summary>
     public virtual void OnStartEvent()
     {
     }
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚ÌXVˆ—(Update()‚Ì‘ã‚í‚è)
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã®æ›´æ–°å‡¦ç†(Update()ã®ä»£ã‚ã‚Š)
     /// </summary>
     public virtual void OnUpdateEvent()
     {
     }
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚ÌƒgƒŠƒK[‚ÌğŒ
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒˆãƒªã‚¬ãƒ¼ã®æ¡ä»¶
     /// </summary>
-    /// <returns> ƒCƒxƒ“ƒg‚ğƒgƒŠƒK[‚·‚é‚© </returns>
+    /// <returns> ã‚¤ãƒ™ãƒ³ãƒˆã‚’ãƒˆãƒªã‚¬ãƒ¼ã™ã‚‹ã‹ </returns>
     public abstract bool IsTriggerEvent();
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚ğƒgƒŠƒK[‚·‚é
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã‚’ãƒˆãƒªã‚¬ãƒ¼ã™ã‚‹
     /// </summary>
     public abstract void TriggerEvent();
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚ªI—¹‚µ‚½‚©
+    /// ã‚¤ãƒ™ãƒ³ãƒˆãŒçµ‚äº†ã—ãŸã‹
     /// </summary>
-    /// <returns> I—¹‚µ‚½‚© </returns>
+    /// <returns> çµ‚äº†ã—ãŸã‹ </returns>
     public abstract bool IsFinishEvent();
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚Ìí—Ş(ReadOnly)
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã®ç¨®é¡(ReadOnly)
     /// </summary>
     protected eEvent Event
     {
@@ -153,7 +153,7 @@ public abstract class AbstractEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚Ìó‘Ô(ReadOnly)
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã®çŠ¶æ…‹(ReadOnly)
     /// </summary>
     public eEventStatus EventStatus
     {
@@ -168,7 +168,7 @@ public abstract class AbstractEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// •Û‘¶‚·‚éƒCƒxƒ“ƒg‚Ìƒf[ƒ^
+    /// ä¿å­˜ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿
     /// </summary>
     public EventData EventData
     {
@@ -183,7 +183,7 @@ public abstract class AbstractEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// 1“x‚µ‚©Às‚µ‚È‚¢‚©
+    /// 1åº¦ã—ã‹å®Ÿè¡Œã—ãªã„ã‹
     /// </summary>
     public bool TriggerOnce
     {
@@ -195,7 +195,7 @@ public abstract class AbstractEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// —LŒø‚©
+    /// æœ‰åŠ¹ã‹
     /// </summary>
     public bool Enabled
     {
@@ -212,7 +212,7 @@ public abstract class AbstractEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒfƒtƒHƒ‹ƒg‚ÌEventData
+    /// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®EventData
     /// </summary>
     public EventData DefaultEventData
     {
