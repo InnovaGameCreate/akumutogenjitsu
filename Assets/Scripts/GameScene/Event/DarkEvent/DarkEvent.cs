@@ -45,19 +45,19 @@ public class DarkEvent : AbstractEvent
             return;
         }
 
+        _darkObj = GameObject.FindWithTag("Dark");
         if (_darkObj == null)
         {
             _darkObj = Instantiate(_darkPrefab, _canvas.transform);
-            _imageRenderer = _darkObj.GetComponent<Image>();
-
-            if (_imageRenderer == null)
-            {
-                Debug.LogError("Image コンポーネントが見つかりません。PrefabにImageコンポーネントを追加してください。");
-                return;
-            }
 
             // 初期状態は非表示
             _darkObj.SetActive(false);
+        }
+        _imageRenderer = _darkObj.GetComponent<Image>();
+        if (_imageRenderer == null)
+        {
+            Debug.LogError("Image コンポーネントが見つかりません。PrefabにImageコンポーネントを追加してください。");
+            return;
         }
     }
 
@@ -119,7 +119,7 @@ public class DarkEvent : AbstractEvent
 
     public override bool IsTriggerEvent()
     {
-        return (_isInEvent || _isTriggerForce) && Input.GetKeyDown(KeyCode.Z);
+        return (_isInEvent && Input.GetKeyDown(KeyCode.Z)) || _isTriggerForce;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
