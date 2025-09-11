@@ -10,12 +10,18 @@ public class EventQueue : MonoBehaviour
     private List<AbstractEvent> _allEvents = new();
     [Header("１度だけ実行する")]
     [SerializeField] private bool _isTriggerOnce;
+    [SerializeField] private bool _isTriggerForce = false;
 
     private int _currentEventIndex = 0;
 
     void Start()
     {
         Initialize();
+
+        if (_isTriggerForce && _allEvents.Count > 0)
+        {
+            SetupNextEvent(_allEvents[0]);
+        }
     }
 
     // Update is called once per frame
@@ -74,8 +80,6 @@ public class EventQueue : MonoBehaviour
     {
         nextEvent.Enabled = true;
         // イベントを実行する
-        nextEvent.EventStatus = eEventStatus.Running;
-        nextEvent.TriggerEvent();
-        nextEvent.EventStatus = eEventStatus.NotTriggered;
+        nextEvent.TriggerEventForce();
     }
 }
