@@ -74,8 +74,6 @@ public class EventQueue : MonoBehaviour
     {
         nextEvent.Enabled = true;
         // イベントを実行する
-        nextEvent.EventStatus = eEventStatus.Running;
-        nextEvent.TriggerEvent();
-        nextEvent.EventStatus = eEventStatus.NotTriggered;
+        nextEvent.TriggerEventForce();
     }
 }

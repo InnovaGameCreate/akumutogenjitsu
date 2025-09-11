@@ -22,6 +22,8 @@ public abstract class AbstractEvent : MonoBehaviour
     [Header("このイベントが終了したらStoryLayerを上げるか")]
     [SerializeField] private bool _isUpStoryLayer = false;
 
+    private bool _isTriggerForce = false;
+
     /// <summary>
     /// イベントID
     /// </summary>
@@ -42,8 +44,7 @@ public abstract class AbstractEvent : MonoBehaviour
     /// </summary>
     public void TriggerEventForce()
     {
-        EventStatus = eEventStatus.Running;
-        TriggerEvent();
+        _isTriggerForce = true;
     }
 
     void Start()
@@ -63,39 +64,38 @@ public abstract class AbstractEvent : MonoBehaviour
         OnUpdateEvent();
 
         // イベントが実行中はトリガーしない
-        if (EventManager.Instance.GetEventData(_eventId).EventStatus != eEventStatus.Running)
+        if (EventStatus != eEventStatus.Running)
         {
-            if (IsTriggerEvent())
+            if (IsTriggerEvent() || _isTriggerForce)
             {
                 SetIsUnitMove(false); // Unitの移動を無効にする
-
                 TriggerEvent();
-
-                EventManager.Instance.SetEventStatus(_eventId, eEventStatus.Running);
+                EventStatus = eEventStatus.Running;
             }
         }
 
-        if (IsFinishEvent() && EventManager.Instance.GetEventData(_eventId).EventStatus == eEventStatus.Running)
+        if (IsFinishEvent() && EventStatus == eEventStatus.Running)
         {
-            SetIsUnitMove(true); // Unitの移動を有効にする
+            FinishEvent();
+        }
+    }
 
-            if (_isTriggeredOnce)
-            {
-                EventManager.Instance.SetEventStatus(_eventId, eEventStatus.Triggered);
-            }
-            else
-            {
-                EventManager.Instance.SetEventStatus(_eventId, eEventStatus.NotTriggered);
-            }
-            if (_isUpStoryLayer)
-            {
-                StoryManager.Instance.CurrentStoryLayer++;
-            }
+    /// <summary>
+    /// イベントの終了処理
+    /// </summary>
+    private void FinishEvent()
+    {
+        SetIsUnitMove(true); // Unitの移動を有効にする
+
+        EventStatus = _isTriggeredOnce ? eEventStatus.Triggered : eEventStatus.NotTriggered;
+        if (_isUpStoryLayer)
+        {
+            StoryManager.Instance.CurrentStoryLayer++;
+        }
 
 #if DEBUG_MODE
-            Debug.Log($"イベント: {_event} が終了しました");
+        Debug.Log($"イベント: {_event} が終了しました");
 #endif
-        }
     }
 
     /// <summary>
