@@ -10,12 +10,18 @@ public class EventQueue : MonoBehaviour
     private List<AbstractEvent> _allEvents = new();
     [Header("１度だけ実行する")]
     [SerializeField] private bool _isTriggerOnce;
+    [SerializeField] private bool _isTriggerForce = false;
 
     private int _currentEventIndex = 0;
 
     void Start()
     {
         Initialize();
+
+        if (_isTriggerForce)
+        {
+            SetupNextEvent(_allEvents[0]);
+        }
     }
 
     // Update is called once per frame
