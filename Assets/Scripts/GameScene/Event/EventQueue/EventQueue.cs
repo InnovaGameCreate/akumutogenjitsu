@@ -18,7 +18,7 @@ public class EventQueue : MonoBehaviour
     {
         Initialize();
 
-        if (_isTriggerForce)
+        if (_isTriggerForce && _allEvents.Count > 0)
         {
             SetupNextEvent(_allEvents[0]);
         }
