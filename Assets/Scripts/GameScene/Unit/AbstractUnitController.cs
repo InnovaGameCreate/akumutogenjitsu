@@ -4,7 +4,7 @@ public abstract class AbstractUnitController : MonoBehaviour
 {
     private UnitMove _unitMove;
 
-    // Unit�̓����̏��
+    // Unitの移動状態の情報
     private UnitMoveStatus _unitMoveStatus;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -13,7 +13,7 @@ public abstract class AbstractUnitController : MonoBehaviour
         _unitMove = GetComponent<UnitMove>();
         if (_unitMove == null)
         {
-            Debug.LogError("UnitMove���A�^�b�`����Ă��܂���");
+            Debug.LogError("UnitMoveコンポーネントがアタッチされていません");
         }
 
         OnStartUnitController();
@@ -22,7 +22,7 @@ public abstract class AbstractUnitController : MonoBehaviour
     void Update()
     {
         OnUpdateUnitController();
-        _unitMoveStatus = GetMoveStatus(); 
+        _unitMoveStatus = GetMoveStatus();
     }
 
     void FixedUpdate()
@@ -31,7 +31,7 @@ public abstract class AbstractUnitController : MonoBehaviour
     }
 
     /// <summary>
-    /// UnitController�̏���������(Start()�̑���)
+    /// UnitControllerの初期化処理(Start()の後に実行)
     /// </summary>
     protected virtual void OnStartUnitController()
     {
@@ -39,7 +39,7 @@ public abstract class AbstractUnitController : MonoBehaviour
     }
 
     /// <summary>
-    /// UnitController�̍X�V����(Update()�̑���)
+    /// UnitControllerの更新処理(Update()の後に実行)
     /// </summary>
     protected virtual void OnUpdateUnitController()
     {
@@ -47,13 +47,13 @@ public abstract class AbstractUnitController : MonoBehaviour
     }
 
     /// <summary>
-    /// Unit�̈ړ���Ԃ��擾����
+    /// Unitの移動状態を取得する
     /// </summary>
-    /// <returns> �ړ���� </returns>
+    /// <returns> 移動状態 </returns>
     public abstract UnitMoveStatus GetMoveStatus();
 
     /// <summary>
-    /// Unit�̈ړ�
+    /// Unitの移動
     /// </summary>
     protected void Move()
     {
@@ -62,7 +62,7 @@ public abstract class AbstractUnitController : MonoBehaviour
     }
 
     /// <summary>
-    /// Unit�̈ړ���Ԃ��擾����
+    /// Unitの移動状態を取得する
     /// </summary>
     public UnitMoveStatus unitMoveStatus
     {
