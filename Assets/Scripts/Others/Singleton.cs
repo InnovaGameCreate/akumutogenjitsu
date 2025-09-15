@@ -32,7 +32,10 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                     }
                     else
                     {
-                        DontDestroyOnLoad(_instance.gameObject);
+                        if (_instance.transform.parent == null)
+                        {
+                            DontDestroyOnLoad(_instance.gameObject);
+                        }
                     }
                 }
 
@@ -46,7 +49,11 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         if (_instance == null)
         {
             _instance = this as T;
-            DontDestroyOnLoad(gameObject);
+           
+            if (transform.parent == null)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
         }
         else if (_instance != this)
         {

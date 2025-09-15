@@ -301,7 +301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e533e41f40eb82d4fabda46a54249e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _storyManager: {fileID: 359055667557084361}
 --- !u!1 &4167652874193965780
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,12 +377,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3953336418088769582}
   - {fileID: 6364414869867167565}
   - {fileID: 4929840501438412293}
   - {fileID: 7038519903138419351}
   - {fileID: 8024762835038487920}
   - {fileID: 3807892417195921439}
-  - {fileID: 3953336418088769582}
   - {fileID: 80324910110936971}
   - {fileID: 6642558719639101992}
   - {fileID: 4931082948711464404}
