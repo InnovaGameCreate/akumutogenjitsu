@@ -7,6 +7,9 @@ public abstract class AbstractUnitController : MonoBehaviour
     // Unitの移動状態の情報
     private UnitMoveStatus _unitMoveStatus;
 
+    // Unitの移動有効フラグ
+    private bool _enabled = true;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,11 +25,17 @@ public abstract class AbstractUnitController : MonoBehaviour
     void Update()
     {
         OnUpdateUnitController();
+        // enabledがfalseのときは動かさない
+        if (!_enabled) return;
+
         _unitMoveStatus = GetMoveStatus();
     }
 
     void FixedUpdate()
     {
+        // enabledがfalseのときは動かさない
+        if (!_enabled) return;
+
         Move();
     }
 
@@ -67,5 +76,21 @@ public abstract class AbstractUnitController : MonoBehaviour
     public UnitMoveStatus unitMoveStatus
     {
         get { return _unitMoveStatus; }
+    }
+
+    /// <summary>
+    /// Unitの移動有効フラグ
+    /// </summary>
+    public bool IsEnabled
+    {
+        get
+        {
+            return _enabled;
+        }
+        set
+        {
+            _enabled = value;
+            enabled = _enabled; // MonoBehaviourのenabledも連動
+        }
     }
 }
