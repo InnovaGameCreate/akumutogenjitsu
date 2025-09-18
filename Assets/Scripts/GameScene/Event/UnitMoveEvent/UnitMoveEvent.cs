@@ -55,10 +55,10 @@ public class UnitMoveEvent : AbstractEvent
             case eDirection.Right:
                 return (position.x - _defaultPosition.x) >= _distance;
 
-            case eDirection.Up:
+            case eDirection.Down:
                 return (_defaultPosition.y - position.y) >= _distance;
 
-            case eDirection.Down:
+            case eDirection.Up:
                 return (position.y - _defaultPosition.y) >= _distance;
 
             default:
