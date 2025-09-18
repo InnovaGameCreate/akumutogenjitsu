@@ -9,9 +9,6 @@ public class UnitMove : MonoBehaviour
     // 移動入力状態
     private UnitMoveStatus _unitMoveStatus;
 
-    // Unitの移動有効フラグ
-    private bool _isEnabled;
-
     private Rigidbody2D _rigidbody;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,7 +26,6 @@ public class UnitMove : MonoBehaviour
         }
 
         _speed = _defaultSpeed;
-        _isEnabled = true;
     }
 
     /// <summary>
@@ -38,12 +34,6 @@ public class UnitMove : MonoBehaviour
     /// <param name="direction"> 移動方向の入力状態 </param>
     public void Move(UnitMoveStatus unitmovestatus)
     {
-        if (!_isEnabled)
-        {
-            Debug.Log("UnitMoveが無効化されています。移動できません。");
-            return;
-        }
-
         Vector2 move = Vector2.zero;
 
         if (unitmovestatus.Left)
@@ -65,10 +55,10 @@ public class UnitMove : MonoBehaviour
 
         move = move.normalized * _speed * Time.fixedDeltaTime;
 
-    // 移動実行
+        // 移動実行
         _rigidbody.MovePosition(_rigidbody.position + move);
 
-    // 入力状態を保持
+        // 入力状態を保持
         _unitMoveStatus = unitmovestatus;
     }
 
@@ -96,22 +86,6 @@ public class UnitMove : MonoBehaviour
 #if DEBUG_MODE
             Debug.Log("Speedが" + _speed + "に設定されました");
 #endif
-        }
-    }
-
-    /// <summary>
-    /// ユニットの移動有効フラグ
-    /// </summary>
-    public bool IsEnabled
-    {
-        get
-        {
-            return _isEnabled;
-        }
-        set
-        {
-            _isEnabled = value;
-            enabled = _isEnabled;
         }
     }
 }

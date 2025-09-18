@@ -92,6 +92,7 @@ public abstract class AbstractEvent : MonoBehaviour
         {
             StoryManager.Instance.CurrentStoryLayer++;
         }
+        OnFinishEvent();
 
 #if DEBUG_MODE
         Debug.Log($"イベント: {_event} が終了しました");
@@ -104,12 +105,12 @@ public abstract class AbstractEvent : MonoBehaviour
     /// <param name="isUnitMove"> 有効/無効 </param>
     private void SetIsUnitMove(bool isUnitMove)
     {
-        // 全てのUnitのUnitMoveを取得
-        List<UnitMove> units = new List<UnitMove>(FindObjectsByType<UnitMove>(FindObjectsSortMode.None));
+        // 全てのUnitControllerを取得
+        List<AbstractUnitController> unitControllers = new List<AbstractUnitController>(FindObjectsByType<AbstractUnitController>(FindObjectsSortMode.None));
 
-        foreach (UnitMove unit in units)
+        foreach (AbstractUnitController unitController in unitControllers)
         {
-            unit.IsEnabled = isUnitMove;
+            unitController.IsEnabled = isUnitMove;
         }
     }
 
@@ -143,6 +144,10 @@ public abstract class AbstractEvent : MonoBehaviour
     /// </summary>
     /// <returns> 終了したか </returns>
     public abstract bool IsFinishEvent();
+
+    public virtual void OnFinishEvent()
+    {
+    }
 
     /// <summary>
     /// イベントの種類(ReadOnly)

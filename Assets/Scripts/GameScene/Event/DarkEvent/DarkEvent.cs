@@ -46,11 +46,6 @@ public class DarkEvent : AbstractEvent
         }
 
         _darkObj = GameObject.FindWithTag("Dark");
-        if (_imageRenderer == null)
-        {
-            Debug.LogError("Image コンポーネントが見つかりません。PrefabにImageコンポーネントを追加してください。");
-            return;
-        }
         if (_darkObj != null)
         {
             _imageRenderer = _darkObj.GetComponent<Image>();
@@ -62,6 +57,11 @@ public class DarkEvent : AbstractEvent
 
             // 初期状態は非表示
             _darkObj.SetActive(false);
+        }
+        if (_imageRenderer == null)
+        {
+            Debug.LogError("Image コンポーネントが見つかりません。PrefabにImageコンポーネントを追加してください。");
+            return;
         }
     }
 

@@ -8,28 +8,28 @@ public class EnemyController : AbstractUnitController
 
     private eDirection _direction;
 
-    [Header("1•à‚ğ•à‚­ŠÔ")]
+    [Header("1æ­©ã‚’æ­©ãæ™‚é–“")]
     [SerializeField] private float _stepLength = 1.0f;
-    private float _deltaTime;   // Œo‚Á‚½ŠÔ
+    private float _deltaTime;   // çµŒã£ãŸæ™‚é–“
 
-    // “®‚­•ûŒü
+    // å‹•ãæ–¹å‘
     private UnitMoveStatus _unitMoveStatus;
 
     protected override void OnStartUnitController()
     {
         _playerObj = GameObject.FindGameObjectWithTag("Player");
-        _direction = eDirection.Left; // ‰Šú•ûŒü‚ğ¶‚Éİ’è
+        _direction = eDirection.Left; // åˆæœŸæ–¹å‘ã‚’å·¦ã«è¨­å®š
 
 #if DEBUG_MODE
         if (_playerObj == null)
         {
-            Debug.LogError("Player‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
+            Debug.LogError("PlayerãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
         }
 #endif
 
         _deltaTime = 0;
 
-        // UnitMoveStatus‚Ì‰Šú‰»
+        // UnitMoveStatusã®åˆæœŸåŒ–
         _unitMoveStatus.Right = false;
         _unitMoveStatus.Left = false;
         _unitMoveStatus.Up = false;
@@ -79,7 +79,7 @@ public class EnemyController : AbstractUnitController
 #if DEBUG_MODE
         else
         {
-            Debug.LogError($"–³Œø‚È•ûŒü‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚·Bdirection: {_direction}");
+            Debug.LogError($"ç„¡åŠ¹ãªæ–¹å‘ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã™ã€‚direction: {_direction}");
         }
 #endif
 
