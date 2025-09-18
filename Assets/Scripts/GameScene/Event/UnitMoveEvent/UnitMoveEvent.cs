@@ -19,7 +19,7 @@ public class UnitMoveEvent : AbstractEvent
     private Vector3 _defaultPosition;
 
     private AbstractUnitController _unitController;
-    private UnitMove _unitMove = new();
+    private UnitMove _unitMove;
     private float _defaultSpeed;
 
     public override void OnStartEvent()
