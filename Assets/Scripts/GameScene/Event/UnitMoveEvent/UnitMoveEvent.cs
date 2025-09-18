@@ -28,18 +28,21 @@ public class UnitMoveEvent : AbstractEvent
         if (unitObj == null)
         {
             Debug.LogError($"ユニット{_unitTag}を取得することができませんでした。");
+            return;
         }
 
         _unitController = unitObj.GetComponent<AbstractUnitController>();
         if (_unitController == null)
         {
             Debug.LogError("AbstractUnitControllerがアタッチされていません。");
+            return;
         }
 
         _unitMove = unitObj.GetComponent<UnitMove>();
         if (_unitMove == null)
         {
             Debug.LogError("UnitMoveがアタッチされていません。");
+            return;
         }
 
         _defaultPosition = unitObj.transform.position;
