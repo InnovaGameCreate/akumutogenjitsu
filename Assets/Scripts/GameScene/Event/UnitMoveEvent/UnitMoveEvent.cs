@@ -42,7 +42,7 @@ public class UnitMoveEvent : AbstractEvent
             Debug.LogError("UnitMoveがコンポーネントされていません。");
         }
 
-        _defaultPosition = gameObject.transform.position;
+        _defaultPosition = unitObj.transform.position;
     }
     public override bool IsFinishEvent()
     {
