@@ -92,6 +92,7 @@ public abstract class AbstractEvent : MonoBehaviour
         {
             StoryManager.Instance.CurrentStoryLayer++;
         }
+        OnFinishEvent();
 
 #if DEBUG_MODE
         Debug.Log($"イベント: {_event} が終了しました");
@@ -143,6 +144,10 @@ public abstract class AbstractEvent : MonoBehaviour
     /// </summary>
     /// <returns> 終了したか </returns>
     public abstract bool IsFinishEvent();
+
+    public virtual void OnFinishEvent()
+    {
+    }
 
     /// <summary>
     /// イベントの種類(ReadOnly)

@@ -1,5 +1,7 @@
+using Unity.VisualScripting;
+
 /// <summary>
-/// Unit‚Ì“®‚¢‚Ä‚¢‚éó‘Ô
+/// Unitï¿½Ì“ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public struct UnitMoveStatus
 {
@@ -15,6 +17,30 @@ public struct UnitMoveStatus
         moveStatus.Down = down;
         moveStatus.Right = right;
         moveStatus.Left = left;
+
+        return moveStatus;
+    }
+
+    public static UnitMoveStatus CreateMoveStatusFromDirection(eDirection direction)
+    {
+        UnitMoveStatus moveStatus = CreateMoveStatus(false, false, false, false);
+        switch (direction)
+        {
+            case eDirection.Left:
+                moveStatus.Left = true; break;
+
+            case eDirection.Right:
+                moveStatus.Right = true; break;
+
+            case eDirection.Down:
+                moveStatus.Down = true; break;
+
+            case eDirection.Up:
+                moveStatus.Up = true; break;
+
+            default:
+                break;
+        }
 
         return moveStatus;
     }

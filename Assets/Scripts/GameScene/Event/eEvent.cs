@@ -12,6 +12,7 @@ public enum eEvent
     DarkEvent,      // 暗転イベント
     SetDateEvent,   // 日付を設定するイベント
     PrologueEvent,  // プロローグイベント（ホラー用）
+    UnitMoveEvent,  // ユニットを動かすイベント
 
     // 1階層 Dream
     CreateEntranceKeyWithMedicine,  // 薬品で玄関への鍵を作成する

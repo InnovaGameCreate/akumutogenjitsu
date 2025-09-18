@@ -25,7 +25,7 @@ public abstract class AbstractUnitController : MonoBehaviour
     void Update()
     {
         OnUpdateUnitController();
-        // enabledがfalseのときは動かさない
+        // enabledがfalseのときは自動で動かさない
         if (!_enabled) return;
 
         _unitMoveStatus = GetMoveStatus();
@@ -33,9 +33,6 @@ public abstract class AbstractUnitController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // enabledがfalseのときは動かさない
-        if (!_enabled) return;
-
         Move();
     }
 
@@ -66,8 +63,7 @@ public abstract class AbstractUnitController : MonoBehaviour
     /// </summary>
     protected void Move()
     {
-        var moveStatus = GetMoveStatus();
-        _unitMove.Move(moveStatus);
+        _unitMove.Move(_unitMoveStatus);
     }
 
     /// <summary>
@@ -76,6 +72,7 @@ public abstract class AbstractUnitController : MonoBehaviour
     public UnitMoveStatus unitMoveStatus
     {
         get { return _unitMoveStatus; }
+        set { _unitMoveStatus = value; }
     }
 
     /// <summary>
@@ -90,7 +87,6 @@ public abstract class AbstractUnitController : MonoBehaviour
         set
         {
             _enabled = value;
-            enabled = _enabled; // MonoBehaviourのenabledも連動
         }
     }
 }
