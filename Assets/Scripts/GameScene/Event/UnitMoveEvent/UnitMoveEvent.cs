@@ -33,13 +33,13 @@ public class UnitMoveEvent : AbstractEvent
         _unitController = unitObj.GetComponent<AbstractUnitController>();
         if (_unitController == null)
         {
-            Debug.LogError("AbstractUnitControllerがコンポーネントされていません。");
+            Debug.LogError("AbstractUnitControllerがアタッチされていません。");
         }
 
         _unitMove = unitObj.GetComponent<UnitMove>();
         if (_unitMove == null)
         {
-            Debug.LogError("UnitMoveがコンポーネントされていません。");
+            Debug.LogError("UnitMoveがアタッチされていません。");
         }
 
         _defaultPosition = unitObj.transform.position;
