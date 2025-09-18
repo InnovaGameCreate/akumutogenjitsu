@@ -76,6 +76,7 @@ public class UnitMoveEvent : AbstractEvent
 
     public override void TriggerEvent()
     {
+        // １回目のループでは_defaultSpeedが0
         if (_defaultSpeed == 0)
         {
             _defaultSpeed = _unitMove.Speed;
