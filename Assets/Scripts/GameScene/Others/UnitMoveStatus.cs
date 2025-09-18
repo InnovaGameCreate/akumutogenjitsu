@@ -1,7 +1,5 @@
-using Unity.VisualScripting;
-
 /// <summary>
-/// Unitï¿½Ì“ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½
+/// Unit‚ÌˆÚ“®ó‘Ô‚ğ•\‚·
 /// </summary>
 public struct UnitMoveStatus
 {
