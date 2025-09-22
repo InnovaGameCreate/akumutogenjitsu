@@ -510,6 +510,85 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ChoiceTextEvent"",
+            ""id"": ""21561b63-3643-47b3-b0f6-e086982b7bf6"",
+            ""actions"": [
+                {
+                    ""name"": ""MoveToUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""f13f2855-523e-487f-8615-4126e32bf664"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveToDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""71de2e2b-b031-464e-bf21-af0d3ae7a718"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""7b1d2be0-c98e-4397-91ce-c297cbdc7e1d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e8bf26e5-1f52-492d-a3dd-a33e115ee68e"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveToUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""daa3a237-f035-4a7e-9137-5e121f6b1585"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveToDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5aeaf555-4286-4252-8b4f-618949a4a821"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b76dfdb8-0d8f-4497-a2d1-c795a9b943c0"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -547,6 +626,11 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         m_Save_MoveToDown = m_Save.FindAction("MoveToDown", throwIfNotFound: true);
         m_Save_Select = m_Save.FindAction("Select", throwIfNotFound: true);
         m_Save_Close = m_Save.FindAction("Close", throwIfNotFound: true);
+        // ChoiceTextEvent
+        m_ChoiceTextEvent = asset.FindActionMap("ChoiceTextEvent", throwIfNotFound: true);
+        m_ChoiceTextEvent_MoveToUp = m_ChoiceTextEvent.FindAction("MoveToUp", throwIfNotFound: true);
+        m_ChoiceTextEvent_MoveToDown = m_ChoiceTextEvent.FindAction("MoveToDown", throwIfNotFound: true);
+        m_ChoiceTextEvent_Select = m_ChoiceTextEvent.FindAction("Select", throwIfNotFound: true);
     }
 
     ~@PlayerOperation()
@@ -555,6 +639,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Inventory.enabled, "This will cause a leak and performance issues, PlayerOperation.Inventory.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Menu.enabled, "This will cause a leak and performance issues, PlayerOperation.Menu.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Save.enabled, "This will cause a leak and performance issues, PlayerOperation.Save.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_ChoiceTextEvent.enabled, "This will cause a leak and performance issues, PlayerOperation.ChoiceTextEvent.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1109,6 +1194,124 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="SaveActions" /> instance referencing this action map.
     /// </summary>
     public SaveActions @Save => new SaveActions(this);
+
+    // ChoiceTextEvent
+    private readonly InputActionMap m_ChoiceTextEvent;
+    private List<IChoiceTextEventActions> m_ChoiceTextEventActionsCallbackInterfaces = new List<IChoiceTextEventActions>();
+    private readonly InputAction m_ChoiceTextEvent_MoveToUp;
+    private readonly InputAction m_ChoiceTextEvent_MoveToDown;
+    private readonly InputAction m_ChoiceTextEvent_Select;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "ChoiceTextEvent".
+    /// </summary>
+    public struct ChoiceTextEventActions
+    {
+        private @PlayerOperation m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public ChoiceTextEventActions(@PlayerOperation wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "ChoiceTextEvent/MoveToUp".
+        /// </summary>
+        public InputAction @MoveToUp => m_Wrapper.m_ChoiceTextEvent_MoveToUp;
+        /// <summary>
+        /// Provides access to the underlying input action "ChoiceTextEvent/MoveToDown".
+        /// </summary>
+        public InputAction @MoveToDown => m_Wrapper.m_ChoiceTextEvent_MoveToDown;
+        /// <summary>
+        /// Provides access to the underlying input action "ChoiceTextEvent/Select".
+        /// </summary>
+        public InputAction @Select => m_Wrapper.m_ChoiceTextEvent_Select;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_ChoiceTextEvent; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="ChoiceTextEventActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(ChoiceTextEventActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="ChoiceTextEventActions" />
+        public void AddCallbacks(IChoiceTextEventActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ChoiceTextEventActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ChoiceTextEventActionsCallbackInterfaces.Add(instance);
+            @MoveToUp.started += instance.OnMoveToUp;
+            @MoveToUp.performed += instance.OnMoveToUp;
+            @MoveToUp.canceled += instance.OnMoveToUp;
+            @MoveToDown.started += instance.OnMoveToDown;
+            @MoveToDown.performed += instance.OnMoveToDown;
+            @MoveToDown.canceled += instance.OnMoveToDown;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="ChoiceTextEventActions" />
+        private void UnregisterCallbacks(IChoiceTextEventActions instance)
+        {
+            @MoveToUp.started -= instance.OnMoveToUp;
+            @MoveToUp.performed -= instance.OnMoveToUp;
+            @MoveToUp.canceled -= instance.OnMoveToUp;
+            @MoveToDown.started -= instance.OnMoveToDown;
+            @MoveToDown.performed -= instance.OnMoveToDown;
+            @MoveToDown.canceled -= instance.OnMoveToDown;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ChoiceTextEventActions.UnregisterCallbacks(IChoiceTextEventActions)" />.
+        /// </summary>
+        /// <seealso cref="ChoiceTextEventActions.UnregisterCallbacks(IChoiceTextEventActions)" />
+        public void RemoveCallbacks(IChoiceTextEventActions instance)
+        {
+            if (m_Wrapper.m_ChoiceTextEventActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="ChoiceTextEventActions.AddCallbacks(IChoiceTextEventActions)" />
+        /// <seealso cref="ChoiceTextEventActions.RemoveCallbacks(IChoiceTextEventActions)" />
+        /// <seealso cref="ChoiceTextEventActions.UnregisterCallbacks(IChoiceTextEventActions)" />
+        public void SetCallbacks(IChoiceTextEventActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ChoiceTextEventActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ChoiceTextEventActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="ChoiceTextEventActions" /> instance referencing this action map.
+    /// </summary>
+    public ChoiceTextEventActions @ChoiceTextEvent => new ChoiceTextEventActions(this);
     private int m_KeyboardSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -1244,5 +1447,34 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnClose(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "ChoiceTextEvent" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="ChoiceTextEventActions.AddCallbacks(IChoiceTextEventActions)" />
+    /// <seealso cref="ChoiceTextEventActions.RemoveCallbacks(IChoiceTextEventActions)" />
+    public interface IChoiceTextEventActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "MoveToUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveToDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToDown(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Select" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

@@ -255,12 +255,6 @@ public class ChoiceTextEventView : MonoBehaviour
         }
     }
 
-    void OnDisable()
-    {
-        // GameObjectが無効化される際にInputコールバックを解除
-        UnbindFromInput();
-    }
-
     void OnDestroy()
     {
         // InputSystemコールバックを最優先で解除

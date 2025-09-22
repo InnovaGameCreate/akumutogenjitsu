@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using R3;
+using System.Threading.Tasks;
 
 public class ChoiceTextEventPresenter
 {
@@ -61,15 +62,22 @@ public class ChoiceTextEventPresenter
             .AddTo(_disposable);
 
         _model.OnChoiceSelected
-            .Subscribe(choice =>
+            .Subscribe(async choice =>
             {
-                TriggerNextEvent(choice);
+                await TriggerNextEvent(choice);
+                Debug.Log("awaitが終了しました。");
             })
             .AddTo(_disposable);
     }
 
-    private void TriggerNextEvent(Choice choice)
+    private async Task TriggerNextEvent(Choice choice)
     {
+        // Viewを再表示
+        if (choice.IsReturn)
+        {
+            await ReturnChoiceEvent();
+            return;
+        }
         if (choice.NextEvent == null)
         {
             Debug.LogError("_nextEventがnullです。");
@@ -83,6 +91,14 @@ public class ChoiceTextEventPresenter
             return;
         }
         nextEvent.TriggerEventForce();
+    }
+
+    private async Task ReturnChoiceEvent()
+    {
+        _view.gameObject.SetActive(false);
+        await Task.Delay(500);
+
+        _view.gameObject.SetActive(true);
     }
 
     ~ChoiceTextEventPresenter()

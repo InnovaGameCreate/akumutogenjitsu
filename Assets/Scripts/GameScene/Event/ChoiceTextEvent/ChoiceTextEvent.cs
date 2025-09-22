@@ -13,6 +13,9 @@ public class Choice
     [Header("起きること")]
     [SerializeField] private GameObject _nextEvent;
 
+    [Header("もう一度選択肢を出すか")]
+    [SerializeField] private bool _isReturn = false;
+
     /// <summary>
     /// 選択肢の文章
     /// </summary>
@@ -29,6 +32,12 @@ public class Choice
     {
         get => _nextEvent;
         set => _nextEvent = value;
+    }
+
+    public bool IsReturn
+    {
+        get => _isReturn;
+        set => _isReturn = value;
     }
 }
 

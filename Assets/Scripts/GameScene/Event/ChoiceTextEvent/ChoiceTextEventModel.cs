@@ -77,6 +77,6 @@ public class ChoiceTextEventModel
 
     public bool IsFinishChoice()
     {
-        return true;
+        return !_choices.Value[_selectedIndex.Value].IsReturn;
     }
 }
