@@ -2,12 +2,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using R3;
+using DG.Tweening;
 
 public class StartButtonPresenter : MonoBehaviour
 {
     [Header("設定")]
     [SerializeField] private string gameSceneName = "GameScene";
-    [SerializeField] private CanvasGroup fadeCanvas;
+    [SerializeField] private Image fadeImage; // CanvasGroupではなくImage
     [SerializeField] private float fadeDuration = 0.5f;
 
     [SerializeField] private StartButtonModel _model;
@@ -55,20 +56,23 @@ public class StartButtonPresenter : MonoBehaviour
     {
         _isTransitioning = true;
 
-        if (fadeCanvas != null)
+        if (fadeImage != null)
         {
-            float startTime = Time.time;
+            // フェード用Imageをアクティブにする
+            fadeImage.gameObject.SetActive(true);
+
+            // シーン読み込み開始
             var asyncOp = SceneManager.LoadSceneAsync(gameSceneName);
             asyncOp.allowSceneActivation = false;
 
-            Observable.EveryUpdate()
-                .TakeWhile(_ => Time.time - startTime < fadeDuration)
-                .Subscribe(_ => fadeCanvas.alpha = (Time.time - startTime) / fadeDuration)
-                .AddTo(_disposable);
+            // 透明から開始
+            Color color = fadeImage.color;
+            fadeImage.color = new Color(color.r, color.g, color.b, 0f);
 
-            Observable.Timer(System.TimeSpan.FromSeconds(fadeDuration))
-                .Subscribe(_ => asyncOp.allowSceneActivation = true)
-                .AddTo(_disposable);
+            // DOTweenでフェードアウト（DarkEventと同じ方式）
+            fadeImage.DOFade(1f, fadeDuration)
+                .SetEase(Ease.OutQuad)
+                .OnComplete(() => asyncOp.allowSceneActivation = true);
         }
         else
         {
@@ -76,13 +80,15 @@ public class StartButtonPresenter : MonoBehaviour
         }
     }
 
+    private System.Collections.IEnumerator FadeAndLoadScene()
+    {
+        // 使用しない - DOTweenに置き換えたため削除可能
+        yield return null;
+    }
+
     private void QuitGame()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        ApplicationService.QuitApplication();
     }
 
     void OnDestroy()
