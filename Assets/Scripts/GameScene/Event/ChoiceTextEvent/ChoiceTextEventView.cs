@@ -126,7 +126,7 @@ public class ChoiceTextEventView : MonoBehaviour
         ChoiceView view = obj.GetComponent<ChoiceView>();
         if (view == null)
         {
-            Debug.LogError("ChoiceEventがアタッチされていません。");
+            Debug.LogError("ChoiceViewがアタッチされていません。");
         }
         view.SetChoice(choice);
 
