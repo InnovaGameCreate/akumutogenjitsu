@@ -424,6 +424,85 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "ChoiceTextEvent",
+            "id": "21561b63-3643-47b3-b0f6-e086982b7bf6",
+            "actions": [
+                {
+                    "name": "MoveToUp",
+                    "type": "Button",
+                    "id": "f13f2855-523e-487f-8615-4126e32bf664",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveToDown",
+                    "type": "Button",
+                    "id": "71de2e2b-b031-464e-bf21-af0d3ae7a718",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "7b1d2be0-c98e-4397-91ce-c297cbdc7e1d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e8bf26e5-1f52-492d-a3dd-a33e115ee68e",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveToUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "daa3a237-f035-4a7e-9137-5e121f6b1585",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveToDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5aeaf555-4286-4252-8b4f-618949a4a821",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b76dfdb8-0d8f-4497-a2d1-c795a9b943c0",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

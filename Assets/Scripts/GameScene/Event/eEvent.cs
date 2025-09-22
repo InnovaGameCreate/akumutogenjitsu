@@ -9,6 +9,7 @@ public enum eEvent
     ItemEvent,      // アイテムイベント
     SpawnEnemyEvent, // 敵スポーンイベント
     TextEvent, // テキスト表示イベント
+    ChoiceTextEvent,    // 選択肢を表示するイベント
     DarkEvent,      // 暗転イベント
     SetDateEvent,   // 日付を設定するイベント
     PrologueEvent,  // プロローグイベント（ホラー用）

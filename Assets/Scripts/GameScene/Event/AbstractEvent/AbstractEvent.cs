@@ -92,6 +92,7 @@ public abstract class AbstractEvent : MonoBehaviour
         {
             StoryManager.Instance.CurrentStoryLayer++;
         }
+        _isTriggerForce = false;
         OnFinishEvent();
 
 #if DEBUG_MODE
