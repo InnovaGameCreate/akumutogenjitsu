@@ -147,22 +147,22 @@ public class ChoiceTextEventView : MonoBehaviour
                 // 真ん中の2つ
                 if (i == halfNum - 1)
                 {
-                    _choiceObjs[i].transform.position = new Vector3(640, _centerHeight + _marginHeight / 2, 0);
+                    _choiceObjs[i].transform.position = new Vector3(Screen.width / 2, _centerHeight + _marginHeight / 2, 0);
                     continue;
                 }
                 if (i == halfNum)
                 {
-                    _choiceObjs[i].transform.position = new Vector3(640, _centerHeight - _marginHeight / 2, 0);
+                    _choiceObjs[i].transform.position = new Vector3(Screen.width / 2, _centerHeight - _marginHeight / 2, 0);
                     continue;
                 }
 
                 if (i < halfNum)
                 {
-                    _choiceObjs[i].transform.position = new Vector3(640, _centerHeight + _marginHeight * (halfNum - 1 - i) + (_marginHeight / 2), 0);
+                    _choiceObjs[i].transform.position = new Vector3(Screen.width / 2, _centerHeight + _marginHeight * (halfNum - 1 - i) + (_marginHeight / 2), 0);
                 }
                 else
                 {
-                    _choiceObjs[i].transform.position = new Vector3(640, _centerHeight - _marginHeight * (i - halfNum) - (_marginHeight / 2), 0);
+                    _choiceObjs[i].transform.position = new Vector3(Screen.width / 2, _centerHeight - _marginHeight * (i - halfNum) - (_marginHeight / 2), 0);
                 }
             }
         }
@@ -174,15 +174,15 @@ public class ChoiceTextEventView : MonoBehaviour
                 // 真ん中
                 if (i == halfNum)
                 {
-                    _choiceObjs[i].transform.position = new Vector3(640, _centerHeight + _marginHeight / 2, 0);
+                    _choiceObjs[i].transform.position = new Vector3(Screen.width / 2, _centerHeight + _marginHeight / 2, 0);
                 }
                 else if (i < halfNum)
                 {
-                    _choiceObjs[i].transform.position = new Vector3(640, _centerHeight + _marginHeight / 2 + _marginHeight * (halfNum - i), 0);
+                    _choiceObjs[i].transform.position = new Vector3(Screen.width / 2, _centerHeight + _marginHeight / 2 + _marginHeight * (halfNum - i), 0);
                 }
                 else
                 {
-                    _choiceObjs[i].transform.position = new Vector3(640, _centerHeight - _marginHeight / 2 - _marginHeight * (i - halfNum - 1), 0);
+                    _choiceObjs[i].transform.position = new Vector3(Screen.width / 2, _centerHeight - _marginHeight / 2 - _marginHeight * (i - halfNum - 1), 0);
                 }
             }
         }
