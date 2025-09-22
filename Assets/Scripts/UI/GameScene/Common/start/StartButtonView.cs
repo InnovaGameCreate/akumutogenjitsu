@@ -33,7 +33,7 @@ public class StartButtonView : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow)) _moveLeft.OnNext(Unit.Default);
         else if (Input.GetKeyDown(KeyCode.RightArrow)) _moveRight.OnNext(Unit.Default);
         else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
-            _selectItem.OnNext(-1); 
+            _selectItem.OnNext(-1); // 現在選択中のアイテム
     }
 
     private void SetupButtons()
@@ -44,7 +44,12 @@ public class StartButtonView : MonoBehaviour
 
     private void SetupButton(Image image, System.Action action)
     {
-        var trigger = image.gameObject.AddComponent<UnityEngine.EventSystems.EventTrigger>();
+        var trigger = image.gameObject.GetComponent<UnityEngine.EventSystems.EventTrigger>();
+        if (trigger == null)
+        {
+            trigger = image.gameObject.AddComponent<UnityEngine.EventSystems.EventTrigger>();
+        }
+
         var entry = new UnityEngine.EventSystems.EventTrigger.Entry
         {
             eventID = UnityEngine.EventSystems.EventTriggerType.PointerClick

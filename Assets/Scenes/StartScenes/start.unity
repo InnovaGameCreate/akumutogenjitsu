@@ -663,8 +663,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa646736305a9e54b846ba59a891efe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: First_1_real_hallway2
-  fadeCanvas: {fileID: 378539470}
+  gameSceneName: First_1_real_house
+  fadeImage: {fileID: 378539467}
   fadeDuration: 1
   _model: {fileID: 1319924651}
   _view: {fileID: 1319924649}
