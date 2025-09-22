@@ -61,6 +61,13 @@ public class ChoiceTextEventPresenter
             })
             .AddTo(_disposable);
 
+        _model.Message
+            .Subscribe(message =>
+            {
+                _view.SetMessage(message);
+            })
+            .AddTo(_disposable);
+
         _model.OnChoiceSelected
             .Subscribe(async choice =>
             {
