@@ -14,6 +14,7 @@ public enum eEvent
     SetDateEvent,   // 日付を設定するイベント
     PrologueEvent,  // プロローグイベント（ホラー用）
     UnitMoveEvent,  // ユニットを動かすイベント
+    DeleteObjectEvent,  // オブジェクトを削除するイベント
 
     // 1階層 Dream
     CreateEntranceKeyWithMedicine,  // 薬品で玄関への鍵を作成する
