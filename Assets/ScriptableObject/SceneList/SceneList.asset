@@ -99,3 +99,87 @@ MonoBehaviour:
   - Type: 7
     _sceneAsset: {fileID: 102900000, guid: 861d691f7095b5544b5b8cda0a582a59, type: 3}
     _sceneName: First_1_dream_class201
+  - Type: 1
+    _sceneAsset: {fileID: 102900000, guid: 71a06bcbc5319441f96aff89f2cf3720, type: 3}
+    _sceneName: First_3_dream_house
+  - Type: 2
+    _sceneAsset: {fileID: 102900000, guid: a843c34f23f8849a3acdd5ec3790eec8, type: 3}
+    _sceneName: First_3_dream_street
+  - Type: 1
+    _sceneAsset: {fileID: 102900000, guid: 04eee381a5a74437c81e176357d41f17, type: 3}
+    _sceneName: First_3_real_house
+  - Type: 2
+    _sceneAsset: {fileID: 102900000, guid: e5a2e1981618c41e58cef8619a0d0d00, type: 3}
+    _sceneName: First_3_real_street
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 814b0c9c739b74c65b75b0a415b48199, type: 3}
+    _sceneName: First_3_dream_class101
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 6ec18104706654d76827bc1f4ecc99c2, type: 3}
+    _sceneName: First_3_dream_class102
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: d56d8c392c4614aca8d9f7f6045d82dc, type: 3}
+    _sceneName: First_3_dream_class103
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: bce26a8876fa044458e1ef8eb9df719e, type: 3}
+    _sceneName: First_3_dream_class104
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 6d144b2a41994464cb6474890c729bed, type: 3}
+    _sceneName: First_3_dream_class201
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: c9ff2211007ef43d7b6edc09262f3122, type: 3}
+    _sceneName: First_3_dream_class202
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 3e0133bc7a33a4931b52452ed3105dc5, type: 3}
+    _sceneName: First_3_dream_class203
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 6ba107520754741b1a4845bb2cef48f3, type: 3}
+    _sceneName: First_3_dream_class204
+  - Type: 3
+    _sceneAsset: {fileID: 102900000, guid: 52525124cee2241048dd9d513a3fce02, type: 3}
+    _sceneName: First_3_dream_hallway1
+  - Type: 8
+    _sceneAsset: {fileID: 102900000, guid: 6d3c3b78483fe459f8328ecd9441ee88, type: 3}
+    _sceneName: First_3_dream_hallway2
+  - Type: 5
+    _sceneAsset: {fileID: 102900000, guid: 5008980b7256d415c9af16cbc8224c8b, type: 3}
+    _sceneName: First_3_dream_scienceroom
+  - Type: 6
+    _sceneAsset: {fileID: 102900000, guid: b5dc374e0de364a468599a3f34ab8787, type: 3}
+    _sceneName: First_3_dream_teacherRoom
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: e1fbcb69628854561a35a20bbfa909db, type: 3}
+    _sceneName: First_3_real_class101
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: a1df30a85a67543a0a874e1bc34bdd0d, type: 3}
+    _sceneName: First_3_real_class102
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 946c633ac67054549ad95120ea8bc0df, type: 3}
+    _sceneName: First_3_real_class103
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 9156182165dfd4ebeb0604007f9dae0c, type: 3}
+    _sceneName: First_3_real_class104
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 4346af91ecac34092bfd2f3f930e8113, type: 3}
+    _sceneName: First_3_real_class201
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 64c753ba7af7341f69b2ed0cd7c92829, type: 3}
+    _sceneName: First_3_real_class202
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 854407f72184e4f29b9df586a9f11e0b, type: 3}
+    _sceneName: First_3_real_class203
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: ec33f6c707da845069c7fdc8932dd023, type: 3}
+    _sceneName: First_3_real_class204
+  - Type: 3
+    _sceneAsset: {fileID: 102900000, guid: b32ddbfcb6cde45538e97c8997cbf31e, type: 3}
+    _sceneName: First_3_real_hallway1
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 26c9ffd046a414e5eb6f08909d193f6f, type: 3}
+    _sceneName: First_3_real_hallway2
+  - Type: 5
+    _sceneAsset: {fileID: 102900000, guid: 1beece41ce72348d5a3221afd8c4c2ce, type: 3}
+    _sceneName: First_3_real_scienceroom
+  - Type: 6
+    _sceneAsset: {fileID: 102900000, guid: 96d6c13f8d0044003abbbca32547fc52, type: 3}
+    _sceneName: First_3_real_teacherRoom
