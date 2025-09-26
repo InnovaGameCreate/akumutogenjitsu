@@ -63,9 +63,6 @@ MonoBehaviour:
   - Type: 4
     _sceneAsset: {fileID: 102900000, guid: 399b1e7539448bf488b0e7a2c7975299, type: 3}
     _sceneName: First_1_real_class104
-  - Type: 5
-    _sceneAsset: {fileID: 102900000, guid: 3145a4871a1ce3c4bb4d30162208832b, type: 3}
-    _sceneName: First_1_real_scienceroom
   - Type: 6
     _sceneAsset: {fileID: 102900000, guid: bb207596c19f95f4095c23e12da83c27, type: 3}
     _sceneName: First_1_real_teacherRoom
@@ -183,3 +180,15 @@ MonoBehaviour:
   - Type: 6
     _sceneAsset: {fileID: 102900000, guid: 96d6c13f8d0044003abbbca32547fc52, type: 3}
     _sceneName: First_3_real_teacherRoom
+  - Type: 3
+    _sceneAsset: {fileID: 102900000, guid: c56eafe54f84ad149a995822483dc261, type: 3}
+    _sceneName: First_1_dream_hallway1
+  - Type: 5
+    _sceneAsset: {fileID: 102900000, guid: 7fd91057be57b8c488d26dd34699d1b2, type: 3}
+    _sceneName: First_1_dream_scienceroom
+  - Type: 2
+    _sceneAsset: {fileID: 102900000, guid: 0826cd9738ea5214e83bfc691964365e, type: 3}
+    _sceneName: First_1_dream_street
+  - Type: 1
+    _sceneAsset: {fileID: 102900000, guid: 161d04706b6f620438e2c516ba95155b, type: 3}
+    _sceneName: First_1_dream_house
