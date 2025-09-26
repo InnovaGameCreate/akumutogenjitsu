@@ -8,7 +8,7 @@ public class StartButtonPresenter : MonoBehaviour
 {
     [Header("設定")]
     [SerializeField] private string gameSceneName = "GameScene";
-    [SerializeField] private Image fadeImage; // CanvasGroupではなくImage
+    [SerializeField] private Image fadeImage; 
     [SerializeField] private float fadeDuration = 0.5f;
 
     [SerializeField] private StartButtonModel _model;
@@ -69,7 +69,7 @@ public class StartButtonPresenter : MonoBehaviour
             Color color = fadeImage.color;
             fadeImage.color = new Color(color.r, color.g, color.b, 0f);
 
-            // DOTweenでフェードアウト（DarkEventと同じ方式）
+            // DOTweenでフェードアウト
             fadeImage.DOFade(1f, fadeDuration)
                 .SetEase(Ease.OutQuad)
                 .OnComplete(() => asyncOp.allowSceneActivation = true);
@@ -82,7 +82,6 @@ public class StartButtonPresenter : MonoBehaviour
 
     private System.Collections.IEnumerator FadeAndLoadScene()
     {
-        // 使用しない - DOTweenに置き換えたため削除可能
         yield return null;
     }
 
