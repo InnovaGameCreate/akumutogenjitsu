@@ -1,7 +1,7 @@
 public enum eCharacter
 
 {
-
+    Narrator,
     None,
 
     Player,
@@ -9,7 +9,5 @@ public enum eCharacter
     NPC_A,
 
     NPC_B,
-
-    Narrator,
-
+    Teacher,
 }
