@@ -2319,11 +2319,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2350548624015867999, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
       propertyPath: m_Name
-      value: ItemEvent_BlueMedicine
+      value: ItemEvent_RedMedicine
       objectReference: {fileID: 0}
     - target: {fileID: 2698544504587086564, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
       propertyPath: _item
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2698544504587086564, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
       propertyPath: _eventId
@@ -2534,7 +2534,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5018794445609375772, guid: 5dfb1dc135498354f9085327a3940ad7, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7262873857064080201, guid: 5dfb1dc135498354f9085327a3940ad7, type: 3}
       insertIndex: -1
@@ -2628,6 +2629,10 @@ PrefabInstance:
     - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: _eventId
       value: 54d3cdf0-bdba-414c-987c-70fa84b8d04c
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
+      propertyPath: _isTriggeredOnce
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: textLines.Array.size
