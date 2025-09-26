@@ -11,7 +11,6 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
     private SystemManager _systemMgr;
     private EventManager _eventMgr;
     private DateManager _dateMgr;
-    private ItemManager _itemMgr;
     private PlayerManager _playerMgr;
 
     void Start()
@@ -24,7 +23,6 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         GameObject systemMgrObj = GameObject.FindWithTag("SystemMgr");
         GameObject eventMgrObj = GameObject.FindWithTag("EventMgr");
         GameObject dateMgrObj = GameObject.FindWithTag("DateMgr");
-        GameObject itemMgrObj = GameObject.FindWithTag("ItemMgr");
         GameObject playerMgrObj = GameObject.FindWithTag("PlayerMgr");
 
         if (systemMgrObj == null)
@@ -42,11 +40,6 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
             Debug.LogError("DateMgrが存在しません。");
             return;
         }
-        if (itemMgrObj == null)
-        {
-            Debug.LogError("ItemMgrが存在しません。");
-            return;
-        }
         if (playerMgrObj == null)
         {
             Debug.LogError("PlayerMgrが存在しません。");
@@ -56,7 +49,6 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         _systemMgr = systemMgrObj.GetComponent<SystemManager>();
         _eventMgr = eventMgrObj.GetComponent<EventManager>();
         _dateMgr = dateMgrObj.GetComponent<DateManager>();
-        _itemMgr = itemMgrObj.GetComponent<ItemManager>();
         _playerMgr = playerMgrObj.GetComponent<PlayerManager>();
 
         if (_systemMgr == null)
@@ -71,10 +63,6 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         {
             Debug.LogError("DateManagerがコンポーネントされていません。");
         }
-        if (_itemMgr == null)
-        {
-            Debug.LogError("ItemManagerがコンポーネントされていません。");
-        }
         if (_playerMgr == null)
         {
             Debug.LogError("PlayerManagerがコンポーネントされていません。");
@@ -87,7 +75,7 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         saveData.SystemData = _systemMgr.EncodeToSaveData();
         saveData.DateData = _dateMgr.EncodeToSaveData();
         saveData.EventData = _eventMgr.EncodeToSaveData();
-        saveData.ItemData = _itemMgr.EncodeToSaveData();
+        saveData.ItemData = ItemManager.Instance.EncodeToSaveData();
         saveData.PlayerData = _playerMgr.EncodeToSaveData();
         return saveData;
     }
@@ -97,7 +85,7 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         _systemMgr.LoadFromSaveData(saveData.SystemData);
         _eventMgr.LoadFromSaveData(saveData.EventData);
         _dateMgr.LoadFromSaveData(saveData.DateData);
-        _itemMgr.LoadFromSaveData(saveData.ItemData);
+        ItemManager.Instance.LoadFromSaveData(saveData.ItemData);
         _playerMgr.LoadFromSaveData(saveData.PlayerData);
     }
 
@@ -186,7 +174,7 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
     public bool LoadFromFile(int slotNumber)
     {
         SaveData saveData = GetSaveData(slotNumber);
-        
+
         if (saveData == null)
         {
             return false;

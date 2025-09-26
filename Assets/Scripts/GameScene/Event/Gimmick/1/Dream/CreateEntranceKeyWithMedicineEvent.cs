@@ -2,21 +2,9 @@ using UnityEngine;
 
 public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
 {
-    private ItemManager _itemMgr;
-
     private bool _isPlayerIn = false;
 
     private bool _hasFinished = false;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public override void OnStartEvent()
-    {
-        _itemMgr = GameObject.FindWithTag("ItemMgr").GetComponent<ItemManager>();
-        if (_itemMgr == null)
-        {
-            Debug.LogError("ItemManagerが見つかりませんでした。");
-        }
-    }
 
     public override bool IsFinishEvent()
     {
@@ -34,17 +22,17 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
 
     public override void TriggerEvent()
     {
-        if (_itemMgr.GetIsItemOwned(eItem.EntranceKey))
+        if (ItemManager.Instance.GetIsItemOwned(eItem.EntranceKey))
         {
             Debug.Log("既に玄関の鍵を所持しています。");
         }
 
-        if (_itemMgr.GetIsItemOwned(eItem.MedicineBlue) && _itemMgr.GetIsItemOwned(eItem.MedicineRed))
+        if (ItemManager.Instance.GetIsItemOwned(eItem.MedicineBlue) && ItemManager.Instance.GetIsItemOwned(eItem.MedicineRed))
         {
-            _itemMgr.SetIsItemOwned(eItem.EntranceKey, true);
+            ItemManager.Instance.SetIsItemOwned(eItem.EntranceKey, true);
 
-            _itemMgr.SetIsItemOwned(eItem.MedicineBlue, false);
-            _itemMgr.SetIsItemOwned(eItem.MedicineRed, false);
+            ItemManager.Instance.SetIsItemOwned(eItem.MedicineBlue, false);
+            ItemManager.Instance.SetIsItemOwned(eItem.MedicineRed, false);
             Debug.Log("薬を組み合わせて玄関の鍵を作成しました。");
             Debug.Log("使用した薬は消費されました。");
         }

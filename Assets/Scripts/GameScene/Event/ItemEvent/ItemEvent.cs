@@ -5,9 +5,6 @@ using UnityEngine;
 /// </summary>
 public class ItemEvent : AbstractEvent
 {
-    [Header("未設定の場合 (Playerの子からItemManagerを探します)")]
-    [SerializeField] private ItemManager _itemMgr;
-
     [Header("対象のアイテム")]
     [SerializeField] private eItem _item;
 
@@ -17,22 +14,6 @@ public class ItemEvent : AbstractEvent
     private bool _isInEvent = false;
 
     private bool _hasFinished = false;
-
-    /// <summary>
-    /// 初期化処理を行います
-    /// </summary>
-    public override void OnStartEvent()
-    {
-        if (_itemMgr == null)
-        {
-            _itemMgr = GameObject.FindWithTag("Player").GetComponentInChildren<ItemManager>();
-            if (_itemMgr == null)
-            {
-                Debug.LogError("ItemManagerが見つかりませんでした。");
-                return;
-            }
-        }
-    }
 
     /// <summary>
     /// イベントのトリガー条件を判定します
@@ -52,7 +33,7 @@ public class ItemEvent : AbstractEvent
         {
             Debug.Log($"アイテム: {_item} を{(_isGetItem ? "入手" : "喪失")}しました");
         }
-        _itemMgr.SetIsItemOwned(_item, _isGetItem);
+        ItemManager.Instance.SetIsItemOwned(_item, _isGetItem);
 
 #if DEBUG_MODE
         if (_isGetItem)

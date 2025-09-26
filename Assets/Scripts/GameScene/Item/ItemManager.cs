@@ -2,16 +2,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ItemManager : MonoBehaviour, ISaveableManager<ItemSaveData>
+public class ItemManager : Singleton<ItemManager>, ISaveableManager<ItemSaveData>
 {
     [SerializeField] private List<ItemData> _itemDatas;
 
-    /// <summary>  
-    /// アイテムの所有状態を管理します。  
-    /// </summary>  
+    /// <summary>
+    /// アイテムの所有状態を管理します。
+    /// </summary>
     private Dictionary<eItem, bool> _itemOwned = new();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created  
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         foreach (eItem item in System.Enum.GetValues(typeof(eItem)))
