@@ -4,16 +4,16 @@ using UnityEngine.SceneManagement;
 
 public class MapMoveEvent : AbstractEvent
 {
-    // ƒuƒƒbƒN‚Ì’†‚ÉPlayer‚ª“ü‚Á‚Ä‚¢‚é‚©
+    // ãƒ–ãƒ­ãƒƒã‚¯ã®ä¸­ã«PlayerãŒå…¥ã£ã¦ã„ã‚‹ã‹
     private bool _isInEventBlock;
 
-    [Header("ˆÚ“®‚·‚éƒ}ƒbƒv‚Ì–¼‘O")]
+    [Header("ç§»å‹•å…ˆã®ãƒãƒƒãƒ—ã®åå‰")]
     [SerializeField] private string _sceneName;
 
-    [Header("ˆÚ“®‚·‚éƒ}ƒbƒv‚ÌÀ•W")]
+    [Header("ç§»å‹•å…ˆã®ãƒãƒƒãƒ—ã®åº§æ¨™")]
     [SerializeField] private Vector2 _position;
 
-    [Header("©“®‚Åƒ}ƒbƒv‚ğˆÚ“®‚·‚é‚©")]
+    [Header("è‡ªå‹•ã§ãƒãƒƒãƒ—ã‚’ç§»å‹•ã™ã‚‹ã‹")]
     [SerializeField] private bool _isAutoMove;
 
     private PlayerMapMove _playerMapMove;
@@ -30,8 +30,8 @@ public class MapMoveEvent : AbstractEvent
         _isScenesExist = new Dictionary<string, bool>();
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            string scenePath = SceneUtility.GetScenePathByBuildIndex(i); // ƒV[ƒ“‚ÌƒpƒX‚ğæ“¾
-            string sceneFileName = System.IO.Path.GetFileNameWithoutExtension(scenePath); // ƒtƒ@ƒCƒ‹–¼‚Ì‚İæ“¾
+            string scenePath = SceneUtility.GetScenePathByBuildIndex(i); // ã‚·ãƒ¼ãƒ³ã®ãƒ‘ã‚¹ã‚’å–å¾—
+            string sceneFileName = System.IO.Path.GetFileNameWithoutExtension(scenePath); // ãƒ•ã‚¡ã‚¤ãƒ«åã®ã¿å–å¾—
 
             _isScenesExist[sceneFileName] = true;
         }
@@ -39,7 +39,7 @@ public class MapMoveEvent : AbstractEvent
 
     public override bool IsTriggerEvent()
     {
-        // ƒuƒƒbƒN‚Ì’†‚ÉPlayer‚ª“ü‚Á‚Ä‚¢‚é‚Æ‚«
+        // ãƒ–ãƒ­ãƒƒã‚¯ã®ä¸­ã«PlayerãŒå…¥ã£ã¦ã„ã‚‹ã¨ã
         if (_isInEventBlock)
         {
             return Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return) || _isAutoMove;
@@ -62,7 +62,7 @@ public class MapMoveEvent : AbstractEvent
         }
         else
         {
-            Debug.LogError($"ƒV[ƒ“‚ª‘¶İ‚µ‚Ü‚¹‚ñ: {_sceneName}");
+            Debug.LogError($"ã‚·ãƒ¼ãƒ³ãŒå­˜åœ¨ã—ã¾ã›ã‚“: {_sceneName}");
         }
         _hasFinished = true;
     }
@@ -84,18 +84,18 @@ public class MapMoveEvent : AbstractEvent
     }
 
     /// <summary>
-    /// ƒ}ƒbƒv‚ğˆÚ“®‚·‚é
+    /// ãƒãƒƒãƒ—ã‚’ç§»å‹•ã™ã‚‹
     /// </summary>
     private void MoveMap()
     {
-        // ƒV[ƒ“‚ğˆÚ“®‚µ‚ÄÀ•W‚àˆÚ“®
+        // ã‚·ãƒ¼ãƒ³ã‚’ç§»å‹•ã—ã¦åº§æ¨™ã‚’ç§»å‹•
         _playerMapMove.MapMove(_sceneName, _position);
     }
 
     /// <summary>
-    /// ƒV[ƒ“‚ª‘¶İ‚·‚é‚©
+    /// ã‚·ãƒ¼ãƒ³ãŒå­˜åœ¨ã™ã‚‹ã‹
     /// </summary>
-    /// <returns> ‘¶İ‚·‚é‚© </returns>
+    /// <returns> å­˜åœ¨ã™ã‚‹ã‹ </returns>
     private bool IsSceneExist()
     {
         return _isScenesExist.ContainsKey(_sceneName);

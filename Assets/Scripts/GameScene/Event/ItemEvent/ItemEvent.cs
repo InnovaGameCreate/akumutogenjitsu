@@ -1,17 +1,17 @@
 using UnityEngine;
 
 /// <summary>
-/// ƒAƒCƒeƒ€ƒCƒxƒ“ƒg‚ğŠÇ—‚·‚éƒNƒ‰ƒXB
+/// ã‚¢ã‚¤ãƒ†ãƒ ã«é–¢ã™ã‚‹å‡¦ç†ã‚’è¡Œã†ã‚¤ãƒ™ãƒ³ãƒˆã‚¯ãƒ©ã‚¹
 /// </summary>
 public class ItemEvent : AbstractEvent
 {
-    [Header("ƒRƒ“ƒ|[ƒlƒ“ƒg‚µ‚Ä‚¢‚È‚­‚Ä‚à‚æ‚¢(Playerƒ^ƒO‚Ì‚Â‚¢‚½ƒIƒuƒWƒFƒNƒg‚ª‘I‘ğ‚³‚ê‚é)")]
+    [Header("æœªè¨­å®šã®å ´åˆ (Playerã®å­ã‹ã‚‰ItemManagerã‚’æ¢ã—ã¾ã™)")]
     [SerializeField] private ItemManager _itemMgr;
 
-    [Header("ƒAƒCƒeƒ€‚Ìí—Ş")]
+    [Header("å¯¾è±¡ã®ã‚¢ã‚¤ãƒ†ãƒ ")]
     [SerializeField] private eItem _item;
 
-    [Header("ƒAƒCƒeƒ€‚ğæ“¾‚·‚é‚©")]
+    [Header("ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—ã™ã‚‹ã‹")]
     [SerializeField] private bool _isGetItem = true;
 
     private bool _isInEvent = false;
@@ -19,7 +19,7 @@ public class ItemEvent : AbstractEvent
     private bool _hasFinished = false;
 
     /// <summary>
-    /// ‰Šú‰»ˆ—‚ğs‚¢‚Ü‚·B
+    /// åˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã„ã¾ã™
     /// </summary>
     public override void OnStartEvent()
     {
@@ -28,40 +28,40 @@ public class ItemEvent : AbstractEvent
             _itemMgr = GameObject.FindWithTag("Player").GetComponentInChildren<ItemManager>();
             if (_itemMgr == null)
             {
-                Debug.LogError("ItemManager‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB");
+                Debug.LogError("ItemManagerãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
                 return;
             }
         }
     }
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚ªƒgƒŠƒK[‚³‚ê‚éğŒ‚ğ”»’è‚µ‚Ü‚·B
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒˆãƒªã‚¬ãƒ¼æ¡ä»¶ã‚’åˆ¤å®šã—ã¾ã™
     /// </summary>
-    /// <returns>ƒgƒŠƒK[ğŒ‚ğ–‚½‚µ‚Ä‚¢‚éê‡‚Í trueB</returns>
+    /// <returns>ãƒˆãƒªã‚¬ãƒ¼æ¡ä»¶ã‚’æº€ãŸã™å ´åˆã¯ true</returns>
     public override bool IsTriggerEvent()
     {
         return _isInEvent && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return));
     }
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚ğƒgƒŠƒK[‚µ‚Ü‚·B
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã‚’å®Ÿè¡Œã—ã¾ã™
     /// </summary>
     public override void TriggerEvent()
     {
         if (Debug.unityLogger.logEnabled)
         {
-            Debug.Log($"ƒAƒCƒeƒ€: {_item} ‚ğ{(_isGetItem ? "æ“¾" : "¸‚¤")}‚µ‚Ü‚µ‚½");
+            Debug.Log($"ã‚¢ã‚¤ãƒ†ãƒ : {_item} ã‚’{(_isGetItem ? "å…¥æ‰‹" : "å–ªå¤±")}ã—ã¾ã—ãŸ");
         }
         _itemMgr.SetIsItemOwned(_item, _isGetItem);
 
 #if DEBUG_MODE
         if (_isGetItem)
         {
-            Debug.Log($"ƒAƒCƒeƒ€: {_item} ‚ğæ“¾‚µ‚Ü‚µ‚½");
+            Debug.Log($"ã‚¢ã‚¤ãƒ†ãƒ : {_item} ã‚’å…¥æ‰‹ã—ã¾ã—ãŸ");
         }
         else
         {
-            Debug.Log($"ƒAƒCƒeƒ€: {_item} ‚ğ¸‚¢‚Ü‚µ‚½");
+            Debug.Log($"ã‚¢ã‚¤ãƒ†ãƒ : {_item} ã‚’å–ªå¤±ã—ã¾ã—ãŸ");
         }
 #endif
 
@@ -69,18 +69,18 @@ public class ItemEvent : AbstractEvent
     }
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚ªI—¹‚µ‚½‚©‚Ç‚¤‚©‚ğ”»’è‚µ‚Ü‚·B
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã®çµ‚äº†åˆ¤å®šã‚’è¡Œã„ã¾ã™
     /// </summary>
-    /// <returns>I—¹‚µ‚Ä‚¢‚éê‡‚Í trueB</returns>
+    /// <returns>çµ‚äº†ã—ãŸå ´åˆã¯ true</returns>
     public override bool IsFinishEvent()
     {
         return _hasFinished;
     }
 
     /// <summary>
-    /// 2D ƒRƒ‰ƒCƒ_[‚ÉÕ“Ë‚µ‚½Û‚Ìˆ—‚ğs‚¢‚Ü‚·B
+    /// 2D ã®ãƒˆãƒªã‚¬ãƒ¼ã«å…¥ã£ãŸéš›ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™
     /// </summary>
-    /// <param name="collision">Õ“Ë‚µ‚½ƒRƒ‰ƒCƒ_[B</param>
+    /// <param name="collision">è¡çªã—ãŸã‚³ãƒ©ã‚¤ãƒ€ãƒ¼</param>
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
