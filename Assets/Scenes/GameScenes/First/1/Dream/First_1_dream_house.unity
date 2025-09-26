@@ -293,6 +293,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8269791697374650952, guid: 5dfb1dc135498354f9085327a3940ad7, type: 3}
+      propertyPath: _isTriggerOnce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8269791697374650952, guid: 5dfb1dc135498354f9085327a3940ad7, type: 3}
       propertyPath: _eventQueue.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1589,6 +1593,18 @@ PrefabInstance:
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _eventId
       value: 5d2d2efb-c65b-420e-87e6-ff6bd92d11f8
+      objectReference: {fileID: 0}
+    - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: _sceneName
+      value: First_2_real_house
+      objectReference: {fileID: 0}
+    - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: _position.x
+      value: -1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
+      propertyPath: _position.y
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2350548624015867999, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: m_Name
