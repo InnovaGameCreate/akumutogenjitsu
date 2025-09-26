@@ -51,6 +51,21 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/First/1/Dream/School/2F/First_1_dream_class201.unity
     guid: 861d691f7095b5544b5b8cda0a582a59
   - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Dream/School/1F/First_1_dream_class104.unity
+    guid: d0555a7818a9e054d92ab665b5c3c0db
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Dream/School/1F/First_1_dream_hallway1.unity
+    guid: c56eafe54f84ad149a995822483dc261
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Dream/School/1F/First_1_dream_scienceroom.unity
+    guid: 7fd91057be57b8c488d26dd34699d1b2
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Dream/School/1F/First_1_dream_teacherRoom.unity
+    guid: a5752820a06797f40891bf77efca4ed1
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/1/Real/School/1F/First_1_real_scienceroom.unity
+    guid: 3145a4871a1ce3c4bb4d30162208832b
+  - enabled: 1
     path: Assets/Scenes/GameScenes/First/1/Dream/School/2F/First_1_dream_class202.unity
     guid: 5ccdbb6b8122e5c45b9b4ec6e6d77701
   - enabled: 1
