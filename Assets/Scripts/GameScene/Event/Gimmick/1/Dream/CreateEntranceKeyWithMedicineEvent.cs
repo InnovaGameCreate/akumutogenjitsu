@@ -14,7 +14,7 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
         _itemMgr = GameObject.FindWithTag("ItemMgr").GetComponent<ItemManager>();
         if (_itemMgr == null)
         {
-            Debug.LogError("ItemManager‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB");
+            Debug.LogError("ItemManagerãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
         }
     }
 
@@ -36,7 +36,7 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
     {
         if (_itemMgr.GetIsItemOwned(eItem.EntranceKey))
         {
-            Debug.Log("‚·‚Å‚ÉŒºŠÖ‚ÌŒ®‚ğ‚Á‚Ä‚¢‚éB");
+            Debug.Log("æ—¢ã«ç„é–¢ã®éµã‚’æ‰€æŒã—ã¦ã„ã¾ã™ã€‚");
         }
 
         if (_itemMgr.GetIsItemOwned(eItem.MedicineBlue) && _itemMgr.GetIsItemOwned(eItem.MedicineRed))
@@ -45,12 +45,12 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
 
             _itemMgr.SetIsItemOwned(eItem.MedicineBlue, false);
             _itemMgr.SetIsItemOwned(eItem.MedicineRed, false);
-            Debug.Log("–ò•i‚ğ‘g‚İ‡‚í‚¹‚é‚ÆŒºŠÖ‚ÌŒ®‚ª‚Å‚«‚½B");
-            Debug.Log("‚Å‚«‚½B‚±‚ÌŒ®‚È‚çŠJ‚­‚Í‚¸...I");
+            Debug.Log("è–¬ã‚’çµ„ã¿åˆã‚ã›ã¦ç„é–¢ã®éµã‚’ä½œæˆã—ã¾ã—ãŸã€‚");
+            Debug.Log("ä½¿ç”¨ã—ãŸè–¬ã¯æ¶ˆè²»ã•ã‚Œã¾ã—ãŸã€‚");
         }
         else
         {
-            Debug.Log("‚Ü‚¾‚È‚É‚©‘«‚è‚È‚¢‹C‚ª‚·‚é...");
+            Debug.Log("å¿…è¦ãªè–¬ãŒæƒã£ã¦ã„ã¾ã›ã‚“ã€‚");
         }
         _hasFinished = true;
     }
