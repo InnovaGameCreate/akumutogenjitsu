@@ -74,6 +74,90 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScenes/First/1/Dream/First_1_dream_street.unity
     guid: 0826cd9738ea5214e83bfc691964365e
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/First_3_real_house.unity
+    guid: 04eee381a5a74437c81e176357d41f17
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/First_3_real_street.unity
+    guid: e5a2e1981618c41e58cef8619a0d0d00
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/School/1F/First_3_real_class101.unity
+    guid: e1fbcb69628854561a35a20bbfa909db
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/School/1F/First_3_real_class102.unity
+    guid: a1df30a85a67543a0a874e1bc34bdd0d
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/School/1F/First_3_real_class103.unity
+    guid: 946c633ac67054549ad95120ea8bc0df
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/School/1F/First_3_real_class104.unity
+    guid: 9156182165dfd4ebeb0604007f9dae0c
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/School/1F/First_3_real_hallway1.unity
+    guid: b32ddbfcb6cde45538e97c8997cbf31e
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/School/1F/First_3_real_scienceroom.unity
+    guid: 1beece41ce72348d5a3221afd8c4c2ce
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/School/1F/First_3_real_teacherRoom.unity
+    guid: 96d6c13f8d0044003abbbca32547fc52
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/School/2F/First_3_real_class201.unity
+    guid: 4346af91ecac34092bfd2f3f930e8113
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/School/2F/First_3_real_class202.unity
+    guid: 64c753ba7af7341f69b2ed0cd7c92829
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/School/2F/First_3_real_class203.unity
+    guid: 854407f72184e4f29b9df586a9f11e0b
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/School/2F/First_3_real_class204.unity
+    guid: ec33f6c707da845069c7fdc8932dd023
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Real/School/2F/First_3_real_hallway2.unity
+    guid: 26c9ffd046a414e5eb6f08909d193f6f
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/School/2F/First_3_dream_class201.unity
+    guid: 6d144b2a41994464cb6474890c729bed
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/School/2F/First_3_dream_class202.unity
+    guid: c9ff2211007ef43d7b6edc09262f3122
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/School/2F/First_3_dream_class203.unity
+    guid: 3e0133bc7a33a4931b52452ed3105dc5
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/School/2F/First_3_dream_class204.unity
+    guid: 6ba107520754741b1a4845bb2cef48f3
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/School/2F/First_3_dream_hallway2.unity
+    guid: 6d3c3b78483fe459f8328ecd9441ee88
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/School/1F/First_3_dream_class101.unity
+    guid: 814b0c9c739b74c65b75b0a415b48199
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/School/1F/First_3_dream_class102.unity
+    guid: 6ec18104706654d76827bc1f4ecc99c2
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/School/1F/First_3_dream_class103.unity
+    guid: d56d8c392c4614aca8d9f7f6045d82dc
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/School/1F/First_3_dream_class104.unity
+    guid: bce26a8876fa044458e1ef8eb9df719e
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/School/1F/First_3_dream_hallway1.unity
+    guid: 52525124cee2241048dd9d513a3fce02
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/School/1F/First_3_dream_scienceroom.unity
+    guid: 5008980b7256d415c9af16cbc8224c8b
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/School/1F/First_3_dream_teacherRoom.unity
+    guid: b5dc374e0de364a468599a3f34ab8787
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/First_3_dream_house.unity
+    guid: 71a06bcbc5319441f96aff89f2cf3720
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/First/3/Dream/First_3_dream_street.unity
+    guid: a843c34f23f8849a3acdd5ec3790eec8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
