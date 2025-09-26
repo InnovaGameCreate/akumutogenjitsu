@@ -18,27 +18,27 @@ public class Audio : Singleton<Audio>
     [SerializeField] private AudioData[] _audioDatas;
 
     /// <summary>
-    /// Audio�̍Đ�(ex: Audio.Instance.Play(0, false);)
+    /// Audio の操作 (例: Audio.Instance.Play(0, false);)
     /// </summary>
-    /// <param name="index"> Clip��index </param>
-    /// <param name="isLoop"> ���[�v���邩 </param>
+    /// <param name="index">Clip の index</param>
+    /// <param name="isLoop">ループ設定</param>
     public void Play(int index, bool isLoop)
     {
         if (index < 0 || index >= _audioDatas.Length)
         {
-            Debug.Log($"�C���f�b�N�X���͈͊O�ł��B({index})");
+            Debug.Log($"AudioClip の index が不正です({index})");
             return;
         }
 
         if (_audioDatas[index].Clip == null)
         {
-            Debug.Log($"AudioClip���Ȃ��ł��B{index}");
+            Debug.Log($"AudioClip がありません {index}");
             return;
         }
 
         if (_audioDatas[index].AudioSource == null)
         {
-            Debug.Log("AudioSource���A�^�b�`����Ă��܂���B");
+            Debug.Log("AudioSource がアタッチされていません");
             return;
         }
 
@@ -49,26 +49,26 @@ public class Audio : Singleton<Audio>
     }
 
     /// <summary>
-    /// 1�񂾂�SE�𗬂�
+    /// 1回だけ再生する
     /// </summary>
-    /// <param name="index"> Clip��index </param>
+    /// <param name="index">Clip の index</param>
     public void PlayOneShot(int index)
     {
         if (index < 0 || index >= _audioDatas.Length)
         {
-            Debug.LogError($"�C���f�b�N�X���͈͊O�ł��B({index})");
+            Debug.LogError($"AudioClip の index が不正です({index})");
             return;
         }
 
         if (_audioDatas[index].Clip == null)
         {
-            Debug.LogError($"AudioClip���Ȃ��ł��B{index}");
+            Debug.LogError($"AudioClip がありません {index}");
             return;
         }
 
         if (_audioDatas[index].AudioSource == null)
         {
-            Debug.LogError("AudioSource���A�^�b�`����Ă��܂���B");
+            Debug.LogError("AudioSource がアタッチされていません");
             return;
         }
 
@@ -77,19 +77,19 @@ public class Audio : Singleton<Audio>
     }
 
     /// <summary>
-    /// Audio�̍Đ����~�߂�
+    /// Audio の停止
     /// </summary>
     public void Stop(int index)
     {
         if (index < 0 || index >= _audioDatas.Length)
         {
-            Debug.LogError($"�C���f�b�N�X���͈͊O�ł��B({index})");
+            Debug.LogError($"AudioClip の index が不正です({index})");
             return;
         }
 
         if (_audioDatas[index].AudioSource == null)
         {
-            Debug.LogError("AudioSource���A�^�b�`����Ă��܂���B");
+            Debug.LogError("AudioSource がアタッチされていません");
             return;
         }
 
