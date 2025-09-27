@@ -32,9 +32,6 @@ public class DateManager : Singleton<DateManager>, ISaveableManager<DateSaveData
     public void PlusOneDay()
     {
         _currentDate.Day++;
-
-        // 日付を超えたらストーリーレイヤーを初期化する
-        StoryManager.Instance.Initialize();
     }
 
     public DateSaveData EncodeToSaveData()

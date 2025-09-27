@@ -365,6 +365,10 @@ PrefabInstance:
       value: 02e6cf33-fc57-4df3-832c-cc1ad36ed74e
       objectReference: {fileID: 0}
     - target: {fileID: 7587805070377704605, guid: 5dfb1dc135498354f9085327a3940ad7, type: 3}
+      propertyPath: _isTriggeredOnce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7587805070377704605, guid: 5dfb1dc135498354f9085327a3940ad7, type: 3}
       propertyPath: textLines.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1596,7 +1600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_2_real_house
+      value: First_3_real_house
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _position.x
