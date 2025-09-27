@@ -21,6 +21,11 @@ public class SetDateEvent : AbstractEvent
         }
 
         DateManager.Instance.SetCurrentDate(_newDate);
+
+
+        // 日付を超えたらストーリーレイヤーを初期化する
+        StoryManager.Instance.Initialize();
+
         _hasFinished = true;
     }
 
