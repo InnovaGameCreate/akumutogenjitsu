@@ -19,7 +19,7 @@ public class UseEntranceKeyEvent : AbstractEvent
 
     public override bool IsTriggerEvent()
     {
-        return _isInEvent && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return));
+        return _isInEvent && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)) && _textEvent.EventStatus != eEventStatus.Running;
     }
 
     public override void TriggerEvent()
