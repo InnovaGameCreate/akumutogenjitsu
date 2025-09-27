@@ -86,6 +86,10 @@ public abstract class AbstractUnitController : MonoBehaviour
         }
         set
         {
+            _unitMoveStatus.Up = false;
+            _unitMoveStatus.Down = false;
+            _unitMoveStatus.Left = false;
+            _unitMoveStatus.Right = false;
             _enabled = value;
         }
     }
