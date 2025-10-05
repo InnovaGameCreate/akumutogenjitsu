@@ -41,6 +41,18 @@ public class CollisionTriggerEvent : AbstractEvent
                 StartCoroutine(CloseImage());
             }
         }
+
+        // トリガー条件チェック
+        if (IsTriggerEvent())
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        // 終了条件チェック
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
     }
 
     /// <summary>
@@ -48,7 +60,7 @@ public class CollisionTriggerEvent : AbstractEvent
     /// プレイヤーと衝突した場合にトリガーする
     /// </summary>
     /// <returns>イベントをトリガーするか</returns>
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         // EventDataが存在しない場合は作成
         try
@@ -96,7 +108,7 @@ public class CollisionTriggerEvent : AbstractEvent
     /// イベントが終了したか
     /// </summary>
     /// <returns>終了したか</returns>
-    public override bool IsFinishEvent()
+    private bool IsFinishEvent()
     {
         return _isEventFinished;
     }

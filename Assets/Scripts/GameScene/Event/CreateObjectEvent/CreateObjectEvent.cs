@@ -1,4 +1,5 @@
 using UnityEngine;
+using R3;
 
 public class CreateObjectEvent : AbstractEvent
 {
@@ -20,12 +21,12 @@ public class CreateObjectEvent : AbstractEvent
         }
     }
 
-    public override bool IsFinishEvent()
+    private bool IsFinishEvent()
     {
         return _createdObj != null;
     }
 
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         return _isInEvent && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return));
     }
@@ -33,6 +34,21 @@ public class CreateObjectEvent : AbstractEvent
     public override void TriggerEvent()
     {
         CreateObject();
+    }
+
+    public override void OnUpdateEvent()
+    {
+        // トリガー条件チェック
+        if (IsTriggerEvent())
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        // 終了条件チェック
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
     }
 
     private void CreateObject()

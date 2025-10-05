@@ -56,6 +56,15 @@ public class GameExitEvent : AbstractEvent
                 TriggerEvent();
             }
         }
+
+        if (IsTriggerEvent())
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
     }
 
     /// <summary>
@@ -99,7 +108,7 @@ public class GameExitEvent : AbstractEvent
     /// 手動でキーを押した場合のみトリガー
     /// </summary>
     /// <returns>イベントをトリガーするか</returns>
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         // このイベントは手動キー入力でのみトリガーするため、常にfalse
         return false;
@@ -120,7 +129,7 @@ public class GameExitEvent : AbstractEvent
     /// イベントが終了したか
     /// </summary>
     /// <returns>終了したか</returns>
-    public override bool IsFinishEvent()
+    private bool IsFinishEvent()
     {
         return _isEventFinished;
     }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using R3;
 
 public class DarkEvent : AbstractEvent
 {
@@ -116,14 +117,30 @@ public class DarkEvent : AbstractEvent
         }
     }
 
-    public override bool IsFinishEvent()
+    private bool IsFinishEvent()
     {
         return _hasFinished;
     }
 
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         return (_isInEvent && Input.GetKeyDown(KeyCode.Z)) || _isTriggerForce;
+    }
+
+    public override void OnUpdateEvent()
+    {
+        // トリガー条件チェック
+        if (IsTriggerEvent())
+        {
+            _isTriggerForce = false;
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        // 終了条件チェック
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)

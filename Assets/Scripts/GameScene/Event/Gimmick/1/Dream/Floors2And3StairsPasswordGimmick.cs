@@ -1,14 +1,15 @@
 using UnityEngine;
+using R3;
 
 public class Floors2And3StairsPasswordGimmick : AbstractEvent
 {
-    [Header("ŠK’i‚Ì•Ç")]
+    [Header("éšæ®µã®å£")]
     [SerializeField] private GameObject _wall;
 
-    [Header("ƒpƒXƒ[ƒh")]
+    [Header("ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰")]
     [SerializeField] private string _password;
 
-    // Player‚ª“ü—Í‚µ‚½ƒpƒXƒ[ƒh
+    // PlayerãŒå…¥åŠ›ã—ãŸãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰
     private string _userInput;
 
     private bool _isPlayerIn = false;
@@ -18,7 +19,7 @@ public class Floors2And3StairsPasswordGimmick : AbstractEvent
     {
         if (_wall == null)
         {
-            Debug.LogError("•ÇƒIƒuƒWƒFƒNƒg‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+            Debug.LogError("å£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
         }
 
         if (!Enabled)
@@ -27,14 +28,14 @@ public class Floors2And3StairsPasswordGimmick : AbstractEvent
         }
     }
 
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         return _isPlayerIn && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Z));
     }
 
     public override void TriggerEvent()
     {
-        // TODO: UI‚©‚çƒpƒXƒ[ƒh“ü—Í‚ğó‚¯æ‚éˆ—‚É’u‚«Š·‚¦‚é
+        // TODO: UIï¿½ï¿½ï¿½ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½Í‚ï¿½ï¿½ó‚¯ï¿½éˆï¿½ï¿½ï¿½É’uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         _userInput = "1625";
 
         if (_userInput == _password)
@@ -42,23 +43,38 @@ public class Floors2And3StairsPasswordGimmick : AbstractEvent
             if (_wall != null)
             {
                 _wall.SetActive(false);
-                // ƒCƒxƒ“ƒg‚ğŠ®‘S‚É–³Œø‰»‚·‚é‚½‚ß‚ÉTriggeredƒXƒe[ƒ^ƒX‚Éİ’è
+                // ã‚¤ãƒ™ãƒ³ãƒˆãŒå®Œå…¨ã«ç„¡åŠ¹åŒ–ã•ã‚Œã‚‹ãŸã‚ã«Triggeredã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«è¨­å®š
                 EventStatus = eEventStatus.Triggered;
                 TriggerOnce = true;
-                Debug.Log("‚æ‚¤‚â‚­‚±‚ê‚Å‚PŠK‚É...");
+                Debug.Log("ã‚ˆã†ã‚„ãã“ã“ã§1éšã«...");
             }
         }
         else
         {
-            Debug.Log("ƒpƒXƒ[ƒh‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·");
+            Debug.Log("ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé–“é•ã£ã¦ã„ã¾ã™");
         }
 
         _hasFinished = true;
     }
 
-    public override bool IsFinishEvent()
+    private bool IsFinishEvent()
     {
         return _hasFinished;
+    }
+
+    public override void OnUpdateEvent()
+    {
+        // ãƒˆãƒªã‚¬ãƒ¼æ¡ä»¶ãƒã‚§ãƒƒã‚¯
+        if (IsTriggerEvent())
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        // çµ‚äº†æ¡ä»¶ãƒã‚§ãƒƒã‚¯
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -68,7 +84,7 @@ public class Floors2And3StairsPasswordGimmick : AbstractEvent
             _isPlayerIn = true;
         }
     }
-    
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

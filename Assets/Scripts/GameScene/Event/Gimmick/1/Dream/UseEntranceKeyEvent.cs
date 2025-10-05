@@ -1,4 +1,5 @@
 using UnityEngine;
+using R3;
 
 public class UseEntranceKeyEvent : AbstractEvent
 {
@@ -12,12 +13,12 @@ public class UseEntranceKeyEvent : AbstractEvent
 
     private bool _hasFinished = false;
 
-    public override bool IsFinishEvent()
+    private bool IsFinishEvent()
     {
         return _hasFinished;
     }
 
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         return _isInEvent && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)) && _textEvent.EventStatus != eEventStatus.Running;
     }
@@ -40,6 +41,21 @@ public class UseEntranceKeyEvent : AbstractEvent
         }
 
         _hasFinished = true;
+    }
+
+    public override void OnUpdateEvent()
+    {
+        // トリガー条件チェック
+        if (IsTriggerEvent())
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        // 終了条件チェック
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
     }
 
     // MARK: OnTrigger

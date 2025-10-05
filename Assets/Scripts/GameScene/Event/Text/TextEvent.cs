@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using R3;
 
 [System.Serializable]
 public class TextLine
@@ -63,7 +64,7 @@ public class TextEvent : AbstractEvent
         if (other.CompareTag("Player")) playerInRange = false;
     }
 
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         return playerInRange && Input.GetKeyDown(KeyCode.Z);
     }
@@ -102,7 +103,7 @@ public class TextEvent : AbstractEvent
         DisplayCurrentLine();
     }
 
-    public override bool IsFinishEvent()
+    private bool IsFinishEvent()
     {
         if (EventStatus == eEventStatus.Triggered)
         {
@@ -113,12 +114,25 @@ public class TextEvent : AbstractEvent
 
     public override void OnUpdateEvent()
     {
+        // トリガー条件チェック
+        if (IsTriggerEvent())
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        // イベント実行中の処理
         if (EventStatus == eEventStatus.Running)
         {
             if (isDisplaying && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)))
             {
                 NextLine();
             }
+        }
+
+        // 終了条件チェック
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
         }
     }
 

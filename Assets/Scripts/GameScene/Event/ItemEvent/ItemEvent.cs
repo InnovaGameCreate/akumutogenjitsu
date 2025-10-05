@@ -1,4 +1,5 @@
 using UnityEngine;
+using R3;
 
 /// <summary>
 /// アイテムに関する処理を行うイベントクラス
@@ -19,7 +20,7 @@ public class ItemEvent : AbstractEvent
     /// イベントのトリガー条件を判定します
     /// </summary>
     /// <returns>トリガー条件を満たす場合は true</returns>
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         return _isInEvent && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return));
     }
@@ -53,9 +54,24 @@ public class ItemEvent : AbstractEvent
     /// イベントの終了判定を行います
     /// </summary>
     /// <returns>終了した場合は true</returns>
-    public override bool IsFinishEvent()
+    private bool IsFinishEvent()
     {
         return _hasFinished;
+    }
+
+    public override void OnUpdateEvent()
+    {
+        // トリガー条件チェック
+        if (IsTriggerEvent())
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        // 終了条件チェック
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
     }
 
     /// <summary>

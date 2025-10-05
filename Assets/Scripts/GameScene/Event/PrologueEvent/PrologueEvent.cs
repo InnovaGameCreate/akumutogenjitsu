@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using R3;
 
 /// <summary>
 /// プロローグイベント - 真っ暗な画面にタイプライター効果でテキスト表示
@@ -48,7 +49,7 @@ public class PrologueEvent : AbstractEvent
         }
     }
 
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         return (_isInEvent && Input.GetKeyDown(KeyCode.Z)) || _isTriggerForce;
     }
@@ -65,22 +66,26 @@ public class PrologueEvent : AbstractEvent
 
     public override void OnUpdateEvent()
     {
+        // トリガー条件チェック
+        if (IsTriggerEvent())
+        {
+            _isTriggerForce = false;
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
         // プレゼンターがキー入力を処理するため、ここでは完了チェックのみ
         if (_prologuePresenter != null && _prologuePresenter.IsFinished())
         {
             CleanupPrologueUI();
             _hasFinished = true;
         }
-    }
 
-    public override bool IsFinishEvent()
-    {
+        // 終了条件チェック
         if (_hasFinished)
         {
             _hasFinished = false;
-            return true;
+            onFinishEvent.OnNext(Unit.Default);
         }
-        return false;
     }
 
     private bool CanStartPrologue()

@@ -98,6 +98,12 @@ public abstract class AbstractEvent : MonoBehaviour
         onTriggerEvent
             .Subscribe(_ =>
             {
+                if (EventStatus == eEventStatus.Triggered)
+                {
+                    return;
+                }
+
+                // 一回しか実行しない
                 EventStatus = eEventStatus.Running;
                 SetIsUnitMove(false);
             })
@@ -141,21 +147,9 @@ public abstract class AbstractEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// イベントのトリガーの条件
-    /// </summary>
-    /// <returns> イベントをトリガーするか </returns>
-    public abstract bool IsTriggerEvent();
-
-    /// <summary>
     /// イベントをトリガーする
     /// </summary>
     public abstract void TriggerEvent();
-
-    /// <summary>
-    /// イベントが終了したか
-    /// </summary>
-    /// <returns> 終了したか </returns>
-    public abstract bool IsFinishEvent();
 
     public virtual void OnFinishEvent()
     {

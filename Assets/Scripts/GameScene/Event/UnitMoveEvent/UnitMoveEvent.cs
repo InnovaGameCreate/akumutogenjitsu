@@ -1,4 +1,5 @@
 using UnityEngine;
+using R3;
 
 public class UnitMoveEvent : AbstractEvent
 {
@@ -47,7 +48,8 @@ public class UnitMoveEvent : AbstractEvent
 
         _defaultPosition = unitObj.transform.position;
     }
-    public override bool IsFinishEvent()
+
+    private bool IsFinishEvent()
     {
         Vector3 position = _unitMove.gameObject.transform.position;
         switch (_direction)
@@ -72,7 +74,7 @@ public class UnitMoveEvent : AbstractEvent
         return false;
     }
 
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         return (_isInEvent && Input.GetKeyDown(KeyCode.Z)) || _isTriggerForce;
     }
@@ -98,6 +100,22 @@ public class UnitMoveEvent : AbstractEvent
         if (_speed != 0)
         {
             _unitMove.Speed = _defaultSpeed;
+        }
+    }
+
+    public override void OnUpdateEvent()
+    {
+        // トリガー条件チェック
+        if (IsTriggerEvent())
+        {
+            _isTriggerForce = false;
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        // 終了条件チェック
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
         }
     }
 

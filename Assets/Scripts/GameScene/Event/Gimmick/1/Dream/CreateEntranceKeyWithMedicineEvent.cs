@@ -1,4 +1,5 @@
 using UnityEngine;
+using R3;
 
 public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
 {
@@ -6,7 +7,7 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
 
     private bool _hasFinished = false;
 
-    public override bool IsFinishEvent()
+    private bool IsFinishEvent()
     {
         if (EventStatus == eEventStatus.Triggered)
         {
@@ -15,7 +16,7 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
         return _hasFinished;
     }
 
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         return _isPlayerIn && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return));
     }
@@ -41,6 +42,21 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
             Debug.Log("必要な薬が揃っていません。");
         }
         _hasFinished = true;
+    }
+
+    public override void OnUpdateEvent()
+    {
+        // トリガー条件チェック
+        if (IsTriggerEvent())
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        // 終了条件チェック
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

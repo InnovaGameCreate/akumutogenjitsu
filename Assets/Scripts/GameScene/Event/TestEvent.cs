@@ -5,22 +5,12 @@ public class TestEvent : AbstractEvent
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    public override bool IsTriggerEvent()
-    {
-        return false;
-    }
-
     public override void TriggerEvent()
     {
     }
 
     public override void OnFinishEvent()
     {
-    }
-
-    public override bool IsFinishEvent()
-    {
-        return false;
     }
 
     public override void OnUpdateEvent()
