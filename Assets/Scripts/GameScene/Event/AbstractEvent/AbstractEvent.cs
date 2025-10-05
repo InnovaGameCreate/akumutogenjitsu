@@ -22,7 +22,10 @@ public abstract class AbstractEvent : MonoBehaviour
     [Header("このイベントが終了したらStoryLayerを上げるか")]
     [SerializeField] private bool _isUpStoryLayer = false;
 
-    private bool _isTriggerForce = false;
+    protected readonly Subject<Unit> onTriggerEvent = new();
+    protected readonly Subject<Unit> onFinishEvent = new();
+
+    private CompositeDisposable _disposable = new();
 
     /// <summary>
     /// イベントID
@@ -44,7 +47,7 @@ public abstract class AbstractEvent : MonoBehaviour
     /// </summary>
     public void TriggerEventForce()
     {
-        _isTriggerForce = true;
+        onTriggerEvent.OnNext(Unit.Default);
     }
 
     void Start()
@@ -54,6 +57,7 @@ public abstract class AbstractEvent : MonoBehaviour
             Debug.LogError("EventManagerが存在しません。");
             return;
         }
+        Bind();
 
         OnStartEvent();
     }
@@ -63,20 +67,10 @@ public abstract class AbstractEvent : MonoBehaviour
     {
         OnUpdateEvent();
 
-        // イベントが実行中はトリガーしない
-        if (EventStatus != eEventStatus.Running)
+        // イベント実行中
+        if (EventStatus == eEventStatus.Running)
         {
-            if (IsTriggerEvent() || _isTriggerForce)
-            {
-                SetIsUnitMove(false); // Unitの移動を無効にする
-                TriggerEvent();
-                EventStatus = eEventStatus.Running;
-            }
-        }
-
-        if (IsFinishEvent() && EventStatus == eEventStatus.Running)
-        {
-            FinishEvent();
+            TriggerEvent();
         }
     }
 
@@ -92,12 +86,29 @@ public abstract class AbstractEvent : MonoBehaviour
         {
             StoryManager.Instance.CurrentStoryLayer++;
         }
-        _isTriggerForce = false;
         OnFinishEvent();
 
 #if DEBUG_MODE
         Debug.Log($"イベント: {_event} が終了しました");
 #endif
+    }
+
+    private void Bind()
+    {
+        onTriggerEvent
+            .Subscribe(_ =>
+            {
+                EventStatus = eEventStatus.Running;
+                SetIsUnitMove(false);
+            })
+            .AddTo(_disposable);
+
+        onFinishEvent
+            .Subscribe(_ =>
+            {
+                FinishEvent();
+            })
+            .AddTo(_disposable);
     }
 
     /// <summary>
@@ -232,5 +243,10 @@ public abstract class AbstractEvent : MonoBehaviour
 
             return eventData;
         }
+    }
+
+    private void OnDestroy()
+    {
+        _disposable?.Dispose();
     }
 }

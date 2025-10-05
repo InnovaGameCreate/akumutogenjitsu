@@ -1,4 +1,5 @@
 using UnityEngine;
+using R3;
 
 public class TestEvent : AbstractEvent
 {
@@ -6,22 +7,32 @@ public class TestEvent : AbstractEvent
 
     public override bool IsTriggerEvent()
     {
-        return Input.GetKey(KeyCode.Space);
+        return false;
     }
 
     public override void TriggerEvent()
     {
-#if DEBUG_MODE
-        Debug.Log($"イベント: {Event} がトリガーされました");
-#endif
+    }
+
+    public override void OnFinishEvent()
+    {
     }
 
     public override bool IsFinishEvent()
     {
-        return Input.GetKeyDown(KeyCode.A);
+        return false;
     }
 
     public override void OnUpdateEvent()
     {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
     }
 }
