@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using UnityEngine;
 
@@ -8,11 +9,16 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
     /// </summary>
     public const int MAX_SAVE_SLOTS = 3;
 
+    /// <summary>
+    /// 暗号化を使用するかどうか（Inspector で設定可能）
+    /// </summary>
+    [SerializeField] private bool useEncryption = true;
+
     private SystemManager _systemMgr;
     private EventManager _eventMgr;
     private DateManager _dateMgr;
-    private ItemManager _itemMgr;
     private PlayerManager _playerMgr;
+    private ItemManager _itemMgr;
 
     void Start()
     {
@@ -24,7 +30,6 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         GameObject systemMgrObj = GameObject.FindWithTag("SystemMgr");
         GameObject eventMgrObj = GameObject.FindWithTag("EventMgr");
         GameObject dateMgrObj = GameObject.FindWithTag("DateMgr");
-        GameObject itemMgrObj = GameObject.FindWithTag("ItemMgr");
         GameObject playerMgrObj = GameObject.FindWithTag("PlayerMgr");
 
         if (systemMgrObj == null)
@@ -42,11 +47,6 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
             Debug.LogError("DateMgrが存在しません。");
             return;
         }
-        if (itemMgrObj == null)
-        {
-            Debug.LogError("ItemMgrが存在しません。");
-            return;
-        }
         if (playerMgrObj == null)
         {
             Debug.LogError("PlayerMgrが存在しません。");
@@ -56,7 +56,6 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         _systemMgr = systemMgrObj.GetComponent<SystemManager>();
         _eventMgr = eventMgrObj.GetComponent<EventManager>();
         _dateMgr = dateMgrObj.GetComponent<DateManager>();
-        _itemMgr = itemMgrObj.GetComponent<ItemManager>();
         _playerMgr = playerMgrObj.GetComponent<PlayerManager>();
 
         if (_systemMgr == null)
@@ -71,10 +70,6 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         {
             Debug.LogError("DateManagerがコンポーネントされていません。");
         }
-        if (_itemMgr == null)
-        {
-            Debug.LogError("ItemManagerがコンポーネントされていません。");
-        }
         if (_playerMgr == null)
         {
             Debug.LogError("PlayerManagerがコンポーネントされていません。");
@@ -87,7 +82,7 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         saveData.SystemData = _systemMgr.EncodeToSaveData();
         saveData.DateData = _dateMgr.EncodeToSaveData();
         saveData.EventData = _eventMgr.EncodeToSaveData();
-        saveData.ItemData = _itemMgr.EncodeToSaveData();
+        saveData.ItemData = _itemMgr.EncodeToSaveData();  
         saveData.PlayerData = _playerMgr.EncodeToSaveData();
         return saveData;
     }
@@ -97,7 +92,7 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         _systemMgr.LoadFromSaveData(saveData.SystemData);
         _eventMgr.LoadFromSaveData(saveData.EventData);
         _dateMgr.LoadFromSaveData(saveData.DateData);
-        _itemMgr.LoadFromSaveData(saveData.ItemData);
+        _itemMgr.LoadFromSaveData(saveData.ItemData);  
         _playerMgr.LoadFromSaveData(saveData.PlayerData);
     }
 
@@ -125,13 +120,24 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
                 return null;
             }
 
-            string saveDataJson = File.ReadAllText(filePath);
             SaveData saveData = new SaveData();
-            saveData.DecodeToSaveData(saveDataJson);
+
+            if (useEncryption)
+            {
+                // 暗号化モード: バイナリとして読み込み
+                byte[] encryptedData = File.ReadAllBytes(filePath);
+                saveData.DecodeFromBinary(encryptedData);
+            }
+            else
+            {
+                // 非暗号化モード: JSONとして読み込み
+                string saveDataJson = File.ReadAllText(filePath);
+                saveData.DecodeToSaveData(saveDataJson);
+            }
 
             return saveData;
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             Debug.LogError($"スロット{slotNumber}からのセーブデータ取得に失敗しました: {ex.Message}");
             return null;
@@ -163,16 +169,24 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         try
         {
             string filePath = GetSaveFilePath(slotNumber);
+            SaveData saveData = EncodeToSaveData();
 
-            // セーブデータのJSON文字列を取得
-            string saveDataJson = CreateSaveDataJson();
-
-            // ファイルに書き込み
-            File.WriteAllText(filePath, saveDataJson);
-
-            Debug.Log($"スロット{slotNumber}にセーブデータを保存しました: {filePath}");
+            if (useEncryption)
+            {
+                // 暗号化モード: バイナリとして保存
+                byte[] encryptedData = saveData.EncodeToBinary();
+                File.WriteAllBytes(filePath, encryptedData);
+                Debug.Log($"スロット{slotNumber}に暗号化されたセーブデータを保存しました: {filePath}");
+            }
+            else
+            {
+                // 非暗号化モード: JSONとして保存
+                string saveDataJson = saveData.EncodeToJson();
+                File.WriteAllText(filePath, saveDataJson);
+                Debug.Log($"スロット{slotNumber}にセーブデータを保存しました: {filePath}");
+            }
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             Debug.LogError($"スロット{slotNumber}へのセーブデータ保存に失敗しました: {ex.Message}");
         }
@@ -186,7 +200,7 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
     public bool LoadFromFile(int slotNumber)
     {
         SaveData saveData = GetSaveData(slotNumber);
-        
+
         if (saveData == null)
         {
             return false;
@@ -198,7 +212,7 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
             Debug.Log($"スロット{slotNumber}からセーブデータを読み込みました");
             return true;
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             Debug.LogError($"スロット{slotNumber}のセーブデータ読み込み処理に失敗しました: {ex.Message}");
             return false;
@@ -248,7 +262,7 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
             Debug.Log($"スロット{slotNumber}のセーブデータを削除しました: {filePath}");
             return true;
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             Debug.LogError($"スロット{slotNumber}のセーブデータ削除に失敗しました: {ex.Message}");
             return false;
@@ -270,6 +284,8 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
             Directory.CreateDirectory(saveDirectory);
         }
 
-        return Path.Combine(saveDirectory, $"save_slot_{slotNumber}.json");
+        // 暗号化モードでは拡張子を.datに変更
+        string extension = useEncryption ? "dat" : "json";
+        return Path.Combine(saveDirectory, $"save_slot_{slotNumber}.{extension}");
     }
 }

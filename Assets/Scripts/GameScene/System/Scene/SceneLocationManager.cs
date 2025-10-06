@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// シーンと場所の名前を繋ぐ
 /// </summary>
-public class SceneLocationManager  : Singleton<SceneLocationManager>
+public class SceneLocationManager : Singleton<SceneLocationManager>
 {
     [SerializeField] private SceneList _sceneList;
     private Dictionary<string, eLocationType> _sceneToLocationTypes;
@@ -62,16 +62,27 @@ public class SceneLocationManager  : Singleton<SceneLocationManager>
 
     public string GetLocationDisplayNameFromSceneName(string sceneName)
     {
-        if (_sceneToLocationTypes != null && _locationTypeToDisplayNames != null &&
-            _sceneToLocationTypes.TryGetValue(sceneName, out var type) && 
-            _locationTypeToDisplayNames.TryGetValue(type, out var name))
+        // 辞書が初期化されていない
+        if (_sceneToLocationTypes == null || _locationTypeToDisplayNames == null)
         {
-            return name;
-        }
-        else
-        {
-            Debug.LogError("不正なシーン名が指定されました。");
+            Debug.LogError("辞書が初期化されていません");
             return "■■■■■";
         }
+
+        // シーン名が辞書に存在しない
+        if (!_sceneToLocationTypes.TryGetValue(sceneName, out var type))
+        {
+            Debug.LogError($"シーン名 '{sceneName}' が SceneList に登録されていません！");
+            return "■■■■■";
+        }
+
+        // 場所タイプに対応する表示名が存在しない
+        if (!_locationTypeToDisplayNames.TryGetValue(type, out var name))
+        {
+            Debug.LogError($"LocationType '{type}' に表示名が設定されていません！");
+            return "■■■■■";
+        }
+
+        return name;
     }
 }

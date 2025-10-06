@@ -67,7 +67,7 @@ public class SaveMenuModel : MonoBehaviour
         }
 
         _activeSlotIndex.Value = 0;
-        
+
         // ファイル監視を開始
         SetupFileWatcher();
     }
@@ -80,7 +80,7 @@ public class SaveMenuModel : MonoBehaviour
         try
         {
             string saveDirectory = Path.Combine(Application.persistentDataPath, "Saves");
-            
+
             // ディレクトリが存在しない場合は作成
             if (!Directory.Exists(saveDirectory))
             {
@@ -145,7 +145,7 @@ public class SaveMenuModel : MonoBehaviour
                 string location = SceneLocationManager.Instance.GetLocationDisplayNameFromSceneName(saveData.SystemData.CurrentSceneName);
 
                 saveList.Date = saveData.SystemData.SystemDate;
-                saveList.Title = $"{dateString}({ (Date.IsEarlier(savedDate, Date.FirstDate) || Date.IsSameDate(savedDate, Date.FirstDate) ? (diffDays + 1) : (-diffDays - 1)) }日目) - {location}";
+                saveList.Title = $"{dateString}({(Date.IsEarlier(savedDate, Date.FirstDate) || Date.IsSameDate(savedDate, Date.FirstDate) ? (diffDays + 1) : (-diffDays - 1))}日目) - {location}";
             }
             else
             {
