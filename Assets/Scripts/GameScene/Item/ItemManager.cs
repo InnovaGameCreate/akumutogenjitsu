@@ -2,16 +2,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ItemManager : MonoBehaviour, ISaveableManager<ItemSaveData>
+public class ItemManager : Singleton<ItemManager>, ISaveableManager<ItemSaveData>
 {
     [SerializeField] private List<ItemData> _itemDatas;
 
-    /// <summary>  
-    /// ƒAƒCƒeƒ€‚ğŠ‚µ‚Ä‚¢‚é‚©‚Ìó‘Ô  
-    /// </summary>  
+    /// <summary>
+    /// ã‚¢ã‚¤ãƒ†ãƒ ã®æ‰€æœ‰çŠ¶æ…‹ã‚’ç®¡ç†ã—ã¾ã™ã€‚
+    /// </summary>
     private Dictionary<eItem, bool> _itemOwned = new();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created  
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         foreach (eItem item in System.Enum.GetValues(typeof(eItem)))
@@ -21,10 +21,10 @@ public class ItemManager : MonoBehaviour, ISaveableManager<ItemSaveData>
     }
 
     /// <summary>
-    /// ƒAƒCƒeƒ€‚ğŠ‚µ‚Ä‚¢‚é‚©‚Ìó‘Ô‚ğæ“¾‚·‚é
+    /// æŒ‡å®šã—ãŸã‚¢ã‚¤ãƒ†ãƒ ãŒæ‰€æŒã•ã‚Œã¦ã„ã‚‹ã‹å–å¾—ã—ã¾ã™ã€‚
     /// </summary>
-    /// <param name="item"> ƒAƒCƒeƒ€‚Ìí—Ş </param>
-    /// <returns> Š‚µ‚Ä‚¢‚é‚© </returns>
+    /// <param name="item">ã‚¢ã‚¤ãƒ†ãƒ ã®ç¨®é¡</param>
+    /// <returns>æ‰€æŒã—ã¦ã„ã‚‹å ´åˆã¯ true</returns>
     public bool GetIsItemOwned(eItem item)
     {
         if (_itemOwned.TryGetValue(item, out bool isOwned))
@@ -33,16 +33,16 @@ public class ItemManager : MonoBehaviour, ISaveableManager<ItemSaveData>
         }
         else
         {
-            Debug.LogError($"ƒAƒCƒeƒ€: {item} ‚Í‘¶İ‚µ‚Ü‚¹‚ñB");
+            Debug.LogError($"ã‚¢ã‚¤ãƒ†ãƒ : {item} ã¯ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
             return false;
         }
     }
 
     /// <summary>
-    /// ƒAƒCƒeƒ€‚ğŠ‚µ‚Ä‚¢‚é‚©‚Ìó‘Ô‚ğİ’è‚·‚é
+    /// æŒ‡å®šã—ãŸã‚¢ã‚¤ãƒ†ãƒ ã®æ‰€æŒçŠ¶æ…‹ã‚’è¨­å®šã—ã¾ã™ã€‚
     /// </summary>
-    /// <param name="item"> ƒAƒCƒeƒ€‚Ìí—Ş </param>
-    /// <param name="isOwned"> •Û‚·‚é‚© </param>
+    /// <param name="item">ã‚¢ã‚¤ãƒ†ãƒ ã®ç¨®é¡</param>
+    /// <param name="isOwned">æ‰€æŒçŠ¶æ…‹(true=æ‰€æŒ)</param>
     public void SetIsItemOwned(eItem item, bool isOwned)
     {
         if (_itemOwned.ContainsKey(item))
@@ -51,15 +51,15 @@ public class ItemManager : MonoBehaviour, ISaveableManager<ItemSaveData>
         }
         else
         {
-            Debug.LogError($"ƒAƒCƒeƒ€: {item} ‚Í‘¶İ‚µ‚Ü‚¹‚ñB");
+            Debug.LogError($"ã‚¢ã‚¤ãƒ†ãƒ : {item} ã¯ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
         }
     }
 
     /// <summary>
-    /// eItem‚©‚çItemData‚ğæ“¾‚·‚é
+    /// eItem ã‹ã‚‰å¯¾å¿œã™ã‚‹ ItemData ã‚’å–å¾—ã—ã¾ã™ã€‚
     /// </summary>
-    /// <param name="itemType"> ƒAƒCƒeƒ€‚Ìí—Ş </param>
-    /// <returns> ItemDataiŒ©‚Â‚©‚ç‚È‚¢ê‡‚Ínullj </returns>
+    /// <param name="itemType">ã‚¢ã‚¤ãƒ†ãƒ ã®ç¨®é¡</param>
+    /// <returns>å¯¾å¿œã™ã‚‹ ItemData (è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯ null)</returns>
     public ItemData GetItemData(eItem itemType)
     {
         return _itemDatas.Find(data => data.ItemType == itemType);
@@ -84,7 +84,7 @@ public class ItemManager : MonoBehaviour, ISaveableManager<ItemSaveData>
         {
             _itemOwned[item] = false;
         }
-        
+
         foreach (eItem savedItem in saveData.OwnedItems)
         {
             if (_itemOwned.ContainsKey(savedItem))
@@ -95,7 +95,7 @@ public class ItemManager : MonoBehaviour, ISaveableManager<ItemSaveData>
     }
 
     /// <summary>
-    /// Š‚µ‚Ä‚¢‚éItemData
+    /// æ‰€æŒã—ã¦ã„ã‚‹ ItemData ã®ä¸€è¦§ã‚’å–å¾—ã—ã¾ã™ã€‚
     /// </summary>
     public List<ItemData> OwnedItemDatas
     {

@@ -19,5 +19,6 @@ public enum eEvent
 
     // 1階層 Dream
     CreateEntranceKeyWithMedicine,  // 薬品で玄関への鍵を作成する
-    Floors2And3StairsPasswordGimmick    // 階段のパスワードギミック
+    Floors2And3StairsPasswordGimmick,    // 階段のパスワードギミック
+    UseEntranceKeyEvent,    // 鍵を使って玄関から出るギミック
 }

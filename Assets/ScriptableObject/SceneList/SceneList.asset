@@ -63,9 +63,6 @@ MonoBehaviour:
   - Type: 4
     _sceneAsset: {fileID: 102900000, guid: 399b1e7539448bf488b0e7a2c7975299, type: 3}
     _sceneName: First_1_real_class104
-  - Type: 5
-    _sceneAsset: {fileID: 102900000, guid: 3145a4871a1ce3c4bb4d30162208832b, type: 3}
-    _sceneName: First_1_real_scienceroom
   - Type: 6
     _sceneAsset: {fileID: 102900000, guid: bb207596c19f95f4095c23e12da83c27, type: 3}
     _sceneName: First_1_real_teacherRoom
@@ -183,3 +180,99 @@ MonoBehaviour:
   - Type: 6
     _sceneAsset: {fileID: 102900000, guid: 96d6c13f8d0044003abbbca32547fc52, type: 3}
     _sceneName: First_3_real_teacherRoom
+  - Type: 3
+    _sceneAsset: {fileID: 102900000, guid: c56eafe54f84ad149a995822483dc261, type: 3}
+    _sceneName: First_1_dream_hallway1
+  - Type: 5
+    _sceneAsset: {fileID: 102900000, guid: 7fd91057be57b8c488d26dd34699d1b2, type: 3}
+    _sceneName: First_1_dream_scienceroom
+  - Type: 2
+    _sceneAsset: {fileID: 102900000, guid: 0826cd9738ea5214e83bfc691964365e, type: 3}
+    _sceneName: First_1_dream_street
+  - Type: 1
+    _sceneAsset: {fileID: 102900000, guid: 161d04706b6f620438e2c516ba95155b, type: 3}
+    _sceneName: First_1_dream_house
+  - Type: 1
+    _sceneAsset: {fileID: 102900000, guid: 3d0683439586348b1acdcef079b0d9b9, type: 3}
+    _sceneName: First_2_real_house
+  - Type: 2
+    _sceneAsset: {fileID: 102900000, guid: 7d8373c464c6e4373935fc6f1f44ee0b, type: 3}
+    _sceneName: First_2_real_street
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 2e5c1146f42fb4aeab57d870bddc627e, type: 3}
+    _sceneName: First_2_real_class101
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 163da9f7ad1d54eef9f2490e56e77ac6, type: 3}
+    _sceneName: First_2_real_class102
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 0c568c34b3601409496f553d401a6427, type: 3}
+    _sceneName: First_2_real_class103
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 3b0dc03ffb84c4cd482a56ce5e62b952, type: 3}
+    _sceneName: First_2_real_class104
+  - Type: 3
+    _sceneAsset: {fileID: 102900000, guid: 9e48dab83666b4ecd8b5f697a6ef9afe, type: 3}
+    _sceneName: First_2_real_hallway1
+  - Type: 5
+    _sceneAsset: {fileID: 102900000, guid: b6fae8ca802c84079935ca8b85ad0582, type: 3}
+    _sceneName: First_2_real_scienceroom
+  - Type: 6
+    _sceneAsset: {fileID: 102900000, guid: b4ffed61739fb4ef69b3e3cc3586694b, type: 3}
+    _sceneName: First_2_real_teacherRoom
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 84a546db5c3c549a18d1c524fa049822, type: 3}
+    _sceneName: First_2_real_class201
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: b0eb77415cab240a59d32c0070648160, type: 3}
+    _sceneName: First_2_real_class202
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: c80b8001079a14341950c7e5cc67db6c, type: 3}
+    _sceneName: First_2_real_class203
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: f47657d3ed87b45f4bb51342d05321db, type: 3}
+    _sceneName: First_2_real_class204
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 37894d084cffb4998b8b8c316c91ced9, type: 3}
+    _sceneName: First_2_real_hallway2
+  - Type: 1
+    _sceneAsset: {fileID: 102900000, guid: f3ead11b00534456b8b305b2eb79966a, type: 3}
+    _sceneName: First_2_dream_house
+  - Type: 2
+    _sceneAsset: {fileID: 102900000, guid: 39ed4a5bd7bc440a0915b586765e71b4, type: 3}
+    _sceneName: First_2_dream_street
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: e76f1b59400204c148bc73c6a48148ea, type: 3}
+    _sceneName: First_2_dream_class101
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 0c9b62c19b9d14eb1a1e1a6f565833bb, type: 3}
+    _sceneName: First_2_dream_class102
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 001531c3b4ab24ee0a317dc6bf056be1, type: 3}
+    _sceneName: First_2_dream_class103
+  - Type: 4
+    _sceneAsset: {fileID: 102900000, guid: 8710972649c14432abdb90511c285b72, type: 3}
+    _sceneName: First_2_dream_class104
+  - Type: 3
+    _sceneAsset: {fileID: 102900000, guid: 47c708fa00bdc4d5fbad5cd0f7915636, type: 3}
+    _sceneName: First_2_dream_hallway1
+  - Type: 5
+    _sceneAsset: {fileID: 102900000, guid: ea423d9f192ab4757bbb4178a5a9f33e, type: 3}
+    _sceneName: First_2_dream_scienceroom
+  - Type: 6
+    _sceneAsset: {fileID: 102900000, guid: c2d826f83769a4997a4501d868fa7198, type: 3}
+    _sceneName: First_2_dream_teacherRoom
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: dfc05e332eb594bbda64a15dce008fc9, type: 3}
+    _sceneName: First_2_dream_class201
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 6ec0c0c4ee4d14c35ad648bce959089d, type: 3}
+    _sceneName: First_2_dream_class202
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: 3e740ffc361c44898a1367a1f21f2a80, type: 3}
+    _sceneName: First_2_dream_class203
+  - Type: 7
+    _sceneAsset: {fileID: 102900000, guid: f01c63f30b51e4217b26188fb7fc3765, type: 3}
+    _sceneName: First_2_dream_class204
+  - Type: 8
+    _sceneAsset: {fileID: 102900000, guid: 9207c444dfdc845b4ab77f697eaa25ca, type: 3}
+    _sceneName: First_2_dream_hallway2

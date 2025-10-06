@@ -13,8 +13,6 @@ public class InventoryModel : MonoBehaviour
     private readonly int _slotWidth = 3;
     private readonly int _totalSlots = 9;
 
-    private ItemManager _itemManager;
-
     void Start()
     {
         Initialize();
@@ -22,22 +20,13 @@ public class InventoryModel : MonoBehaviour
 
     public void Initialize()
     {
-        _itemManager = GameObject.FindGameObjectWithTag("ItemMgr")?.GetComponent<ItemManager>();
-        if (_itemManager == null)
-        {
-            return;
-        }
-
         _selectedIndex.Value = 0;
         UpdateItemData();
     }
 
     public void UpdateItemData()
     {
-        if (_itemManager != null)
-        {
-            _ownedItemDatas.Value = _itemManager.OwnedItemDatas;
-        }
+        _ownedItemDatas.Value = ItemManager.Instance.OwnedItemDatas;
     }
 
     public void MoveSelection(Vector2 direction)
@@ -86,5 +75,10 @@ public class InventoryModel : MonoBehaviour
         {
             _selectedIndex.Value = index;
         }
+    }
+
+    void OnEnable()
+    {
+        Initialize();
     }
 }

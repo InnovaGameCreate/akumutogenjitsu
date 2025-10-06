@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using UnityEngine;
 
@@ -9,16 +8,10 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
     /// </summary>
     public const int MAX_SAVE_SLOTS = 3;
 
-    /// <summary>
-    /// 暗号化を使用するかどうか（Inspector で設定可能）
-    /// </summary>
-    [SerializeField] private bool useEncryption = true;
-
     private SystemManager _systemMgr;
     private EventManager _eventMgr;
     private DateManager _dateMgr;
     private PlayerManager _playerMgr;
-    private ItemManager _itemMgr;
 
     void Start()
     {
@@ -82,7 +75,7 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         saveData.SystemData = _systemMgr.EncodeToSaveData();
         saveData.DateData = _dateMgr.EncodeToSaveData();
         saveData.EventData = _eventMgr.EncodeToSaveData();
-        saveData.ItemData = _itemMgr.EncodeToSaveData();  
+        saveData.ItemData = ItemManager.Instance.EncodeToSaveData();
         saveData.PlayerData = _playerMgr.EncodeToSaveData();
         return saveData;
     }
@@ -92,7 +85,7 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         _systemMgr.LoadFromSaveData(saveData.SystemData);
         _eventMgr.LoadFromSaveData(saveData.EventData);
         _dateMgr.LoadFromSaveData(saveData.DateData);
-        _itemMgr.LoadFromSaveData(saveData.ItemData);  
+        ItemManager.Instance.LoadFromSaveData(saveData.ItemData);
         _playerMgr.LoadFromSaveData(saveData.PlayerData);
     }
 
@@ -120,24 +113,13 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
                 return null;
             }
 
+            string saveDataJson = File.ReadAllText(filePath);
             SaveData saveData = new SaveData();
-
-            if (useEncryption)
-            {
-                // 暗号化モード: バイナリとして読み込み
-                byte[] encryptedData = File.ReadAllBytes(filePath);
-                saveData.DecodeFromBinary(encryptedData);
-            }
-            else
-            {
-                // 非暗号化モード: JSONとして読み込み
-                string saveDataJson = File.ReadAllText(filePath);
-                saveData.DecodeToSaveData(saveDataJson);
-            }
+            saveData.DecodeToSaveData(saveDataJson);
 
             return saveData;
         }
-        catch (Exception ex)
+        catch (System.Exception ex)
         {
             Debug.LogError($"スロット{slotNumber}からのセーブデータ取得に失敗しました: {ex.Message}");
             return null;
@@ -169,24 +151,16 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
         try
         {
             string filePath = GetSaveFilePath(slotNumber);
-            SaveData saveData = EncodeToSaveData();
 
-            if (useEncryption)
-            {
-                // 暗号化モード: バイナリとして保存
-                byte[] encryptedData = saveData.EncodeToBinary();
-                File.WriteAllBytes(filePath, encryptedData);
-                Debug.Log($"スロット{slotNumber}に暗号化されたセーブデータを保存しました: {filePath}");
-            }
-            else
-            {
-                // 非暗号化モード: JSONとして保存
-                string saveDataJson = saveData.EncodeToJson();
-                File.WriteAllText(filePath, saveDataJson);
-                Debug.Log($"スロット{slotNumber}にセーブデータを保存しました: {filePath}");
-            }
+            // セーブデータのJSON文字列を取得
+            string saveDataJson = CreateSaveDataJson();
+
+            // ファイルに書き込み
+            File.WriteAllText(filePath, saveDataJson);
+
+            Debug.Log($"スロット{slotNumber}にセーブデータを保存しました: {filePath}");
         }
-        catch (Exception ex)
+        catch (System.Exception ex)
         {
             Debug.LogError($"スロット{slotNumber}へのセーブデータ保存に失敗しました: {ex.Message}");
         }
@@ -212,7 +186,7 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
             Debug.Log($"スロット{slotNumber}からセーブデータを読み込みました");
             return true;
         }
-        catch (Exception ex)
+        catch (System.Exception ex)
         {
             Debug.LogError($"スロット{slotNumber}のセーブデータ読み込み処理に失敗しました: {ex.Message}");
             return false;
@@ -262,7 +236,7 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
             Debug.Log($"スロット{slotNumber}のセーブデータを削除しました: {filePath}");
             return true;
         }
-        catch (Exception ex)
+        catch (System.Exception ex)
         {
             Debug.LogError($"スロット{slotNumber}のセーブデータ削除に失敗しました: {ex.Message}");
             return false;
@@ -284,8 +258,6 @@ public class SaveManager : MonoBehaviour, ISaveableManager<SaveData>
             Directory.CreateDirectory(saveDirectory);
         }
 
-        // 暗号化モードでは拡張子を.datに変更
-        string extension = useEncryption ? "dat" : "json";
-        return Path.Combine(saveDirectory, $"save_slot_{slotNumber}.{extension}");
+        return Path.Combine(saveDirectory, $"save_slot_{slotNumber}.json");
     }
 }

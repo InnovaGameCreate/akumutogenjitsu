@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c44235d612459e14eba8214465769379, type: 3}
   m_Name: FriendB
   m_EditorClassIdentifier: 
-  _character: 0
-  _characterName: "\u53CB\u4EBAB"
+  _character: 3
+  _characterName: "\u5C1A\u4EBA"
   _characterSprite: {fileID: 0}
   _textColor: {r: 1, g: 1, b: 1, a: 1}
