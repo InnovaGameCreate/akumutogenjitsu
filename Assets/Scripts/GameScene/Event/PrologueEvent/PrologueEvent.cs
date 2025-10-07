@@ -77,13 +77,12 @@ public class PrologueEvent : AbstractEvent
         if (_prologuePresenter != null && _prologuePresenter.IsFinished())
         {
             CleanupPrologueUI();
-            _hasFinished = true;
+            onFinishEvent.OnNext(Unit.Default);
         }
 
         // 終了条件チェック
         if (_hasFinished)
         {
-            _hasFinished = false;
             onFinishEvent.OnNext(Unit.Default);
         }
     }

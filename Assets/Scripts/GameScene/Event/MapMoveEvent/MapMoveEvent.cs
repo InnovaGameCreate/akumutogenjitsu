@@ -62,6 +62,13 @@ public class MapMoveEvent : AbstractEvent
     {
         if (IsSceneExist())
         {
+            // 強制的にルートオブジェクトにする
+            if (transform.parent != null)
+            {
+                transform.parent = null;
+            }
+            // 移動したシーン先でオブジェクトがないと終了処理が実行できないため
+            DontDestroyOnLoad(this.gameObject);
             MoveMap();
         }
         else
@@ -84,6 +91,15 @@ public class MapMoveEvent : AbstractEvent
         if (IsFinishEvent())
         {
             onFinishEvent.OnNext(Unit.Default);
+        }
+    }
+
+    public override void OnFinishEvent()
+    {
+        if (this.gameObject != null)
+        {
+            // `DontDestroyOnLoad(this.gameObject);`をしているため
+            Destroy(this.gameObject);
         }
     }
 

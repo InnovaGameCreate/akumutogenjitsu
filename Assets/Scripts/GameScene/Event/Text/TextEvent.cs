@@ -98,7 +98,6 @@ public class TextEvent : AbstractEvent
             }
         }
 
-        currentLineIndex = 0;
         isDisplaying = true;
         DisplayCurrentLine();
     }
@@ -127,12 +126,6 @@ public class TextEvent : AbstractEvent
             {
                 NextLine();
             }
-        }
-
-        // 終了条件チェック
-        if (IsFinishEvent())
-        {
-            onFinishEvent.OnNext(Unit.Default);
         }
     }
 
@@ -169,6 +162,8 @@ public class TextEvent : AbstractEvent
         {
             isDisplaying = false;
             ClearText();
+            // 終了処理
+            onFinishEvent.OnNext(Unit.Default);
         }
     }
 
