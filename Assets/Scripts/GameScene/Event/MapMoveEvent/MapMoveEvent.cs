@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using R3;
 
 public class MapMoveEvent : AbstractEvent
 {
@@ -37,7 +38,7 @@ public class MapMoveEvent : AbstractEvent
         }
     }
 
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         // ブロックの中にPlayerが入っているとき
         if (_isInEventBlock)
@@ -48,9 +49,12 @@ public class MapMoveEvent : AbstractEvent
         return false;
     }
 
-    public override bool IsFinishEvent()
+    private bool IsFinishEvent()
     {
-        _hasFinished = (EventStatus == eEventStatus.Triggered && _hasFinished == true) ? false : _hasFinished;
+        if (EventStatus == eEventStatus.Triggered)
+        {
+            _hasFinished = false;
+        }
         return _hasFinished;
     }
 
@@ -58,6 +62,13 @@ public class MapMoveEvent : AbstractEvent
     {
         if (IsSceneExist())
         {
+            // 強制的にルートオブジェクトにする
+            if (transform.parent != null)
+            {
+                transform.parent = null;
+            }
+            // 移動したシーン先でオブジェクトがないと終了処理が実行できないため
+            DontDestroyOnLoad(this.gameObject);
             MoveMap();
         }
         else
@@ -65,6 +76,31 @@ public class MapMoveEvent : AbstractEvent
             Debug.LogError($"シーンが存在しません: {_sceneName}");
         }
         _hasFinished = true;
+    }
+
+    public override void OnUpdateEvent()
+    {
+        // トリガー条件チェック
+        if (IsTriggerEvent())
+        {
+            _isAutoMove = false;
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        // 終了条件チェック
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
+    }
+
+    public override void OnFinishEvent()
+    {
+        if (this.gameObject != null)
+        {
+            // `DontDestroyOnLoad(this.gameObject);`をしているため
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

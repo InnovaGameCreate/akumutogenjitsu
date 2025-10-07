@@ -1,17 +1,18 @@
 using UnityEngine;
+using R3;
 
 public class SpawnEnemyEvent : AbstractEvent
 {
     [SerializeField] private EnemySpawnManager _enemySpawnManager;
 
-    [Header("ƒXƒ|[ƒ“ˆÊ’u")]
+    [Header("ã‚¹ãƒãƒ¼ãƒ³ä½ç½®")]
     [SerializeField] private Vector2 _position;
 
     private bool _isInEnter;
     private bool _hasFinished = false;
 
     /// <summary>
-    /// “G‚ğƒXƒ|[ƒ“‚³‚¹‚éƒCƒxƒ“ƒg‚ğÀs‚µ‚Ü‚·B
+    /// æ•µã‚’ã‚¹ãƒãƒ¼ãƒ³ã•ã›ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
     /// </summary>
     public override void TriggerEvent()
     {
@@ -20,32 +21,46 @@ public class SpawnEnemyEvent : AbstractEvent
     }
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚ğƒgƒŠƒK[‚·‚éğŒ‚ğ–‚½‚µ‚Ä‚¢‚é‚©‚ğ”»’è‚µ‚Ü‚·B
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã‚’ãƒˆãƒªã‚¬ãƒ¼ã™ã‚‹æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’åˆ¤å®šã—ã¾ã™ã€‚
     /// </summary>
-    /// <returns>ğŒ‚ğ–‚½‚µ‚Ä‚¢‚éê‡‚Í trueA‚»‚êˆÈŠO‚Í falseB</returns>
-    public override bool IsTriggerEvent()
+    /// <returns>æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹å ´åˆã¯ trueã€ãã‚Œä»¥å¤–ã¯ falseã€‚</returns>
+    private bool IsTriggerEvent()
+    {
+        return _isInEnter && (Input.GetKeyDown(KeyCode.Z) || Input.GetKey(KeyCode.Return));
+    }
+
+    /// <summary>
+    /// ã‚¤ãƒ™ãƒ³ãƒˆãŒçµ‚äº†ã—ãŸã‹ã©ã†ã‹ã‚’åˆ¤å®šã—ã¾ã™ã€‚
+    /// </summary>
+    /// <returns>çµ‚äº†ã—ã¦ã„ã‚‹å ´åˆã¯ trueã€ãã‚Œä»¥å¤–ã¯ falseã€‚</returns>
+    private bool IsFinishEvent()
     {
         if (EventStatus == eEventStatus.Triggered)
         {
             _hasFinished = false;
         }
-
-        return _isInEnter && (Input.GetKeyDown(KeyCode.Z) || Input.GetKey(KeyCode.Return));
-    }
-
-    /// <summary>
-    /// ƒCƒxƒ“ƒg‚ªI—¹‚µ‚½‚©‚Ç‚¤‚©‚ğ”»’è‚µ‚Ü‚·B
-    /// </summary>
-    /// <returns>I—¹‚µ‚Ä‚¢‚éê‡‚Í trueA‚»‚êˆÈŠO‚Í falseB</returns>
-    public override bool IsFinishEvent()
-    {
         return _hasFinished;
     }
 
+    public override void OnUpdateEvent()
+    {
+        // ãƒˆãƒªã‚¬ãƒ¼æ¡ä»¶ãƒã‚§ãƒƒã‚¯
+        if (IsTriggerEvent())
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        // çµ‚äº†æ¡ä»¶ãƒã‚§ãƒƒã‚¯
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
+    }
+
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ªƒgƒŠƒK[”ÍˆÍ‚É“ü‚Á‚½Û‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒãƒˆãƒªã‚¬ãƒ¼ç¯„å›²ã«å…¥ã£ãŸéš›ã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
     /// </summary>
-    /// <param name="collision">ƒgƒŠƒK[‚É“ü‚Á‚½ƒIƒuƒWƒFƒNƒg‚ÌƒRƒ‰ƒCƒ_[B</param>
+    /// <param name="collision">ãƒˆãƒªã‚¬ãƒ¼ã«å…¥ã£ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã€‚</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
