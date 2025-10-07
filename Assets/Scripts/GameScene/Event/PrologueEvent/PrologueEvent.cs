@@ -79,12 +79,6 @@ public class PrologueEvent : AbstractEvent
             CleanupPrologueUI();
             onFinishEvent.OnNext(Unit.Default);
         }
-
-        // 終了条件チェック
-        if (_hasFinished)
-        {
-            onFinishEvent.OnNext(Unit.Default);
-        }
     }
 
     private bool CanStartPrologue()
