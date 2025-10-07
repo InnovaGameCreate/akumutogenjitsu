@@ -10,9 +10,13 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
 
     void Update()
     {
-        foreach (var eventData in _savedEventDatas.Values)
+        foreach (var ev in _allEventsInScene)
         {
-            UpdateActive(eventData.EventId);
+            if (ev == null)
+            {
+                continue;
+            }
+            UpdateActive(ev.EventId);
         }
     }
 
@@ -164,22 +168,21 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
     {
         return eventData.Enabled;
     }
-    
+
     /// <summary>
     /// 全てのイベントの初期化をする
     /// </summary>
     private void SetActiveAllEventInScene()
     {
-        foreach (var eventData in _savedEventDatas)
+        foreach (var ev in _allEventsInScene)
         {
-            AbstractEvent ev = GetEventByEventId(eventData.Value.EventId);
+            EventData eventData = ev.EventData;
             if (ev == null)
             {
-                // 別シーンのイベントのとき
                 continue;
             }
 
-            if (!IsActiveByTriggeredOnce(eventData.Value) && !IsActiveByStoryLayer(eventData.Value) && !IsActiveByEventDataEnable(eventData.Value))
+            if (!IsActiveByTriggeredOnce(eventData) && !IsActiveByStoryLayer(eventData) && !IsActiveByEventDataEnable(eventData))
             {
                 ev.gameObject.SetActive(false);
             }
@@ -221,7 +224,6 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
         {
             if (ev == null)
             {
-                Debug.LogError("AbstractEventをコンポーネントしていません。");
                 continue;
             }
 
@@ -249,5 +251,5 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
     {
         StoryManager.Instance.CurrentStoryLayer = saveData.CurrentStoryLayer;
         _savedEventDatas = saveData.EventData;
-	}
+    }
 }
