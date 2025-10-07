@@ -41,6 +41,7 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
         {
             Debug.Log("必要な薬が揃っていません。");
         }
+        onFinishEvent.OnNext(Unit.Default);
         _hasFinished = true;
     }
 
@@ -50,12 +51,6 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
         if (IsTriggerEvent())
         {
             onTriggerEvent.OnNext(Unit.Default);
-        }
-
-        // 終了条件チェック
-        if (IsFinishEvent())
-        {
-            onFinishEvent.OnNext(Unit.Default);
         }
     }
 
