@@ -11,7 +11,7 @@ public class EnemyDamagePlayer : MonoBehaviour
 #if DEBUG_MODE
         if (_playerObj == null)
         {
-            Debug.LogError("Player‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
+            Debug.LogError("PlayerãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
         }
 #endif
     }
@@ -19,7 +19,7 @@ public class EnemyDamagePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -31,13 +31,13 @@ public class EnemyDamagePlayer : MonoBehaviour
     }
 
     /// <summary>
-    /// Player‚ğUŒ‚
+    /// Playerï¿½ï¿½ï¿½Uï¿½ï¿½
     /// </summary>
     private void DamagePlayer()
     {
 #if DEBUG_MODE
 
-        Debug.Log("Player‚ÉÚG‚µ‚Ü‚µ‚½B");
+        Debug.Log("Playerï¿½ÉÚGï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
 #endif
     }
 }

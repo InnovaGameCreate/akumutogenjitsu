@@ -229,5 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _event: 4
   _isTriggeredOnce: 0
-  _enemySpawnManager: {fileID: 0}
+  _eventId: 
+  _storyLayer: 0
+  _isUpStoryLayer: 0
+  _enemyPrefab: {fileID: 5718762926810539893, guid: 71852687ee302ef46839a90092ee4d53, type: 3}
   _position: {x: 0, y: 0}
