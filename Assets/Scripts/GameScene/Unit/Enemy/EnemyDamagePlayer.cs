@@ -31,13 +31,13 @@ public class EnemyDamagePlayer : MonoBehaviour
     }
 
     /// <summary>
-    /// Player���U��
+    /// Playerを攻撃
     /// </summary>
     private void DamagePlayer()
     {
 #if DEBUG_MODE
 
-        Debug.Log("Player�ɐڐG���܂����B");
+        Debug.Log("Playerに接触しました。");
 #endif
     }
 }

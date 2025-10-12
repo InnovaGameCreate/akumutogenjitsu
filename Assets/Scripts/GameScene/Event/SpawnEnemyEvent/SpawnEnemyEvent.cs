@@ -16,7 +16,14 @@ public class SpawnEnemyEvent : AbstractEvent
     /// </summary>
     public override void TriggerEvent()
     {
-        Instantiate(_enemyPrefab, _position, transform.rotation);
+        if (_enemyPrefab == null)
+        {
+            Debug.LogError("_enemyPrefabがnullです。");
+        }
+        else
+        {
+            Instantiate(_enemyPrefab, _position, transform.rotation);
+        }
         onFinishEvent.OnNext(Unit.Default);
     }
 
