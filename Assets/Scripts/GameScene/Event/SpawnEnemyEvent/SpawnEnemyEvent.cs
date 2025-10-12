@@ -3,7 +3,7 @@ using R3;
 
 public class SpawnEnemyEvent : AbstractEvent
 {
-    [SerializeField] private EnemySpawnManager _enemySpawnManager;
+    [SerializeField] private EnemyController _enemyPrefab;
 
     [Header("スポーン位置")]
     [SerializeField] private Vector2 _position;
@@ -16,44 +16,22 @@ public class SpawnEnemyEvent : AbstractEvent
     /// </summary>
     public override void TriggerEvent()
     {
-        _enemySpawnManager.SpawnEnemy(_position);
-        _hasFinished = true;
-    }
-
-    /// <summary>
-    /// イベントをトリガーする条件を満たしているかを判定します。
-    /// </summary>
-    /// <returns>条件を満たしている場合は true、それ以外は false。</returns>
-    private bool IsTriggerEvent()
-    {
-        return _isInEnter && (Input.GetKeyDown(KeyCode.Z) || Input.GetKey(KeyCode.Return));
-    }
-
-    /// <summary>
-    /// イベントが終了したかどうかを判定します。
-    /// </summary>
-    /// <returns>終了している場合は true、それ以外は false。</returns>
-    private bool IsFinishEvent()
-    {
-        if (EventStatus == eEventStatus.Triggered)
+        if (_enemyPrefab == null)
         {
-            _hasFinished = false;
+            Debug.LogError("_enemyPrefabがnullです。");
         }
-        return _hasFinished;
+        else
+        {
+            Instantiate(_enemyPrefab, _position, transform.rotation);
+        }
+        onFinishEvent.OnNext(Unit.Default);
     }
 
     public override void OnUpdateEvent()
     {
-        // トリガー条件チェック
-        if (IsTriggerEvent())
+        if (_isInEnter && (Input.GetKeyDown(KeyCode.Z) || Input.GetKey(KeyCode.Return)))
         {
             onTriggerEvent.OnNext(Unit.Default);
-        }
-
-        // 終了条件チェック
-        if (IsFinishEvent())
-        {
-            onFinishEvent.OnNext(Unit.Default);
         }
     }
 
