@@ -10,55 +10,42 @@ public class SetDateEvent : AbstractEvent
 
     private bool _isInEvent = false;
 
-    private bool _hasFinished = false;
-
-    public override void TriggerEvent()
+    private readonly CompositeDisposable _disposables = new CompositeDisposable();
+    private void OnEnable()
     {
-        if (!Date.IsValid(_newDate))
-        {
-            _hasFinished = true;
-            Debug.LogError($"無効な日付が設定されています: {_newDate}");
-            return;
-        }
-
-        DateManager.Instance.SetCurrentDate(_newDate);
-
-
-        // 日付を超えたらストーリーレイヤーを初期化する
-        StoryManager.Instance.Initialize();
-
-        _hasFinished = true;
-    }
-
-    private bool IsFinishEvent()
-    {
-        if (EventStatus == eEventStatus.Triggered)
-        {
-            _hasFinished = false;
-        }
-        return _hasFinished;
-    }
-
-    private bool IsTriggerEvent()
-    {
-        return (_isInEvent && Input.GetKeyDown(KeyCode.Z)) || _isTriggerForce;
-    }
-
-    public override void OnUpdateEvent()
-    {
-        // トリガー条件チェック
-        if (IsTriggerEvent())
+        // トリガー移設
+        if (_isTriggerForce)
         {
             _isTriggerForce = false;
             onTriggerEvent.OnNext(Unit.Default);
         }
 
-        // 終了条件チェック
-        if (IsFinishEvent())
-        {
-            onFinishEvent.OnNext(Unit.Default);
-        }
+        // 範囲内＆＆Zキーをストリームで監視
+        Observable.EveryUpdate()
+            .Where(_ => _isInEvent && Input.GetKeyDown(KeyCode.Z))
+            .Subscribe(_ => onTriggerEvent.OnNext(Unit.Default))
+            .AddTo(_disposables);
     }
+    private void OnDisable() => _disposables.Clear();
+    private void OnDestroy() => _disposables.Dispose();
+
+    public override void TriggerEvent()
+    {
+        if (!Date.IsValid(_newDate))
+        {
+            Debug.LogError($"無効な日付が設定されています: {_newDate}");
+            onFinishEvent.OnNext(Unit.Default);
+            return;
+        }
+
+        DateManager.Instance.SetCurrentDate(_newDate);
+
+        // 日付を超えたらストーリーレイヤーを初期化する
+        StoryManager.Instance.Initialize();
+
+        onFinishEvent.OnNext(Unit.Default);
+    }
+
 
     void OnTriggerEnter2D(Collider2D collision)
     {
