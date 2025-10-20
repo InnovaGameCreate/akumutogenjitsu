@@ -1,51 +1,44 @@
 using UnityEngine;
+using R3;
 
 public class SpawnEnemyEvent : AbstractEvent
 {
-    [SerializeField] private EnemySpawnManager _enemySpawnManager;
+    [SerializeField] private EnemyController _enemyPrefab;
 
-    [Header("ƒXƒ|[ƒ“ˆÊ’u")]
+    [Header("ã‚¹ãƒãƒ¼ãƒ³ä½ç½®")]
     [SerializeField] private Vector2 _position;
 
     private bool _isInEnter;
     private bool _hasFinished = false;
 
     /// <summary>
-    /// “G‚ğƒXƒ|[ƒ“‚³‚¹‚éƒCƒxƒ“ƒg‚ğÀs‚µ‚Ü‚·B
+    /// æ•µã‚’ã‚¹ãƒãƒ¼ãƒ³ã•ã›ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
     /// </summary>
     public override void TriggerEvent()
     {
-        _enemySpawnManager.SpawnEnemy(_position);
-        _hasFinished = true;
-    }
-
-    /// <summary>
-    /// ƒCƒxƒ“ƒg‚ğƒgƒŠƒK[‚·‚éğŒ‚ğ–‚½‚µ‚Ä‚¢‚é‚©‚ğ”»’è‚µ‚Ü‚·B
-    /// </summary>
-    /// <returns>ğŒ‚ğ–‚½‚µ‚Ä‚¢‚éê‡‚Í trueA‚»‚êˆÈŠO‚Í falseB</returns>
-    public override bool IsTriggerEvent()
-    {
-        if (EventStatus == eEventStatus.Triggered)
+        if (_enemyPrefab == null)
         {
-            _hasFinished = false;
+            Debug.LogError("_enemyPrefabãŒnullã§ã™ã€‚");
         }
-
-        return _isInEnter && (Input.GetKeyDown(KeyCode.Z) || Input.GetKey(KeyCode.Return));
+        else
+        {
+            Instantiate(_enemyPrefab, _position, transform.rotation);
+        }
+        onFinishEvent.OnNext(Unit.Default);
     }
 
-    /// <summary>
-    /// ƒCƒxƒ“ƒg‚ªI—¹‚µ‚½‚©‚Ç‚¤‚©‚ğ”»’è‚µ‚Ü‚·B
-    /// </summary>
-    /// <returns>I—¹‚µ‚Ä‚¢‚éê‡‚Í trueA‚»‚êˆÈŠO‚Í falseB</returns>
-    public override bool IsFinishEvent()
+    public override void OnUpdateEvent()
     {
-        return _hasFinished;
+        if (_isInEnter && (Input.GetKeyDown(KeyCode.Z) || Input.GetKey(KeyCode.Return)))
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
     }
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ªƒgƒŠƒK[”ÍˆÍ‚É“ü‚Á‚½Û‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒãƒˆãƒªã‚¬ãƒ¼ç¯„å›²ã«å…¥ã£ãŸéš›ã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
     /// </summary>
-    /// <param name="collision">ƒgƒŠƒK[‚É“ü‚Á‚½ƒIƒuƒWƒFƒNƒg‚ÌƒRƒ‰ƒCƒ_[B</param>
+    /// <param name="collision">ãƒˆãƒªã‚¬ãƒ¼ã«å…¥ã£ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã€‚</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

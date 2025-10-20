@@ -1,4 +1,5 @@
 using UnityEngine;
+using R3;
 
 public class SetDateEvent : AbstractEvent
 {
@@ -29,19 +30,34 @@ public class SetDateEvent : AbstractEvent
         _hasFinished = true;
     }
 
-    public override bool IsFinishEvent()
+    private bool IsFinishEvent()
     {
-        if (_hasFinished)
+        if (EventStatus == eEventStatus.Triggered)
         {
             _hasFinished = false;
-            return true;
         }
-        return false;
+        return _hasFinished;
     }
 
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         return (_isInEvent && Input.GetKeyDown(KeyCode.Z)) || _isTriggerForce;
+    }
+
+    public override void OnUpdateEvent()
+    {
+        // トリガー条件チェック
+        if (IsTriggerEvent())
+        {
+            _isTriggerForce = false;
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        // 終了条件チェック
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)

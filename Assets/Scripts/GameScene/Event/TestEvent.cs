@@ -1,27 +1,32 @@
 using UnityEngine;
+using R3;
 
 public class TestEvent : AbstractEvent
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    public override bool IsTriggerEvent()
-    {
-        return Input.GetKey(KeyCode.Space);
-    }
-
     public override void TriggerEvent()
     {
-#if DEBUG_MODE
-        Debug.Log($"ƒCƒxƒ“ƒg: {Event} ‚ªƒgƒŠƒK[‚³‚ê‚Ü‚µ‚½");
-#endif
+        Debug.Log("ã‚¤ãƒ™ãƒ³ãƒˆã‚’å®Ÿè¡Œ");
     }
 
-    public override bool IsFinishEvent()
+    public override void OnFinishEvent()
     {
-        return Input.GetKeyDown(KeyCode.A);
+        Debug.Log("ã‚¤ãƒ™ãƒ³ãƒˆã‚’çµ‚äº†");
     }
 
     public override void OnUpdateEvent()
     {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            // ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            // ã‚¤ãƒ™ãƒ³ãƒˆã‚’çµ‚äº†ã•ã›ã‚‹
+            onFinishEvent.OnNext(Unit.Default);
+        }
     }
 }

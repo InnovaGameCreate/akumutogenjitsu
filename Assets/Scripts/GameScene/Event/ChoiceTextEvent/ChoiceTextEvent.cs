@@ -71,12 +71,12 @@ public class ChoiceTextEvent : AbstractEvent
         }
     }
 
-    public override bool IsFinishEvent()
+    private bool IsFinishEvent()
     {
         return _isFinish;
     }
 
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         return _isInEvent && Input.GetKeyDown(KeyCode.Z);
     }
@@ -110,6 +110,19 @@ public class ChoiceTextEvent : AbstractEvent
         {
             Destroy(_viewObj);
             _viewObj = null;
+        }
+    }
+
+    public override void OnUpdateEvent()
+    {
+        if (IsTriggerEvent())
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
         }
     }
 

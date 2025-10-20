@@ -1,4 +1,5 @@
 using UnityEngine;
+using R3;
 
 public class DeleteObjectEvent : AbstractEvent
 {
@@ -19,12 +20,12 @@ public class DeleteObjectEvent : AbstractEvent
         }
     }
 
-    public override bool IsFinishEvent()
+    private bool IsFinishEvent()
     {
         return !_obj.activeInHierarchy;
     }
 
-    public override bool IsTriggerEvent()
+    private bool IsTriggerEvent()
     {
         return _isInEvent && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return));
     }
@@ -35,6 +36,21 @@ public class DeleteObjectEvent : AbstractEvent
         {
             _obj.SetActive(false);
             Enabled = false;
+        }
+    }
+
+    public override void OnUpdateEvent()
+    {
+        // トリガー条件チェック
+        if (IsTriggerEvent())
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+
+        // 終了条件チェック
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
         }
     }
 
