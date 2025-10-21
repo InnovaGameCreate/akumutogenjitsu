@@ -117,6 +117,15 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""8a368ff0-e02a-477b-8a87-2e0506094bd9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -194,6 +203,28 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
                     ""action"": ""OpenMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5688b276-7b12-464c-8cdb-4b6b4de35732"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2d8ecef-61e9-4c11-8609-fd5f02b7612a"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -610,6 +641,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         m_Base_PlayerMove = m_Base.FindAction("PlayerMove", throwIfNotFound: true);
         m_Base_OpenInventory = m_Base.FindAction("OpenInventory", throwIfNotFound: true);
         m_Base_OpenMenu = m_Base.FindAction("OpenMenu", throwIfNotFound: true);
+        m_Base_Interact = m_Base.FindAction("Interact", throwIfNotFound: true);
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_Move = m_Inventory.FindAction("Move", throwIfNotFound: true);
@@ -718,6 +750,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
     private readonly InputAction m_Base_PlayerMove;
     private readonly InputAction m_Base_OpenInventory;
     private readonly InputAction m_Base_OpenMenu;
+    private readonly InputAction m_Base_Interact;
     /// <summary>
     /// Provides access to input actions defined in input action map "Base".
     /// </summary>
@@ -741,6 +774,10 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Base/OpenMenu".
         /// </summary>
         public InputAction @OpenMenu => m_Wrapper.m_Base_OpenMenu;
+        /// <summary>
+        /// Provides access to the underlying input action "Base/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_Base_Interact;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -776,6 +813,9 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
             @OpenMenu.started += instance.OnOpenMenu;
             @OpenMenu.performed += instance.OnOpenMenu;
             @OpenMenu.canceled += instance.OnOpenMenu;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         /// <summary>
@@ -796,6 +836,9 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
             @OpenMenu.started -= instance.OnOpenMenu;
             @OpenMenu.performed -= instance.OnOpenMenu;
             @OpenMenu.canceled -= instance.OnOpenMenu;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         /// <summary>
@@ -1353,6 +1396,13 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnOpenMenu(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Inventory" which allows adding and removing callbacks.
