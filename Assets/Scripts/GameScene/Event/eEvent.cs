@@ -16,6 +16,8 @@ public enum eEvent
     UnitMoveEvent,  // ユニットを動かすイベント
     CreateObjectEvent,  // オブジェクトを生成するイベント
     DeleteObjectEvent,  // オブジェクトを削除するイベント
+    BgmEvent,           // BGMを変更するイベント
+    SeEvent,            // SEを流すイベント
 
     // 1階層 Dream
     CreateEntranceKeyWithMedicine,  // 薬品で玄関への鍵を作成する
