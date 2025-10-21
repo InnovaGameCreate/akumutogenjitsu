@@ -1,15 +1,15 @@
 using UnityEngine;
 
+[System.Serializable]
+public struct AudioData
+{
+    [SerializeField] public AudioClip clip;
+    [SerializeField, Range(0f, 1f)]
+    public float volume;
+}
+
 public class Audio : Singleton<Audio>
 {
-    [System.Serializable]
-    public struct AudioData
-    {
-        [SerializeField] public AudioClip clip;
-        [SerializeField, Range(0f, 1f)]
-        public float volume;
-    }
-
     /// <summary>
     /// BGMを流すAudioSource
     /// </summary>
