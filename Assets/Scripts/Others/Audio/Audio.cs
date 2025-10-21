@@ -13,12 +13,14 @@ public class Audio : Singleton<Audio>
     /// <summary>
     /// BGMを流すAudioSource
     /// </summary>
-    private AudioSource _bgmAudioSource;
+    [Header("BGMのAudioSource")]
+    [SerializeField] private AudioSource _bgmAudioSource;
 
     /// <summary>
     /// SEを流すAudioSource
     /// </summary>
-    private AudioSource _seAudioSource;
+    [Header("SEのAudioSource")]
+    [SerializeField] private AudioSource _seAudioSource;
 
     /// <summary>
     /// Audio の操作 (例: Audio.Instance.Play(0, false);)
@@ -40,8 +42,8 @@ public class Audio : Singleton<Audio>
         }
 
         _bgmAudioSource.loop = isLoop;
-        _bgmAudioSource.clip = _bgmAudioSource.clip;
-        _bgmAudioSource.volume = _bgmAudioSource.volume;
+        _bgmAudioSource.clip = audioData.clip;
+        _bgmAudioSource.volume = audioData.volume;
         _bgmAudioSource.Play();
     }
 
