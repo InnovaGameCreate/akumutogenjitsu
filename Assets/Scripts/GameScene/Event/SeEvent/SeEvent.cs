@@ -26,6 +26,7 @@ public class SeEvent : AbstractEvent
     public override void TriggerEvent()
     {
         Audio.Instance.PlaySe(_seAudioData);
+        onFinishEvent.OnNext(Unit.Default);
     }
 
     // MARK: OnTrigger
