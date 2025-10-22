@@ -1,98 +1,85 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct AudioData
+{
+    [SerializeField] public AudioClip clip;
+    [SerializeField, Range(0f, 1f)]
+    public float volume;
+}
 
 public class Audio : Singleton<Audio>
 {
-    [System.Serializable]
-    public struct AudioData
-    {
-        [SerializeField] public AudioSource AudioSource;
-        [SerializeField] public AudioClip Clip;
-        [SerializeField, Range(0f, 1f)]
-        public float Volume;
-    }
+    /// <summary>
+    /// BGMを流すAudioSource
+    /// </summary>
+    [Header("BGMのAudioSource")]
+    [SerializeField] private AudioSource _bgmAudioSource;
 
-    // Audio Audio Clip
-    [SerializeField] private AudioData[] _audioDatas;
+    /// <summary>
+    /// SEを流すAudioSource
+    /// </summary>
+    [Header("SEのAudioSource")]
+    [SerializeField] private AudioSource _seAudioSource;
 
     /// <summary>
     /// Audio の操作 (例: Audio.Instance.Play(0, false);)
     /// </summary>
     /// <param name="index">Clip の index</param>
     /// <param name="isLoop">ループ設定</param>
-    public void Play(int index, bool isLoop)
+    public void PlayBgm(AudioData audioData, bool isLoop)
     {
-        if (index < 0 || index >= _audioDatas.Length)
+        if (audioData.clip == null)
         {
-            Debug.Log($"AudioClip の index が不正です({index})");
+            Debug.Log($"AudioClip がありません");
             return;
         }
 
-        if (_audioDatas[index].Clip == null)
-        {
-            Debug.Log($"AudioClip がありません {index}");
-            return;
-        }
-
-        if (_audioDatas[index].AudioSource == null)
+        if (_bgmAudioSource == null)
         {
             Debug.Log("AudioSource がアタッチされていません");
             return;
         }
 
-        _audioDatas[index].AudioSource.loop = isLoop;
-        _audioDatas[index].AudioSource.clip = _audioDatas[index].Clip;
-        _audioDatas[index].AudioSource.volume = _audioDatas[index].Volume;
-        _audioDatas[index].AudioSource.Play();
+        _bgmAudioSource.loop = isLoop;
+        _bgmAudioSource.clip = audioData.clip;
+        _bgmAudioSource.volume = audioData.volume;
+        _bgmAudioSource.Play();
     }
 
     /// <summary>
     /// 1回だけ再生する
     /// </summary>
     /// <param name="index">Clip の index</param>
-    public void PlayOneShot(int index)
+    public void PlaySe(AudioData audioData)
     {
-        if (index < 0 || index >= _audioDatas.Length)
+        if (audioData.clip == null)
         {
-            Debug.LogError($"AudioClip の index が不正です({index})");
+            Debug.LogError($"AudioClip がありません");
             return;
         }
 
-        if (_audioDatas[index].Clip == null)
-        {
-            Debug.LogError($"AudioClip がありません {index}");
-            return;
-        }
-
-        if (_audioDatas[index].AudioSource == null)
+        if (_seAudioSource == null)
         {
             Debug.LogError("AudioSource がアタッチされていません");
             return;
         }
 
-        _audioDatas[index].AudioSource.volume = _audioDatas[index].Volume;
-        _audioDatas[index].AudioSource.PlayOneShot(_audioDatas[index].Clip);
+        _seAudioSource.volume = audioData.volume;
+        _seAudioSource.PlayOneShot(audioData.clip);
     }
 
     /// <summary>
     /// Audio の停止
     /// </summary>
-    public void Stop(int index)
+    public void StopBgm()
     {
-        if (index < 0 || index >= _audioDatas.Length)
-        {
-            Debug.LogError($"AudioClip の index が不正です({index})");
-            return;
-        }
-
-        if (_audioDatas[index].AudioSource == null)
+        if (_bgmAudioSource == null)
         {
             Debug.LogError("AudioSource がアタッチされていません");
             return;
         }
 
-        _audioDatas[index].AudioSource.Stop();
+        _bgmAudioSource.Stop();
     }
 }

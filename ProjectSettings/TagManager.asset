@@ -17,6 +17,7 @@ TagManager:
   - SaveMgr
   - UI
   - Dark
+  - AudioMgr
   layers:
   - Default
   - TransparentFX
