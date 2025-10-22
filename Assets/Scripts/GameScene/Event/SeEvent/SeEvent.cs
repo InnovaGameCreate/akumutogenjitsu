@@ -27,4 +27,22 @@ public class SeEvent : AbstractEvent
     {
         Audio.Instance.PlaySe(_seAudioData);
     }
+
+    // MARK: OnTrigger
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            _isInEvent = true;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            _isInEvent = false;
+        }
+    }
 }
