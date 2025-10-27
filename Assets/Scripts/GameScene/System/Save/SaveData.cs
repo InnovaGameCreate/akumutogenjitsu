@@ -1,6 +1,7 @@
 using System;
 using Newtonsoft.Json;
 using UnityEngine;
+using System.Security.Cryptography;
 
 public class SaveData : ISaveDataBinary
 {
@@ -39,6 +40,7 @@ public class SaveData : ISaveDataBinary
             EventData = new EventSaveData();
             PlayerData = new PlayerSaveData();
         }
+
     }
 
     public string EncodeToJson()
@@ -51,7 +53,7 @@ public class SaveData : ISaveDataBinary
     /// </summary>
     public byte[] EncodeToBinary()
     {
-        string json = EncodeToJson();
+        string json = JsonConvert.SerializeObject(this, Formatting.None);
         return SaveEncryption.EncryptJson(json);
     }
 
@@ -60,14 +62,26 @@ public class SaveData : ISaveDataBinary
     /// </summary>
     public void DecodeFromBinary(byte[] binaryData)
     {
+       
+        if (binaryData == null || binaryData.Length == 0)
+        {
+            throw new ArgumentException("バイナリデータが空です");
+        }
+
         try
         {
             string json = SaveEncryption.DecryptToJson(binaryData);
             DecodeToSaveData(json);
         }
+        catch (CryptographicException ex)
+        {
+            Debug.LogError($"データの改ざんが検出されました: {ex.Message}");
+            throw;
+        }
         catch (Exception ex)
         {
             Debug.LogError($"バイナリデータのデコードに失敗しました: {ex.Message}");
+            Debug.LogException(ex);
             // デフォルト値で初期化
             SystemData = new SystemSaveData();
             DateData = new DateSaveData();
