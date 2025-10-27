@@ -11,3 +11,9 @@ public interface ISaveData
     /// <param name="json"> JSON </param>
     public void DecodeToSaveData(string json);
 }
+
+public interface ISaveDataBinary : ISaveData
+{
+    byte[] EncodeToBinary();
+    void DecodeFromBinary(byte[] binaryData);
+}

@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using R3;
+using R3.Collections;
 using UnityEngine;
 
 public struct SaveList
@@ -19,6 +21,7 @@ public class SaveMenuModel : MonoBehaviour
 {
     private SaveManager _saveMgr;
     private FileSystemWatcher _fileWatcher;
+    private readonly object _updateLock = new object();
 
     public ReadOnlyReactiveProperty<int> ActiveSlotIndex => _activeSlotIndex;
     private readonly ReactiveProperty<int> _activeSlotIndex = new(0);
@@ -33,9 +36,15 @@ public class SaveMenuModel : MonoBehaviour
 
     void Update()
     {
-        if (_shouldUpdateUI)
+        bool shouldUpdate = false;
+        lock (_updateLock)
         {
+            shouldUpdate = _shouldUpdateUI;
             _shouldUpdateUI = false;
+        }
+
+        if (shouldUpdate)
+        {
             UpdateSaveTitleList();
         }
     }
@@ -67,7 +76,7 @@ public class SaveMenuModel : MonoBehaviour
         }
 
         _activeSlotIndex.Value = 0;
-        
+
         // ファイル監視を開始
         SetupFileWatcher();
     }
@@ -80,11 +89,25 @@ public class SaveMenuModel : MonoBehaviour
         try
         {
             string saveDirectory = Path.Combine(Application.persistentDataPath, "Saves");
-            
+
             // ディレクトリが存在しない場合は作成
             if (!Directory.Exists(saveDirectory))
             {
                 Directory.CreateDirectory(saveDirectory);
+            }
+
+            string extension = "*.json"; // デフォルト
+            GameObject saveMgrObj = GameObject.FindWithTag("SaveMgr");
+            if (saveMgrObj != null)
+            {
+                SaveManager saveMgr = saveMgrObj.GetComponent<SaveManager>();
+                // useEncryption フィールドが private なので、ファイルの存在で判定
+                if (File.Exists(Path.Combine(saveDirectory, "save_slot_0.dat")) ||
+                    File.Exists(Path.Combine(saveDirectory, "save_slot_1.dat")) ||
+                    File.Exists(Path.Combine(saveDirectory, "save_slot_2.dat")))
+                {
+                    extension = "*.dat";
+                }
             }
 
             _fileWatcher = new FileSystemWatcher(saveDirectory, "save_slot_*.json");
@@ -109,8 +132,15 @@ public class SaveMenuModel : MonoBehaviour
     /// </summary>
     private void OnSaveFileChanged(object sender, FileSystemEventArgs e)
     {
-        // UIの更新はメインスレッドで実行する必要があるため、フラグを立てる
-        _shouldUpdateUI = true;
+        // スレッドセーフにフラグを立てる
+        lock (_updateLock)
+        {
+            // 既にフラグが立っている場合はスキップ（連続イベントを防ぐ）
+            if (!_shouldUpdateUI)
+            {
+                _shouldUpdateUI = true;
+            }
+        }
     }
 
     private bool _shouldUpdateUI = false;
@@ -136,23 +166,30 @@ public class SaveMenuModel : MonoBehaviour
         {
             SaveData saveData = _saveMgr.GetSaveData(i);
             SaveList saveList = new SaveList();
-
-            if (saveData != null)
+            try
             {
-                Date savedDate = new Date(saveData.DateData.Month, saveData.DateData.Day);
-                string dateString = Date.Format(savedDate);
-                int diffDays = Date.DiffDate(savedDate, Date.FirstDate);
-                string location = SceneLocationManager.Instance.GetLocationDisplayNameFromSceneName(saveData.SystemData.CurrentSceneName);
+                if (saveData != null)
+                {
+                    Date savedDate = new Date(saveData.DateData.Month, saveData.DateData.Day);
+                    string dateString = Date.Format(savedDate);
+                    int diffDays = Date.DiffDate(savedDate, Date.FirstDate);
+                    string location = SceneLocationManager.Instance.GetLocationDisplayNameFromSceneName(saveData.SystemData.CurrentSceneName);
 
-                saveList.Date = saveData.SystemData.SystemDate;
-                saveList.Title = $"{dateString}({ (Date.IsEarlier(savedDate, Date.FirstDate) || Date.IsSameDate(savedDate, Date.FirstDate) ? (diffDays + 1) : (-diffDays - 1)) }日目) - {location}";
+                    saveList.Date = saveData.SystemData.SystemDate;
+                    saveList.Title = $"{dateString}({(Date.IsEarlier(savedDate, Date.FirstDate) || Date.IsSameDate(savedDate, Date.FirstDate) ? (diffDays + 1) : (-diffDays - 1))}日目) - {location}";
+                }
+                else
+                {
+                    saveList.Date = "0000/00/00 00:00";
+                    saveList.Title = SaveConstants.EMPTY_SLOT_TEXT;
+                }
             }
-            else
+            catch (Exception ex)
             {
+                Debug.LogWarning($"スロット{i}の読み込みに失敗しました: {ex.Message}");
                 saveList.Date = "0000/00/00 00:00";
-                saveList.Title = SaveConstants.EMPTY_SLOT_TEXT;
+                saveList.Title = "読み込みエラー";
             }
-
             newList.Add(saveList);
         }
 
