@@ -40,6 +40,10 @@ public class PasswordEvent : AbstractEvent
     {
         if (_presenter == null)
         {
+            if (_canvasObj == null)
+            {
+                return;
+            }
             PlayerInput.Instance.Input.Base.Disable();
             PlayerInput.Instance.Input.PasswordEvent.Enable();
             GameObject viewObj = Instantiate(_viewPrefab.gameObject, _canvasObj.transform);
