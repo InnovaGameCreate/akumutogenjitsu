@@ -8,7 +8,7 @@ public class PasswordEvent : AbstractEvent
     [SerializeField] private string _correctPassword;
 
     [Header("View")]
-    [SerializeField] private GameObject _viewPrefab;
+    [SerializeField] private PasswordEventView _viewPrefab;
     private PasswordEventPresenter _presenter;
 
     private GameObject _canvasObj;
@@ -37,7 +37,7 @@ public class PasswordEvent : AbstractEvent
         {
             PlayerInput.Instance.Input.Base.Disable();
             PlayerInput.Instance.Input.PasswordEvent.Enable();
-            GameObject viewObj = Instantiate(_viewPrefab, _canvasObj.transform);
+            GameObject viewObj = Instantiate(_viewPrefab.gameObject, _canvasObj.transform);
             _presenter = new PasswordEventPresenter(viewObj.GetComponent<PasswordEventView>(), _correctPassword, 0);
         }
     }

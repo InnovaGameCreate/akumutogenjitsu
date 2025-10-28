@@ -18,7 +18,7 @@ public class PasswordEventView : MonoBehaviour
     [Header("スロットの中央")]
     [SerializeField] private Vector2 _centerPosition;
 
-    [SerializeField] private GameObject _slotPrefab;
+    [SerializeField] private PasswordEventSlotView _slotPrefab;
     [SerializeField] private GameObject _slotParent;
 
     // 入力
@@ -98,7 +98,7 @@ public class PasswordEventView : MonoBehaviour
             );
 
             // Slot生成
-            GameObject slot = Instantiate(_slotPrefab, _slotParent.transform);
+            GameObject slot = Instantiate(_slotPrefab.gameObject, _slotParent.transform);
             slot.transform.localPosition = position;
             _slotViews.Add(slot);
         }
