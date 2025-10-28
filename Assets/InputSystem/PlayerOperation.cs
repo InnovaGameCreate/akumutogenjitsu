@@ -620,6 +620,125 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PasswordEvent"",
+            ""id"": ""d7e6bf5e-7d8e-4324-ab88-0e67fdadf6db"",
+            ""actions"": [
+                {
+                    ""name"": ""MoveLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""7aba9aaa-6d10-4d7a-8761-7b8fbb83a797"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""353dce37-ac80-4c15-ba8d-61e632cbfd17"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""52dfe2bd-0814-4145-be48-4e1672608137"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlusNumber"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb949a0f-327b-4284-935d-7794c0a3f31b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MinusNumber"",
+                    ""type"": ""Button"",
+                    ""id"": ""75ab78f0-8107-4014-a3f7-42089dbc15bf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""fb857534-fd4f-48d3-b3cc-2689a1dd079f"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b8513ba-3ee7-4477-ae58-16a17e6c65e6"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d526103-9985-4553-9caa-538e9cc62a41"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29603cd5-eb4b-453b-aca2-91c7b36aa6b0"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a2d9be8-d1c4-4dab-95bf-ae53ea566200"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlusNumber"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ae15a04-a604-41e2-898a-55a8366d2d2d"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MinusNumber"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -663,6 +782,13 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         m_ChoiceTextEvent_MoveToUp = m_ChoiceTextEvent.FindAction("MoveToUp", throwIfNotFound: true);
         m_ChoiceTextEvent_MoveToDown = m_ChoiceTextEvent.FindAction("MoveToDown", throwIfNotFound: true);
         m_ChoiceTextEvent_Select = m_ChoiceTextEvent.FindAction("Select", throwIfNotFound: true);
+        // PasswordEvent
+        m_PasswordEvent = asset.FindActionMap("PasswordEvent", throwIfNotFound: true);
+        m_PasswordEvent_MoveLeft = m_PasswordEvent.FindAction("MoveLeft", throwIfNotFound: true);
+        m_PasswordEvent_MoveRight = m_PasswordEvent.FindAction("MoveRight", throwIfNotFound: true);
+        m_PasswordEvent_Select = m_PasswordEvent.FindAction("Select", throwIfNotFound: true);
+        m_PasswordEvent_PlusNumber = m_PasswordEvent.FindAction("PlusNumber", throwIfNotFound: true);
+        m_PasswordEvent_MinusNumber = m_PasswordEvent.FindAction("MinusNumber", throwIfNotFound: true);
     }
 
     ~@PlayerOperation()
@@ -672,6 +798,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Menu.enabled, "This will cause a leak and performance issues, PlayerOperation.Menu.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Save.enabled, "This will cause a leak and performance issues, PlayerOperation.Save.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_ChoiceTextEvent.enabled, "This will cause a leak and performance issues, PlayerOperation.ChoiceTextEvent.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PasswordEvent.enabled, "This will cause a leak and performance issues, PlayerOperation.PasswordEvent.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1355,6 +1482,146 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="ChoiceTextEventActions" /> instance referencing this action map.
     /// </summary>
     public ChoiceTextEventActions @ChoiceTextEvent => new ChoiceTextEventActions(this);
+
+    // PasswordEvent
+    private readonly InputActionMap m_PasswordEvent;
+    private List<IPasswordEventActions> m_PasswordEventActionsCallbackInterfaces = new List<IPasswordEventActions>();
+    private readonly InputAction m_PasswordEvent_MoveLeft;
+    private readonly InputAction m_PasswordEvent_MoveRight;
+    private readonly InputAction m_PasswordEvent_Select;
+    private readonly InputAction m_PasswordEvent_PlusNumber;
+    private readonly InputAction m_PasswordEvent_MinusNumber;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "PasswordEvent".
+    /// </summary>
+    public struct PasswordEventActions
+    {
+        private @PlayerOperation m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public PasswordEventActions(@PlayerOperation wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "PasswordEvent/MoveLeft".
+        /// </summary>
+        public InputAction @MoveLeft => m_Wrapper.m_PasswordEvent_MoveLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "PasswordEvent/MoveRight".
+        /// </summary>
+        public InputAction @MoveRight => m_Wrapper.m_PasswordEvent_MoveRight;
+        /// <summary>
+        /// Provides access to the underlying input action "PasswordEvent/Select".
+        /// </summary>
+        public InputAction @Select => m_Wrapper.m_PasswordEvent_Select;
+        /// <summary>
+        /// Provides access to the underlying input action "PasswordEvent/PlusNumber".
+        /// </summary>
+        public InputAction @PlusNumber => m_Wrapper.m_PasswordEvent_PlusNumber;
+        /// <summary>
+        /// Provides access to the underlying input action "PasswordEvent/MinusNumber".
+        /// </summary>
+        public InputAction @MinusNumber => m_Wrapper.m_PasswordEvent_MinusNumber;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_PasswordEvent; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="PasswordEventActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(PasswordEventActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="PasswordEventActions" />
+        public void AddCallbacks(IPasswordEventActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PasswordEventActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PasswordEventActionsCallbackInterfaces.Add(instance);
+            @MoveLeft.started += instance.OnMoveLeft;
+            @MoveLeft.performed += instance.OnMoveLeft;
+            @MoveLeft.canceled += instance.OnMoveLeft;
+            @MoveRight.started += instance.OnMoveRight;
+            @MoveRight.performed += instance.OnMoveRight;
+            @MoveRight.canceled += instance.OnMoveRight;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
+            @PlusNumber.started += instance.OnPlusNumber;
+            @PlusNumber.performed += instance.OnPlusNumber;
+            @PlusNumber.canceled += instance.OnPlusNumber;
+            @MinusNumber.started += instance.OnMinusNumber;
+            @MinusNumber.performed += instance.OnMinusNumber;
+            @MinusNumber.canceled += instance.OnMinusNumber;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="PasswordEventActions" />
+        private void UnregisterCallbacks(IPasswordEventActions instance)
+        {
+            @MoveLeft.started -= instance.OnMoveLeft;
+            @MoveLeft.performed -= instance.OnMoveLeft;
+            @MoveLeft.canceled -= instance.OnMoveLeft;
+            @MoveRight.started -= instance.OnMoveRight;
+            @MoveRight.performed -= instance.OnMoveRight;
+            @MoveRight.canceled -= instance.OnMoveRight;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
+            @PlusNumber.started -= instance.OnPlusNumber;
+            @PlusNumber.performed -= instance.OnPlusNumber;
+            @PlusNumber.canceled -= instance.OnPlusNumber;
+            @MinusNumber.started -= instance.OnMinusNumber;
+            @MinusNumber.performed -= instance.OnMinusNumber;
+            @MinusNumber.canceled -= instance.OnMinusNumber;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PasswordEventActions.UnregisterCallbacks(IPasswordEventActions)" />.
+        /// </summary>
+        /// <seealso cref="PasswordEventActions.UnregisterCallbacks(IPasswordEventActions)" />
+        public void RemoveCallbacks(IPasswordEventActions instance)
+        {
+            if (m_Wrapper.m_PasswordEventActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="PasswordEventActions.AddCallbacks(IPasswordEventActions)" />
+        /// <seealso cref="PasswordEventActions.RemoveCallbacks(IPasswordEventActions)" />
+        /// <seealso cref="PasswordEventActions.UnregisterCallbacks(IPasswordEventActions)" />
+        public void SetCallbacks(IPasswordEventActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PasswordEventActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PasswordEventActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="PasswordEventActions" /> instance referencing this action map.
+    /// </summary>
+    public PasswordEventActions @PasswordEvent => new PasswordEventActions(this);
     private int m_KeyboardSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -1526,5 +1793,48 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSelect(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PasswordEvent" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="PasswordEventActions.AddCallbacks(IPasswordEventActions)" />
+    /// <seealso cref="PasswordEventActions.RemoveCallbacks(IPasswordEventActions)" />
+    public interface IPasswordEventActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "MoveLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Select" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelect(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PlusNumber" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPlusNumber(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MinusNumber" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMinusNumber(InputAction.CallbackContext context);
     }
 }

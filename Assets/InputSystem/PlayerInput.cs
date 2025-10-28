@@ -1,11 +1,8 @@
 public class PlayerInput : Singleton<PlayerInput>
 {
-    private PlayerOperation _playerOperationInput;
-
+    public PlayerOperation Input;
     void Start()
     {
-        _playerOperationInput = new PlayerOperation();
+        Input = new PlayerOperation();
     }
-
-    public PlayerOperation Input => _playerOperationInput;
 }
