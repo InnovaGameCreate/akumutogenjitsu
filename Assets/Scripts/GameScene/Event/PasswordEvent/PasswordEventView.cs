@@ -153,5 +153,6 @@ public class PasswordEventView : MonoBehaviour
         _onMoveLeft?.Dispose();
         _onPlusNumber?.Dispose();
         _onMinusNumber?.Dispose();
+        _onSubmit?.Dispose();
     }
 }
