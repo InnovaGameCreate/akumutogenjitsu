@@ -31,7 +31,7 @@ public class PasswordEventSlotView : MonoBehaviour
     /// <summary>
     /// 数字を設定する
     /// </summary>
-    /// <param name="num"> 接待したい数字 </param>
+    /// <param name="num"> 設定したい数字 </param>
     public void SetNumber(int num)
     {
         if (num < 0 || num > 9)

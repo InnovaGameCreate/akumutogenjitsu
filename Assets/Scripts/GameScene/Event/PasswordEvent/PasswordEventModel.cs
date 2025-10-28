@@ -52,7 +52,7 @@ public class PasswordEventModel
     }
 
     /// <summary>
-    /// 洗濯中の桁を右に動かす
+    /// 選択中の桁を右に動かす
     /// 右端に行ったら左端に移動させる
     /// </summary>
     public void MoveRightSelection()
