@@ -8,6 +8,7 @@ public struct PasswordEventViewOutput
     public Observable<Unit> onMoveLeft;
     public Observable<Unit> onPlusNumber;
     public Observable<Unit> onMinusNumber;
+    public Observable<Unit> onSubmit;
 }
 
 public class PasswordEventView : MonoBehaviour
@@ -26,12 +27,12 @@ public class PasswordEventView : MonoBehaviour
     private readonly Subject<Unit> _onMoveLeft = new();
     private readonly Subject<Unit> _onPlusNumber = new();
     private readonly Subject<Unit> _onMinusNumber = new();
+    private readonly Subject<Unit> _onSubmit = new();
 
     private List<GameObject> _slotViews = new List<GameObject>();
 
     public PasswordEventViewOutput Bind()
     {
-        PasswordEventViewOutput output = new PasswordEventViewOutput();
         PlayerInput.Instance.Input.PasswordEvent.MoveLeft.performed += ctx =>
         {
             if (ctx.ReadValueAsButton())
@@ -60,11 +61,19 @@ public class PasswordEventView : MonoBehaviour
                 _onMinusNumber.OnNext(Unit.Default);
             }
         };
-
+        PlayerInput.Instance.Input.PasswordEvent.Submit.performed += ctx =>
+        {
+            if (ctx.ReadValueAsButton())
+            {
+                _onSubmit.OnNext(Unit.Default);
+            }
+        };
+        PasswordEventViewOutput output = new PasswordEventViewOutput();
         output.onMoveLeft = _onMoveLeft;
         output.onMoveRight = _onMoveRight;
         output.onPlusNumber = _onPlusNumber;
         output.onMinusNumber = _onMinusNumber;
+        output.onSubmit = _onSubmit;
 
         return output;
     }
@@ -131,6 +140,11 @@ public class PasswordEventView : MonoBehaviour
         {
             _slotViews[i]?.GetComponent<PasswordEventSlotView>().SetActiveSlot(i == index);
         }
+    }
+
+    public void DestroyView()
+    {
+        Destroy(gameObject);
     }
 
     void OnDestroy()

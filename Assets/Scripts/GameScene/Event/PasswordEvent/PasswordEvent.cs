@@ -1,4 +1,3 @@
-using System.Linq;
 using R3;
 using UnityEngine;
 
@@ -6,6 +5,11 @@ public class PasswordEvent : AbstractEvent
 {
     [Header("パスワード")]
     [SerializeField] private string _correctPassword;
+
+    [Header("正解だった時に起こるイベント")]
+    [SerializeField] private GameObject _eventObj;
+
+    private AbstractEvent _event;
 
     [Header("View")]
     [SerializeField] private PasswordEventView _viewPrefab;
@@ -29,6 +33,7 @@ public class PasswordEvent : AbstractEvent
         {
             Debug.LogError("UICanvasが存在しません。");
         }
+        _event = _eventObj.GetComponent<AbstractEvent>();
     }
 
     public override void TriggerEvent()
@@ -38,7 +43,7 @@ public class PasswordEvent : AbstractEvent
             PlayerInput.Instance.Input.Base.Disable();
             PlayerInput.Instance.Input.PasswordEvent.Enable();
             GameObject viewObj = Instantiate(_viewPrefab.gameObject, _canvasObj.transform);
-            _presenter = new PasswordEventPresenter(viewObj.GetComponent<PasswordEventView>(), _correctPassword, 0);
+            _presenter = new PasswordEventPresenter(viewObj.GetComponent<PasswordEventView>(), _correctPassword, _event, 0, this);
         }
     }
 
@@ -46,6 +51,7 @@ public class PasswordEvent : AbstractEvent
     {
         PlayerInput.Instance.Input.PasswordEvent.Disable();
         PlayerInput.Instance.Input.Base.Enable();
+        _presenter = null;
     }
 
     // MARK: OnTrigger

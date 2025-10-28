@@ -1,16 +1,22 @@
 using R3;
+using UnityEngine;
 
 public class PasswordEventPresenter
 {
+    private PasswordEvent _passwordEvent;
     private PasswordEventModel _model;
     private PasswordEventView _view;
 
+    private AbstractEvent _nextEvent;
+
     private CompositeDisposable _disposables = new();
 
-    public PasswordEventPresenter(PasswordEventView view, string password, int defaultActiveSlot)
+    public PasswordEventPresenter(PasswordEventView view, string password, AbstractEvent nextEvent, int defaultActiveSlot, PasswordEvent passwordEvent)
     {
         _model = new PasswordEventModel(password, defaultActiveSlot);
         _view = view;
+        _nextEvent = nextEvent;
+        _passwordEvent = passwordEvent;
 
         Bind();
         _view.CreateSlots(_model.SlotNums.CurrentValue.Count, 0);
@@ -49,6 +55,19 @@ public class PasswordEventPresenter
             })
             .AddTo(_disposables);
 
+        // 認証
+        output.onSubmit
+            .Subscribe(_ =>
+            {
+                _view.DestroyView();
+                _passwordEvent.FinishEventForce();
+                if (IsCorrectPassword())
+                {
+                    _nextEvent.TriggerEventForce();
+                }
+            })
+            .AddTo(_disposables);
+
         // Model => View
         _model.ActiveSlotIndex
             .Subscribe(index =>
@@ -66,5 +85,10 @@ public class PasswordEventPresenter
                 }
             })
             .AddTo(_disposables);
+    }
+
+    private bool IsCorrectPassword()
+    {
+        return _model.CorrectPassword.CurrentValue == string.Join("", _model.SlotNums.CurrentValue);
     }
 }

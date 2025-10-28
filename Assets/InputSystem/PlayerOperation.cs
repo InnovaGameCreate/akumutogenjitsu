@@ -644,7 +644,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Select"",
+                    ""name"": ""Submit"",
                     ""type"": ""Button"",
                     ""id"": ""52dfe2bd-0814-4145-be48-4e1672608137"",
                     ""expectedControlType"": """",
@@ -701,7 +701,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Select"",
+                    ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -712,7 +712,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Select"",
+                    ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -786,7 +786,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         m_PasswordEvent = asset.FindActionMap("PasswordEvent", throwIfNotFound: true);
         m_PasswordEvent_MoveLeft = m_PasswordEvent.FindAction("MoveLeft", throwIfNotFound: true);
         m_PasswordEvent_MoveRight = m_PasswordEvent.FindAction("MoveRight", throwIfNotFound: true);
-        m_PasswordEvent_Select = m_PasswordEvent.FindAction("Select", throwIfNotFound: true);
+        m_PasswordEvent_Submit = m_PasswordEvent.FindAction("Submit", throwIfNotFound: true);
         m_PasswordEvent_PlusNumber = m_PasswordEvent.FindAction("PlusNumber", throwIfNotFound: true);
         m_PasswordEvent_MinusNumber = m_PasswordEvent.FindAction("MinusNumber", throwIfNotFound: true);
     }
@@ -1488,7 +1488,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
     private List<IPasswordEventActions> m_PasswordEventActionsCallbackInterfaces = new List<IPasswordEventActions>();
     private readonly InputAction m_PasswordEvent_MoveLeft;
     private readonly InputAction m_PasswordEvent_MoveRight;
-    private readonly InputAction m_PasswordEvent_Select;
+    private readonly InputAction m_PasswordEvent_Submit;
     private readonly InputAction m_PasswordEvent_PlusNumber;
     private readonly InputAction m_PasswordEvent_MinusNumber;
     /// <summary>
@@ -1511,9 +1511,9 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @MoveRight => m_Wrapper.m_PasswordEvent_MoveRight;
         /// <summary>
-        /// Provides access to the underlying input action "PasswordEvent/Select".
+        /// Provides access to the underlying input action "PasswordEvent/Submit".
         /// </summary>
-        public InputAction @Select => m_Wrapper.m_PasswordEvent_Select;
+        public InputAction @Submit => m_Wrapper.m_PasswordEvent_Submit;
         /// <summary>
         /// Provides access to the underlying input action "PasswordEvent/PlusNumber".
         /// </summary>
@@ -1554,9 +1554,9 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
             @MoveRight.started += instance.OnMoveRight;
             @MoveRight.performed += instance.OnMoveRight;
             @MoveRight.canceled += instance.OnMoveRight;
-            @Select.started += instance.OnSelect;
-            @Select.performed += instance.OnSelect;
-            @Select.canceled += instance.OnSelect;
+            @Submit.started += instance.OnSubmit;
+            @Submit.performed += instance.OnSubmit;
+            @Submit.canceled += instance.OnSubmit;
             @PlusNumber.started += instance.OnPlusNumber;
             @PlusNumber.performed += instance.OnPlusNumber;
             @PlusNumber.canceled += instance.OnPlusNumber;
@@ -1580,9 +1580,9 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
             @MoveRight.started -= instance.OnMoveRight;
             @MoveRight.performed -= instance.OnMoveRight;
             @MoveRight.canceled -= instance.OnMoveRight;
-            @Select.started -= instance.OnSelect;
-            @Select.performed -= instance.OnSelect;
-            @Select.canceled -= instance.OnSelect;
+            @Submit.started -= instance.OnSubmit;
+            @Submit.performed -= instance.OnSubmit;
+            @Submit.canceled -= instance.OnSubmit;
             @PlusNumber.started -= instance.OnPlusNumber;
             @PlusNumber.performed -= instance.OnPlusNumber;
             @PlusNumber.canceled -= instance.OnPlusNumber;
@@ -1816,12 +1816,12 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMoveRight(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Select" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Submit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSelect(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "PlusNumber" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
