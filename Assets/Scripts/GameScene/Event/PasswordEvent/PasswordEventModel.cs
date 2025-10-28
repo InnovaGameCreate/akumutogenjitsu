@@ -34,7 +34,9 @@ public class PasswordEventModel
             return;
         }
 
-        _slotNums.Value[index] = num;
+        var nums = _slotNums.Value;
+        nums[index] = num;
+        _slotNums.Value = nums;
     }
 
     /// <summary>
