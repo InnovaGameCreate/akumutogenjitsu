@@ -89,6 +89,7 @@ public class PasswordEventView : MonoBehaviour
         {
             foreach (var obj in _slotViews)
             {
+                if (obj == null) continue;
                 Destroy(obj);
             }
             _slotViews.Clear();
