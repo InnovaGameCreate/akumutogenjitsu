@@ -1,5 +1,4 @@
 using R3;
-using UnityEngine;
 
 public class PasswordEventPresenter
 {
@@ -90,5 +89,10 @@ public class PasswordEventPresenter
     private bool IsCorrectPassword()
     {
         return _model.CorrectPassword.CurrentValue == string.Join("", _model.SlotNums.CurrentValue);
+    }
+
+    ~PasswordEventPresenter()
+    {
+        _disposables?.Dispose();
     }
 }
