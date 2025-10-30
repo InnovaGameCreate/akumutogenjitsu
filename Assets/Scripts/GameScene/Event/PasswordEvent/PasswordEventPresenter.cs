@@ -2,13 +2,13 @@ using R3;
 
 public class PasswordEventPresenter
 {
-    private PasswordEvent _passwordEvent;
-    private PasswordEventModel _model;
-    private PasswordEventView _view;
+    private readonly PasswordEvent _passwordEvent;
+    private readonly PasswordEventModel _model;
+    private readonly PasswordEventView _view;
 
-    private AbstractEvent _nextEvent;
+    private readonly AbstractEvent _nextEvent;
 
-    private CompositeDisposable _disposables = new();
+    private readonly CompositeDisposable _disposables = new();
 
     public PasswordEventPresenter(PasswordEventView view, string password, AbstractEvent nextEvent, int defaultActiveSlot, PasswordEvent passwordEvent)
     {
