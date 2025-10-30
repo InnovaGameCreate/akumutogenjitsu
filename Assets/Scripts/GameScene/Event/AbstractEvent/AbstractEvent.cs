@@ -50,6 +50,14 @@ public abstract class AbstractEvent : MonoBehaviour
         onTriggerEvent.OnNext(Unit.Default);
     }
 
+    /// <summary>
+    /// 強制的にイベントを終了させる
+    /// </summary>
+    public void FinishEventForce()
+    {
+        onFinishEvent.OnNext(Unit.Default);
+    }
+
     void Start()
     {
         if (EventManager.Instance == null)
