@@ -34,6 +34,10 @@ public class PasswordEvent : AbstractEvent
             Debug.LogError("UICanvasが存在しません。");
         }
         _event = _eventObj.GetComponent<AbstractEvent>();
+        if (_event == null)
+        {
+            Debug.LogError("AbstractEventがアタッチされていません。");
+        }
     }
 
     public override void TriggerEvent()

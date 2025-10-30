@@ -127,7 +127,17 @@ public class PasswordEventView : MonoBehaviour
         {
             return;
         }
+        if (index >= _slotViews.Count)
+        {
+            Debug.LogError($"不正なindexが渡されてないです。{index}");
+            return;
+        }
         PasswordEventSlotView view = _slotViews[index].GetComponent<PasswordEventSlotView>();
+        if (view == null)
+        {
+            Debug.LogError("PasswordEventSlotViewがアタッチされていません。");
+            return;
+        }
         view.SetNumber(num);
     }
 
