@@ -1,5 +1,6 @@
 using UnityEngine;
 using R3;
+using UnityEngine.SceneManagement;
 
 public class MenuPresenter : MonoBehaviour
 {
@@ -55,7 +56,18 @@ public class MenuPresenter : MonoBehaviour
                         _view.ActionMapToSave(true);
                         break;
                     case 1: // Title
-                        Debug.Log("タイトルへ遷移");
+                        GameObject essentialObj = GameObject.FindWithTag("EssentialObject");
+                        GameObject playerObj = GameObject.FindWithTag("Player");
+                        if (essentialObj != null)
+                        {
+                            Object.Destroy(essentialObj);
+                        }
+                        if (playerObj != null)
+                        {
+                            Object.Destroy(playerObj);
+                        }
+                        _disposable?.Dispose();
+                        SceneManager.LoadScene("start");
                         break;
                 }
             })
@@ -66,7 +78,7 @@ public class MenuPresenter : MonoBehaviour
             .Subscribe(_ =>
             {
                 _view.ActionMapToMenu(false);
-                
+
                 var uiView = GameObject.FindWithTag("UICanvas")?.GetComponent<UIView>();
                 if (uiView != null)
                 {
