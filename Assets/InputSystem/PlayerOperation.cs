@@ -770,6 +770,15 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BackTitle"",
+                    ""type"": ""Button"",
+                    ""id"": ""96246f94-c328-4f66-8b22-0695e38de70c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -814,6 +823,28 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e773b43-669c-417f-8232-f172d96eccb2"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BackTitle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6c6ecd8-1a08-4e98-8a4e-ced95c8d72e4"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BackTitle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -952,6 +983,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         m_LoadScene_MoveUp = m_LoadScene.FindAction("MoveUp", throwIfNotFound: true);
         m_LoadScene_MoveDown = m_LoadScene.FindAction("MoveDown", throwIfNotFound: true);
         m_LoadScene_Select = m_LoadScene.FindAction("Select", throwIfNotFound: true);
+        m_LoadScene_BackTitle = m_LoadScene.FindAction("BackTitle", throwIfNotFound: true);
         // StartScene
         m_StartScene = asset.FindActionMap("StartScene", throwIfNotFound: true);
         m_StartScene_MoveUp = m_StartScene.FindAction("MoveUp", throwIfNotFound: true);
@@ -1799,6 +1831,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
     private readonly InputAction m_LoadScene_MoveUp;
     private readonly InputAction m_LoadScene_MoveDown;
     private readonly InputAction m_LoadScene_Select;
+    private readonly InputAction m_LoadScene_BackTitle;
     /// <summary>
     /// Provides access to input actions defined in input action map "LoadScene".
     /// </summary>
@@ -1822,6 +1855,10 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "LoadScene/Select".
         /// </summary>
         public InputAction @Select => m_Wrapper.m_LoadScene_Select;
+        /// <summary>
+        /// Provides access to the underlying input action "LoadScene/BackTitle".
+        /// </summary>
+        public InputAction @BackTitle => m_Wrapper.m_LoadScene_BackTitle;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1857,6 +1894,9 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
+            @BackTitle.started += instance.OnBackTitle;
+            @BackTitle.performed += instance.OnBackTitle;
+            @BackTitle.canceled += instance.OnBackTitle;
         }
 
         /// <summary>
@@ -1877,6 +1917,9 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
+            @BackTitle.started -= instance.OnBackTitle;
+            @BackTitle.performed -= instance.OnBackTitle;
+            @BackTitle.canceled -= instance.OnBackTitle;
         }
 
         /// <summary>
@@ -2271,6 +2314,13 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSelect(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "BackTitle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBackTitle(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "StartScene" which allows adding and removing callbacks.

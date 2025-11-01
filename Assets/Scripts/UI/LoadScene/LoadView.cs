@@ -9,6 +9,7 @@ public struct LoadViewOutput
     public Observable<Unit> moveUp;
     public Observable<Unit> moveDown;
     public Observable<Unit> select;
+    public Observable<Unit> backTitle;
 }
 
 [System.Serializable]
@@ -30,6 +31,7 @@ public class LoadView : MonoBehaviour
     private Subject<Unit> _moveUp = new();
     private Subject<Unit> _moveDown = new();
     private Subject<Unit> _select = new();
+    private Subject<Unit> _backTitle = new();
 
     private LoadPresenter _presenter;
 
@@ -70,11 +72,19 @@ public class LoadView : MonoBehaviour
                 _select.OnNext(Unit.Default);
             }
         };
+        PlayerInput.Instance.Input.LoadScene.BackTitle.performed += ctx =>
+        {
+            if (ctx.ReadValueAsButton())
+            {
+                _backTitle.OnNext(Unit.Default);
+            }
+        };
 
         LoadViewOutput output = new LoadViewOutput();
         output.moveUp = _moveUp;
         output.moveDown = _moveDown;
         output.select = _select;
+        output.backTitle = _backTitle;
 
         return output;
     }

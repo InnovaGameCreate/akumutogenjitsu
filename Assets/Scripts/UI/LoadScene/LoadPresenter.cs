@@ -36,23 +36,17 @@ class LoadPresenter
         viewOutput.select
             .Subscribe(_ =>
             {
-                _disposables?.Dispose();
                 // セーブデータのロード
                 if (!_model.LoadSaveData())
                 {
-                    // はじめから開始
-                    GameObject essentialObj = GameObject.FindWithTag("EssentialObject");
-                    GameObject playerObj = GameObject.FindWithTag("Player");
-                    if (essentialObj != null)
-                    {
-                        Object.Destroy(essentialObj);
-                    }
-                    if (playerObj != null)
-                    {
-                        Object.Destroy(playerObj);
-                    }
-                    SceneManager.LoadScene("First_1_real_house");
+                    ChangeScene("First_1_real_house");
                 }
+            })
+            .AddTo(_disposables);
+        viewOutput.backTitle
+            .Subscribe(_ =>
+            {
+                ChangeScene("start");
             })
             .AddTo(_disposables);
 
@@ -70,5 +64,26 @@ class LoadPresenter
                 _view.SetSlotItems(items);
             })
             .AddTo(_disposables);
+    }
+
+    private void ChangeScene(string sceneName)
+    {
+        GameObject essentialObj = GameObject.FindWithTag("EssentialObject");
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (essentialObj != null)
+        {
+            Object.Destroy(essentialObj);
+        }
+        if (playerObj != null)
+        {
+            Object.Destroy(playerObj);
+        }
+        _disposables?.Dispose();
+        SceneManager.LoadScene(sceneName);
+    }
+
+    ~LoadPresenter()
+    {
+        _disposables?.Dispose();
     }
 }
