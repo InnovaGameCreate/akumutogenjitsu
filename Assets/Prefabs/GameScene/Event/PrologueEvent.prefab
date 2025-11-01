@@ -233,5 +233,9 @@ MonoBehaviour:
   _storyLayer: 0
   _isUpStoryLayer: 0
   _isTriggerForce: 1
-  _prologueLines: []
+  _prologueLines:
+  - text: "\u653E\u8AB2\u5F8C"
+    delayBeforeDisplay: 0
+    typeSpeed: 0.3
+    delayAfterDisplay: 0
   _prologueUIPrefab: {fileID: 7020481195490470541, guid: 905cf301a0776da4c90202d8ac237686, type: 3}
