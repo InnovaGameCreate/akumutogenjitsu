@@ -818,6 +818,85 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""StartScene"",
+            ""id"": ""e6a8a93a-5570-49ba-9e19-be7e89157e83"",
+            ""actions"": [
+                {
+                    ""name"": ""MoveUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""5b52fd24-afa0-4a0f-a372-6ceb156dd6fa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""8815394c-2255-4fca-81f1-d396aeb36217"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""53d6eb23-9593-44e8-a631-4e22ef0d4ff5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""579ccccb-0dd1-4095-9de0-d1c02cf9cc21"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cbc575ef-74d3-4be1-ac76-d2e2e033c200"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9900b30d-37d4-43bc-9646-17507a8a290f"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bff86de6-6153-4205-83c8-e9b3a7939bd5"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -873,6 +952,11 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         m_LoadScene_MoveUp = m_LoadScene.FindAction("MoveUp", throwIfNotFound: true);
         m_LoadScene_MoveDown = m_LoadScene.FindAction("MoveDown", throwIfNotFound: true);
         m_LoadScene_Select = m_LoadScene.FindAction("Select", throwIfNotFound: true);
+        // StartScene
+        m_StartScene = asset.FindActionMap("StartScene", throwIfNotFound: true);
+        m_StartScene_MoveUp = m_StartScene.FindAction("MoveUp", throwIfNotFound: true);
+        m_StartScene_MoveDown = m_StartScene.FindAction("MoveDown", throwIfNotFound: true);
+        m_StartScene_Select = m_StartScene.FindAction("Select", throwIfNotFound: true);
     }
 
     ~@PlayerOperation()
@@ -884,6 +968,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_ChoiceTextEvent.enabled, "This will cause a leak and performance issues, PlayerOperation.ChoiceTextEvent.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_PasswordEvent.enabled, "This will cause a leak and performance issues, PlayerOperation.PasswordEvent.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_LoadScene.enabled, "This will cause a leak and performance issues, PlayerOperation.LoadScene.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_StartScene.enabled, "This will cause a leak and performance issues, PlayerOperation.StartScene.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1825,6 +1910,124 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="LoadSceneActions" /> instance referencing this action map.
     /// </summary>
     public LoadSceneActions @LoadScene => new LoadSceneActions(this);
+
+    // StartScene
+    private readonly InputActionMap m_StartScene;
+    private List<IStartSceneActions> m_StartSceneActionsCallbackInterfaces = new List<IStartSceneActions>();
+    private readonly InputAction m_StartScene_MoveUp;
+    private readonly InputAction m_StartScene_MoveDown;
+    private readonly InputAction m_StartScene_Select;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "StartScene".
+    /// </summary>
+    public struct StartSceneActions
+    {
+        private @PlayerOperation m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public StartSceneActions(@PlayerOperation wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "StartScene/MoveUp".
+        /// </summary>
+        public InputAction @MoveUp => m_Wrapper.m_StartScene_MoveUp;
+        /// <summary>
+        /// Provides access to the underlying input action "StartScene/MoveDown".
+        /// </summary>
+        public InputAction @MoveDown => m_Wrapper.m_StartScene_MoveDown;
+        /// <summary>
+        /// Provides access to the underlying input action "StartScene/Select".
+        /// </summary>
+        public InputAction @Select => m_Wrapper.m_StartScene_Select;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_StartScene; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="StartSceneActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(StartSceneActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="StartSceneActions" />
+        public void AddCallbacks(IStartSceneActions instance)
+        {
+            if (instance == null || m_Wrapper.m_StartSceneActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_StartSceneActionsCallbackInterfaces.Add(instance);
+            @MoveUp.started += instance.OnMoveUp;
+            @MoveUp.performed += instance.OnMoveUp;
+            @MoveUp.canceled += instance.OnMoveUp;
+            @MoveDown.started += instance.OnMoveDown;
+            @MoveDown.performed += instance.OnMoveDown;
+            @MoveDown.canceled += instance.OnMoveDown;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="StartSceneActions" />
+        private void UnregisterCallbacks(IStartSceneActions instance)
+        {
+            @MoveUp.started -= instance.OnMoveUp;
+            @MoveUp.performed -= instance.OnMoveUp;
+            @MoveUp.canceled -= instance.OnMoveUp;
+            @MoveDown.started -= instance.OnMoveDown;
+            @MoveDown.performed -= instance.OnMoveDown;
+            @MoveDown.canceled -= instance.OnMoveDown;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="StartSceneActions.UnregisterCallbacks(IStartSceneActions)" />.
+        /// </summary>
+        /// <seealso cref="StartSceneActions.UnregisterCallbacks(IStartSceneActions)" />
+        public void RemoveCallbacks(IStartSceneActions instance)
+        {
+            if (m_Wrapper.m_StartSceneActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="StartSceneActions.AddCallbacks(IStartSceneActions)" />
+        /// <seealso cref="StartSceneActions.RemoveCallbacks(IStartSceneActions)" />
+        /// <seealso cref="StartSceneActions.UnregisterCallbacks(IStartSceneActions)" />
+        public void SetCallbacks(IStartSceneActions instance)
+        {
+            foreach (var item in m_Wrapper.m_StartSceneActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_StartSceneActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="StartSceneActions" /> instance referencing this action map.
+    /// </summary>
+    public StartSceneActions @StartScene => new StartSceneActions(this);
     private int m_KeyboardSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -2046,6 +2249,35 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
     /// <seealso cref="LoadSceneActions.AddCallbacks(ILoadSceneActions)" />
     /// <seealso cref="LoadSceneActions.RemoveCallbacks(ILoadSceneActions)" />
     public interface ILoadSceneActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "MoveUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveDown(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Select" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelect(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "StartScene" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="StartSceneActions.AddCallbacks(IStartSceneActions)" />
+    /// <seealso cref="StartSceneActions.RemoveCallbacks(IStartSceneActions)" />
+    public interface IStartSceneActions
     {
         /// <summary>
         /// Method invoked when associated input action "MoveUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
