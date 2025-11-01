@@ -41,6 +41,8 @@ MonoBehaviour:
     DisplayName: "\u5B66\u6821\u3000\uFF12\u968E\u3000\u6559\u5BA4"
   - Type: 8
     DisplayName: "\u5B66\u6821\u3000\uFF12\u968E\u3000\u5ECA\u4E0B"
+  - Type: 0
+    DisplayName: Load
   Scenes:
   - Type: 1
     _sceneAsset: {fileID: 102900000, guid: 180d386e74de8cd4b855343601ebf07a, type: 3}
@@ -276,3 +278,6 @@ MonoBehaviour:
   - Type: 8
     _sceneAsset: {fileID: 102900000, guid: 9207c444dfdc845b4ab77f697eaa25ca, type: 3}
     _sceneName: First_2_dream_hallway2
+  - Type: 0
+    _sceneAsset: {fileID: 102900000, guid: 82e7fb91b52c54738839837b4af64760, type: 3}
+    _sceneName: Load
