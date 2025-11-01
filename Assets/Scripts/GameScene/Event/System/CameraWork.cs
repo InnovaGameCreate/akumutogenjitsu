@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraWork : MonoBehaviour
 {
-    [Header("ƒJƒƒ‰‚ª’Ç]‚·‚éƒIƒuƒWƒFƒNƒg")]
+    [Header("ã‚«ãƒ¡ãƒ©ãŒè¿½å¾“ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ")]
     [SerializeField] private GameObject _moveWithObj;
 
     private Camera _camera;
@@ -14,23 +14,23 @@ public class CameraWork : MonoBehaviour
     {
         if (_moveWithObj == null)
         {
-            Debug.Log("Camera‚ª’Ç]‚·‚éƒIƒuƒWƒFƒNƒg‚ğİ’è‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅAPlayerƒ^ƒO‚ÌƒIƒuƒWƒFƒNƒg‚ğæ“¾‚µ‚Ü‚·B");
+            Debug.Log("CameraãŒè¿½å¾“ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒè¨­å®šã•ã‚Œã¦ã„ãªã„ã®ã§ã€Playerã‚¿ã‚°ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã—ã¾ã™ã€‚");
             _moveWithObj = GameObject.FindWithTag("Player");
 
             if (_moveWithObj == null)
             {
-                Debug.LogError("Playerƒ^ƒO‚ÌƒIƒuƒWƒFƒNƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB");
+                Debug.LogError("Playerã‚¿ã‚°ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚");
             }
         }
 
         _camera = GetComponent<Camera>();
         if (_camera == null)
         {
-            Debug.LogError("Camera‚ÉƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+            Debug.LogError("Cameraã«ã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
         }
 
         _camera.clearFlags = CameraClearFlags.SolidColor;
-        _camera.backgroundColor = new Color(0.1f, 0.1f, 0.1f, 1); // ”wŒiF‚ğ•‚Éİ’è
+        _camera.backgroundColor = new Color(0.1f, 0.1f, 0.1f, 1); // èƒŒæ™¯è‰²ã‚’æš—ãè¨­å®š
     }
 
     // Update is called once per frame
