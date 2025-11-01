@@ -118,47 +118,6 @@ class LoadModel
         _activeSlotIndex.Value = (_activeSlotIndex.Value + 1) % LoadConstants.maxSaveSlot;
     }
 
-    /// <summary>
-    /// 選択中のスロットのセーブデータを取得
-    /// </summary>
-    public SaveData GetCurrentSaveData()
-    {
-        if (_saveMgr == null)
-        {
-            Debug.LogError("SaveManagerが初期化されていません。");
-            return null;
-        }
-
-        return _saveMgr.GetSaveData(_activeSlotIndex.Value);
-    }
-
-    /// <summary>
-    /// 指定したスロットのセーブデータを取得
-    /// </summary>
-    public SaveData GetSaveData(int slotIndex)
-    {
-        if (_saveMgr == null)
-        {
-            Debug.LogError("SaveManagerが初期化されていません。");
-            return null;
-        }
-
-        if (slotIndex < 0 || slotIndex >= LoadConstants.maxSaveSlot)
-        {
-            Debug.LogError($"不正なスロットインデックス: {slotIndex}");
-            return null;
-        }
-
-        return _saveMgr.GetSaveData(slotIndex);
-    }
-
-    /// <summary>
-    /// セーブデータスロットを再読み込み
-    /// </summary>
-    public void RefreshSlotItems()
-    {
-        LoadSlotItems();
-    }
 
     public bool LoadSaveData()
     {
