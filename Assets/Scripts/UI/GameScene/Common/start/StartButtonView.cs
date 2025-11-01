@@ -5,20 +5,23 @@ using R3;
 public class StartButtonView : MonoBehaviour
 {
     [Header("UI設定")]
-    [SerializeField] private Image startButtonImage;
-    [SerializeField] private Image quitButtonImage;
+    [SerializeField] private Image _startButtonImage;
+    [SerializeField] private Image _loadButtonImage;
+    [SerializeField] private Image _quitButtonImage;
 
     [Header("スプライト設定")]
-    [SerializeField] private Sprite selectedStartSprite;
-    [SerializeField] private Sprite notSelectedStartSprite;
-    [SerializeField] private Sprite selectedQuitSprite;
-    [SerializeField] private Sprite notSelectedQuitSprite;
+    [SerializeField] private Sprite _selectedStartSprite;
+    [SerializeField] private Sprite _notSelectedStartSprite;
+    [SerializeField] private Sprite _selectedLoadSprite;
+    [SerializeField] private Sprite _notSelectedLoadSprite;
+    [SerializeField] private Sprite _selectedQuitSprite;
+    [SerializeField] private Sprite _notSelectedQuitSprite;
 
-    private readonly Subject<Unit> _moveLeft = new();
-    public Observable<Unit> MoveLeft => _moveLeft;
+    private readonly Subject<Unit> _moveUp = new();
+    public Observable<Unit> MoveUp => _moveUp;
 
-    private readonly Subject<Unit> _moveRight = new();
-    public Observable<Unit> MoveRight => _moveRight;
+    private readonly Subject<Unit> _moveDown = new();
+    public Observable<Unit> MoveDown => _moveDown;
 
     private readonly Subject<int> _selectItem = new();
     public Observable<int> SelectItem => _selectItem;
@@ -30,16 +33,17 @@ public class StartButtonView : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) _moveLeft.OnNext(Unit.Default);
-        else if (Input.GetKeyDown(KeyCode.RightArrow)) _moveRight.OnNext(Unit.Default);
-        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.UpArrow)) _moveUp.OnNext(Unit.Default);
+        else if (Input.GetKeyDown(KeyCode.DownArrow)) _moveDown.OnNext(Unit.Default);
+        else if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return))
             _selectItem.OnNext(-1); // 現在選択中のアイテム
     }
 
     private void SetupButtons()
     {
-        if (startButtonImage != null) SetupButton(startButtonImage, () => _selectItem.OnNext(0));
-        if (quitButtonImage != null) SetupButton(quitButtonImage, () => _selectItem.OnNext(1));
+        if (_startButtonImage != null) SetupButton(_startButtonImage, () => _selectItem.OnNext(0));
+        if (_loadButtonImage != null) SetupButton(_loadButtonImage, () => _selectItem.OnNext(1));
+        if (_quitButtonImage != null) SetupButton(_quitButtonImage, () => _selectItem.OnNext(2));
     }
 
     private void SetupButton(Image image, System.Action action)
@@ -61,17 +65,20 @@ public class StartButtonView : MonoBehaviour
 
     public void UpdateSelection(int index)
     {
-        if (startButtonImage != null)
-            startButtonImage.sprite = index == 0 ? selectedStartSprite : notSelectedStartSprite;
+        if (_startButtonImage != null)
+            _startButtonImage.sprite = index == 0 ? _selectedStartSprite : _notSelectedStartSprite;
 
-        if (quitButtonImage != null)
-            quitButtonImage.sprite = index == 1 ? selectedQuitSprite : notSelectedQuitSprite;
+        if (_loadButtonImage != null)
+            _loadButtonImage.sprite = index == 1 ? _selectedLoadSprite : _notSelectedLoadSprite;
+
+        if (_quitButtonImage != null)
+            _quitButtonImage.sprite = index == 2 ? _selectedQuitSprite : _notSelectedQuitSprite;
     }
 
     void OnDestroy()
     {
-        _moveLeft?.Dispose();
-        _moveRight?.Dispose();
+        _moveUp?.Dispose();
+        _moveDown?.Dispose();
         _selectItem?.Dispose();
     }
 }

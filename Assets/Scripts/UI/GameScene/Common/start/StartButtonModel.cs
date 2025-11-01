@@ -6,7 +6,7 @@ public class StartButtonModel : MonoBehaviour
     private readonly ReactiveProperty<int> _selectedIndex = new(0);
     public ReadOnlyReactiveProperty<int> SelectedIndex => _selectedIndex;
 
-    private readonly int _numSelection = 2;
+    private readonly int _numSelection = 3;
 
     public void SetSelectedIndex(int index)
     {

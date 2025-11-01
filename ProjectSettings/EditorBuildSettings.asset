@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScenes/start.unity
     guid: 6e926a8a0ecc6ff43af79447f3d84c05
   - enabled: 1
+    path: Assets/Scenes/StartScenes/Load.unity
+    guid: 82e7fb91b52c54738839837b4af64760
+  - enabled: 1
     path: Assets/Scenes/GameScenes/First/1/Real/School/1F/First_1_real_class101.unity
     guid: 33a9eabc9e66ab04087600bc72e62199
   - enabled: 1
