@@ -12,7 +12,7 @@ class LoadPresenter
     public LoadPresenter(LoadView view)
     {
         _view = view;
-        _model = new LoadModel(0);
+        _model = new LoadModel();
 
         Bind();
     }

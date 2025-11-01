@@ -31,9 +31,9 @@ class LoadModel
     public ReadOnlyReactiveProperty<List<SlotItem>> SlotItems => _slotItems;
     private readonly ReactiveProperty<List<SlotItem>> _slotItems = new(new List<SlotItem>());
 
-    public LoadModel(int defaultIndex)
+    public LoadModel()
     {
-        _activeSlotIndex.Value = defaultIndex;
+        _activeSlotIndex.Value = 0;
         Initialize();
     }
 
