@@ -5,14 +5,14 @@ using R3;
 public class StartButtonView : MonoBehaviour
 {
     [Header("UI設定")]
-    [SerializeField] private Image startButtonImage;
-    [SerializeField] private Image quitButtonImage;
+    [SerializeField] private Image _startButtonImage;
+    [SerializeField] private Image _quitButtonImage;
 
     [Header("スプライト設定")]
-    [SerializeField] private Sprite selectedStartSprite;
-    [SerializeField] private Sprite notSelectedStartSprite;
-    [SerializeField] private Sprite selectedQuitSprite;
-    [SerializeField] private Sprite notSelectedQuitSprite;
+    [SerializeField] private Sprite _selectedStartSprite;
+    [SerializeField] private Sprite _notSelectedStartSprite;
+    [SerializeField] private Sprite _selectedQuitSprite;
+    [SerializeField] private Sprite _notSelectedQuitSprite;
 
     private readonly Subject<Unit> _moveLeft = new();
     public Observable<Unit> MoveLeft => _moveLeft;
@@ -38,8 +38,8 @@ public class StartButtonView : MonoBehaviour
 
     private void SetupButtons()
     {
-        if (startButtonImage != null) SetupButton(startButtonImage, () => _selectItem.OnNext(0));
-        if (quitButtonImage != null) SetupButton(quitButtonImage, () => _selectItem.OnNext(1));
+        if (_startButtonImage != null) SetupButton(_startButtonImage, () => _selectItem.OnNext(0));
+        if (_quitButtonImage != null) SetupButton(_quitButtonImage, () => _selectItem.OnNext(1));
     }
 
     private void SetupButton(Image image, System.Action action)
@@ -61,11 +61,11 @@ public class StartButtonView : MonoBehaviour
 
     public void UpdateSelection(int index)
     {
-        if (startButtonImage != null)
-            startButtonImage.sprite = index == 0 ? selectedStartSprite : notSelectedStartSprite;
+        if (_startButtonImage != null)
+            _startButtonImage.sprite = index == 0 ? _selectedStartSprite : _notSelectedStartSprite;
 
-        if (quitButtonImage != null)
-            quitButtonImage.sprite = index == 1 ? selectedQuitSprite : notSelectedQuitSprite;
+        if (_quitButtonImage != null)
+            _quitButtonImage.sprite = index == 1 ? _selectedQuitSprite : _notSelectedQuitSprite;
     }
 
     void OnDestroy()

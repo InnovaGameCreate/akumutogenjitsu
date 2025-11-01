@@ -7,9 +7,9 @@ using DG.Tweening;
 public class StartButtonPresenter : MonoBehaviour
 {
     [Header("設定")]
-    [SerializeField] private string gameSceneName = "GameScene";
-    [SerializeField] private Image fadeImage; 
-    [SerializeField] private float fadeDuration = 0.5f;
+    [SerializeField] private string _gameSceneName = "GameScene";
+    [SerializeField] private Image _fadeImage;
+    [SerializeField] private float _fadeDuration = 0.5f;
 
     [SerializeField] private StartButtonModel _model;
     [SerializeField] private StartButtonView _view;
@@ -56,27 +56,27 @@ public class StartButtonPresenter : MonoBehaviour
     {
         _isTransitioning = true;
 
-        if (fadeImage != null)
+        if (_fadeImage != null)
         {
             // フェード用Imageをアクティブにする
-            fadeImage.gameObject.SetActive(true);
+            _fadeImage.gameObject.SetActive(true);
 
             // シーン読み込み開始
-            var asyncOp = SceneManager.LoadSceneAsync(gameSceneName);
+            var asyncOp = SceneManager.LoadSceneAsync(_gameSceneName);
             asyncOp.allowSceneActivation = false;
 
             // 透明から開始
-            Color color = fadeImage.color;
-            fadeImage.color = new Color(color.r, color.g, color.b, 0f);
+            Color color = _fadeImage.color;
+            _fadeImage.color = new Color(color.r, color.g, color.b, 0f);
 
             // DOTweenでフェードアウト
-            fadeImage.DOFade(1f, fadeDuration)
+            _fadeImage.DOFade(1f, _fadeDuration)
                 .SetEase(Ease.OutQuad)
                 .OnComplete(() => asyncOp.allowSceneActivation = true);
         }
         else
         {
-            SceneManager.LoadSceneAsync(gameSceneName);
+            SceneManager.LoadSceneAsync(_gameSceneName);
         }
     }
 
