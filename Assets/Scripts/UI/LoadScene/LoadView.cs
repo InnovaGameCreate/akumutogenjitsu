@@ -103,5 +103,7 @@ public class LoadView : MonoBehaviour
     {
         PlayerInput.Instance.Input.LoadScene.Disable();
         PlayerInput.Instance.Input.Base.Enable();
+        _presenter = null;
+        Destroy(this);
     }
 }

@@ -160,8 +160,8 @@ class LoadModel
         LoadSlotItems();
     }
 
-    public void LoadSaveData()
+    public bool LoadSaveData()
     {
-        _saveMgr.LoadFromFile(_activeSlotIndex.Value);
+        return _saveMgr.LoadFromFile(_activeSlotIndex.Value);
     }
 }

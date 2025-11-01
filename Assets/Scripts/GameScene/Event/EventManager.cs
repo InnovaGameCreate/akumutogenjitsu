@@ -10,6 +10,11 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
 
     void Update()
     {
+        if (_allEventsInScene.Count == 0)
+        {
+            InitializeAllEventInScene();
+            return;
+        }
         foreach (var ev in _allEventsInScene)
         {
             if (ev == null)
