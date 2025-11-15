@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class BasicAnimation : MonoBehaviour
 {
-    [Header("ƒXƒvƒ‰ƒCƒg")]
+    [Header("ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ")]
     [SerializeField] private List<Sprite> _sprites;
 
-    [Header("‚P–ˆ‚²‚Æ‚É‘Ò‚ÂŠÔ")]
+    [Header("ï¼‘æšã”ã¨ã«å¾…ã¤ç§’")]
     [SerializeField] private float _waitTime;
 
     private SpriteRenderer _spriteRenderer;
@@ -22,7 +22,7 @@ public class BasicAnimation : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         if (_spriteRenderer == null)
         {
-            Debug.LogError("SpriteRenderer‚ªƒRƒ“ƒ|[ƒlƒ“ƒg‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+            Debug.LogError("SpriteRendererãŒã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
         }
 
         _spriteRenderer.sprite = _sprites[0];
