@@ -16,6 +16,8 @@ public class EventDispatcher : MonoBehaviour
 
     private bool _isInEvent = false;
 
+    private BasicAnimation _animation;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,7 +25,7 @@ public class EventDispatcher : MonoBehaviour
         foreach (var obj in _eventObjs)
         {
             AbstractEvent evt = obj.GetComponent<AbstractEvent>();
-            if (evt == null) break;
+            if (evt == null) continue;
 
             _events.Add(evt);
         }
@@ -31,6 +33,12 @@ public class EventDispatcher : MonoBehaviour
         if (_isTriggerForce)
         {
             TriggerAllEvent();
+        }
+
+        _animation = gameObject.GetComponent<BasicAnimation>();
+        if (_animation == null)
+        {
+            Debug.LogError("BasicAnimationはアタッチされていません。");
         }
 
         PlayerInput.Instance.Input.Base.Interact.performed += OnInteract;
@@ -49,6 +57,17 @@ public class EventDispatcher : MonoBehaviour
         foreach (var evt in _events)
         {
             evt.TriggerEventForce();
+
+            if (_isTriggerOnce)
+            {
+                evt.Enabled = false;
+            }
+        }
+
+        if (_isTriggerOnce)
+        {
+            _events.Clear();
+            _animation.Enabled = false;
         }
     }
 
