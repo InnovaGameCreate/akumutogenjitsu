@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,8 +25,18 @@ public class EventDispatcher : MonoBehaviour
     {
         foreach (var obj in _eventObjs)
         {
+            if (obj == null)
+            {
+                Debug.LogWarning("[EventDispatcher] イベントオブジェクトがnullです。");
+                continue;
+            }
+
             AbstractEvent evt = obj.GetComponent<AbstractEvent>();
-            if (evt == null) continue;
+            if (evt == null)
+            {
+                Debug.LogWarning($"[EventDispatcher] {obj.name} にAbstractEventがアタッチされていません。");
+                continue;
+            }
 
             _events.Add(evt);
         }
@@ -38,7 +49,13 @@ public class EventDispatcher : MonoBehaviour
         _animation = gameObject.GetComponent<BasicAnimation>();
         if (_animation == null)
         {
-            Debug.LogError("BasicAnimationはアタッチされていません。");
+            Debug.LogWarning("[EventDispatcher] BasicAnimationがアタッチされていません。アニメーション機能は無効です。");
+        }
+
+        if (PlayerInput.Instance == null)
+        {
+            Debug.LogError("[EventDispatcher] PlayerInputが存在しません。");
+            return;
         }
 
         PlayerInput.Instance.Input.Base.Interact.performed += OnInteract;
@@ -56,6 +73,12 @@ public class EventDispatcher : MonoBehaviour
     {
         foreach (var evt in _events)
         {
+            if (evt == null)
+            {
+                Debug.LogWarning("[EventDispatcher] イベントがnullです。");
+                continue;
+            }
+
             evt.TriggerEventForce();
 
             if (_isTriggerOnce)
@@ -67,7 +90,10 @@ public class EventDispatcher : MonoBehaviour
         if (_isTriggerOnce)
         {
             _events.Clear();
-            _animation.Enabled = false;
+            if (_animation != null)
+            {
+                _animation.Enabled = false;
+            }
         }
     }
 
@@ -90,6 +116,9 @@ public class EventDispatcher : MonoBehaviour
 
     void OnDisable()
     {
-        PlayerInput.Instance.Input.Base.Interact.performed -= OnInteract;
+        if (PlayerInput.Instance != null)
+        {
+            PlayerInput.Instance.Input.Base.Interact.performed -= OnInteract;
+        }
     }
 }
