@@ -842,6 +842,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "SetDateEvent",
+            "id": "a142e5fa-2c87-49e1-9d91-4add8e9a0839",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "93547010-43d7-4343-a743-a7b58125e443",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "291cfafd-f482-4a51-ad38-81d266aac712",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

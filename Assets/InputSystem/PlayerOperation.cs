@@ -928,6 +928,34 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""SetDateEvent"",
+            ""id"": ""a142e5fa-2c87-49e1-9d91-4add8e9a0839"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""93547010-43d7-4343-a743-a7b58125e443"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""291cfafd-f482-4a51-ad38-81d266aac712"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -989,6 +1017,9 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         m_StartScene_MoveUp = m_StartScene.FindAction("MoveUp", throwIfNotFound: true);
         m_StartScene_MoveDown = m_StartScene.FindAction("MoveDown", throwIfNotFound: true);
         m_StartScene_Select = m_StartScene.FindAction("Select", throwIfNotFound: true);
+        // SetDateEvent
+        m_SetDateEvent = asset.FindActionMap("SetDateEvent", throwIfNotFound: true);
+        m_SetDateEvent_Interact = m_SetDateEvent.FindAction("Interact", throwIfNotFound: true);
     }
 
     ~@PlayerOperation()
@@ -1001,6 +1032,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_PasswordEvent.enabled, "This will cause a leak and performance issues, PlayerOperation.PasswordEvent.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_LoadScene.enabled, "This will cause a leak and performance issues, PlayerOperation.LoadScene.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_StartScene.enabled, "This will cause a leak and performance issues, PlayerOperation.StartScene.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_SetDateEvent.enabled, "This will cause a leak and performance issues, PlayerOperation.SetDateEvent.Disable() has not been called.");
     }
 
     /// <summary>
@@ -2071,6 +2103,102 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="StartSceneActions" /> instance referencing this action map.
     /// </summary>
     public StartSceneActions @StartScene => new StartSceneActions(this);
+
+    // SetDateEvent
+    private readonly InputActionMap m_SetDateEvent;
+    private List<ISetDateEventActions> m_SetDateEventActionsCallbackInterfaces = new List<ISetDateEventActions>();
+    private readonly InputAction m_SetDateEvent_Interact;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "SetDateEvent".
+    /// </summary>
+    public struct SetDateEventActions
+    {
+        private @PlayerOperation m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public SetDateEventActions(@PlayerOperation wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "SetDateEvent/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_SetDateEvent_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_SetDateEvent; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="SetDateEventActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(SetDateEventActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="SetDateEventActions" />
+        public void AddCallbacks(ISetDateEventActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SetDateEventActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SetDateEventActionsCallbackInterfaces.Add(instance);
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="SetDateEventActions" />
+        private void UnregisterCallbacks(ISetDateEventActions instance)
+        {
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="SetDateEventActions.UnregisterCallbacks(ISetDateEventActions)" />.
+        /// </summary>
+        /// <seealso cref="SetDateEventActions.UnregisterCallbacks(ISetDateEventActions)" />
+        public void RemoveCallbacks(ISetDateEventActions instance)
+        {
+            if (m_Wrapper.m_SetDateEventActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="SetDateEventActions.AddCallbacks(ISetDateEventActions)" />
+        /// <seealso cref="SetDateEventActions.RemoveCallbacks(ISetDateEventActions)" />
+        /// <seealso cref="SetDateEventActions.UnregisterCallbacks(ISetDateEventActions)" />
+        public void SetCallbacks(ISetDateEventActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SetDateEventActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SetDateEventActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="SetDateEventActions" /> instance referencing this action map.
+    /// </summary>
+    public SetDateEventActions @SetDateEvent => new SetDateEventActions(this);
     private int m_KeyboardSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -2350,5 +2478,20 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSelect(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "SetDateEvent" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="SetDateEventActions.AddCallbacks(ISetDateEventActions)" />
+    /// <seealso cref="SetDateEventActions.RemoveCallbacks(ISetDateEventActions)" />
+    public interface ISetDateEventActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
