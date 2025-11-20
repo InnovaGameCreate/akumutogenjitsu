@@ -33,41 +33,30 @@ public class PasswordEventView : MonoBehaviour
 
     public PasswordEventViewOutput Bind()
     {
-        PlayerInput.Instance.Input.PasswordEvent.MoveLeft.performed += ctx =>
-        {
-            if (ctx.ReadValueAsButton())
-            {
-                _onMoveLeft.OnNext(Unit.Default);
-            }
-        };
-        PlayerInput.Instance.Input.PasswordEvent.MoveRight.performed += ctx =>
-        {
-            if (ctx.ReadValueAsButton())
-            {
-                _onMoveRight.OnNext(Unit.Default);
-            }
-        };
-        PlayerInput.Instance.Input.PasswordEvent.PlusNumber.performed += ctx =>
-        {
-            if (ctx.ReadValueAsButton())
-            {
-                _onPlusNumber.OnNext(Unit.Default);
-            }
-        };
-        PlayerInput.Instance.Input.PasswordEvent.MinusNumber.performed += ctx =>
-        {
-            if (ctx.ReadValueAsButton())
-            {
-                _onMinusNumber.OnNext(Unit.Default);
-            }
-        };
-        PlayerInput.Instance.Input.PasswordEvent.Submit.performed += ctx =>
-        {
-            if (ctx.ReadValueAsButton())
-            {
-                _onSubmit.OnNext(Unit.Default);
-            }
-        };
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.PasswordEvent.MoveLeft)
+            .Where(ctx => ctx.ReadValueAsButton())
+            .Subscribe(_ => _onMoveLeft.OnNext(Unit.Default))
+            .AddTo(this);
+
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.PasswordEvent.MoveRight)
+            .Where(ctx => ctx.ReadValueAsButton())
+            .Subscribe(_ => _onMoveRight.OnNext(Unit.Default))
+            .AddTo(this);
+
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.PasswordEvent.PlusNumber)
+            .Where(ctx => ctx.ReadValueAsButton())
+            .Subscribe(_ => _onPlusNumber.OnNext(Unit.Default))
+            .AddTo(this);
+
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.PasswordEvent.MinusNumber)
+            .Where(ctx => ctx.ReadValueAsButton())
+            .Subscribe(_ => _onMinusNumber.OnNext(Unit.Default))
+            .AddTo(this);
+
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.PasswordEvent.Submit)
+            .Where(ctx => ctx.ReadValueAsButton())
+            .Subscribe(_ => _onSubmit.OnNext(Unit.Default))
+            .AddTo(this);
         PasswordEventViewOutput output = new PasswordEventViewOutput();
         output.onMoveLeft = _onMoveLeft;
         output.onMoveRight = _onMoveRight;
