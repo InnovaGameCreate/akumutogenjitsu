@@ -25,7 +25,7 @@ public abstract class AbstractEvent : MonoBehaviour
     protected readonly Subject<Unit> onTriggerEvent = new();
     protected readonly Subject<Unit> onFinishEvent = new();
 
-    private CompositeDisposable _disposable = new();
+    protected CompositeDisposable _disposable = new();
 
     /// <summary>
     /// イベントID

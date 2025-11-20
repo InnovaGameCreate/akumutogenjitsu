@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using R3;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -58,16 +59,13 @@ public class EventDispatcher : MonoBehaviour
             return;
         }
 
-        PlayerInput.Instance.Input.Base.Interact.performed += OnInteract;
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isInEvent)
+            .Subscribe(_ => TriggerAllEvent())
+            .AddTo(this);
     }
 
-    public void OnInteract(InputAction.CallbackContext ctx)
-    {
-        if (ctx.ReadValueAsButton() && _isInEvent)
-        {
-            TriggerAllEvent();
-        }
-    }
+
 
     private void TriggerAllEvent()
     {
@@ -114,11 +112,5 @@ public class EventDispatcher : MonoBehaviour
         }
     }
 
-    void OnDisable()
-    {
-        if (PlayerInput.Instance != null)
-        {
-            PlayerInput.Instance.Input.Base.Interact.performed -= OnInteract;
-        }
-    }
+
 }
