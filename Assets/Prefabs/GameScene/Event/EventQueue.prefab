@@ -230,4 +230,4 @@ MonoBehaviour:
   _eventQueue:
   - {fileID: 0}
   _isTriggerOnce: 0
-  _isTriggerForce: 1
+  _isTriggerForce: 0
