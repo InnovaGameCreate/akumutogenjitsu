@@ -227,13 +227,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d47841076cb76409d1a9767a2705b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _event: 9
+  _event: 11
   _isTriggeredOnce: 0
   _eventId: 
   _storyLayer: 0
   _isUpStoryLayer: 0
   _unitTag: 
   _direction: 0
-  _destination: 0
+  _distance: 0
   _speed: 0
   _isTriggerForce: 0
