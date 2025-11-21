@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using R3;
 using UnityEngine;
@@ -65,9 +66,7 @@ public abstract class AbstractEvent : MonoBehaviour
             Debug.LogError("EventManagerが存在しません。");
             return;
         }
-        Bind();
-
-        OnStartEvent();
+        StartCoroutine(InitializeAfterPlayerInput());
     }
 
     // Update is called once per frame
@@ -250,5 +249,16 @@ public abstract class AbstractEvent : MonoBehaviour
     private void OnDestroy()
     {
         _disposable?.Dispose();
+    }
+
+    private IEnumerator InitializeAfterPlayerInput()
+    {
+        while (PlayerInput.Instance.Input == null)
+        {
+            yield return null;
+        }
+
+        Bind();
+        OnStartEvent();
     }
 }
