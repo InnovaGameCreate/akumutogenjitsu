@@ -47,6 +47,20 @@ public class UnitMoveEvent : AbstractEvent
         }
 
         _defaultPosition = unitObj.transform.position;
+
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isInEvent)
+            .Subscribe(_ =>
+            {
+                _isTriggerForce = false;
+                onTriggerEvent.OnNext(Unit.Default);
+            })
+            .AddTo(_disposable);
+
+        if (_isTriggerForce)
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
     }
 
     private bool IsFinishEvent()
@@ -74,11 +88,6 @@ public class UnitMoveEvent : AbstractEvent
         return false;
     }
 
-    private bool IsTriggerEvent()
-    {
-        return (_isInEvent && Input.GetKeyDown(KeyCode.Z)) || _isTriggerForce;
-    }
-
     public override void TriggerEvent()
     {
         // １回目のループでは_defaultSpeedが0
@@ -93,6 +102,12 @@ public class UnitMoveEvent : AbstractEvent
 
         UnitMoveStatus unitMoveStatus = UnitMoveStatus.CreateMoveStatusFromDirection(_direction);
         _unitController.unitMoveStatus = unitMoveStatus;
+
+        // 終了条件チェック
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
     }
 
     public override void OnFinishEvent()
@@ -100,22 +115,6 @@ public class UnitMoveEvent : AbstractEvent
         if (_speed != 0)
         {
             _unitMove.Speed = _defaultSpeed;
-        }
-    }
-
-    public override void OnUpdateEvent()
-    {
-        // トリガー条件チェック
-        if (IsTriggerEvent())
-        {
-            _isTriggerForce = false;
-            onTriggerEvent.OnNext(Unit.Default);
-        }
-
-        // 終了条件チェック
-        if (IsFinishEvent())
-        {
-            onFinishEvent.OnNext(Unit.Default);
         }
     }
 
