@@ -8,6 +8,9 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
 
     private List<AbstractEvent> _allEventsInScene = new();
 
+    // イベントの検索用マップ
+    private Dictionary<string, AbstractEvent> _eventMap = new();
+
     void Update()
     {
         if (_allEventsInScene.Count == 0)
@@ -204,6 +207,8 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
     private void LoadAllEventInScene()
     {
         _allEventsInScene.Clear();
+        _eventMap.Clear();
+
         // シーン内のEventを取得
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Event");
         foreach (var obj in objs)
@@ -215,7 +220,17 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
                 continue;
             }
             _allEventsInScene.Add(ev);
+            
             string eventId = ev.EventId;
+            if (!_eventMap.ContainsKey(eventId))
+            {
+                _eventMap.Add(eventId, ev);
+            }
+            else
+            {
+                Debug.LogWarning($"重複したイベントIDが見つかりました: {eventId} ({obj.name})");
+            }
+
             if (!_savedEventDatas.ContainsKey(eventId))
             {
                 _savedEventDatas.Add(eventId, ev.DefaultEventData);
@@ -225,19 +240,10 @@ public class EventManager : Singleton<EventManager>, ISaveableManager<EventSaveD
 
     private AbstractEvent GetEventByEventId(string eventId)
     {
-        foreach (var ev in _allEventsInScene)
+        if (_eventMap.TryGetValue(eventId, out var ev))
         {
-            if (ev == null)
-            {
-                continue;
-            }
-
-            if (ev.EventId == eventId)
-            {
-                return ev;
-            }
+            return ev;
         }
-
         return null;
     }
 
