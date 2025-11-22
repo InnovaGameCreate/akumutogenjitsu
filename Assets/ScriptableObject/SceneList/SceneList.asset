@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SceneList
   m_EditorClassIdentifier: 
   Locations:
-  - Type: 1
+  - Type: 2
     DisplayName: "\u5BB6"
   - Type: 2
     DisplayName: "\u8857"
@@ -289,3 +289,6 @@ MonoBehaviour:
   - Type: 1
     _sceneAsset: {fileID: 102900000, guid: 2b7dc0f3dfc6045f69842b8b366bbb97, type: 3}
     _sceneName: UnitTests
+  - Type: 1
+    _sceneAsset: {fileID: 102900000, guid: 7e3dbb592cf744ec7aa98345ff59507c, type: 3}
+    _sceneName: EventSystemTests
