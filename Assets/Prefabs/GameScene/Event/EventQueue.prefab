@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -8269791697374650952}
   m_Layer: 0
   m_Name: EventQueue
-  m_TagString: Untagged
+  m_TagString: Event
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,6 +227,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959832148c7102f48a0bce616b71b38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _event: 16
+  _isTriggeredOnce: 0
+  _eventId: 
+  _storyLayer: 0
+  _isUpStoryLayer: 0
   _eventQueue:
   - {fileID: 0}
   _isTriggerOnce: 0
