@@ -1,29 +1,21 @@
 using System.Collections.Generic;
 using R3;
-using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class EventDispatcher : MonoBehaviour
+public class EventDispatcher : AbstractEvent
 {
     [Header("実行するイベント")]
     [SerializeField] private List<GameObject> _eventObjs = new();
     private List<AbstractEvent> _events = new();
 
-    [Header("一度しか実行しない")]
-    [SerializeField] private bool _isTriggerOnce;
-
-    [Header("シーンを読み込んだらすぐ実行するか")]
+    [Header("シーン読み込み時に即座に実行")]
     [SerializeField] private bool _isTriggerForce = false;
 
     private bool _isInEvent = false;
 
-    private BasicAnimation _animation;
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void OnStartEvent()
     {
+        // イベントリスト初期化
         foreach (var obj in _eventObjs)
         {
             if (obj == null)
@@ -42,32 +34,22 @@ public class EventDispatcher : MonoBehaviour
             _events.Add(evt);
         }
 
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isInEvent && EventStatus == eEventStatus.NotTriggered)
+            .Subscribe(_ =>
+            {
+                onTriggerEvent.OnNext(Unit.Default);
+            })
+            .AddTo(_disposable);
+
+        // 強制実行
         if (_isTriggerForce)
         {
-            TriggerAllEvent();
+            onTriggerEvent.OnNext(Unit.Default);
         }
-
-        _animation = gameObject.GetComponent<BasicAnimation>();
-        if (_animation == null)
-        {
-            Debug.LogWarning("[EventDispatcher] BasicAnimationがアタッチされていません。アニメーション機能は無効です。");
-        }
-
-        if (PlayerInput.Instance == null)
-        {
-            Debug.LogError("[EventDispatcher] PlayerInputが存在しません。");
-            return;
-        }
-
-        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
-            .Where(ctx => ctx.ReadValueAsButton() && _isInEvent)
-            .Subscribe(_ => TriggerAllEvent())
-            .AddTo(this);
     }
 
-
-
-    private void TriggerAllEvent()
+    public override void TriggerEvent()
     {
         foreach (var evt in _events)
         {
@@ -78,21 +60,8 @@ public class EventDispatcher : MonoBehaviour
             }
 
             evt.TriggerEventForce();
-
-            if (_isTriggerOnce)
-            {
-                evt.Enabled = false;
-            }
         }
-
-        if (_isTriggerOnce)
-        {
-            _events.Clear();
-            if (_animation != null)
-            {
-                _animation.Enabled = false;
-            }
-        }
+        onFinishEvent.OnNext(Unit.Default);
     }
 
     // OnTrigger
@@ -111,6 +80,4 @@ public class EventDispatcher : MonoBehaviour
             _isInEvent = false;
         }
     }
-
-
 }
