@@ -19,6 +19,8 @@ public enum eEvent
     DeleteObjectEvent,  // オブジェクトを削除するイベント
     BgmEvent,           // BGMを変更するイベント
     SeEvent,            // SEを流すイベント
+    EventQueue,         // イベントキュー（順次実行）
+    EventDispatcher,    // イベントディスパッチャー（同時実行）
 
     // 1階層 Dream
     CreateEntranceKeyWithMedicine,  // 薬品で玄関への鍵を作成する

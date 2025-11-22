@@ -2,174 +2,80 @@ using System.Collections.Generic;
 using R3;
 using UnityEngine;
 
-public class EventQueue : MonoBehaviour
+public class EventQueue : AbstractEvent
 {
     [Header("イベントキュー")]
     [SerializeField] private List<GameObject> _eventQueue = new();
     private List<AbstractEvent> _allEvents = new();
 
-    [Header("１度だけ実行する")]
-    [SerializeField] private bool _isTriggerOnce = false;
-
     [Header("シーン読み込み時に即座に実行")]
     [SerializeField] private bool _isTriggerForce = false;
 
     private int _currentEventIndex = 0;
-    private bool _isQueueCompleted = false;
-    private bool _isCurrentEventRunning = false;
+    private bool _isInEvent = false;
 
-    private CompositeDisposable _disposables = new();
-
-    void Start()
+    public override void OnStartEvent()
     {
-        InitializeQueue();
-
-        if (_isTriggerForce && _allEvents.Count > 0)
-        {
-            StartNextEvent();
-        }
-    }
-
-    void Update()
-    {
-        if (_isQueueCompleted || _allEvents.Count == 0)
-        {
-            return;
-        }
-
-        if (_currentEventIndex >= _allEvents.Count)
-        {
-            OnQueueCompleted();
-            return;
-        }
-
-        AbstractEvent currentEvent = _allEvents[_currentEventIndex];
-        if (IsEventCompleted(currentEvent) && _isCurrentEventRunning)
-        {
-            _isCurrentEventRunning = false;
-            MoveToNextEvent();
-        }
-    }
-
-    /// <summary>
-    /// イベントキューを初期化
-    /// </summary>
-    private void InitializeQueue()
-    {
-        _allEvents.Clear();
-        _currentEventIndex = 0;
-        _isQueueCompleted = false;
-        _isCurrentEventRunning = false;
-
-        foreach (var eventObj in _eventQueue)
-        {
-            if (eventObj == null)
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isInEvent && EventStatus == eEventStatus.NotTriggered)
+            .Subscribe(_ =>
             {
-                Debug.LogWarning("[EventQueue] イベントオブジェクトがnullです。スキップします。");
+                onTriggerEvent.OnNext(Unit.Default);
+                // 最初は手動で実行
+                _currentEvent.TriggerEventForce();
+            })
+            .AddTo(_disposable);
+
+        foreach (var obj in _eventQueue)
+        {
+            AbstractEvent evt = obj.GetComponent<AbstractEvent>();
+            if (evt == null)
+            {
                 continue;
             }
 
-            AbstractEvent ev = eventObj.GetComponent<AbstractEvent>();
-            if (ev == null)
-            {
-                Debug.LogWarning($"[EventQueue] {eventObj.name} にAbstractEventがアタッチされていません。");
-                continue;
-            }
-
-            _allEvents.Add(ev);
+            _allEvents.Add(evt);
         }
 
-        if (_allEvents.Count == 0)
+        if (_isTriggerForce)
         {
-            Debug.LogWarning("[EventQueue] 有効なイベントが一つもありません。");
-            gameObject.SetActive(false);
-            return;
+            onTriggerEvent.OnNext(Unit.Default);
         }
-
-        Debug.Log($"[EventQueue] {_allEvents.Count}個のイベントを読み込みました。");
     }
 
-    /// <summary>
-    /// イベントが完了しているか判定
-    /// </summary>
-    private bool IsEventCompleted(AbstractEvent ev)
+    public override void TriggerEvent()
     {
-        if (ev == null)
+        if (_currentEvent.EventStatus != eEventStatus.Running)
         {
-            return true;
+            _currentEventIndex++;
+            _currentEvent.TriggerEventForce();
         }
-
-        return ev.EventStatus == eEventStatus.Triggered;
-    }
-
-    /// <summary>
-    /// 次のイベントに移動
-    /// </summary>
-    private void MoveToNextEvent()
-    {
-        _currentEventIndex++;
 
         if (_currentEventIndex >= _allEvents.Count)
         {
-            OnQueueCompleted();
-        }
-        else
-        {
-            StartNextEvent();
+            onFinishEvent.OnNext(Unit.Default);
         }
     }
 
-    /// <summary>
-    /// 次のイベントを開始
-    /// </summary>
-    private void StartNextEvent()
+    // MARK: OnTrigger
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_currentEventIndex >= _allEvents.Count)
+        if (collision.CompareTag("Player"))
         {
-            return;
-        }
-
-        AbstractEvent nextEvent = _allEvents[_currentEventIndex];
-
-        if (nextEvent == null)
-        {
-            Debug.LogWarning($"[EventQueue] イベント[{_currentEventIndex}]がnullです。");
-            MoveToNextEvent();
-            return;
-        }
-
-        Debug.Log($"[EventQueue] イベント実行: {nextEvent.gameObject.name} ({_currentEventIndex + 1}/{_allEvents.Count})");
-
-        _isCurrentEventRunning = true;
-        nextEvent.TriggerEventForce();
-    }
-
-    /// <summary>
-    /// キュー完了時の処理
-    /// </summary>
-    private void OnQueueCompleted()
-    {
-        _isQueueCompleted = true;
-
-        if (_isTriggerOnce)
-        {
-            Debug.Log("[EventQueue] キュー完了。オブジェクトを無効化します。");
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            Debug.Log("[EventQueue] キュー完了。ループのため再初期化します。");
-            InitializeQueue();
-
-            if (_isTriggerForce && _allEvents.Count > 0)
-            {
-                StartNextEvent();
-            }
+            _isInEvent = true;
         }
     }
 
-    void OnDestroy()
+    void OnTriggerExit2D(Collider2D collision)
     {
-        _disposables?.Dispose();
+        if (collision.CompareTag("Player"))
+        {
+            _isInEvent = false;
+        }
+    }
+
+    private AbstractEvent _currentEvent
+    {
+        get => _allEvents[_currentEventIndex];
     }
 }
