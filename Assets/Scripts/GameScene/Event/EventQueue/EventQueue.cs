@@ -20,9 +20,9 @@ public class EventQueue : AbstractEvent
             .Where(ctx => ctx.ReadValueAsButton() && _isInEvent && EventStatus == eEventStatus.NotTriggered)
             .Subscribe(_ =>
             {
-                onTriggerEvent.OnNext(Unit.Default);
                 // 最初は手動で実行
                 _currentEvent.TriggerEventForce();
+                onTriggerEvent.OnNext(Unit.Default);
             })
             .AddTo(_disposable);
 
@@ -39,21 +39,22 @@ public class EventQueue : AbstractEvent
 
         if (_isTriggerForce)
         {
+            _currentEvent.TriggerEventForce();
             onTriggerEvent.OnNext(Unit.Default);
         }
     }
 
     public override void TriggerEvent()
     {
+        if (_currentEventIndex >= _allEvents.Count)
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
+
         if (_currentEvent.EventStatus != eEventStatus.Running)
         {
             _currentEventIndex++;
             _currentEvent.TriggerEventForce();
-        }
-
-        if (_currentEventIndex >= _allEvents.Count)
-        {
-            onFinishEvent.OnNext(Unit.Default);
         }
     }
 
