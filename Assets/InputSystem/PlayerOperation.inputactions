@@ -842,6 +842,45 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "TextEvent",
+            "id": "52ca7da4-86ed-40b6-8168-0fd4e2e1f257",
+            "actions": [
+                {
+                    "name": "NextPage",
+                    "type": "Button",
+                    "id": "552eb9a6-6720-4f47-9a93-e0ac3342e80f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5c601405-05eb-4be5-86e9-2b8e8174cff3",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextPage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c22c5642-a78b-4546-86ee-5c700639c783",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextPage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
