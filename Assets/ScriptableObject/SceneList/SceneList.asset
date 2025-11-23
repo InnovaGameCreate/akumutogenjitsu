@@ -46,7 +46,7 @@ MonoBehaviour:
   - Type: 1
     DisplayName: Debug
   Scenes:
-  - Type: 1
+  - Type: 2
     _sceneAsset: {fileID: 102900000, guid: 180d386e74de8cd4b855343601ebf07a, type: 3}
     _sceneName: First_1_real_house
   - Type: 2

@@ -939,7 +939,7 @@ public partial class @PlayerOperation: IInputActionCollection2, IDisposable
                     ""id"": ""552eb9a6-6720-4f47-9a93-e0ac3342e80f"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 }
             ],
