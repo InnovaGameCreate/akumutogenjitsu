@@ -90,6 +90,13 @@ public class UnitMoveEvent : AbstractEvent
 
     public override void TriggerEvent()
     {
+        if (_unitMove == null)
+        {
+            GameObject unitObj = GameObject.FindWithTag(_unitTag);
+            _unitMove = unitObj.GetComponent<UnitMove>();
+            _unitController = unitObj.GetComponent<AbstractUnitController>();
+        }
+
         // １回目のループでは_defaultSpeedが0
         if (_defaultSpeed == 0)
         {
