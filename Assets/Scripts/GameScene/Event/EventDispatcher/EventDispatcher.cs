@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NUnit.Framework;
 using R3;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class EventDispatcher : AbstractEvent
     [SerializeField] private bool _isTriggerForce = false;
 
     private bool _isInEvent = false;
+    private bool _hasTriggered = false;
 
     public override void OnStartEvent()
     {
@@ -51,6 +53,25 @@ public class EventDispatcher : AbstractEvent
 
     public override void TriggerEvent()
     {
+        if (!_hasTriggered)
+        {
+            TriggerAllEvents();
+            _hasTriggered = true;
+            return;
+        }
+
+        foreach (var evt in _events)
+        {
+            if (evt.EventStatus == eEventStatus.Running)
+            {
+                return;
+            }
+        }
+        onFinishEvent.OnNext(Unit.Default);
+    }
+
+    private void TriggerAllEvents()
+    {
         foreach (var evt in _events)
         {
             if (evt == null)
@@ -58,10 +79,8 @@ public class EventDispatcher : AbstractEvent
                 Debug.LogWarning("[EventDispatcher] イベントがnullです。");
                 continue;
             }
-
             evt.TriggerEventForce();
         }
-        onFinishEvent.OnNext(Unit.Default);
     }
 
     // OnTrigger

@@ -48,6 +48,7 @@ public abstract class AbstractEvent : MonoBehaviour
     /// </summary>
     public void TriggerEventForce()
     {
+        EventStatus = eEventStatus.Running;
         onTriggerEvent.OnNext(Unit.Default);
     }
 
