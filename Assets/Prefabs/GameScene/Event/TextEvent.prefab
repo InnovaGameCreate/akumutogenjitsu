@@ -229,8 +229,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _event: 5
   _isTriggeredOnce: 0
-  _eventId: 
+  _eventId: e2abca37-511a-41a0-a420-7116bb718444
   _storyLayer: 0
   _isUpStoryLayer: 0
   textBoxPrefab: {fileID: 6442152411064900370, guid: f1748129ab547ae4d9d6150508febd2d, type: 3}
-  textLines: []
+  textLines:
+  - characterData: {fileID: 11400000, guid: 9ffb4fa11dc18d64fb10c5e0e275188d, type: 2}
+    Message: "\u300C\u3093\uFF1F\u300D"

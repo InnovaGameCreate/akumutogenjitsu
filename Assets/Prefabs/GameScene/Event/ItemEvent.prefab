@@ -229,7 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _event: 3
   _isTriggeredOnce: 0
-  _eventId: 
-  _itemMgr: {fileID: 0}
+  _eventId: d36517ac-68dd-49af-aaec-80a99037e3af
+  _storyLayer: 0
+  _isUpStoryLayer: 0
   _item: 0
   _isGetItem: 1

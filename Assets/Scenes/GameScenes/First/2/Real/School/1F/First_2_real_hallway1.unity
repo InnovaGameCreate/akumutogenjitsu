@@ -203,7 +203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_1_real_class103
+      value: First_2_real_class103
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _position.x
@@ -276,7 +276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_1_real_street
+      value: First_2_real_street
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _position.x
@@ -761,7 +761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_1_real_hallway2
+      value: First_2_real_hallway2
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _isAutoMove
@@ -1005,6 +1005,10 @@ PrefabInstance:
     - target: {fileID: 7241027210948899250, guid: 10e9f26f4c9d0e6458a827320fedfd55, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9052560886023069580, guid: 10e9f26f4c9d0e6458a827320fedfd55, type: 3}
+      propertyPath: orthographic size
+      value: 11.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8357,7 +8361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_1_real_class103
+      value: First_2_real_class103
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _position.x
@@ -8499,7 +8503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_1_real_class102
+      value: First_2_real_class102
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _position.x
@@ -8572,7 +8576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_1_real_scienceroom
+      value: First_2_real_scienceroom
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _position.x
@@ -8715,7 +8719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_1_real_class101
+      value: First_2_real_class101
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _position.x
@@ -8788,7 +8792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_1_real_class104
+      value: First_2_real_class104
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _position.x
@@ -8861,7 +8865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_1_real_class102
+      value: First_2_real_class102
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _position.x
@@ -13764,7 +13768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_1_real_class104
+      value: First_2_real_class104
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _position.x
@@ -13907,7 +13911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_1_real_class101
+      value: First_2_real_class101
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _position.x
@@ -14160,7 +14164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _sceneName
-      value: First_1_real_hallway2
+      value: First_2_real_hallway2
       objectReference: {fileID: 0}
     - target: {fileID: -4594274717609164584, guid: ad02820358c7dfc4d8546793fba1d1b5, type: 3}
       propertyPath: _isAutoMove
