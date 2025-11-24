@@ -21,6 +21,7 @@ public enum eEvent
     SeEvent,            // SEを流すイベント
     EventQueue,         // イベントキュー（順次実行）
     EventDispatcher,    // イベントディスパッチャー（同時実行）
+    SpriteEvent,
 
     // 1階層 Dream
     CreateEntranceKeyWithMedicine,  // 薬品で玄関への鍵を作成する
