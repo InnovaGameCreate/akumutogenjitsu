@@ -881,6 +881,45 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "SpriteEvent",
+            "id": "bc0ef9b9-f5e5-444f-909f-c01be7a20713",
+            "actions": [
+                {
+                    "name": "Close",
+                    "type": "Button",
+                    "id": "5c8b6534-deb5-47de-99b7-f3763ee66111",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "51ed8c08-10df-429f-9aaf-7d0143e18cb8",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9451d9ce-2b64-4243-b5ef-3f38efbba3b8",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
