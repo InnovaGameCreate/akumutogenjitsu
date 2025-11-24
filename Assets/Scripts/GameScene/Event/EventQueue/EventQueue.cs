@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NUnit.Framework;
 using R3;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class EventQueue : AbstractEvent
     private int _currentEventIndex = 0;
     private bool _isInEvent = false;
 
+    private bool _hasTriggered = false;
+
     public override void OnStartEvent()
     {
         PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
@@ -21,7 +24,6 @@ public class EventQueue : AbstractEvent
             .Subscribe(_ =>
             {
                 // 最初は手動で実行
-                _currentEvent.TriggerEventForce();
                 onTriggerEvent.OnNext(Unit.Default);
             })
             .AddTo(_disposable);
@@ -39,19 +41,26 @@ public class EventQueue : AbstractEvent
 
         if (_isTriggerForce)
         {
-            _currentEvent.TriggerEventForce();
             onTriggerEvent.OnNext(Unit.Default);
         }
     }
 
     public override void TriggerEvent()
     {
-        if (_currentEventIndex >= _allEvents.Count - 1)
+        if (_currentEventIndex >= _allEvents.Count - 1 && _currentEvent.EventStatus != eEventStatus.Running)
         {
             onFinishEvent.OnNext(Unit.Default);
+            return;
         }
 
-        if (_currentEvent.EventStatus != eEventStatus.Running)
+        if (!_hasTriggered)
+        {
+            _currentEvent.TriggerEventForce();
+            _hasTriggered = true;
+            return;
+        }
+
+        if (_allEvents[_currentEventIndex].EventStatus != eEventStatus.Running)
         {
             _currentEventIndex++;
             _currentEvent.TriggerEventForce();
