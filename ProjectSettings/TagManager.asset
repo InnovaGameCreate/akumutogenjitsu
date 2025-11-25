@@ -19,6 +19,7 @@ TagManager:
   - Dark
   - AudioMgr
   - EveningLight
+  - NightLight
   layers:
   - Default
   - TransparentFX

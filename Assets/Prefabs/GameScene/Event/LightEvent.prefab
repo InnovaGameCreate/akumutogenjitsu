@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2773663321649675287}
   - component: {fileID: 4879143399594866258}
   m_Layer: 0
-  m_Name: EveningEvent
+  m_Name: LightEvent
   m_TagString: Event
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,6 +232,7 @@ MonoBehaviour:
   _eventId: 
   _storyLayer: 0
   _isUpStoryLayer: 0
-  _isAppear: 1
+  _type: 0
   _eveningLight: {fileID: 4592748570028325764, guid: aa1ec82797bfa4847b9e4532075d4a62, type: 3}
+  _nightLight: {fileID: 1336268666960989083, guid: c009959fec2f740e89a8cf701b075377, type: 3}
   _isTriggeredOnce: 0
