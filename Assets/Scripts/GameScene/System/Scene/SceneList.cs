@@ -14,6 +14,7 @@ using UnityEditor;
 public enum eLocationType
 {
     None,
+    Debug,
     House,
     Street,
 
@@ -70,18 +71,18 @@ public class SceneList : ScriptableObject
     private void UpdateAllSceneNames()
     {
         bool hasChanged = false;
-        
+
         foreach (var scene in Scenes)
         {
             string oldName = scene.SceneName;
             scene.UpdateSceneName();
-            
+
             if (oldName != scene.SceneName)
             {
                 hasChanged = true;
             }
         }
-        
+
         if (hasChanged)
         {
             EditorUtility.SetDirty(this);

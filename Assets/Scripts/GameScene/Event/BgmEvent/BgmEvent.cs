@@ -12,13 +12,13 @@ public class BgmEvent : AbstractEvent
 
     public override void OnStartEvent()
     {
-        PlayerInput.Instance.Input.Base.Interact.performed += ctx =>
-        {
-            if (ctx.ReadValueAsButton() && _isInEvent)
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isInEvent)
+            .Subscribe(_ =>
             {
                 onTriggerEvent.OnNext(Unit.Default);
-            }
-        };
+            })
+            .AddTo(_disposable);
 
         if (_isTriggerForce)
         {

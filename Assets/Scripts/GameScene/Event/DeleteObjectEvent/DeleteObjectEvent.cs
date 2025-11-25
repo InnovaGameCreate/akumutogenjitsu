@@ -6,6 +6,8 @@ public class DeleteObjectEvent : AbstractEvent
     [Header("削除するオブジェクト")]
     [SerializeField] private GameObject _obj;
 
+    [SerializeField] private bool _isTriggerForce = false;
+
     private bool _isInEvent = false;
 
     public override void OnStartEvent()
@@ -27,7 +29,7 @@ public class DeleteObjectEvent : AbstractEvent
 
     private bool IsTriggerEvent()
     {
-        return _isInEvent && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return));
+        return _isInEvent && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)) || _isTriggerForce;
     }
 
     public override void TriggerEvent()

@@ -31,10 +31,6 @@ public class ChoiceTextEventView : MonoBehaviour
 
     private ChoiceTextEventPresenter _presenter;
 
-    // InputSystemコールバック参照（解除用）
-    private System.Action<UnityEngine.InputSystem.InputAction.CallbackContext> _moveUpCallback;
-    private System.Action<UnityEngine.InputSystem.InputAction.CallbackContext> _moveDownCallback;
-    private System.Action<UnityEngine.InputSystem.InputAction.CallbackContext> _selectCallback;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -62,59 +58,22 @@ public class ChoiceTextEventView : MonoBehaviour
             return;
         }
 
-        // コールバック関数を定義（Subject破棄チェック付き）
-        _moveUpCallback = ctx =>
-        {
-            if (ctx.ReadValueAsButton() && !_moveToUp.IsDisposed)
-            {
-                _moveToUp.OnNext(Unit.Default);
-            }
-        };
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.ChoiceTextEvent.MoveToUp)
+            .Where(ctx => ctx.ReadValueAsButton() && !_moveToUp.IsDisposed)
+            .Subscribe(_ => _moveToUp.OnNext(Unit.Default))
+            .AddTo(this);
 
-        _moveDownCallback = ctx =>
-        {
-            if (ctx.ReadValueAsButton() && !_moveToDown.IsDisposed)
-            {
-                _moveToDown.OnNext(Unit.Default);
-            }
-        };
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.ChoiceTextEvent.MoveToDown)
+            .Where(ctx => ctx.ReadValueAsButton() && !_moveToDown.IsDisposed)
+            .Subscribe(_ => _moveToDown.OnNext(Unit.Default))
+            .AddTo(this);
 
-        _selectCallback = ctx =>
-        {
-            if (ctx.ReadValueAsButton() && !_select.IsDisposed)
-            {
-                _select.OnNext(Unit.Default);
-            }
-        };
-
-        // コールバックを登録
-        PlayerInput.Instance.Input.ChoiceTextEvent.MoveToUp.performed += _moveUpCallback;
-        PlayerInput.Instance.Input.ChoiceTextEvent.MoveToDown.performed += _moveDownCallback;
-        PlayerInput.Instance.Input.ChoiceTextEvent.Select.performed += _selectCallback;
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.ChoiceTextEvent.Select)
+            .Where(ctx => ctx.ReadValueAsButton() && !_select.IsDisposed)
+            .Subscribe(_ => _select.OnNext(Unit.Default))
+            .AddTo(this);
     }
 
-    /// <summary>
-    /// InputSystemコールバックの解除
-    /// </summary>
-    private void UnbindFromInput()
-    {
-        if (PlayerInput.Instance?.Input?.ChoiceTextEvent != null)
-        {
-            if (_moveUpCallback != null)
-                PlayerInput.Instance.Input.ChoiceTextEvent.MoveToUp.performed -= _moveUpCallback;
-
-            if (_moveDownCallback != null)
-                PlayerInput.Instance.Input.ChoiceTextEvent.MoveToDown.performed -= _moveDownCallback;
-
-            if (_selectCallback != null)
-                PlayerInput.Instance.Input.ChoiceTextEvent.Select.performed -= _selectCallback;
-        }
-
-        // 参照をクリア
-        _moveUpCallback = null;
-        _moveDownCallback = null;
-        _selectCallback = null;
-    }
 
     /// <summary>
     /// 選択肢を追加する
@@ -246,7 +205,7 @@ public class ChoiceTextEventView : MonoBehaviour
     public void FinishSelect()
     {
         // 重要：InputActionを先に無効化
-        UnbindFromInput();
+
 
         // Subjectの通知
         if (!_finish.IsDisposed)
@@ -257,8 +216,6 @@ public class ChoiceTextEventView : MonoBehaviour
 
     void OnDestroy()
     {
-        // InputSystemコールバックを最優先で解除
-        UnbindFromInput();
 
         // Subjectを破棄
         _moveToUp?.Dispose();
