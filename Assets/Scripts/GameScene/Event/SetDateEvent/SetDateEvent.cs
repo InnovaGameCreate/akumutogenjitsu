@@ -1,5 +1,6 @@
 using UnityEngine;
 using R3;
+using UnityEngine.InputSystem;
 
 public class SetDateEvent : AbstractEvent
 {
@@ -11,6 +12,7 @@ public class SetDateEvent : AbstractEvent
     private bool _isInEvent = false;
 
     private readonly CompositeDisposable _disposables = new CompositeDisposable();
+    private System.Action<InputAction.CallbackContext> _onInteractPerformed;
     private void OnEnable()
     {
         // トリガー移設
@@ -20,11 +22,19 @@ public class SetDateEvent : AbstractEvent
             onTriggerEvent.OnNext(Unit.Default);
         }
 
-        // 範囲内＆＆Zキーをストリームで監視
+        PlayerInput.Instance.Input.SetDateEvent.Interaction.performed += ctx =>
+        {
+            if (_isInEvent && ctx.ReadValueAsButton())
+            {
+                onTriggerEvent.OnNext(Unit.Default);
+            }
+        };
+        /* 範囲内＆＆Zキーをストリームで監視
         Observable.EveryUpdate()
             .Where(_ => _isInEvent && Input.GetKeyDown(KeyCode.Z))
             .Subscribe(_ => onTriggerEvent.OnNext(Unit.Default))
             .AddTo(_disposables);
+        */
     }
     private void OnDisable() => _disposables.Clear();
     private void OnDestroy() => _disposables.Dispose();
