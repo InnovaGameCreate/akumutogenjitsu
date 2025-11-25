@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using R3;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -21,11 +20,11 @@ public class LightEvent : AbstractEvent
     [SerializeField] private Light2D _nightLight;
 
     [Header("シーンに入った直後イベントを実行するか")]
-    [SerializeField] private bool _isTriggeredOnce = false;
+    [SerializeField] private bool _isTriggeredForce = false;
 
     public override void OnStartEvent()
     {
-        if (_isTriggeredOnce)
+        if (_isTriggeredForce)
         {
             onTriggerEvent.OnNext(Unit.Default);
         }
