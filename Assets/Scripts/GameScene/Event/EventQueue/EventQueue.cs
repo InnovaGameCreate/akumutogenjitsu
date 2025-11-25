@@ -47,7 +47,7 @@ public class EventQueue : AbstractEvent
 
     public override void TriggerEvent()
     {
-        if (_currentEventIndex >= _allEvents.Count - 1 && _currentEvent.EventStatus != eEventStatus.Running)
+        if (_hasTriggered && _currentEventIndex >= _allEvents.Count - 1 && _currentEvent.EventStatus != eEventStatus.Running)
         {
             onFinishEvent.OnNext(Unit.Default);
             return;

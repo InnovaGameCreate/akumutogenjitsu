@@ -23,6 +23,7 @@ public enum eEvent
     EventDispatcher,    // イベントディスパッチャー（同時実行）
     SpriteEvent,
     LightEvent,
+    SetWorldType,
 
     // 1階層 Dream
     CreateEntranceKeyWithMedicine,  // 薬品で玄関への鍵を作成する
