@@ -22,8 +22,18 @@ public class LightEvent : AbstractEvent
     [Header("シーンに入った直後イベントを実行するか")]
     [SerializeField] private bool _isTriggeredForce = false;
 
+
+    private bool _isInEvent = false;
+
     public override void OnStartEvent()
     {
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isInEvent)
+            .Subscribe(_ =>
+            {
+                onTriggerEvent.OnNext(Unit.Default);
+            });
+
         if (_isTriggeredForce)
         {
             onTriggerEvent.OnNext(Unit.Default);
@@ -88,6 +98,22 @@ public class LightEvent : AbstractEvent
                     Destroy(nightObj);
                 }
                 break;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            _isInEvent = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            _isInEvent = false;
         }
     }
 }
