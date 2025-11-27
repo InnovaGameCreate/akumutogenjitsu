@@ -18,6 +18,10 @@ TagManager:
   - UI
   - Dark
   - AudioMgr
+  - EveningLight
+  - NightLight
+  - DarkLight
+  - BaseUI
   layers:
   - Default
   - TransparentFX
