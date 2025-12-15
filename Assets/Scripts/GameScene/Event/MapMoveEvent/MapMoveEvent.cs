@@ -69,6 +69,10 @@ public class MapMoveEvent : AbstractEvent
             }
             // 移動したシーン先でオブジェクトがないと終了処理が実行できないため
             DontDestroyOnLoad(this.gameObject);
+
+            // エネミーにマップ移動を通知（追加部分）
+            NotifyEnemyMapMove();
+
             MoveMap();
         }
         else
@@ -135,5 +139,17 @@ public class MapMoveEvent : AbstractEvent
     private bool IsSceneExist()
     {
         return _isScenesExist.ContainsKey(_sceneName);
+    }
+
+    /// <summary>
+    /// エネミーにマップ移動を通知（新規追加）
+    /// </summary>
+    private void NotifyEnemyMapMove()
+    {
+        // PersistentEnemyManagerが存在する場合、エネミーに移動を通知
+        if (PersistentEnemyManager.Instance != null)
+        {
+            PersistentEnemyManager.Instance.OnPlayerMapMove(_sceneName, _position);
+        }
     }
 }
