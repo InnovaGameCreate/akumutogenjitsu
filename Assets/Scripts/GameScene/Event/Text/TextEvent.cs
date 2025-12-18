@@ -12,7 +12,6 @@ public class TextLine
     [TextArea(3, 5)]
     public string Message;
 
-    // プロパティで統一的にアクセス
     public string GetCurrentSpeakerName()
     {
         if (characterData != null)
@@ -30,58 +29,82 @@ public class TextLine
 
 public class TextEvent : AbstractEvent
 {
-    [SerializeField] private GameObject textBoxPrefab; // TextBoxUIコンポーネントを持つPrefab
-    [SerializeField] private List<TextLine> textLines = new List<TextLine>(); // TextData.TextLinesを直接埋め込み
+    [SerializeField] private GameObject textBoxPrefab;
+    [SerializeField] private List<TextLine> textLines = new List<TextLine>();
 
-
-    private Canvas targetCanvas; // 配置先のCanvas
-
+    private Canvas targetCanvas;
     private GameObject panelInstance;
     private TextBoxUI textBoxUI;
-
     private int currentLineIndex = 0;
     private bool playerInRange = false;
     private bool isDisplaying = false;
 
-    private bool _hasFinished = false;
-
     public override void OnStartEvent()
     {
-        targetCanvas = GameObject.FindGameObjectWithTag("UICanvas").GetComponent<Canvas>();
+        targetCanvas = GameObject.FindGameObjectWithTag("UICanvas")?.GetComponent<Canvas>();
         if (targetCanvas == null)
         {
+            Debug.LogError("[TextEvent] UICanvas not found!");
             return;
         }
+
+        // PlayerInput購読（トリガー用）
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && playerInRange && !isDisplaying)
+            .Subscribe(_ =>
+            {
+                onTriggerEvent.OnNext(Unit.Default);
+            })
+            .AddTo(_disposable);
+
+        // PlayerInput購読（テキスト送り用）
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.TextEvent.NextPage)
+            .Where(ctx => ctx.ReadValueAsButton() && isDisplaying && EventStatus == eEventStatus.Running)
+            .Subscribe(_ =>
+            {
+                NextLine();
+            })
+            .AddTo(_disposable);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) playerInRange = true;
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) playerInRange = false;
-    }
-
-    private bool IsTriggerEvent()
-    {
-        return playerInRange && Input.GetKeyDown(KeyCode.Z);
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
     }
 
     public override void TriggerEvent()
     {
-        // イベント開始時に必ず初期化
-        _hasFinished = false;
+        // ✅ すでに表示中なら何もしない
+        if (isDisplaying)
+        {
+            return;
+        }
+
+        if (!PlayerInput.Instance.Input.TextEvent.enabled)
+        {
+            PlayerInput.Instance.Input.Base.Disable();
+            PlayerInput.Instance.Input.TextEvent.Enable();
+        }
 
         if (textLines == null || textLines.Count == 0)
         {
+            Debug.LogWarning("[TextEvent] textLines is null or empty!");
             return;
         }
 
         if (panelInstance == null)
         {
-            // TextBoxUIを持つPrefabをインスタンス化
             panelInstance = Instantiate(textBoxPrefab);
 
             Canvas canvas = targetCanvas != null ? targetCanvas : FindFirstObjectByType<Canvas>();
@@ -90,10 +113,10 @@ public class TextEvent : AbstractEvent
                 panelInstance.transform.SetParent(canvas.transform, false);
             }
 
-            // TextBoxUIコンポーネントを取得
             textBoxUI = panelInstance.GetComponent<TextBoxUI>();
             if (textBoxUI == null)
             {
+                Debug.LogError("[TextEvent] TextBoxUI component not found!");
                 return;
             }
         }
@@ -102,31 +125,11 @@ public class TextEvent : AbstractEvent
         DisplayCurrentLine();
     }
 
-    private bool IsFinishEvent()
+    public override void OnFinishEvent()
     {
-        if (EventStatus == eEventStatus.Triggered)
-        {
-            _hasFinished = false;
-        }
-        return _hasFinished;
-    }
-
-    public override void OnUpdateEvent()
-    {
-        // トリガー条件チェック
-        if (IsTriggerEvent())
-        {
-            onTriggerEvent.OnNext(Unit.Default);
-        }
-
-        // イベント実行中の処理
-        if (EventStatus == eEventStatus.Running)
-        {
-            if (isDisplaying && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)))
-            {
-                NextLine();
-            }
-        }
+        PlayerInput.Instance.Input.TextEvent.Disable();
+        PlayerInput.Instance.Input.Base.Enable();
+        isDisplaying = false;
     }
 
     private void DisplayCurrentLine()
@@ -135,18 +138,14 @@ public class TextEvent : AbstractEvent
 
         if (currentLineIndex >= textLines.Count)
         {
-            isDisplaying = false;
             ClearText();
             return;
         }
 
         TextLine currentLine = textLines[currentLineIndex];
 
-        // テキストと名前の更新
         textBoxUI.Message = currentLine.Message;
         textBoxUI.Name = currentLine.GetCurrentSpeakerName();
-
-        // スプライト表示（コメントアウト解除済）
         textBoxUI.CharacterSprite = currentLine.GetCurrentCharacterSprite();
     }
 
@@ -160,9 +159,7 @@ public class TextEvent : AbstractEvent
         }
         else
         {
-            isDisplaying = false;
             ClearText();
-            // 終了処理
             onFinishEvent.OnNext(Unit.Default);
         }
     }
@@ -184,10 +181,9 @@ public class TextEvent : AbstractEvent
             textBoxUI = null;
         }
 
-        _hasFinished = true;
+        isDisplaying = false;
     }
 
-    // エディタ用のヘルパーメソッド
     [ContextMenu("Add Text Line")]
     private void AddTextLine()
     {
