@@ -1,5 +1,6 @@
 using UnityEngine;
 using R3;
+using UnityEngine.InputSystem;
 
 public class SetDateEvent : AbstractEvent
 {
@@ -11,6 +12,7 @@ public class SetDateEvent : AbstractEvent
     private bool _isInEvent = false;
 
     private readonly CompositeDisposable _disposables = new CompositeDisposable();
+
     private void OnEnable()
     {
         // トリガー移設
@@ -20,14 +22,37 @@ public class SetDateEvent : AbstractEvent
             onTriggerEvent.OnNext(Unit.Default);
         }
 
-        // 範囲内＆＆Zキーをストリームで監視
-        Observable.EveryUpdate()
-            .Where(_ => _isInEvent && Input.GetKeyDown(KeyCode.Z))
-            .Subscribe(_ => onTriggerEvent.OnNext(Unit.Default))
-            .AddTo(_disposables);
+        // InputSystemを使用してSetDataEventアクションを監視
+        PlayerInput.Instance.Input.Player.SetDataEvent.performed += OnSetDataEventPerformed;
     }
-    private void OnDisable() => _disposables.Clear();
-    private void OnDestroy() => _disposables.Dispose();
+
+    private void OnDisable()
+    {
+        _disposables.Clear();
+
+        // コールバックの解除
+        if (PlayerInput.Instance != null && PlayerInput.Instance.Input != null)
+        {
+            PlayerInput.Instance.Input.Player.SetDataEvent.performed -= OnSetDataEventPerformed;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        _disposables.Dispose();
+    }
+
+    /// <summary>
+    /// SetDataEventアクション（ZキーまたはEnterキー）が押された時の処理
+    /// </summary>
+    private void OnSetDataEventPerformed(InputAction.CallbackContext context)
+    {
+        // 範囲内にいる場合のみイベントを発火
+        if (_isInEvent)
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+    }
 
     public override void TriggerEvent()
     {
@@ -45,7 +70,6 @@ public class SetDateEvent : AbstractEvent
 
         onFinishEvent.OnNext(Unit.Default);
     }
-
 
     void OnTriggerEnter2D(Collider2D collision)
     {
