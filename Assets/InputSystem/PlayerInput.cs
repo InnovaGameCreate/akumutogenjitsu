@@ -1,10 +1,29 @@
+using UnityEngine;
+
 public class PlayerInput : Singleton<PlayerInput>
 {
-    private PlayerOperation _input;
-    void Start()
+    private PlayerActionInput _input;
+
+    protected override void Awake()
     {
-        _input = new PlayerOperation();
+        base.Awake();
+        _input = new PlayerActionInput();
     }
 
-    public PlayerOperation Input => _input;
+    private void OnEnable()
+    {
+        _input.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _input.Disable();
+    }
+
+    private void OnDestroy()
+    {
+        _input?.Dispose();
+    }
+
+    public PlayerActionInput Input => _input;
 }
