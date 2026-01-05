@@ -3,5 +3,20 @@ public enum eItem
     MedicineRed,
     MedicineBlue,
     EntranceKey,
-    Doll
+    Doll,
+    Umbrella,
+    Doorknob,
+    Housekey,
+    Subentrancekey,
+    Rinngo,
+    Bat,
+    Lockerkey,
+    Safetyshoes,
+    bucket,
+    waterbucket,
+    banana,
+    timecapsule,
+    kichenkey,
+    livingkey,
+    bookvolume1
 };
