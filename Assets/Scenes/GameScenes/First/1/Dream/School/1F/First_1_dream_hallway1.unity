@@ -1101,6 +1101,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9052560886023069580, guid: 10e9f26f4c9d0e6458a827320fedfd55, type: 3}
+      propertyPath: orthographic size
+      value: 11.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14380,6 +14384,10 @@ PrefabInstance:
     - target: {fileID: 1681532106225054171, guid: 9b4e32e450cb14d64a5c98258f270fa2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771249432699255249, guid: 9b4e32e450cb14d64a5c98258f270fa2, type: 3}
+      propertyPath: _eventId
+      value: 64f0bc31-faa2-4d1b-b4b3-6453bd32287f
       objectReference: {fileID: 0}
     - target: {fileID: 1771249432699255249, guid: 9b4e32e450cb14d64a5c98258f270fa2, type: 3}
       propertyPath: _textEvent
