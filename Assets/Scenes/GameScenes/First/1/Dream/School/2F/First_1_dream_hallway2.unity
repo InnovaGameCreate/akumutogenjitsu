@@ -6321,6 +6321,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 10.63
       objectReference: {fileID: 0}
+    - target: {fileID: 9052560886023069580, guid: 10e9f26f4c9d0e6458a827320fedfd55, type: 3}
+      propertyPath: orthographic size
+      value: 11.25
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3294360495462395098, guid: 10e9f26f4c9d0e6458a827320fedfd55, type: 3}
     m_RemovedGameObjects:
@@ -6436,7 +6440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: textLines.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: textLines.Array.data[0].Message
@@ -6451,6 +6455,10 @@ PrefabInstance:
       value: "\u300C\u6025\u306B\u591C\u306B\u306A\u3063\u3066\u308B\u3057\u3042\u3044\u3064\u3089\u306F\u306A\u3093\u304B\u3088\u304F\u5206\u304B\u3093\u306A\u3044\u3084\u3064\u306B\u306A\u3063\u3061\u3083\u3046\u3057\u304D\u3063\u3068\u5922\u306E\u4E2D\u3060\u305D\u3046\u306B\u9055\u3044\u306A\u3044\u300D"
       objectReference: {fileID: 0}
     - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
+      propertyPath: textLines.Array.data[3].Message
+      value: "\u3068\u308A\u3042\u3048\u305A\u5B66\u6821\u3092\u51FA\u3066\u3001\u3042\u308C\u3089\u304B\u3089\u9003\u3052\u3088\u3046"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: textLines.Array.data[0].characterData
       value: 
       objectReference: {fileID: 11400000, guid: 9ffb4fa11dc18d64fb10c5e0e275188d, type: 2}
@@ -6460,6 +6468,10 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 9ffb4fa11dc18d64fb10c5e0e275188d, type: 2}
     - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
       propertyPath: textLines.Array.data[2].characterData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ffb4fa11dc18d64fb10c5e0e275188d, type: 2}
+    - target: {fileID: 2265354364521353274, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
+      propertyPath: textLines.Array.data[3].characterData
       value: 
       objectReference: {fileID: 11400000, guid: 9ffb4fa11dc18d64fb10c5e0e275188d, type: 2}
     - target: {fileID: 3718633801902478523, guid: 7abbfa9e433be7c43985f64e44588983, type: 3}
@@ -6659,7 +6671,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5018794445609375772, guid: 5dfb1dc135498354f9085327a3940ad7, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7262873857064080201, guid: 5dfb1dc135498354f9085327a3940ad7, type: 3}
       insertIndex: -1
