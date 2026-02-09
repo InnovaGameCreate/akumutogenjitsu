@@ -1,85 +1,91 @@
 using System.Collections.Generic;
-using System.Linq.Expressions;
+using NUnit.Framework;
 using R3;
 using UnityEngine;
 
-public class EventQueue : MonoBehaviour
+public class EventQueue : AbstractEvent
 {
     [Header("イベントキュー")]
     [SerializeField] private List<GameObject> _eventQueue = new();
     private List<AbstractEvent> _allEvents = new();
-    [Header("１度だけ実行する")]
-    [SerializeField] private bool _isTriggerOnce;
+
+    [Header("シーン読み込み時に即座に実行")]
     [SerializeField] private bool _isTriggerForce = false;
 
     private int _currentEventIndex = 0;
+    private bool _isInEvent = false;
 
-    void Start()
+    private bool _hasTriggered = false;
+
+    public override void OnStartEvent()
     {
-        Initialize();
-
-        if (_isTriggerForce && _allEvents.Count > 0)
-        {
-            SetupNextEvent(_allEvents[0]);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (_currentEventIndex > _allEvents.Count)
-        {
-            return;
-        }
-        AbstractEvent currentEvent = _allEvents[_currentEventIndex];
-        if (currentEvent.EventStatus == eEventStatus.Triggered || !currentEvent.Enabled)
-        {
-            currentEvent.Enabled = false;
-
-            if (_currentEventIndex + 1 < _allEvents.Count)
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isInEvent && EventStatus == eEventStatus.NotTriggered)
+            .Subscribe(_ =>
             {
-                _currentEventIndex++;
-                AbstractEvent nextEvent = _allEvents[_currentEventIndex];
-                SetupNextEvent(nextEvent);
-            }
-            else if (!_isTriggerOnce)
-            {
-                Initialize();
-            }
-        }
-    }
+                // 最初は手動で実行
+                onTriggerEvent.OnNext(Unit.Default);
+            })
+            .AddTo(_disposable);
 
-    /// <summary>
-    /// イベントのオブジェクトをチェックして最初の要素をActiveにする
-    /// </summary>
-    private void Initialize()
-    {
-        // イベントは全て一度だけ実行するようにする
-        foreach (var eventObj in _eventQueue)
+        foreach (var obj in _eventQueue)
         {
-            AbstractEvent ev = eventObj.GetComponent<AbstractEvent>();
-            if (ev == null || ev.EventStatus == eEventStatus.Triggered)
+            AbstractEvent evt = obj.GetComponent<AbstractEvent>();
+            if (evt == null)
             {
                 continue;
             }
-            _allEvents.Add(ev);
-            ev.Enabled = false;
+
+            _allEvents.Add(evt);
         }
 
-        if (_allEvents.Count == 0)
+        if (_isTriggerForce)
         {
-            gameObject.SetActive(false);
+            onTriggerEvent.OnNext(Unit.Default);
+        }
+    }
+
+    public override void TriggerEvent()
+    {
+        if (_hasTriggered && _currentEventIndex >= _allEvents.Count - 1 && _currentEvent.EventStatus != eEventStatus.Running)
+        {
+            onFinishEvent.OnNext(Unit.Default);
             return;
         }
 
-        _currentEventIndex = 0;
-        _allEvents[0].Enabled = true;
+        if (!_hasTriggered)
+        {
+            _currentEvent.TriggerEventForce();
+            _hasTriggered = true;
+            return;
+        }
+
+        if (_allEvents[_currentEventIndex].EventStatus != eEventStatus.Running)
+        {
+            _currentEventIndex++;
+            _currentEvent.TriggerEventForce();
+        }
     }
 
-    private void SetupNextEvent(AbstractEvent nextEvent)
+    // MARK: OnTrigger
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        nextEvent.Enabled = true;
-        // イベントを実行する
-        nextEvent.TriggerEventForce();
+        if (collision.CompareTag("Player"))
+        {
+            _isInEvent = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            _isInEvent = false;
+        }
+    }
+
+    private AbstractEvent _currentEvent
+    {
+        get => _allEvents[_currentEventIndex];
     }
 }

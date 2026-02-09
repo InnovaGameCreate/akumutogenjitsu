@@ -1,4 +1,5 @@
-using UnityEngine;
+using R3;
+using UnityEngine.InputSystem;
 
 public class PlayerInput : Singleton<PlayerInput>
 {
@@ -9,7 +10,7 @@ public class PlayerInput : Singleton<PlayerInput>
         base.Awake();
         _input = new PlayerActionInput();
     }
-
+    
     private void OnEnable()
     {
         _input.Enable();
@@ -26,4 +27,12 @@ public class PlayerInput : Singleton<PlayerInput>
     }
 
     public PlayerActionInput Input => _input;
+
+    public Observable<InputAction.CallbackContext> OnPerformed(InputAction action)
+    {
+        return Observable.FromEvent<InputAction.CallbackContext>(
+            h => action.performed += h,
+            h => action.performed -= h
+        );
+    }
 }

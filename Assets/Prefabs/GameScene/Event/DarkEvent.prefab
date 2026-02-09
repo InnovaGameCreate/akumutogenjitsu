@@ -227,11 +227,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f2a9b145ca538419e749e445668b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _event: 6
+  _event: 8
   _isTriggeredOnce: 0
   _eventId: 
   _storyLayer: 0
   _isUpStoryLayer: 0
+  _fadeType: 0
   _isTriggerForce: 0
   _darkTime: 2
   _darkPrefab: {fileID: 4677331596345900933, guid: b668cd9fb93924749adac5e1a0ad2614, type: 3}

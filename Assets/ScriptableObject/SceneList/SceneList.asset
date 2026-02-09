@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SceneList
   m_EditorClassIdentifier: 
   Locations:
-  - Type: 1
+  - Type: 2
     DisplayName: "\u5BB6"
   - Type: 2
     DisplayName: "\u8857"
@@ -43,8 +43,10 @@ MonoBehaviour:
     DisplayName: "\u5B66\u6821\u3000\uFF12\u968E\u3000\u5ECA\u4E0B"
   - Type: 0
     DisplayName: Load
-  Scenes:
   - Type: 1
+    DisplayName: Debug
+  Scenes:
+  - Type: 2
     _sceneAsset: {fileID: 102900000, guid: 180d386e74de8cd4b855343601ebf07a, type: 3}
     _sceneName: First_1_real_house
   - Type: 2
@@ -281,3 +283,12 @@ MonoBehaviour:
   - Type: 0
     _sceneAsset: {fileID: 102900000, guid: 82e7fb91b52c54738839837b4af64760, type: 3}
     _sceneName: Load
+  - Type: 1
+    _sceneAsset: {fileID: 102900000, guid: 301cf762ee983458aaed1837eeca8fc2, type: 3}
+    _sceneName: EventTests
+  - Type: 1
+    _sceneAsset: {fileID: 102900000, guid: 2b7dc0f3dfc6045f69842b8b366bbb97, type: 3}
+    _sceneName: UnitTests
+  - Type: 1
+    _sceneAsset: {fileID: 102900000, guid: 7e3dbb592cf744ec7aa98345ff59507c, type: 3}
+    _sceneName: EventSystemTests
