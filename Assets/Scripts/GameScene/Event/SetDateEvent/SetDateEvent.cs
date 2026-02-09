@@ -23,7 +23,13 @@ public class SetDateEvent : AbstractEvent
         }
 
         // InputSystemを使用してSetDataEventアクションを監視
-        PlayerInput.Instance.Input.Player.SetDataEvent.performed += OnSetDataEventPerformed;
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isInEvent)
+            .Subscribe(_ =>
+            {
+                onTriggerEvent.OnNext(Unit.Default);
+            })
+            .AddTo(_disposables);
     }
 
     private void OnDisable()
