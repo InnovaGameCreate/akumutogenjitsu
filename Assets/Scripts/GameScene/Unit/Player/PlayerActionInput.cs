@@ -1758,6 +1758,84 @@ public partial class @PlayerActionInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""TextEvent"",
+            ""id"": ""fc229c57-5a4c-49f1-a1cd-8657a0c46db6"",
+            ""actions"": [
+                {
+                    ""name"": ""NextPage"",
+                    ""type"": ""Button"",
+                    ""id"": ""b77114a8-8568-4c69-adb4-412dbcf67614"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a5d2abef-9c99-495b-81e6-d7b597fd795e"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a733124a-0019-4f68-8cf1-521712439b51"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""SpriteEvent"",
+            ""id"": ""f1132d45-c3bc-466a-9728-2bf3fd625748"",
+            ""actions"": [
+                {
+                    ""name"": ""Close"",
+                    ""type"": ""Button"",
+                    ""id"": ""037a7ad6-d473-447d-b112-cc3698e4b45a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e42d17b2-3711-408d-9ab9-faf77651a4a2"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Close"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b093f502-7354-44aa-9405-f35098c9ca7f"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Close"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1888,6 +1966,12 @@ public partial class @PlayerActionInput: IInputActionCollection2, IDisposable
         m_PasswordEvent_PlusNumber = m_PasswordEvent.FindAction("PlusNumber", throwIfNotFound: true);
         m_PasswordEvent_MinusNumber = m_PasswordEvent.FindAction("MinusNumber", throwIfNotFound: true);
         m_PasswordEvent_Submit = m_PasswordEvent.FindAction("Submit", throwIfNotFound: true);
+        // TextEvent
+        m_TextEvent = asset.FindActionMap("TextEvent", throwIfNotFound: true);
+        m_TextEvent_NextPage = m_TextEvent.FindAction("NextPage", throwIfNotFound: true);
+        // SpriteEvent
+        m_SpriteEvent = asset.FindActionMap("SpriteEvent", throwIfNotFound: true);
+        m_SpriteEvent_Close = m_SpriteEvent.FindAction("Close", throwIfNotFound: true);
     }
 
     ~@PlayerActionInput()
@@ -1901,6 +1985,8 @@ public partial class @PlayerActionInput: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Save.enabled, "This will cause a leak and performance issues, PlayerActionInput.Save.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_ChoiceTextEvent.enabled, "This will cause a leak and performance issues, PlayerActionInput.ChoiceTextEvent.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_PasswordEvent.enabled, "This will cause a leak and performance issues, PlayerActionInput.PasswordEvent.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TextEvent.enabled, "This will cause a leak and performance issues, PlayerActionInput.TextEvent.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_SpriteEvent.enabled, "This will cause a leak and performance issues, PlayerActionInput.SpriteEvent.Disable() has not been called.");
     }
 
     /// <summary>
@@ -3254,6 +3340,198 @@ public partial class @PlayerActionInput: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PasswordEventActions" /> instance referencing this action map.
     /// </summary>
     public PasswordEventActions @PasswordEvent => new PasswordEventActions(this);
+
+    // TextEvent
+    private readonly InputActionMap m_TextEvent;
+    private List<ITextEventActions> m_TextEventActionsCallbackInterfaces = new List<ITextEventActions>();
+    private readonly InputAction m_TextEvent_NextPage;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "TextEvent".
+    /// </summary>
+    public struct TextEventActions
+    {
+        private @PlayerActionInput m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TextEventActions(@PlayerActionInput wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TextEvent/NextPage".
+        /// </summary>
+        public InputAction @NextPage => m_Wrapper.m_TextEvent_NextPage;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TextEvent; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TextEventActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TextEventActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TextEventActions" />
+        public void AddCallbacks(ITextEventActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TextEventActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TextEventActionsCallbackInterfaces.Add(instance);
+            @NextPage.started += instance.OnNextPage;
+            @NextPage.performed += instance.OnNextPage;
+            @NextPage.canceled += instance.OnNextPage;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TextEventActions" />
+        private void UnregisterCallbacks(ITextEventActions instance)
+        {
+            @NextPage.started -= instance.OnNextPage;
+            @NextPage.performed -= instance.OnNextPage;
+            @NextPage.canceled -= instance.OnNextPage;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TextEventActions.UnregisterCallbacks(ITextEventActions)" />.
+        /// </summary>
+        /// <seealso cref="TextEventActions.UnregisterCallbacks(ITextEventActions)" />
+        public void RemoveCallbacks(ITextEventActions instance)
+        {
+            if (m_Wrapper.m_TextEventActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TextEventActions.AddCallbacks(ITextEventActions)" />
+        /// <seealso cref="TextEventActions.RemoveCallbacks(ITextEventActions)" />
+        /// <seealso cref="TextEventActions.UnregisterCallbacks(ITextEventActions)" />
+        public void SetCallbacks(ITextEventActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TextEventActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TextEventActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TextEventActions" /> instance referencing this action map.
+    /// </summary>
+    public TextEventActions @TextEvent => new TextEventActions(this);
+
+    // SpriteEvent
+    private readonly InputActionMap m_SpriteEvent;
+    private List<ISpriteEventActions> m_SpriteEventActionsCallbackInterfaces = new List<ISpriteEventActions>();
+    private readonly InputAction m_SpriteEvent_Close;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "SpriteEvent".
+    /// </summary>
+    public struct SpriteEventActions
+    {
+        private @PlayerActionInput m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public SpriteEventActions(@PlayerActionInput wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "SpriteEvent/Close".
+        /// </summary>
+        public InputAction @Close => m_Wrapper.m_SpriteEvent_Close;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_SpriteEvent; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="SpriteEventActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(SpriteEventActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="SpriteEventActions" />
+        public void AddCallbacks(ISpriteEventActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SpriteEventActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SpriteEventActionsCallbackInterfaces.Add(instance);
+            @Close.started += instance.OnClose;
+            @Close.performed += instance.OnClose;
+            @Close.canceled += instance.OnClose;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="SpriteEventActions" />
+        private void UnregisterCallbacks(ISpriteEventActions instance)
+        {
+            @Close.started -= instance.OnClose;
+            @Close.performed -= instance.OnClose;
+            @Close.canceled -= instance.OnClose;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="SpriteEventActions.UnregisterCallbacks(ISpriteEventActions)" />.
+        /// </summary>
+        /// <seealso cref="SpriteEventActions.UnregisterCallbacks(ISpriteEventActions)" />
+        public void RemoveCallbacks(ISpriteEventActions instance)
+        {
+            if (m_Wrapper.m_SpriteEventActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="SpriteEventActions.AddCallbacks(ISpriteEventActions)" />
+        /// <seealso cref="SpriteEventActions.RemoveCallbacks(ISpriteEventActions)" />
+        /// <seealso cref="SpriteEventActions.UnregisterCallbacks(ISpriteEventActions)" />
+        public void SetCallbacks(ISpriteEventActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SpriteEventActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SpriteEventActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="SpriteEventActions" /> instance referencing this action map.
+    /// </summary>
+    public SpriteEventActions @SpriteEvent => new SpriteEventActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -3719,5 +3997,35 @@ public partial class @PlayerActionInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSubmit(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TextEvent" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TextEventActions.AddCallbacks(ITextEventActions)" />
+    /// <seealso cref="TextEventActions.RemoveCallbacks(ITextEventActions)" />
+    public interface ITextEventActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "NextPage" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNextPage(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "SpriteEvent" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="SpriteEventActions.AddCallbacks(ISpriteEventActions)" />
+    /// <seealso cref="SpriteEventActions.RemoveCallbacks(ISpriteEventActions)" />
+    public interface ISpriteEventActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Close" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnClose(InputAction.CallbackContext context);
     }
 }

@@ -1672,6 +1672,84 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "TextEvent",
+            "id": "fc229c57-5a4c-49f1-a1cd-8657a0c46db6",
+            "actions": [
+                {
+                    "name": "NextPage",
+                    "type": "Button",
+                    "id": "b77114a8-8568-4c69-adb4-412dbcf67614",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a5d2abef-9c99-495b-81e6-d7b597fd795e",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextPage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a733124a-0019-4f68-8cf1-521712439b51",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextPage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "SpriteEvent",
+            "id": "f1132d45-c3bc-466a-9728-2bf3fd625748",
+            "actions": [
+                {
+                    "name": "Close",
+                    "type": "Button",
+                    "id": "037a7ad6-d473-447d-b112-cc3698e4b45a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e42d17b2-3711-408d-9ab9-faf77651a4a2",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b093f502-7354-44aa-9405-f35098c9ca7f",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
