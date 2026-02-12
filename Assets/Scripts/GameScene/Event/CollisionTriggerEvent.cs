@@ -263,7 +263,7 @@ public class CollisionTriggerEvent : AbstractEvent
     {
         if (_imageCanvas != null)
         {
-            DestroyImmediate(_imageCanvas);
+            Destroy(_imageCanvas);
         }
     }
 
