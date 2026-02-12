@@ -26,11 +26,14 @@ public class Floors2And3StairsPasswordGimmick : AbstractEvent
         {
             _wall.SetActive(false);
         }
-    }
 
-    private bool IsTriggerEvent()
-    {
-        return _isPlayerIn && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Z));
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isPlayerIn)
+            .Subscribe(_ =>
+            {
+                onTriggerEvent.OnNext(Unit.Default);
+            })
+            .AddTo(_disposable);
     }
 
     public override void TriggerEvent()
@@ -64,17 +67,16 @@ public class Floors2And3StairsPasswordGimmick : AbstractEvent
 
     public override void OnUpdateEvent()
     {
-        // トリガー条件チェック
-        if (IsTriggerEvent())
-        {
-            onTriggerEvent.OnNext(Unit.Default);
-        }
-
         // 終了条件チェック
         if (IsFinishEvent())
         {
             onFinishEvent.OnNext(Unit.Default);
         }
+    }
+
+    public override void OnFinishEvent()
+    {
+        _hasFinished = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
