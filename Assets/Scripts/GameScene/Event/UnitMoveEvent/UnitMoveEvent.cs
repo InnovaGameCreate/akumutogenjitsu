@@ -109,7 +109,10 @@ public class UnitMoveEvent : AbstractEvent
 
         UnitMoveStatus unitMoveStatus = UnitMoveStatus.CreateMoveStatusFromDirection(_direction);
         _unitController.unitMoveStatus = unitMoveStatus;
+    }
 
+    public override void OnUpdateEvent()
+    {
         // 終了条件チェック
         if (IsFinishEvent())
         {

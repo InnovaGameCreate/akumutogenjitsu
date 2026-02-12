@@ -7,18 +7,20 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
 
     private bool _hasFinished = false;
 
-    private bool IsFinishEvent()
+    public override void OnStartEvent()
     {
-        if (EventStatus == eEventStatus.Triggered)
-        {
-            _hasFinished = false;
-        }
-        return _hasFinished;
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isPlayerIn)
+            .Subscribe(_ =>
+            {
+                onTriggerEvent.OnNext(Unit.Default);
+            })
+            .AddTo(_disposable);
     }
 
-    private bool IsTriggerEvent()
+    private bool IsFinishEvent()
     {
-        return _isPlayerIn && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return));
+        return _hasFinished;
     }
 
     public override void TriggerEvent()
@@ -41,17 +43,21 @@ public class CreateEntranceKeyWithMedicineEvent : AbstractEvent
         {
             Debug.Log("必要な薬が揃っていません。");
         }
-        onFinishEvent.OnNext(Unit.Default);
         _hasFinished = true;
     }
 
     public override void OnUpdateEvent()
     {
-        // トリガー条件チェック
-        if (IsTriggerEvent())
+        // 終了条件チェック
+        if (IsFinishEvent())
         {
-            onTriggerEvent.OnNext(Unit.Default);
+            onFinishEvent.OnNext(Unit.Default);
         }
+    }
+
+    public override void OnFinishEvent()
+    {
+        _hasFinished = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

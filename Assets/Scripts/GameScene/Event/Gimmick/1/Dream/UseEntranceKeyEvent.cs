@@ -13,14 +13,20 @@ public class UseEntranceKeyEvent : AbstractEvent
 
     private bool _hasFinished = false;
 
+    public override void OnStartEvent()
+    {
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isInEvent && _textEvent.EventStatus != eEventStatus.Running)
+            .Subscribe(_ =>
+            {
+                onTriggerEvent.OnNext(Unit.Default);
+            })
+            .AddTo(_disposable);
+    }
+
     private bool IsFinishEvent()
     {
         return _hasFinished;
-    }
-
-    private bool IsTriggerEvent()
-    {
-        return _isInEvent && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)) && _textEvent.EventStatus != eEventStatus.Running;
     }
 
     public override void TriggerEvent()
@@ -45,17 +51,16 @@ public class UseEntranceKeyEvent : AbstractEvent
 
     public override void OnUpdateEvent()
     {
-        // トリガー条件チェック
-        if (IsTriggerEvent())
-        {
-            onTriggerEvent.OnNext(Unit.Default);
-        }
-
         // 終了条件チェック
         if (IsFinishEvent())
         {
             onFinishEvent.OnNext(Unit.Default);
         }
+    }
+
+    public override void OnFinishEvent()
+    {
+        _hasFinished = false;
     }
 
     // MARK: OnTrigger

@@ -47,11 +47,20 @@ public class PrologueEvent : AbstractEvent
         {
             Debug.LogError("[PrologueEvent] UICanvasが見つかりません。", this);
         }
-    }
 
-    private bool IsTriggerEvent()
-    {
-        return (_isInEvent && Input.GetKeyDown(KeyCode.Z)) || _isTriggerForce;
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isInEvent)
+            .Subscribe(_ =>
+            {
+                _isTriggerForce = false;
+                onTriggerEvent.OnNext(Unit.Default);
+            })
+            .AddTo(_disposable);
+
+        if (_isTriggerForce)
+        {
+            onTriggerEvent.OnNext(Unit.Default);
+        }
     }
 
     public override void TriggerEvent()
@@ -66,13 +75,6 @@ public class PrologueEvent : AbstractEvent
 
     public override void OnUpdateEvent()
     {
-        // トリガー条件チェック
-        if (IsTriggerEvent())
-        {
-            _isTriggerForce = false;
-            onTriggerEvent.OnNext(Unit.Default);
-        }
-
         // プレゼンターがキー入力を処理するため、ここでは完了チェックのみ
         if (_prologuePresenter != null && _prologuePresenter.IsFinished())
         {

@@ -13,7 +13,7 @@ public class SetDateEvent : AbstractEvent
 
     private readonly CompositeDisposable _disposables = new CompositeDisposable();
 
-    private void OnEnable()
+    public override void OnStartEvent()
     {
         // トリガー移設
         if (_isTriggerForce)
@@ -35,29 +35,11 @@ public class SetDateEvent : AbstractEvent
     private void OnDisable()
     {
         _disposables.Clear();
-
-        // コールバックの解除
-        if (PlayerInput.Instance != null && PlayerInput.Instance.Input != null)
-        {
-            PlayerInput.Instance.Input.Player.SetDataEvent.performed -= OnSetDataEventPerformed;
-        }
     }
 
     private void OnDestroy()
     {
         _disposables.Dispose();
-    }
-
-    /// <summary>
-    /// SetDataEventアクション（ZキーまたはEnterキー）が押された時の処理
-    /// </summary>
-    private void OnSetDataEventPerformed(InputAction.CallbackContext context)
-    {
-        // 範囲内にいる場合のみイベントを発火
-        if (_isInEvent)
-        {
-            onTriggerEvent.OnNext(Unit.Default);
-        }
     }
 
     public override void TriggerEvent()

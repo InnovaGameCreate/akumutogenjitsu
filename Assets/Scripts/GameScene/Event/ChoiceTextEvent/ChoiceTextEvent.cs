@@ -69,6 +69,15 @@ public class ChoiceTextEvent : AbstractEvent
             Debug.LogError("Canvasが存在しません。");
             return;
         }
+
+        // PlayerInputを使用してInteractアクションを監視
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isInEvent)
+            .Subscribe(_ =>
+            {
+                onTriggerEvent.OnNext(Unit.Default);
+            })
+            .AddTo(_disposable);
     }
 
     private bool IsFinishEvent()
@@ -76,9 +85,12 @@ public class ChoiceTextEvent : AbstractEvent
         return _isFinish;
     }
 
-    private bool IsTriggerEvent()
+    public override void OnUpdateEvent()
     {
-        return _isInEvent && Input.GetKeyDown(KeyCode.Z);
+        if (IsFinishEvent())
+        {
+            onFinishEvent.OnNext(Unit.Default);
+        }
     }
 
     public override void TriggerEvent()
@@ -110,19 +122,6 @@ public class ChoiceTextEvent : AbstractEvent
         {
             Destroy(_viewObj);
             _viewObj = null;
-        }
-    }
-
-    public override void OnUpdateEvent()
-    {
-        if (IsTriggerEvent())
-        {
-            onTriggerEvent.OnNext(Unit.Default);
-        }
-
-        if (IsFinishEvent())
-        {
-            onFinishEvent.OnNext(Unit.Default);
         }
     }
 

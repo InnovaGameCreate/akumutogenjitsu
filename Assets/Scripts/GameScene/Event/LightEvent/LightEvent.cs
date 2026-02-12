@@ -32,7 +32,8 @@ public class LightEvent : AbstractEvent
             .Subscribe(_ =>
             {
                 onTriggerEvent.OnNext(Unit.Default);
-            });
+            })
+            .AddTo(_disposable);
 
         if (_isTriggeredForce)
         {

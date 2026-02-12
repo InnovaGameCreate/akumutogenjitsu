@@ -59,6 +59,11 @@ public class ItemEvent : AbstractEvent
         return _hasFinished;
     }
 
+    public override void OnFinishEvent()
+    {
+        _hasFinished = false;
+    }
+
     public override void OnUpdateEvent()
     {
         // トリガー条件チェック

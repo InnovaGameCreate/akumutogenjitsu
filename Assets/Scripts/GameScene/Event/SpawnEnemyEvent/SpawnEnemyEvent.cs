@@ -11,6 +11,17 @@ public class SpawnEnemyEvent : AbstractEvent
     private bool _isInEnter;
     private bool _hasFinished = false;
 
+    public override void OnStartEvent()
+    {
+        PlayerInput.Instance.OnPerformed(PlayerInput.Instance.Input.Base.Interact)
+            .Where(ctx => ctx.ReadValueAsButton() && _isInEnter)
+            .Subscribe(_ =>
+            {
+                onTriggerEvent.OnNext(Unit.Default);
+            })
+            .AddTo(_disposable);
+    }
+
     /// <summary>
     /// 敵をスポーンさせるイベントを実行します。
     /// </summary>
@@ -25,14 +36,6 @@ public class SpawnEnemyEvent : AbstractEvent
             Instantiate(_enemyPrefab, _position, transform.rotation);
         }
         onFinishEvent.OnNext(Unit.Default);
-    }
-
-    public override void OnUpdateEvent()
-    {
-        if (_isInEnter && (Input.GetKeyDown(KeyCode.Z) || Input.GetKey(KeyCode.Return)))
-        {
-            onTriggerEvent.OnNext(Unit.Default);
-        }
     }
 
     /// <summary>
