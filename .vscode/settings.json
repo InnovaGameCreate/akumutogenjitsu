@@ -56,7 +56,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "akumutogenjitsu.sln",
+    "dotnet.defaultSolution": "akumutogenjitsu.slnx",
     "[csharp]": {
         "editor.formatOnSave": true
     }
