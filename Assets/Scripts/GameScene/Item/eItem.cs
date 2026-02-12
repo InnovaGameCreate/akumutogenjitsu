@@ -18,5 +18,8 @@ public enum eItem
     timecapsule,
     kichenkey,
     livingkey,
-    bookvolume1
+    bookvolume1,
+    banana,
+    apple,
+    water
 };
