@@ -19,7 +19,5 @@ public enum eItem
     kichenkey,
     livingkey,
     bookvolume1,
-    banana,
-    apple,
     water
 };
