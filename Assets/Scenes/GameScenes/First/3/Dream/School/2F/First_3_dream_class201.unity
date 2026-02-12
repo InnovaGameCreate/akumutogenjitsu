@@ -2337,6 +2337,10 @@ PrefabInstance:
       value: ItemEvent(b)
       objectReference: {fileID: 0}
     - target: {fileID: 2698544504587086564, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
+      propertyPath: _item
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698544504587086564, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
       propertyPath: _eventId
       value: b38a7b03-046e-4be1-83e7-a5d960eb48fb
       objectReference: {fileID: 0}
@@ -2412,6 +2416,10 @@ PrefabInstance:
       value: ItemEvent
       objectReference: {fileID: 0}
     - target: {fileID: 2698544504587086564, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
+      propertyPath: _item
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698544504587086564, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
       propertyPath: _eventId
       value: 2df76cdc-70e7-47ac-8bc3-2b72a3996c98
       objectReference: {fileID: 0}
@@ -2471,6 +2479,11 @@ PrefabInstance:
 --- !u!4 &728840490 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6475258425735908495, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
+  m_PrefabInstance: {fileID: 728840489}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &728840491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2350548624015867999, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
   m_PrefabInstance: {fileID: 728840489}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &782214377
@@ -3571,6 +3584,10 @@ PrefabInstance:
     - target: {fileID: 2350548624015867999, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
       propertyPath: m_Name
       value: ItemEvent (a)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698544504587086564, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
+      propertyPath: _item
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2698544504587086564, guid: bd63f7848cf33f2499cd291e00693dcf, type: 3}
       propertyPath: _eventId
@@ -6179,6 +6196,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8269791697374650952, guid: 5dfb1dc135498354f9085327a3940ad7, type: 3}
+      propertyPath: _eventId
+      value: f025a9e2-2867-4e4e-9953-f779011dd6c1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8269791697374650952, guid: 5dfb1dc135498354f9085327a3940ad7, type: 3}
       propertyPath: _isTriggerOnce
       value: 1
       objectReference: {fileID: 0}
@@ -6190,6 +6211,10 @@ PrefabInstance:
       propertyPath: '_eventQueue.Array.data[0]'
       value: 
       objectReference: {fileID: 1943848139}
+    - target: {fileID: -8269791697374650952, guid: 5dfb1dc135498354f9085327a3940ad7, type: 3}
+      propertyPath: '_eventQueue.Array.data[1]'
+      value: 
+      objectReference: {fileID: 728840491}
     - target: {fileID: 3718633801902478523, guid: 5dfb1dc135498354f9085327a3940ad7, type: 3}
       propertyPath: m_Name
       value: EventQueue (3)
