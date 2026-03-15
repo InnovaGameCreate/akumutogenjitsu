@@ -28,9 +28,9 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-${{ runner.os }}-${{ hashFiles('Packages/**', 'ProjectSettings/ProjectVersion.txt') }}
           restore-keys: |
-            Library-
+            Library-${{ runner.os }}-
 
       - name: Build (check only)
         uses: game-ci/unity-builder@v4
@@ -48,4 +48,4 @@ jobs:
         if: always()
         with:
           path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-${{ runner.os }}-${{ hashFiles('Packages/**', 'ProjectSettings/ProjectVersion.txt') }}
